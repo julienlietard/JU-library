@@ -19,35 +19,21 @@ jobs:
         with:
           submodules: true
           lfs: false
-
-      # Étape pour configurer Node.js 18 et mettre à jour Yarn
-      - name: Set up Node.js 18 and Yarn
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'
-        # Installe la version de yarn >=1.22.18
-      - name: Install Yarn 1.22.18
-        run: npm install -g yarn@1.22.18
-
+          node-version: '18' # Vérifiez que la version de Node.js est suffisante pour Storybook
       - name: Install dependencies
-        run: yarn install --prefer-offline
-
+        run: npm install
       - name: Build Storybook
-        run: yarn build-storybook
-
-      - name: Deploy to Azure Static Web Apps
-        id: builddeploy
+        run: npm run build-storybook
+      - name: Deploy Storybook to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_HAPPY_MUSHROOM_009B83303 }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          action: "upload"
-          ###### Repository/Build Configurations - Ces valeurs peuvent être configurées selon les besoins de votre application. ######
-          app_location: "/" # Dossier racine du projet
-          api_location: "" # Chemin de l'API (optionnel)
-          output_location: "storybook-static" # Dossier de sortie de Storybook, généré par la commande `build-storybook`
-          ###### Fin des configurations ######
-
+          app_location: "/storybook-static" # Indiquez ici l'emplacement du build Storybook
+          output_location: ""
+          
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
