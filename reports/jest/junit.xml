@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="8" failures="0" errors="0" time="1.402">
+  <testsuite name="JUButton Component" errors="0" failures="0" skipped="0" timestamp="2024-10-06T21:44:35" time="0.778" tests="5">
+    <testcase classname="JUButton Component affiche le label du bouton correctement" name="JUButton Component affiche le label du bouton correctement" time="0.037">
+    </testcase>
+    <testcase classname="JUButton Component appelle la fonction onClick lors du clic" name="JUButton Component appelle la fonction onClick lors du clic" time="0.009">
+    </testcase>
+    <testcase classname="JUButton Component désactive le bouton lorsque la prop &quot;disabled&quot; est passée" name="JUButton Component désactive le bouton lorsque la prop &quot;disabled&quot; est passée" time="0.007">
+    </testcase>
+    <testcase classname="JUButton Component applique la classe de type correctement" name="JUButton Component applique la classe de type correctement" time="0.004">
+    </testcase>
+    <testcase classname="JUButton Component applique la classe de taille correctement" name="JUButton Component applique la classe de taille correctement" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="JUDock" errors="0" failures="0" skipped="0" timestamp="2024-10-06T21:44:36" time="0.196" tests="3">
+    <testcase classname="JUDock renders the dock with titles" name="JUDock renders the dock with titles" time="0.022">
+    </testcase>
+    <testcase classname="JUDock highlights the active link" name="JUDock highlights the active link" time="0.005">
+    </testcase>
+    <testcase classname="JUDock calls onClick when a link is clicked" name="JUDock calls onClick when a link is clicked" time="0.007">
+    </testcase>
+  </testsuite>
+</testsuites>

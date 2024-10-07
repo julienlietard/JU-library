@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "esnext", // Utilise une version moderne de JavaScript
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx", // Utilise "react-jsx" pour la version 17+
+    "baseUrl": "./src"
+  },
+  "include": ["src", "example/src", ".storybook/**/*"] // Inclut le dossier .storybook
+}

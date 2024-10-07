@@ -1,0 +1,113 @@
+:root {
+  --primary-color: #007bff;
+  --primary-hover: #0056b3;
+  --secondary-color: #6c757d;
+  --secondary-hover: #5a6268;
+  --info-color: #17a2b8;
+  --info-hover: #138496;
+  --warning-color: #ffc107;
+  --warning-hover: #d39e00;
+  --danger-color: #dc3545;
+  --danger-hover: #c82333;
+}
+
+.ju-button {
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  outline: none; /* Supprimer le contour par défaut sur le focus */
+}
+
+/* Effet de survol et de focus */
+.ju-button:hover {
+  transform: translateY(-2px); /* Légère élévation au survol */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre plus forte au survol */
+}
+
+.ju-button:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); /* Ombre de focus */
+}
+
+/* Effet au clic */
+.ju-button:active {
+  transform: translateY(1px); /* Enfoncer le bouton au clic */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre réduite au clic */
+}
+
+/* Tailles des boutons */
+.ju-button--s {
+  font-size: 12px;
+  padding: 5px 10px;
+}
+
+.ju-button--m {
+  font-size: 16px;
+  padding: 10px 15px;
+}
+
+.ju-button--l {
+  font-size: 20px;
+  padding: 15px 20px;
+}
+
+/* Styles par type */
+.ju-button--primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.ju-button--secondary {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.ju-button--info {
+  background-color: var(--info-color);
+  color: white;
+}
+
+.ju-button--warning {
+  background-color: var(--warning-color);
+  color: black;
+}
+
+.ju-button--danger {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+/* État désactivé */
+.ju-button--disabled {
+  background-color: #e2e6ea;
+  color: #6c757d;
+  cursor: not-allowed;
+}
+
+/* Effets pour les boutons de type danger */
+.ju-button--danger:hover {
+  background-color: var(--danger-hover);
+}
+
+/* Effets pour les boutons de type warning */
+.ju-button--warning:hover {
+  background-color: var(--warning-hover);
+}
+
+/* Effets pour les boutons de type info */
+.ju-button--info:hover {
+  background-color: var(--info-hover);
+}
+
+/* Effets pour les boutons de type secondary */
+.ju-button--secondary:hover {
+  background-color: var(--secondary-hover);
+}
+
+/* Effets pour les boutons de type primary */
+.ju-button--primary:hover {
+  background-color: var(--primary-hover);
+}

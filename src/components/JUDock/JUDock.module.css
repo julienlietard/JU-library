@@ -1,0 +1,33 @@
+nav {
+  background: rgba(22, 28, 35, 0.7); /* Couleur de fond avec transparence */
+  width: max-content;
+  padding: 0.7rem 1.7rem;
+  z-index: 2;
+  /* position: fixed; */
+  left: 50%;
+  /* transform: translateX(-50%); */
+  bottom: 1rem;
+  display: flex;
+  gap: 0.8rem;
+  border-radius: 3rem;
+  backdrop-filter: blur(15px);
+}
+
+nav a {
+  background: transparent;
+  padding: 0.9rem;
+  border-radius: 50%;
+  display: flex;
+  color: white; /* Couleur du texte des boutons */
+  font-size: 1.1rem;
+  transition: background 0.3s; /* Animation pour le hover */
+}
+
+nav a:hover {
+  background: rgba(10, 14, 17, 0.5); /* Couleur de fond au survol avec transparence */
+}
+
+nav a.active {
+  background: rgba(10, 14, 17, 0.8); /* Couleur active pour le bouton avec transparence */
+  color: white; /* Couleur du texte des boutons actifs */
+}
