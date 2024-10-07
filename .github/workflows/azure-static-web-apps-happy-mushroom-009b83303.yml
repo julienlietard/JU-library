@@ -19,19 +19,30 @@ jobs:
         with:
           submodules: true
           lfs: false
-      - name: Build And Deploy
+          
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x' # Assurez-vous que la version de Node.js est compatible avec votre configuration de Storybook
+      
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Storybook
+        run: npm run build-storybook # Génère le Storybook en statique dans `storybook-static`
+
+      - name: Deploy to Azure Static Web Apps
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_HAPPY_MUSHROOM_009B83303 }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
-          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "/src" # App source code path
-          api_location: "" # Api source code path - optional
-          output_location: "build" # Built app content directory - optional
-          ###### End of Repository/Build Configurations ######
+          ###### Repository/Build Configurations - Ces valeurs peuvent être configurées selon les besoins de votre application. ######
+          app_location: "/" # Dossier racine du projet
+          api_location: "" # Chemin de l'API (optionnel)
+          output_location: "storybook-static" # Dossier de sortie de Storybook, généré par la commande `build-storybook`
+          ###### Fin des configurations ######
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
