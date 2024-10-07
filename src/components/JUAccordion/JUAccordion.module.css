@@ -1,0 +1,30 @@
+.accordion {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px 0;
+  }
+  
+  .header {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    background-color: inherit; /* Background transparent */
+  }
+  
+  .accordion--light {
+    background-color: white;
+    color: black;
+  }
+  
+  .accordion--dark {
+    background-color: #333;
+    color: white;
+  }
+  
+  .content {
+    padding: 10px;
+    background-color: inherit; /* Background transparent */
+    border-top: 1px solid #ccc;
+  }
+  

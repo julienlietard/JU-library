@@ -1,0 +1,44 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Couleur de fond pour le modal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal {
+    background-color: white; /* Couleur par défaut */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    max-width: 90%;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  /* Styles pour le thème noir */
+  .modal-overlay--dark {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  
+  .modal--dark {
+    background-color: #2b2b2b; /* Couleur de fond du modal pour le thème noir */
+    color: white; /* Couleur du texte pour le thème noir */
+  }
+  

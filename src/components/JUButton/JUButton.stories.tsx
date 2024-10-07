@@ -1,8 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import JUButton, { JUButtonProps } from './JUButton'; // Assure-toi que le chemin est correct
+import JUButton, { JUButtonProps } from './JUButton';
 
-// Définition de la configuration par défaut de l'histoire
 const meta: Meta<JUButtonProps> = {
   title: 'Components/JUButton',
   tags: ['autodocs'],
@@ -12,15 +11,14 @@ const meta: Meta<JUButtonProps> = {
     size: { control: { type: 'select', options: ['s', 'm', 'l'] } },
     type: { control: { type: 'select', options: ['primary', 'secondary', 'info', 'warning', 'danger'] } },
     disabled: { control: 'boolean' },
+    darkTheme: { control: 'boolean' },
   },
 };
 
 export default meta;
 
-// Template de base pour créer chaque story
 const Template: StoryFn<JUButtonProps> = (args) => <JUButton {...args} />;
 
-// Définition de plusieurs variations du bouton
 export const Primary = Template.bind({});
 Primary.args = {
   label: 'Primary Button',
@@ -83,4 +81,45 @@ Disabled.args = {
   size: 'm',
   type: 'secondary',
   disabled: true,
+};
+
+// Nouveaux boutons avec le thème sombre activé
+export const PrimaryDark = Template.bind({});
+PrimaryDark.args = {
+  label: 'Primary Button (Dark)',
+  size: 'm',
+  type: 'primary',
+  darkTheme: true,  // Thème sombre activé
+};
+
+export const SecondaryDark = Template.bind({});
+SecondaryDark.args = {
+  label: 'Secondary Button (Dark)',
+  size: 'm',
+  type: 'secondary',
+  darkTheme: true,
+};
+
+export const InfoDark = Template.bind({});
+InfoDark.args = {
+  label: 'Info Button (Dark)',
+  size: 'm',
+  type: 'info',
+  darkTheme: true,
+};
+
+export const WarningDark = Template.bind({});
+WarningDark.args = {
+  label: 'Warning Button (Dark)',
+  size: 'm',
+  type: 'warning',
+  darkTheme: true,
+};
+
+export const DangerDark = Template.bind({});
+DangerDark.args = {
+  label: 'Danger Button (Dark)',
+  size: 'm',
+  type: 'danger',
+  darkTheme: true,
 };

@@ -1,0 +1,38 @@
+.ju-carousel {
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px; /* Coins arrondis */
+  }
+  
+  .ju-carousel__viewport {
+    flex: 1;
+    overflow: hidden; /* Masque le contenu qui dépasse */
+  }
+  
+  .ju-carousel__track {
+    display: flex; /* Aligne les slides horizontalement */
+    transition: transform 0.5s ease; /* Animation de glisse fluide */
+    will-change: transform; /* Optimise les performances d'animation */
+  }
+  
+  .ju-carousel__slide {
+    min-width: 100%; /* Chaque slide prend toute la largeur du viewport */
+    transition: opacity 0.5s ease; /* Animation d'opacité pour un effet de fondu */
+  }
+  
+  .ju-carousel__control {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 2rem;
+    color: #007bff; /* Couleur des flèches */
+    padding: 10px;
+    transition: color 0.3s;
+  }
+  
+  .ju-carousel__control:hover {
+    color: #0056b3; /* Couleur des flèches au survol */
+  }
+  

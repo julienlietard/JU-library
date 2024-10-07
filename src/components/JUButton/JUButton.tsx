@@ -1,29 +1,39 @@
 import React from 'react';
-import styles from './JUButton.module.css';  // Utilisation de l'import via styles
+import styles from './JUButton.module.css';
 
-// Définition des types pour les props du bouton
-export type ButtonSize = 's' | 'm' | 'l'; // Tailles possibles : petit, moyen, grand
-export type ButtonType = 'primary' | 'secondary' | 'info' | 'warning' | 'danger'; // Styles de bouton
+export type ButtonSize = 's' | 'm' | 'l';
+export type ButtonType = 'primary' | 'secondary' | 'info' | 'warning' | 'danger';
 
 export interface JUButtonProps {
-  label: string;              // Le texte affiché sur le bouton
-  size?: ButtonSize;          // Taille du bouton (optionnelle)
-  type?: ButtonType;          // Type de bouton (optionnelle)
-  disabled?: boolean;         // Si `true`, le bouton est désactivé
-  onClick?: () => void;       // Fonction exécutée lors du clic (optionnelle)
+  label: string;             // Le texte du bouton
+  size?: ButtonSize;         // Taille (petit, moyen, grand)
+  type?: ButtonType;         // Type (primary, secondary, info, warning, danger)
+  disabled?: boolean;        // Si `true`, le bouton est désactivé
+  darkTheme?: boolean;       // Si `true`, applique le thème sombre (fond transparent)
+  onClick?: () => void;      // Fonction à exécuter lors du clic
 }
 
-// Le composant `JUButton` prend des props typées avec l'interface JUButtonProps
-const JUButton: React.FC<JUButtonProps> = ({ label, size = 'm', type = 'primary', disabled = false, onClick }) => {
-  // Génération de classes dynamiques en fonction des props
-  const sizeClass = size ? styles[`ju-button--${size}`] : '';
-  const typeClass = type ? styles[`ju-button--${type}`] : '';
-  const disabledClass = disabled ? styles['ju-button--disabled'] : '';
+const JUButton: React.FC<JUButtonProps> = ({
+  label,
+  size = 'm',
+  type = 'primary',
+  disabled = false,
+  darkTheme = false,
+  onClick,
+}) => {
+  // Génération des classes dynamiques basées sur les props
+  const buttonClass = [
+    styles['ju-button'],                     // Classe de base
+    styles[`ju-button--${size}`],             // Classe de taille
+    styles[`ju-button--${type}`],             // Classe de type
+    disabled ? styles['ju-button--disabled'] : '',  // Classe pour état désactivé
+    darkTheme ? styles['ju-button--dark'] : '',      // Classe pour thème sombre
+  ].join(' ');
 
   return (
     <button
-      className={`${styles['ju-button']} ${sizeClass} ${typeClass} ${disabledClass}`}
-      onClick={!disabled ? onClick : undefined} // Désactive le clic si `disabled`
+      className={buttonClass}
+      onClick={!disabled ? onClick : undefined}
       disabled={disabled}
     >
       {label}

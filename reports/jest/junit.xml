@@ -1,23 +1,472 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="8" failures="0" errors="0" time="1.402">
-  <testsuite name="JUButton Component" errors="0" failures="0" skipped="0" timestamp="2024-10-06T21:44:35" time="0.778" tests="5">
-    <testcase classname="JUButton Component affiche le label du bouton correctement" name="JUButton Component affiche le label du bouton correctement" time="0.037">
+<testsuites name="jest tests" tests="21" failures="9" errors="0" time="1.918">
+  <testsuite name="JUCard Component" errors="0" failures="1" skipped="0" timestamp="2024-10-07T20:13:10" time="1.026" tests="5">
+    <testcase classname="JUCard Component affiche le titre correctement" name="JUCard Component affiche le titre correctement" time="0.023">
     </testcase>
-    <testcase classname="JUButton Component appelle la fonction onClick lors du clic" name="JUButton Component appelle la fonction onClick lors du clic" time="0.009">
+    <testcase classname="JUCard Component affiche la description correctement" name="JUCard Component affiche la description correctement" time="0.003">
     </testcase>
-    <testcase classname="JUButton Component désactive le bouton lorsque la prop &quot;disabled&quot; est passée" name="JUButton Component désactive le bouton lorsque la prop &quot;disabled&quot; est passée" time="0.007">
+    <testcase classname="JUCard Component affiche une image si `imageUrl` est fourni" name="JUCard Component affiche une image si `imageUrl` est fourni" time="0.026">
     </testcase>
-    <testcase classname="JUButton Component applique la classe de type correctement" name="JUButton Component applique la classe de type correctement" time="0.004">
+    <testcase classname="JUCard Component appelle la fonction onActionClick lors du clic sur le bouton" name="JUCard Component appelle la fonction onActionClick lors du clic sur le bouton" time="0.018">
     </testcase>
-    <testcase classname="JUButton Component applique la classe de taille correctement" name="JUButton Component applique la classe de taille correctement" time="0.004">
+    <testcase classname="JUCard Component applique le thème sombre correctement" name="JUCard Component applique le thème sombre correctement" time="0.005">
+      <failure>Error: expect(element).toHaveClass(&quot;ju-card ju-card--dark&quot;)
+
+Expected the element to have class:
+  ju-card ju-card--dark
+Received:
+
+    at Object.toHaveClass (C:\Users\Julien\ju-library\src\components\JUCard\JUCard.test.tsx:37:25)
+    at Promise.then.completed (C:\Users\Julien\ju-library\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\Julien\ju-library\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\Julien\ju-library\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\Julien\ju-library\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\Julien\ju-library\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\Julien\ju-library\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\Julien\ju-library\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
     </testcase>
   </testsuite>
-  <testsuite name="JUDock" errors="0" failures="0" skipped="0" timestamp="2024-10-06T21:44:36" time="0.196" tests="3">
-    <testcase classname="JUDock renders the dock with titles" name="JUDock renders the dock with titles" time="0.022">
+  <testsuite name="JUButton Component" errors="0" failures="3" skipped="0" timestamp="2024-10-07T20:13:10" time="1.039" tests="7">
+    <testcase classname="JUButton Component affiche le label du bouton correctement" name="JUButton Component affiche le label du bouton correctement" time="0.048">
     </testcase>
-    <testcase classname="JUDock highlights the active link" name="JUDock highlights the active link" time="0.005">
+    <testcase classname="JUButton Component appelle la fonction onClick lors du clic" name="JUButton Component appelle la fonction onClick lors du clic" time="0.011">
     </testcase>
-    <testcase classname="JUDock calls onClick when a link is clicked" name="JUDock calls onClick when a link is clicked" time="0.007">
+    <testcase classname="JUButton Component désactive le bouton lorsque la prop &quot;disabled&quot; est passée" name="JUButton Component désactive le bouton lorsque la prop &quot;disabled&quot; est passée" time="0.005">
+    </testcase>
+    <testcase classname="JUButton Component applique la classe de type correctement" name="JUButton Component applique la classe de type correctement" time="0.006">
+      <failure>Error: expect(element).toHaveClass(&quot;ju-button ju-button--danger&quot;)
+
+Expected the element to have class:
+  ju-button ju-button--danger
+Received:
+
+    at Object.toHaveClass (C:\Users\Julien\ju-library\src\components\JUButton\JUButton.test.tsx:30:27)
+    at Promise.then.completed (C:\Users\Julien\ju-library\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\Julien\ju-library\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\Julien\ju-library\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\Julien\ju-library\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\Julien\ju-library\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\Julien\ju-library\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\Julien\ju-library\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
+    </testcase>
+    <testcase classname="JUButton Component applique la classe de taille correctement" name="JUButton Component applique la classe de taille correctement" time="0.005">
+      <failure>Error: expect(element).toHaveClass(&quot;ju-button ju-button--l&quot;)
+
+Expected the element to have class:
+  ju-button ju-button--l
+Received:
+
+    at Object.toHaveClass (C:\Users\Julien\ju-library\src\components\JUButton\JUButton.test.tsx:36:27)
+    at Promise.then.completed (C:\Users\Julien\ju-library\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\Julien\ju-library\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\Julien\ju-library\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\Julien\ju-library\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\Julien\ju-library\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\Julien\ju-library\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\Julien\ju-library\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
+    </testcase>
+    <testcase classname="JUButton Component applique le thème sombre lorsque la prop &quot;darkTheme&quot; est activée" name="JUButton Component applique le thème sombre lorsque la prop &quot;darkTheme&quot; est activée" time="0.005">
+      <failure>Error: expect(element).toHaveClass(&quot;ju-button ju-button--dark&quot;)
+
+Expected the element to have class:
+  ju-button ju-button--dark
+Received:
+
+    at Object.toHaveClass (C:\Users\Julien\ju-library\src\components\JUButton\JUButton.test.tsx:42:27)
+    at Promise.then.completed (C:\Users\Julien\ju-library\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\Julien\ju-library\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\Julien\ju-library\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\Julien\ju-library\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\Julien\ju-library\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\Julien\ju-library\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\Julien\ju-library\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
+    </testcase>
+    <testcase classname="JUButton Component ne déclenche pas l’événement onClick lorsque le bouton est désactivé" name="JUButton Component ne déclenche pas l’événement onClick lorsque le bouton est désactivé" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="JUDock" errors="0" failures="0" skipped="0" timestamp="2024-10-07T20:13:10" time="1.042" tests="3">
+    <testcase classname="JUDock renders the dock with titles" name="JUDock renders the dock with titles" time="0.057">
+    </testcase>
+    <testcase classname="JUDock highlights the active link" name="JUDock highlights the active link" time="0.006">
+    </testcase>
+    <testcase classname="JUDock calls onClick when a link is clicked" name="JUDock calls onClick when a link is clicked" time="0.009">
+    </testcase>
+  </testsuite>
+  <testsuite name="JUCarousel Component" errors="0" failures="5" skipped="0" timestamp="2024-10-07T20:13:10" time="1.236" tests="6">
+    <testcase classname="JUCarousel Component affiche le premier slide par défaut" name="JUCarousel Component affiche le premier slide par défaut" time="0.024">
+    </testcase>
+    <testcase classname="JUCarousel Component affiche le deuxième slide après avoir cliqué sur la flèche droite" name="JUCarousel Component affiche le deuxième slide après avoir cliqué sur la flèche droite" time="0.05">
+      <failure>TestingLibraryElementError: Unable to find an accessible element with the role &quot;button&quot; and name `/›/i`
+
+Here are the accessible roles:
+
+  button:
+
+  Name &quot;❮&quot;:
+  &lt;button /&gt;
+
+  Name &quot;❯&quot;:
+  &lt;button /&gt;
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div&gt;
+      &lt;button&gt;
+        ❮ 
+      &lt;/button&gt;
+      &lt;div&gt;
+        &lt;div
+          style=&quot;transform: translateX(-0%);&quot;
+        &gt;
+          &lt;div&gt;
+            &lt;div&gt;
+              Slide 1
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;div&gt;
+              Slide 2
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;div&gt;
+              Slide 3
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;button&gt;
+        ❯ 
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+    at Object.getElementError (C:\Users\Julien\ju-library\node_modules\@testing-library\dom\dist\config.js:37:19)
+    at C:\Users\Julien\ju-library\node_modules\@testing-library\dom\dist\query-helpers.js:76:38
+    at C:\Users\Julien\ju-library\node_modules\@testing-library\dom\dist\query-helpers.js:52:17
+    at C:\Users\Julien\ju-library\node_modules\@testing-library\dom\dist\query-helpers.js:95:19
+    at Object.getByRole (C:\Users\Julien\ju-library\src\components\JUCarousel\JUCarousel.test.tsx:25:31)
+    at Promise.then.completed (C:\Users\Julien\ju-library\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\Julien\ju-library\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\Julien\ju-library\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\Julien\ju-library\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\Julien\ju-library\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\Julien\ju-library\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\Julien\ju-library\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
+    </testcase>
+    <testcase classname="JUCarousel Component affiche le troisième slide après deux clics sur la flèche droite" name="JUCarousel Component affiche le troisième slide après deux clics sur la flèche droite" time="0.023">
+      <failure>TestingLibraryElementError: Unable to find an accessible element with the role &quot;button&quot; and name `/›/i`
+
+Here are the accessible roles:
+
+  button:
+
+  Name &quot;❮&quot;:
+  &lt;button /&gt;
+
+  Name &quot;❯&quot;:
+  &lt;button /&gt;
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div&gt;
+      &lt;button&gt;
+        ❮ 
+      &lt;/button&gt;
+      &lt;div&gt;
+        &lt;div
+          style=&quot;transform: translateX(-0%);&quot;
+        &gt;
+          &lt;div&gt;
+            &lt;div&gt;
+              Slide 1
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;div&gt;
+              Slide 2
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;div&gt;
+              Slide 3
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;button&gt;
+        ❯ 
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+    at Object.getElementError (C:\Users\Julien\ju-library\node_modules\@testing-library\dom\dist\config.js:37:19)
+    at C:\Users\Julien\ju-library\node_modules\@testing-library\dom\dist\query-helpers.js:76:38
+    at C:\Users\Julien\ju-library\node_modules\@testing-library\dom\dist\query-helpers.js:52:17
+    at C:\Users\Julien\ju-library\node_modules\@testing-library\dom\dist\query-helpers.js:95:19
+    at Object.getByRole (C:\Users\Julien\ju-library\src\components\JUCarousel\JUCarousel.test.tsx:33:31)
+    at Promise.then.completed (C:\Users\Julien\ju-library\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\Julien\ju-library\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\Julien\ju-library\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\Julien\ju-library\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\Julien\ju-library\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\Julien\ju-library\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\Julien\ju-library\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
+    </testcase>
+    <testcase classname="JUCarousel Component revient au premier slide après avoir cliqué sur la flèche droite depuis le dernier slide" name="JUCarousel Component revient au premier slide après avoir cliqué sur la flèche droite depuis le dernier slide" time="0.019">
+      <failure>TestingLibraryElementError: Unable to find an accessible element with the role &quot;button&quot; and name `/›/i`
+
+Here are the accessible roles:
+
+  button:
+
+  Name &quot;❮&quot;:
+  &lt;button /&gt;
+
+  Name &quot;❯&quot;:
+  &lt;button /&gt;
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div&gt;
+      &lt;button&gt;
+        ❮ 
+      &lt;/button&gt;
+      &lt;div&gt;
+        &lt;div
+          style=&quot;transform: translateX(-0%);&quot;
+        &gt;
+          &lt;div&gt;
+            &lt;div&gt;
+              Slide 1
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;div&gt;
+              Slide 2
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;div&gt;
+              Slide 3
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;button&gt;
+        ❯ 
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+    at Object.getElementError (C:\Users\Julien\ju-library\node_modules\@testing-library\dom\dist\config.js:37:19)
+    at C:\Users\Julien\ju-library\node_modules\@testing-library\dom\dist\query-helpers.js:76:38
+    at C:\Users\Julien\ju-library\node_modules\@testing-library\dom\dist\query-helpers.js:52:17
+    at C:\Users\Julien\ju-library\node_modules\@testing-library\dom\dist\query-helpers.js:95:19
+    at Object.getByRole (C:\Users\Julien\ju-library\src\components\JUCarousel\JUCarousel.test.tsx:42:31)
+    at Promise.then.completed (C:\Users\Julien\ju-library\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\Julien\ju-library\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\Julien\ju-library\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\Julien\ju-library\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\Julien\ju-library\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\Julien\ju-library\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\Julien\ju-library\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
+    </testcase>
+    <testcase classname="JUCarousel Component affiche le dernier slide après avoir cliqué sur la flèche gauche depuis le premier slide" name="JUCarousel Component affiche le dernier slide après avoir cliqué sur la flèche gauche depuis le premier slide" time="0.021">
+      <failure>TestingLibraryElementError: Unable to find an accessible element with the role &quot;button&quot; and name `/‹/i`
+
+Here are the accessible roles:
+
+  button:
+
+  Name &quot;❮&quot;:
+  &lt;button /&gt;
+
+  Name &quot;❯&quot;:
+  &lt;button /&gt;
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div&gt;
+      &lt;button&gt;
+        ❮ 
+      &lt;/button&gt;
+      &lt;div&gt;
+        &lt;div
+          style=&quot;transform: translateX(-0%);&quot;
+        &gt;
+          &lt;div&gt;
+            &lt;div&gt;
+              Slide 1
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;div&gt;
+              Slide 2
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;div&gt;
+              Slide 3
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;button&gt;
+        ❯ 
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+    at Object.getElementError (C:\Users\Julien\ju-library\node_modules\@testing-library\dom\dist\config.js:37:19)
+    at C:\Users\Julien\ju-library\node_modules\@testing-library\dom\dist\query-helpers.js:76:38
+    at C:\Users\Julien\ju-library\node_modules\@testing-library\dom\dist\query-helpers.js:52:17
+    at C:\Users\Julien\ju-library\node_modules\@testing-library\dom\dist\query-helpers.js:95:19
+    at Object.getByRole (C:\Users\Julien\ju-library\src\components\JUCarousel\JUCarousel.test.tsx:52:31)
+    at Promise.then.completed (C:\Users\Julien\ju-library\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\Julien\ju-library\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\Julien\ju-library\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\Julien\ju-library\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\Julien\ju-library\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\Julien\ju-library\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\Julien\ju-library\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
+    </testcase>
+    <testcase classname="JUCarousel Component revient au premier slide après un clic sur la flèche gauche depuis le deuxième slide" name="JUCarousel Component revient au premier slide après un clic sur la flèche gauche depuis le deuxième slide" time="0.019">
+      <failure>TestingLibraryElementError: Unable to find an accessible element with the role &quot;button&quot; and name `/›/i`
+
+Here are the accessible roles:
+
+  button:
+
+  Name &quot;❮&quot;:
+  &lt;button /&gt;
+
+  Name &quot;❯&quot;:
+  &lt;button /&gt;
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div&gt;
+      &lt;button&gt;
+        ❮ 
+      &lt;/button&gt;
+      &lt;div&gt;
+        &lt;div
+          style=&quot;transform: translateX(-0%);&quot;
+        &gt;
+          &lt;div&gt;
+            &lt;div&gt;
+              Slide 1
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;div&gt;
+              Slide 2
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;div&gt;
+              Slide 3
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;button&gt;
+        ❯ 
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+    at Object.getElementError (C:\Users\Julien\ju-library\node_modules\@testing-library\dom\dist\config.js:37:19)
+    at C:\Users\Julien\ju-library\node_modules\@testing-library\dom\dist\query-helpers.js:76:38
+    at C:\Users\Julien\ju-library\node_modules\@testing-library\dom\dist\query-helpers.js:52:17
+    at C:\Users\Julien\ju-library\node_modules\@testing-library\dom\dist\query-helpers.js:95:19
+    at Object.getByRole (C:\Users\Julien\ju-library\src\components\JUCarousel\JUCarousel.test.tsx:60:31)
+    at Promise.then.completed (C:\Users\Julien\ju-library\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\Julien\ju-library\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\Julien\ju-library\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\Julien\ju-library\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\Julien\ju-library\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\Julien\ju-library\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\Julien\ju-library\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\Julien\ju-library\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
     </testcase>
   </testsuite>
 </testsuites>
