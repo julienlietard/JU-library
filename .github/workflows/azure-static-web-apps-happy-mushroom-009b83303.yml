@@ -19,17 +19,18 @@ jobs:
         with:
           submodules: true
           lfs: false
-          
-      - name: Set up Node.js
+
+      # Étape pour configurer Node.js 18
+      - name: Set up Node.js 18
         uses: actions/setup-node@v3
         with:
-          node-version: '16.x' # Assurez-vous que la version de Node.js est compatible avec votre configuration de Storybook
+          node-version: '18.x' # Utilisez Node.js 18.x ou supérieur
       
       - name: Install dependencies
         run: npm install
 
       - name: Build Storybook
-        run: npm run build-storybook # Génère le Storybook en statique dans `storybook-static`
+        run: npm run build-storybook # Générez le Storybook statique
 
       - name: Deploy to Azure Static Web Apps
         id: builddeploy
