@@ -1,0 +1,48 @@
+/* ============================================
+   JUDivider
+   ============================================ */
+
+.ju-divider {
+  width: 100%;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+
+/* When used as <hr> (no label) */
+hr.ju-divider {
+  height: 1px;
+}
+
+/* --- Spacing --- */
+.ju-divider--sm { margin: 1rem 0; }
+.ju-divider--md { margin: 2rem 0; }
+.ju-divider--lg { margin: 3rem 0; }
+
+/* --- Variants (no label) --- */
+hr.ju-divider--solid { background: var(--ju-color-gray-200); }
+hr.ju-divider--dashed { background: none; border-top: 1px dashed var(--ju-color-gray-300); height: 0; }
+hr.ju-divider--gradient { background: linear-gradient(90deg, transparent, var(--ju-color-gray-300), transparent); }
+hr.ju-divider--dot { background: none; border-top: 2px dotted var(--ju-color-gray-300); height: 0; }
+
+/* --- With label (div wrapper) --- */
+.ju-divider__line {
+  flex: 1;
+  height: 1px;
+}
+
+.ju-divider--solid .ju-divider__line { background: var(--ju-color-gray-200); }
+.ju-divider--dashed .ju-divider__line { border-top: 1px dashed var(--ju-color-gray-300); }
+.ju-divider--gradient .ju-divider__line { background: linear-gradient(90deg, transparent, var(--ju-color-gray-300)); }
+.ju-divider--gradient .ju-divider__line:last-child { background: linear-gradient(90deg, var(--ju-color-gray-300), transparent); }
+
+.ju-divider__label {
+  padding: 0 1rem;
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-xs);
+  font-weight: var(--ju-font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ju-color-gray-400);
+  white-space: nowrap;
+}

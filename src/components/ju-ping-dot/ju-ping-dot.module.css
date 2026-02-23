@@ -1,0 +1,57 @@
+/* ============================================
+   JUPingDot — Availability Radar Pulse
+   ============================================ */
+
+.ju-ping-dot {
+  display: inline-block;
+  border-radius: var(--ju-radius-full);
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* --- Colors --- */
+
+.ju-ping-dot--green { background-color: var(--ju-color-success); }
+.ju-ping-dot--orange { background-color: var(--ju-color-orange); }
+.ju-ping-dot--red { background-color: var(--ju-color-red); }
+.ju-ping-dot--gray { background-color: var(--ju-color-gray-400); }
+.ju-ping-dot--blue { background-color: var(--ju-color-primary); }
+
+/* --- Radar pulse animation (portfolio signature) --- */
+
+.ju-ping-dot--pulse.ju-ping-dot--green {
+  animation: radarPulseGreen 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ju-ping-dot--pulse.ju-ping-dot--orange {
+  animation: radarPulseOrange 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ju-ping-dot--pulse.ju-ping-dot--red {
+  animation: radarPulseRed 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ju-ping-dot--pulse.ju-ping-dot--blue {
+  animation: radarPulseBlue 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes radarPulseGreen {
+  0%  { box-shadow: 0 0 0 0 rgba(0, 180, 54, 0.5); }
+  70% { box-shadow: 0 0 0 10px rgba(0, 180, 54, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 180, 54, 0); }
+}
+
+@keyframes radarPulseOrange {
+  0%  { box-shadow: 0 0 0 0 rgba(255, 149, 0, 0.5); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 149, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 149, 0, 0); }
+}
+
+@keyframes radarPulseRed {
+  0%  { box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.5); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 59, 48, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 59, 48, 0); }
+}
+
+@keyframes radarPulseBlue {
+  0%  { box-shadow: 0 0 0 0 rgba(27, 130, 255, 0.5); }
+  70% { box-shadow: 0 0 0 10px rgba(27, 130, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(27, 130, 255, 0); }
+}

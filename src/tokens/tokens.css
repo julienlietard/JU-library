@@ -1,0 +1,108 @@
+/* ============================================
+   JU Design — Design Tokens
+   ============================================ */
+
+:root {
+  /* --- Colors --- */
+  --ju-color-white: #ffffff;
+  --ju-color-black: #111111;
+  --ju-color-gray-50: #fafafa;
+  --ju-color-gray-100: #f4f4f5;
+  --ju-color-gray-200: #e4e4e7;
+  --ju-color-gray-300: #d4d4d8;
+  --ju-color-gray-400: #a1a1aa;
+  --ju-color-gray-500: #71717a;
+  --ju-color-gray-600: #52525b;
+  --ju-color-gray-700: #3f3f46;
+  --ju-color-gray-800: #27272a;
+  --ju-color-gray-900: #18181b;
+
+  /* Primary — portfolio blue */
+  --ju-color-primary: #1b82ff;
+  --ju-color-primary-hover: #0066e0;
+  --ju-color-primary-soft: rgba(27, 130, 255, 0.12);
+
+  /* Accent — portfolio CTA gradient */
+  --ju-color-accent: #ff4e6b;
+  --ju-color-accent-hover: #ff0436;
+
+  /* Semantic */
+  --ju-color-danger: #ff3b5c;
+  --ju-color-danger-hover: #e0234a;
+  --ju-color-success: #00b436;
+  --ju-color-success-soft: rgba(0, 180, 54, 0.12);
+  --ju-color-warning: #ffb800;
+  --ju-color-info: #3898ff;
+
+  /* Status palette */
+  --ju-color-orange: #ff9500;
+  --ju-color-blue: #007aff;
+  --ju-color-purple: #af52de;
+  --ju-color-yellow: #ffcc00;
+  --ju-color-green: #34c759;
+  --ju-color-red: #ff3b30;
+
+  /* --- Typography --- */
+  --ju-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --ju-font-size-xs: 0.75rem;
+  --ju-font-size-sm: 0.875rem;
+  --ju-font-size-md: 1rem;
+  --ju-font-size-lg: 1.125rem;
+  --ju-font-size-xl: 1.25rem;
+  --ju-font-weight-normal: 400;
+  --ju-font-weight-medium: 500;
+  --ju-font-weight-semibold: 600;
+  --ju-font-weight-bold: 700;
+
+  /* --- Spacing --- */
+  --ju-space-xs: 4px;
+  --ju-space-sm: 8px;
+  --ju-space-md: 16px;
+  --ju-space-lg: 24px;
+  --ju-space-xl: 32px;
+  --ju-space-2xl: 48px;
+
+  /* --- Border Radius --- */
+  --ju-radius-sm: 6px;
+  --ju-radius-md: 10px;
+  --ju-radius-lg: 16px;
+  --ju-radius-xl: 24px;
+  --ju-radius-2xl: 32px;
+  --ju-radius-full: 999px;
+
+  /* --- Shadows (luxe 3D) --- */
+  --ju-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --ju-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --ju-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+  --ju-shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.3);
+
+  /* Inset 3D (portfolio CTA style) */
+  --ju-shadow-inset-3d:
+    inset 0 1px 4px rgba(255, 255, 255, 0.55),
+    inset 0 -4px 6px rgba(0, 0, 0, 0.1),
+    0 6px 16px rgba(0, 0, 0, 0.1),
+    0 2px 4px rgba(0, 0, 0, 0.1);
+
+  /* --- Glass Effect --- */
+  --ju-glass-bg: rgba(255, 255, 255, 0.08);
+  --ju-glass-bg-strong: rgba(255, 255, 255, 0.12);
+  --ju-glass-border: rgba(255, 255, 255, 0.18);
+  --ju-glass-blur: 24px;
+  --ju-glass-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 10px 15px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  /* --- Animation (signature curves) --- */
+  --ju-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ju-ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ju-ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ju-ease-spring: cubic-bezier(0.22, 1.4, 0.32, 1);
+  --ju-duration-fast: 150ms;
+  --ju-duration-normal: 300ms;
+  --ju-duration-slow: 500ms;
+
+  /* --- Transitions --- */
+  --ju-transition-default: all var(--ju-duration-normal) var(--ju-ease-smooth);
+  --ju-transition-bounce: all var(--ju-duration-normal) var(--ju-ease-bounce);
+}

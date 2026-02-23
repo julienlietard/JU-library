@@ -1,0 +1,66 @@
+/* ============================================
+   JUBadge — Passion/Skill Tags
+   ============================================ */
+
+.ju-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-medium);
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--ju-radius-full);
+  color: var(--ju-color-white);
+  user-select: none;
+  transition:
+    transform 0.2s var(--ju-ease-bounce),
+    box-shadow 0.2s ease;
+}
+
+.ju-badge:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.ju-badge__icon {
+  display: inline-flex;
+  font-size: 1.15em;
+}
+
+/* --- Color variants (portfolio passion colors) --- */
+
+.ju-badge--default { background-color: #666; }
+.ju-badge--default:hover { background-color: #555; }
+
+.ju-badge--green { background-color: seagreen; }
+.ju-badge--green:hover { background-color: #246b43; }
+
+.ju-badge--blue { background-color: royalblue; }
+.ju-badge--blue:hover { background-color: #3454b2; }
+
+.ju-badge--purple { background-color: rebeccapurple; }
+.ju-badge--purple:hover { background-color: #4b2671; }
+
+.ju-badge--orange { background-color: rgba(255, 161, 47, 0.85); }
+.ju-badge--orange:hover { background-color: rgba(252, 154, 35, 0.95); }
+
+.ju-badge--red { background-color: #e74c3c; }
+.ju-badge--red:hover { background-color: #c0392b; }
+
+.ju-badge--pink { background-color: #e91e90; }
+.ju-badge--pink:hover { background-color: #c2185b; }
+
+/* --- Glass variant (dark bg) --- */
+
+.ju-badge--glass {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.ju-badge--glass:hover {
+  background: rgba(255, 255, 255, 0.13) !important;
+  border-color: rgba(255, 255, 255, 0.3);
+}

@@ -1,0 +1,94 @@
+/* ============================================
+   JUAvatar — Profile Image Component
+   ============================================ */
+
+.ju-avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ju-radius-full);
+  overflow: visible;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+/* --- Image --- */
+
+.ju-avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--ju-radius-full);
+  display: block;
+}
+
+/* --- Initials fallback --- */
+
+.ju-avatar__initials {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ju-radius-full);
+  background: var(--ju-color-gray-200);
+  color: var(--ju-color-gray-600);
+  font-family: var(--ju-font-family);
+  font-weight: var(--ju-font-weight-semibold);
+}
+
+/* --- Sizes --- */
+
+.ju-avatar--xs { width: 28px; height: 28px; font-size: var(--ju-font-size-xs); }
+.ju-avatar--sm { width: 36px; height: 36px; font-size: var(--ju-font-size-xs); }
+.ju-avatar--md { width: 48px; height: 48px; font-size: var(--ju-font-size-sm); }
+.ju-avatar--lg { width: 64px; height: 64px; font-size: var(--ju-font-size-md); }
+.ju-avatar--xl { width: 96px; height: 96px; font-size: var(--ju-font-size-xl); }
+
+/* --- Glass border (portfolio about image) --- */
+
+.ju-avatar--glass {
+  padding: 3px;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.08)
+  );
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* --- Status dot --- */
+
+.ju-avatar__status {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 25%;
+  height: 25%;
+  min-width: 8px;
+  min-height: 8px;
+  max-width: 16px;
+  max-height: 16px;
+  border-radius: var(--ju-radius-full);
+  border: 2px solid var(--ju-color-white);
+}
+
+.ju-avatar__status--online {
+  background-color: var(--ju-color-success);
+  animation: avatarPulse 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ju-avatar__status--busy { background-color: var(--ju-color-orange); }
+.ju-avatar__status--offline { background-color: var(--ju-color-gray-400); }
+.ju-avatar__status--away { background-color: var(--ju-color-warning); }
+
+@keyframes avatarPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(0, 180, 54, 0.4); }
+  70%  { box-shadow: 0 0 0 6px rgba(0, 180, 54, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 180, 54, 0); }
+}

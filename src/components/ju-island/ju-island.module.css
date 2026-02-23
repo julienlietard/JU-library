@@ -1,0 +1,129 @@
+/* ============================================
+   JUIsland — Dynamic Island
+   ============================================ */
+
+.ju-island {
+  background: #121212;
+  width: 243px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+  border-radius: var(--ju-radius-lg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  transition:
+    transform 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+    width 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+    height 0.8s cubic-bezier(0.22, 1.4, 0.32, 1),
+    padding 0.8s ease;
+}
+
+.ju-island:hover:not(.ju-island--open) {
+  transform: scale(1.03);
+}
+
+/* ── Open state ── */
+
+.ju-island--open {
+  width: min(400px, 80vw);
+  height: 200px;
+  padding: 1rem;
+  transform: scale(1.05);
+  transition:
+    transform 0.7s cubic-bezier(0.25, 1.5, 0.5, 1),
+    width 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+    height 0.8s cubic-bezier(0.22, 1.4, 0.32, 1),
+    padding 0.8s ease;
+}
+
+/* ── Progress ring ── */
+
+.ju-island__ring {
+  flex-shrink: 0;
+}
+
+/* ── Section label ── */
+
+.ju-island__label {
+  flex-grow: 1;
+  text-align: left;
+  padding: 0 0.8rem 0 1rem;
+  color: #a1a1b7;
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Progress badge ── */
+
+.ju-island__progress {
+  background-color: #1b82ff;
+  min-width: 67px;
+  border-radius: var(--ju-radius-lg);
+  padding: 0.2rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ju-color-white);
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-bold);
+  flex-shrink: 0;
+}
+
+/* ── Expanded links ── */
+
+.ju-island__links {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1rem;
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  padding: 0 1rem;
+  animation: islandLinksIn 0.4s var(--ju-ease-bounce) forwards;
+}
+
+.ju-island__link {
+  color: #a1a1b7;
+  text-decoration: none;
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-sm);
+  padding: 0.3rem 0;
+  text-align: center;
+  transition: color var(--ju-duration-normal) ease;
+  white-space: nowrap;
+}
+
+.ju-island__link:hover {
+  color: #1b82ff;
+}
+
+.ju-island__link:focus-visible {
+  outline: 2px solid var(--ju-color-primary);
+  outline-offset: 2px;
+  border-radius: var(--ju-radius-sm);
+}
+
+/* ── Animation ── */
+
+@keyframes islandLinksIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

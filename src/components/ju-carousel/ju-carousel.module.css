@@ -1,0 +1,149 @@
+/* ============================================
+   JUCarousel
+   ============================================ */
+
+.ju-carousel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  cursor: grab;
+  user-select: none;
+  padding: 0;
+}
+
+/* ── Viewport ── */
+
+.ju-carousel__viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.ju-carousel__viewport--grabbing {
+  cursor: grabbing;
+}
+
+/* ── Track ── */
+
+.ju-carousel__track {
+  display: flex;
+  will-change: transform;
+}
+
+/* ── Slide ── */
+
+.ju-carousel__slide {
+  box-sizing: border-box;
+  padding: 0 0.5rem;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   Controls
+   ============================================ */
+
+.ju-carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+}
+
+/* ── Play / Pause ── */
+
+.ju-carousel__play-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: rgba(0, 0, 0, 0.55);
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--ju-shadow-sm);
+  transition:
+    background 0.2s ease,
+    transform 0.2s var(--ju-ease-bounce);
+}
+
+.ju-carousel__play-btn:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: scale(1.1);
+}
+
+.ju-carousel__play-btn:active {
+  transform: scale(0.95);
+}
+
+.ju-carousel__play-btn:focus-visible {
+  outline: 2px solid var(--ju-color-primary);
+  outline-offset: 2px;
+}
+
+/* ── Dots ── */
+
+.ju-carousel__dots {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 0.65rem 1rem;
+  border-radius: var(--ju-radius-full);
+  box-shadow: var(--ju-shadow-sm);
+}
+
+.ju-carousel__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    width 0.3s ease,
+    border-radius 0.3s ease,
+    transform 0.3s var(--ju-ease-bounce);
+}
+
+.ju-carousel__dot--active {
+  background: rgba(0, 0, 0, 0.7);
+  width: 20px;
+  border-radius: 4px;
+}
+
+.ju-carousel__dot:not(.ju-carousel__dot--active):hover {
+  background: rgba(0, 0, 0, 0.4);
+  transform: scale(1.3);
+}
+
+.ju-carousel__dot:focus-visible {
+  outline: 2px solid var(--ju-color-primary);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media (max-width: 768px) {
+  .ju-carousel__slide {
+    padding: 0 0.25rem;
+  }
+
+  .ju-carousel__controls {
+    margin-top: 1rem;
+  }
+
+  .ju-carousel__dots {
+    padding: 0.5rem 0.75rem;
+  }
+}

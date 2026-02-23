@@ -1,0 +1,80 @@
+/* ============================================
+   JUChatBubble — iMessage-Style Card
+   ============================================ */
+
+.ju-chat-bubble {
+  display: inline-flex;
+  flex-direction: column;
+  font-family: var(--ju-font-family);
+  padding: 0.85rem 1.15rem;
+  max-width: 80%;
+  transition:
+    transform 0.2s var(--ju-ease-bounce),
+    box-shadow 0.2s ease;
+}
+
+.ju-chat-bubble:hover {
+  transform: scale(1.01);
+}
+
+/* --- Tail shapes (iMessage corner) --- */
+
+.ju-chat-bubble--tail-left {
+  border-radius: 18px 18px 18px 0;
+}
+
+.ju-chat-bubble--tail-right {
+  border-radius: 18px 18px 0 18px;
+}
+
+.ju-chat-bubble--tail-none {
+  border-radius: 18px;
+}
+
+/* --- Color variants --- */
+
+.ju-chat-bubble--blue {
+  background: #3898ff;
+  color: var(--ju-color-white);
+  backdrop-filter: blur(var(--ju-glass-blur));
+  -webkit-backdrop-filter: blur(var(--ju-glass-blur));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ju-chat-bubble--gray {
+  background: var(--ju-color-gray-100);
+  color: var(--ju-color-black);
+  border: 1px solid var(--ju-color-gray-200);
+}
+
+.ju-chat-bubble--green {
+  background: #34c759;
+  color: var(--ju-color-white);
+}
+
+.ju-chat-bubble--dark {
+  background: var(--ju-color-gray-800);
+  color: var(--ju-color-white);
+  border: 1px solid var(--ju-color-gray-700);
+}
+
+/* --- Sender --- */
+
+.ju-chat-bubble__sender {
+  font-size: var(--ju-font-size-xs);
+  font-weight: var(--ju-font-weight-semibold);
+  opacity: 0.75;
+  margin-bottom: 0.2rem;
+}
+
+/* --- Content --- */
+
+.ju-chat-bubble__content {
+  font-size: var(--ju-font-size-sm);
+  line-height: 1.5;
+}
+
+.ju-chat-bubble__content p {
+  margin: 0;
+  text-align: left;
+}

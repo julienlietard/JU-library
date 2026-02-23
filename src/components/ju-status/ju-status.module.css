@@ -1,0 +1,24 @@
+.ju-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--ju-radius-full);
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-medium);
+  white-space: nowrap;
+  user-select: none;
+  transition: var(--ju-transition-bounce);
+  border: 1px solid transparent;
+}
+.ju-status:hover { transform: scale(1.03); }
+.ju-status__icon { display: inline-flex; font-size: 1.1em; }
+
+.ju-status--orange { background: rgba(255, 149, 0, 0.12); color: #e68600; border-color: rgba(255, 149, 0, 0.2); }
+.ju-status--blue   { background: rgba(0, 122, 255, 0.12); color: #0066dd; border-color: rgba(0, 122, 255, 0.2); }
+.ju-status--purple { background: rgba(175, 82, 222, 0.12); color: #9a38c9; border-color: rgba(175, 82, 222, 0.2); }
+.ju-status--yellow { background: rgba(255, 204, 0, 0.15); color: #b38f00; border-color: rgba(255, 204, 0, 0.25); }
+.ju-status--green  { background: rgba(52, 199, 89, 0.12); color: #1d9e42; border-color: rgba(52, 199, 89, 0.2); }
+.ju-status--red    { background: rgba(255, 59, 48, 0.12); color: #e02d1b; border-color: rgba(255, 59, 48, 0.2); }
+.ju-status--gray   { background: rgba(142, 142, 147, 0.12); color: #6e6e73; border-color: rgba(142, 142, 147, 0.2); }
