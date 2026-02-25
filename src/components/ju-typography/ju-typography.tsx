@@ -1,0 +1,1 @@
+//Un composant parent pour gérer les titres (H1-H6), le corps de texte, les citations et les légendes de manière cohérente.

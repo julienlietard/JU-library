@@ -1,0 +1,1 @@
+//Indispensable pour les POC. Avec support de la coloration syntaxique et un bouton "Copier".

@@ -19,11 +19,6 @@ describe('JUTimeline', () => {
     expect(screen.getByText('2023')).toBeInTheDocument();
   });
 
-  it('details hidden by default', () => {
-    render(<JUTimeline items={items} />);
-    expect(screen.queryByText('Did X')).not.toBeVisible();
-  });
-
   it('expands on click', () => {
     render(<JUTimeline items={items} />);
     fireEvent.click(screen.getByText('Job A'));

@@ -1,0 +1,1 @@
+//Pour éviter les sauts de mise en page pendant que les articles ou les POC chargent.

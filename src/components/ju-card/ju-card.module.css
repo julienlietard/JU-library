@@ -56,7 +56,7 @@
   background: rgba(255, 255, 255, 0.03);
 }
 
-/* --- Chat variant (iMessage bubble card — portfolio ProjectCard) --- */
+/* --- Chat variant (iMessage white card) --- */
 
 .ju-card--chat {
   background: var(--ju-color-white);
@@ -68,6 +68,46 @@
 
 .ju-card--chat.ju-card--interactive:hover {
   box-shadow: var(--ju-shadow-xl);
+}
+
+/* --- Visual variant (full-bleed background image) --- */
+
+.ju-card--visual {
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  box-shadow: var(--ju-shadow-lg);
+  color: var(--ju-color-white);
+}
+
+.ju-card--visual.ju-card--interactive:hover {
+  box-shadow: var(--ju-shadow-xl);
+}
+
+.ju-card--visual.ju-card--interactive:hover .ju-card__image-bg {
+  transform: scale(1.05);
+}
+
+/* Overlay for content on top of visual bg */
+.ju-card__overlay {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 100%;
+  padding: var(--ju-space-lg);
+  /* Gradient scrim for readability */
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0.15) 50%,
+    transparent 100%
+  );
+  border-radius: inherit;
 }
 
 /* --- Interactive --- */
@@ -91,7 +131,14 @@
 .ju-card--p-md { padding: var(--ju-space-lg); }
 .ju-card--p-lg { padding: var(--ju-space-xl); }
 
-/* --- Image --- */
+/* Visual cards ignore padding on the outer div */
+.ju-card--visual.ju-card--p-sm,
+.ju-card--visual.ju-card--p-md,
+.ju-card--visual.ju-card--p-lg {
+  padding: 0;
+}
+
+/* --- Image (top image for non-visual variants) --- */
 
 .ju-card__image {
   width: 100%;

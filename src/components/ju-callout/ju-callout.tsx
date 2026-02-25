@@ -1,0 +1,1 @@
+//Pour mettre en avant des notes importantes ou des avertissements dans des recherches.
