@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ju-card.module.css';
 
-export type JUCardVariant = 'glass' | 'solid' | 'outline' | 'chat';
+export type JUCardVariant = 'glass' | 'solid' | 'outline' | 'chat' | 'visual';
 export type JUCardPadding = 'none' | 'sm' | 'md' | 'lg';
 
 export interface JUCardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -9,21 +9,31 @@ export interface JUCardProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: JUCardVariant;
   /** Inner padding */
   padding?: JUCardPadding;
-  /** Optional image displayed at the top */
+  /** Optional image displayed at the top (for glass/solid/chat) */
   image?: { src: string; alt: string; height?: string };
+  /**
+   * Full-bleed background image (for 'visual' variant).
+   * The children are overlaid on top of the image.
+   */
+  backgroundImage?: string;
   /** Enable hover lift animation */
   interactive?: boolean;
+  /** Aspect ratio (useful for visual cards, e.g. '1/1', '16/9', '4/3') */
+  aspectRatio?: string;
   /** Card content */
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export const JUCard: React.FC<JUCardProps> = ({
   variant = 'glass',
   padding = 'md',
   image,
+  backgroundImage,
   interactive = false,
+  aspectRatio,
   children,
   className,
+  style,
   ...rest
 }) => {
   const classNames = [
@@ -36,9 +46,18 @@ export const JUCard: React.FC<JUCardProps> = ({
     .filter(Boolean)
     .join(' ');
 
+  const combinedStyle: React.CSSProperties = {
+    ...style,
+    ...(aspectRatio ? { aspectRatio } : {}),
+    ...(variant === 'visual' && backgroundImage
+      ? { backgroundImage: `url(${backgroundImage})` }
+      : {}),
+  };
+
   return (
-    <div className={classNames} {...rest}>
-      {image && (
+    <div className={classNames} style={combinedStyle} {...rest}>
+      {/* Top image (non-visual variants) */}
+      {image && variant !== 'visual' && (
         <img
           className={styles['ju-card__image']}
           src={image.src}
@@ -48,7 +67,14 @@ export const JUCard: React.FC<JUCardProps> = ({
           draggable={false}
         />
       )}
-      {children}
+
+      {/* Overlay content for visual variant */}
+      {variant === 'visual' && children && (
+        <div className={styles['ju-card__overlay']}>{children}</div>
+      )}
+
+      {/* Normal content for other variants */}
+      {variant !== 'visual' && children}
     </div>
   );
 };

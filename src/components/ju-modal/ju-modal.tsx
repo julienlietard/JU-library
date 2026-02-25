@@ -1,0 +1,1 @@
+//Pour confirmer la suppression d'un brouillon ou afficher des réglages.

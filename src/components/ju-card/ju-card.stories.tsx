@@ -1,132 +1,125 @@
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { JUCard } from './ju-card';
 import { JUButton } from '../ju-button/ju-button';
+import { JUBadge } from '../ju-badge/ju-badge';
 
 const meta: Meta<typeof JUCard> = {
   title: 'Components/JUCard',
   component: JUCard,
   tags: ['autodocs'],
   argTypes: {
-    variant: {
-      control: 'select',
-      options: ['glass', 'solid', 'outline'],
-    },
-    padding: {
-      control: 'select',
-      options: ['none', 'sm', 'md', 'lg'],
-    },
+    variant: { control: 'select', options: ['glass', 'solid', 'outline', 'chat', 'visual'] },
+    padding: { control: 'select', options: ['none', 'sm', 'md', 'lg'] },
   },
-  decorators: [
-    (Story) => (
-      <div
-        style={{
-          minHeight: '400px',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: '2rem',
-          background: 'linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%)',
-        }}
-      >
-        <Story />
-      </div>
-    ),
-  ],
 };
-
 export default meta;
 type Story = StoryObj<typeof JUCard>;
 
+/* ── Glass ── */
 export const Glass: Story = {
   args: {
-    variant: 'glass',
-    children: (
-      <div style={{ textAlign: 'center' }}>
-        <div style={{ fontSize: '48px', marginBottom: '8px' }}>👋</div>
-        <div style={{ fontWeight: 600, fontSize: '16px' }}>Julien Lietard</div>
-        <div style={{ fontSize: '13px', opacity: 0.7, marginBottom: '16px' }}>
-          Ingénieur Logiciel · Orléans
-        </div>
-        <JUButton label="Voir le profil" size="s" variant="primary" />
-      </div>
-    ),
+    variant: 'glass', interactive: true,
+    children: <div style={{ textAlign: 'center' }}><span style={{ fontSize: '2rem' }}>🎨</span><h3 style={{ margin: '8px 0', fontWeight: 600 }}>JU Design</h3><p style={{ margin: 0, fontSize: '0.85rem', opacity: 0.7 }}>Ma librairie React</p></div>,
   },
+  decorators: [(Story) => <div style={{ padding: '3rem', background: 'linear-gradient(135deg, #0f0f0f, #1a1a2e)', borderRadius: '24px', maxWidth: '300px' }}><Story /></div>],
 };
 
-export const Solid: Story = {
+/* ── Chat ── */
+export const Chat: Story = {
   args: {
-    variant: 'solid',
-    children: (
-      <div>
-        <h3 style={{ margin: '0 0 8px', fontWeight: 600 }}>Project Status</h3>
-        <p style={{ margin: 0, fontSize: '14px', opacity: 0.8 }}>
-          Your next milestone is due in 3 days.
-        </p>
-      </div>
-    ),
+    variant: 'chat', padding: 'md', interactive: true,
+    children: <div><h4 style={{ margin: '0 0 6px', fontWeight: 600 }}>Project Card</h4><p style={{ margin: '0 0 12px', fontSize: '0.85rem', color: '#666' }}>Developed with React & Azure.</p><JUButton label="View" variant="primary" size="s" /></div>,
   },
+  decorators: [(Story) => <div style={{ padding: '3rem', maxWidth: '320px' }}><Story /></div>],
 };
 
-export const Outline: Story = {
+/* ── Visual: Passion Art (square image card) ── */
+export const VisualArt: Story = {
   args: {
-    variant: 'outline',
-    children: (
-      <div>
-        <h3 style={{ margin: '0 0 8px', fontWeight: 600 }}>Outline Card</h3>
-        <p style={{ margin: 0, fontSize: '14px', opacity: 0.7 }}>
-          Minimal style for subtle content.
-        </p>
-      </div>
-    ),
-  },
-};
-
-export const WithImage: Story = {
-  args: {
-    variant: 'glass',
-    padding: 'none',
-    image: {
-      src: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=200&fit=crop',
-      alt: 'Code on screen',
-    },
-    children: (
-      <div style={{ padding: '16px 20px' }}>
-        <h3 style={{ margin: '0 0 8px', fontWeight: 600 }}>JU Design</h3>
-        <p style={{ margin: '0 0 12px', fontSize: '13px', opacity: 0.7 }}>
-          A personal React component library.
-        </p>
-        <JUButton label="Voir le projet" size="s" variant="ghost" />
-      </div>
-    ),
-  },
-};
-
-export const Interactive: Story = {
-  args: {
-    variant: 'glass',
+    variant: 'visual',
     interactive: true,
+    backgroundImage: 'https://placehold.co/600x600/2d6a4f/ffffff?text=🎨+Art',
+    aspectRatio: '1/1',
+    padding: 'none',
+    children: null,
+  },
+  decorators: [(Story) => <div style={{ padding: '2rem', maxWidth: '300px' }}><Story /></div>],
+};
+
+/* ── Visual: Passion Space (wide with overlay text) ── */
+export const VisualSpace: Story = {
+  args: {
+    variant: 'visual',
+    interactive: true,
+    backgroundImage: 'https://placehold.co/900x400/111111/ffffff?text=✦+L%27infini%2C+le+vide',
+    aspectRatio: '16/7',
+    padding: 'none',
     children: (
       <div style={{ textAlign: 'center' }}>
-        <div style={{ fontWeight: 600 }}>Hover me</div>
-        <div style={{ fontSize: '13px', opacity: 0.7 }}>I have hover effects</div>
+        <span style={{
+          display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+          background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(12px)',
+          border: '1px solid rgba(255,255,255,0.15)', borderRadius: '999px',
+          padding: '0.5rem 1.2rem', fontSize: '0.9rem', color: '#fff',
+        }}>
+          ✦ L'infini, le vide, l'infini, l'éclat, le vertige.
+        </span>
       </div>
     ),
   },
+  decorators: [(Story) => <div style={{ padding: '2rem', maxWidth: '700px' }}><Story /></div>],
 };
 
+/* ── Visual: No overlay content (pure image) ── */
+export const VisualPure: Story = {
+  args: {
+    variant: 'visual',
+    interactive: true,
+    backgroundImage: 'https://placehold.co/400x400/764ba2/ffffff?text=🔭',
+    aspectRatio: '1/1',
+    padding: 'none',
+  },
+  decorators: [(Story) => <div style={{ padding: '2rem', maxWidth: '280px' }}><Story /></div>],
+};
+
+/* ── All variants showcase ── */
 export const AllVariants: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap', justifyContent: 'center' }}>
-      {(['glass', 'solid', 'outline'] as const).map((variant) => (
-        <JUCard key={variant} variant={variant}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', padding: '2rem' }}>
+      {/* Dark bg variants */}
+      <div style={{ padding: '2rem', background: 'linear-gradient(135deg, #0f0f0f, #1a1a2e)', borderRadius: '24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+          <JUCard variant="glass" interactive>
+            <div style={{ textAlign: 'center' }}><span style={{ fontSize: '2rem' }}>🌐</span><h4 style={{ margin: '8px 0 4px', fontWeight: 600 }}>Glass</h4></div>
+          </JUCard>
+          <JUCard variant="solid" interactive>
+            <div style={{ textAlign: 'center' }}><span style={{ fontSize: '2rem' }}>🎯</span><h4 style={{ margin: '8px 0 4px', fontWeight: 600 }}>Solid</h4></div>
+          </JUCard>
+          <JUCard variant="outline" interactive>
+            <div style={{ textAlign: 'center' }}><span style={{ fontSize: '2rem' }}>✨</span><h4 style={{ margin: '8px 0 4px', fontWeight: 600 }}>Outline</h4></div>
+          </JUCard>
+        </div>
+      </div>
+
+      {/* Chat variant */}
+      <JUCard variant="chat" interactive style={{ maxWidth: '320px' }}>
+        <div><h4 style={{ margin: '0 0 6px', fontWeight: 600 }}>Chat</h4><p style={{ margin: '0 0 10px', fontSize: '0.85rem', color: '#666' }}>iMessage card style</p>
+        <div style={{ display: 'flex', gap: '6px' }}><JUBadge label="React" color="blue" /><JUBadge label="Azure" color="purple" /></div></div>
+      </JUCard>
+
+      {/* Visual variants */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 2fr', gap: '1rem' }}>
+        <JUCard variant="visual" interactive backgroundImage="https://placehold.co/400x400/2d6a4f/ffffff?text=🎨" aspectRatio="1/1" padding="none" />
+        <JUCard variant="visual" interactive backgroundImage="https://placehold.co/400x400/764ba2/ffffff?text=🔭" aspectRatio="1/1" padding="none" />
+        <JUCard variant="visual" interactive backgroundImage="https://placehold.co/900x400/111/fff?text=✦+Space" aspectRatio="16/7" padding="none">
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontWeight: 600, textTransform: 'capitalize', marginBottom: '4px' }}>
-              {variant}
-            </div>
-            <div style={{ fontSize: '13px', opacity: 0.7 }}>Card variant</div>
+            <span style={{ background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '999px', padding: '0.5rem 1.2rem', fontSize: '0.85rem' }}>
+              ✦ L'infini, le vide, l'éclat, le vertige.
+            </span>
           </div>
         </JUCard>
-      ))}
+      </div>
     </div>
   ),
 };

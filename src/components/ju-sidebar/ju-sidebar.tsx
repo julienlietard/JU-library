@@ -1,0 +1,1 @@
+//Utile pour filtrer les recherches par catégories ou par dates.

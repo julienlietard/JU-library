@@ -1,0 +1,1 @@
+//Pour confirmer que l'article a bien été sauvegardé.

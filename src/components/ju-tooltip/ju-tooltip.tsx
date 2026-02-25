@@ -1,0 +1,1 @@
+//Pour expliquer des termes techniques ou donner des détails sur une icône.

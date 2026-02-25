@@ -1,0 +1,1 @@
+//Pour basculer un article en "Public" ou "Brouillon".

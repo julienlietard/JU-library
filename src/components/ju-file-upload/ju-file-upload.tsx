@@ -1,0 +1,1 @@
+//Pour glisser-déposer des images ou des fichiers de recherche dans les articles.
