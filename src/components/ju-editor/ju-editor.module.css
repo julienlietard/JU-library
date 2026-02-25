@@ -1,0 +1,101 @@
+.ju-ed {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e5e7eb;
+  border-radius: var(--ju-radius-lg);
+  background: #ffffff;
+  overflow: hidden;
+  transition: var(--ju-transition-default);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.ju-ed--focused {
+  border-color: var(--ju-color-primary);
+  box-shadow: 0 0 0 3px rgba(27, 130, 255, 0.1);
+}
+
+.ju-ed--disabled { 
+  opacity: 0.6; 
+  background: #f9fafb;
+  pointer-events: none; 
+}
+
+.ju-ed__toolbar {
+  display: flex;
+  gap: 4px;
+  padding: var(--ju-space-xs) var(--ju-space-sm);
+  border-bottom: 1px solid #f3f4f6;
+  background: #fcfcfd;
+  flex-wrap: wrap;
+}
+
+.ju-ed--toolbar-floating .ju-ed__toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.ju-ed__action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: var(--ju-radius-sm);
+  background: transparent;
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-bold);
+  color: #6b7280;
+  cursor: pointer;
+  transition: var(--ju-transition-default);
+}
+
+.ju-ed__action:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.ju-ed__action:focus-visible {
+  outline: 2px solid var(--ju-color-primary);
+  outline-offset: -2px;
+}
+
+.ju-ed__textarea {
+  flex: 1;
+  padding: var(--ju-space-md);
+  border: none;
+  outline: none;
+  resize: vertical;
+  min-height: 200px;
+  font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', monospace;
+  font-size: var(--ju-font-size-md);
+  line-height: 1.7;
+  color: #1f2937;
+  background: transparent;
+}
+
+.ju-ed__textarea::placeholder {
+  color: #9ca3af;
+}
+
+.ju-ed__footer {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--ju-space-xs) var(--ju-space-md);
+  border-top: 1px solid #f3f4f6;
+  background: #fcfcfd;
+}
+
+.ju-ed__count,
+.ju-ed__format {
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-xs);
+  color: #6b7280;
+  font-weight: var(--ju-font-weight-medium);
+}

@@ -1,0 +1,109 @@
+.ju-ti {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--ju-font-family);
+}
+
+.ju-ti__label {
+  font-size: var(--ju-font-size-xs);
+  font-weight: var(--ju-font-weight-bold);
+  color: #4b5563;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ju-ti__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0.6rem 0.75rem;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: var(--ju-radius-md);
+  cursor: text;
+  transition: var(--ju-transition-default);
+  min-height: 44px;
+  align-items: center;
+}
+
+.ju-ti__wrapper:focus-within {
+  border-color: var(--ju-color-primary);
+  box-shadow: 0 0 0 3px rgba(27, 130, 255, 0.1);
+}
+
+.ju-ti--error .ju-ti__wrapper {
+  border-color: var(--ju-color-danger);
+  box-shadow: 0 0 0 3px rgba(255, 59, 48, 0.08);
+}
+
+.ju-ti--disabled .ju-ti__wrapper {
+  background: #f3f4f6;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ju-ti__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px 3px 10px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: var(--ju-radius-full);
+  font-size: var(--ju-font-size-xs);
+  color: #1e40af;
+  font-weight: var(--ju-font-weight-medium);
+  animation: ju-ti-pop 0.25s var(--ju-ease-bounce);
+}
+
+@keyframes ju-ti-pop {
+  from { transform: scale(0.6); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.ju-ti__tag-x {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.15s ease;
+}
+
+.ju-ti__tag-x:hover {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.ju-ti__input {
+  flex: 1;
+  min-width: 80px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #111827;
+  font-size: var(--ju-font-size-sm);
+  font-family: var(--ju-font-family);
+  padding: 2px 0;
+}
+
+.ju-ti__input::placeholder { color: #9ca3af; }
+
+.ju-ti__error { 
+  font-size: var(--ju-font-size-xs); 
+  color: #dc2626;
+  font-weight: var(--ju-font-weight-medium);
+}
+
+.ju-ti__count { 
+  font-size: var(--ju-font-size-xs); 
+  color: #6b7280; 
+  align-self: flex-end; 
+}

@@ -1,7 +1,3 @@
-/* ============================================
-   JUSectionHeader
-   ============================================ */
-
 .ju-section-header {
   font-family: var(--ju-font-family);
   margin-bottom: var(--ju-space-xl);
@@ -13,9 +9,10 @@
 .ju-section-header__subtitle {
   margin: 0 0 0.25rem;
   font-size: var(--ju-font-size-sm);
-  font-weight: var(--ju-font-weight-normal);
-  color: var(--ju-color-gray-400);
-  letter-spacing: 0.01em;
+  font-weight: var(--ju-font-weight-bold);
+  color: var(--ju-color-primary, #3b82f6);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .ju-section-header__title {
@@ -23,11 +20,19 @@
   font-size: clamp(1.6rem, 4vw, 2.4rem);
   font-weight: var(--ju-font-weight-bold);
   line-height: 1.2;
-  color: var(--ju-color-black);
-  letter-spacing: -0.02em;
+  color: #111827;
+  letter-spacing: -0.03em;
 }
 
-/* Dark context (inherits text color) */
-@media (prefers-color-scheme: dark) {
-  .ju-section-header__title { color: var(--ju-color-white); }
+.ju-section-header__description {
+  margin-top: var(--ju-space-sm);
+  font-size: var(--ju-font-size-md);
+  color: #4b5563;
+  line-height: 1.6;
+  max-width: 65ch;
+}
+
+.ju-section-header--center .ju-section-header__description {
+  margin-left: auto;
+  margin-right: auto;
 }

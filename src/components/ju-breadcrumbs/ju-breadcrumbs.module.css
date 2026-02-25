@@ -1,0 +1,62 @@
+/* ============================================
+   JUBreadcrumbs — White-first navigation path
+   ============================================ */
+
+.ju-bc {
+  font-family: var(--ju-font-family);
+}
+
+.ju-bc__list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--ju-space-xs);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ju-bc__item {
+  display: flex;
+  align-items: center;
+  gap: var(--ju-space-xs);
+}
+
+.ju-bc__link {
+  font-size: var(--ju-font-size-sm);
+  /* Passage d'un blanc transparent à un noir/gris transparent */
+  color: rgba(0, 0, 0, 0.5); 
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 2px 6px;
+  border-radius: var(--ju-radius-sm);
+  cursor: pointer;
+  transition: var(--ju-transition-default);
+}
+
+.ju-bc__link:hover {
+  color: var(--ju-color-primary);
+  /* Le bleu reste léger sur fond blanc */
+  background: rgba(27, 130, 255, 0.08); 
+}
+
+.ju-bc__link:focus-visible {
+  outline: 2px solid var(--ju-color-primary);
+  outline-offset: 1px;
+}
+
+.ju-bc__current {
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-semibold);
+  /* Texte presque noir pour le contraste maximal sur l'élément actif */
+  color: var(--ju-color-primary);
+  padding: 2px 6px;
+}
+
+.ju-bc__sep {
+  /* Séparateur discret en gris clair */
+  color: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+}

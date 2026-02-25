@@ -1,0 +1,68 @@
+.ju-callout {
+  display: flex;
+  gap: 0.85rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--ju-radius-md);
+  border-left: 3px solid;
+  font-family: var(--ju-font-family);
+  background: #ffffff;
+}
+
+.ju-callout__icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex;
+}
+
+.ju-callout__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.ju-callout__title {
+  display: block;
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-bold);
+  margin-bottom: 0.3rem;
+}
+
+.ju-callout__text {
+  font-size: var(--ju-font-size-sm);
+  line-height: 1.65;
+  color: #374151;
+}
+
+.ju-callout--note {
+  background: #f9fafb;
+  border-left-color: #d1d5db;
+}
+.ju-callout--note .ju-callout__icon { color: #6b7280; }
+.ju-callout--note .ju-callout__title { color: #111827; }
+
+.ju-callout--info {
+  background: #eff6ff;
+  border-left-color: #3b82f6;
+}
+.ju-callout--info .ju-callout__icon { color: #3b82f6; }
+.ju-callout--info .ju-callout__title { color: #1e40af; }
+
+.ju-callout--warning {
+  background: #fffbeb;
+  border-left-color: #f59e0b;
+}
+.ju-callout--warning .ju-callout__icon { color: #f59e0b; }
+.ju-callout--warning .ju-callout__title { color: #92400e; }
+
+.ju-callout--success {
+  background: #f0fdf4;
+  border-left-color: #22c55e;
+}
+.ju-callout--success .ju-callout__icon { color: #22c55e; }
+.ju-callout--success .ju-callout__title { color: #166534; }
+
+.ju-callout--danger {
+  background: #fef2f2;
+  border-left-color: #ef4444;
+}
+.ju-callout--danger .ju-callout__icon { color: #ef4444; }
+.ju-callout--danger .ju-callout__title { color: #991b1b; }

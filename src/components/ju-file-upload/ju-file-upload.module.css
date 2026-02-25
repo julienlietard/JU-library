@@ -1,0 +1,111 @@
+.ju-fu { width: 100%; }
+.ju-fu--disabled { opacity: 0.5; pointer-events: none; }
+.ju-fu__input { display: none; }
+
+.ju-fu__zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ju-space-sm);
+  padding: var(--ju-space-2xl) var(--ju-space-xl);
+  border: 2px dashed #d1d5db;
+  border-radius: var(--ju-radius-xl);
+  background: #f9fafb;
+  cursor: pointer;
+  transition: var(--ju-transition-default);
+}
+
+.ju-fu__zone:hover,
+.ju-fu--drag .ju-fu__zone {
+  border-color: var(--ju-color-primary);
+  background: #eff6ff;
+}
+
+.ju-fu__zone:focus-visible {
+  outline: 2px solid var(--ju-color-primary);
+  outline-offset: 2px;
+}
+
+.ju-fu__icon {
+  color: #9ca3af;
+  transition: color var(--ju-duration-normal) var(--ju-ease-smooth),
+              transform var(--ju-duration-normal) var(--ju-ease-bounce);
+}
+
+.ju-fu__zone:hover .ju-fu__icon,
+.ju-fu--drag .ju-fu__icon {
+  color: var(--ju-color-primary);
+  transform: translateY(-4px);
+}
+
+.ju-fu__label {
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-md);
+  font-weight: var(--ju-font-weight-bold);
+  color: #111827;
+}
+
+.ju-fu__hint {
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-sm);
+  color: #6b7280;
+}
+
+.ju-fu__list {
+  list-style: none;
+  margin: var(--ju-space-md) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ju-space-xs);
+}
+
+.ju-fu__file {
+  display: flex;
+  align-items: center;
+  gap: var(--ju-space-sm);
+  padding: var(--ju-space-sm) var(--ju-space-md);
+  border-radius: var(--ju-radius-md);
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.ju-fu__file-name {
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-medium);
+  color: #374151;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ju-fu__file-size {
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-xs);
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.ju-fu__file-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: var(--ju-transition-default);
+  flex-shrink: 0;
+}
+
+.ju-fu__file-remove:hover {
+  background: #fee2e2;
+  color: #dc2626;
+}
