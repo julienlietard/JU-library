@@ -1,0 +1,103 @@
+.ju-modal::backdrop {
+  background: rgba(0, 0, 20, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.ju-modal {
+  border: none;
+  padding: 0;
+  background: transparent;
+  max-height: 90vh;
+  max-width: 90vw;
+  overflow: visible;
+}
+
+.ju-modal[open] {
+  animation: ju-modal-in 0.3s var(--ju-ease-out);
+}
+
+@keyframes ju-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.ju-modal__container {
+  background: #ffffff;
+  border-radius: var(--ju-radius-xl);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  max-height: 85vh;
+  overflow: hidden;
+}
+
+.ju-modal--sm .ju-modal__container { width: 400px; }
+.ju-modal--md .ju-modal__container { width: 560px; }
+.ju-modal--lg .ju-modal__container { width: 800px; }
+.ju-modal--full .ju-modal__container { width: 95vw; height: 90vh; }
+
+.ju-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ju-space-lg) var(--ju-space-lg) var(--ju-space-sm);
+  flex-shrink: 0;
+}
+
+.ju-modal__title {
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-xl);
+  font-weight: var(--ju-font-weight-bold);
+  color: #111827;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.ju-modal__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: var(--ju-radius-full);
+  background: #f3f4f6;
+  color: #6b7280;
+  cursor: pointer;
+  transition: var(--ju-transition-default);
+}
+
+.ju-modal__close:hover {
+  background: #fee2e2;
+  color: #dc2626;
+  transform: rotate(90deg);
+}
+
+.ju-modal__body {
+  padding: var(--ju-space-lg);
+  overflow-y: auto;
+  flex: 1;
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-md);
+  color: #374151;
+  line-height: 1.6;
+}
+
+.ju-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--ju-space-md);
+  padding: var(--ju-space-lg);
+  background: #f9fafb;
+  border-top: 1px solid #f3f4f6;
+  flex-shrink: 0;
+}

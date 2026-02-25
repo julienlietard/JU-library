@@ -1,0 +1,109 @@
+/* ============================================
+   JUTooltip — Glass Tooltip
+   ============================================ */
+
+.ju-tooltip {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: auto;
+
+  /* Entry animation */
+  animation: ju-tooltip-in var(--ju-duration-fast, 150ms) var(--ju-ease-out, cubic-bezier(0.22, 0.61, 0.36, 1)) both;
+}
+
+/* ── Content ── */
+
+.ju-tooltip__content {
+  padding: 6px 12px;
+  font-family: var(--ju-font-family, -apple-system, BlinkMacSystemFont, sans-serif);
+  font-size: var(--ju-font-size-sm, 0.875rem);
+  font-weight: var(--ju-font-weight-medium, 500);
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.95);
+  white-space: pre-line;
+
+  /* Glass */
+  background: rgba(30, 30, 34, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--ju-radius-sm, 6px);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.28),
+    0 2px 8px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* ── Arrow ── */
+
+.ju-tooltip__arrow {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: rgba(30, 30, 34, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: rotate(45deg);
+}
+
+/* Top placement → arrow at bottom */
+.ju-tooltip--top .ju-tooltip__arrow {
+  bottom: -4px;
+  left: 50%;
+  margin-left: -4px;
+  border-top: none;
+  border-left: none;
+}
+
+/* Bottom placement → arrow at top */
+.ju-tooltip--bottom .ju-tooltip__arrow {
+  top: -4px;
+  left: 50%;
+  margin-left: -4px;
+  border-bottom: none;
+  border-right: none;
+}
+
+/* Left placement → arrow at right */
+.ju-tooltip--left .ju-tooltip__arrow {
+  right: -4px;
+  top: 50%;
+  margin-top: -4px;
+  border-bottom: none;
+  border-left: none;
+}
+
+/* Right placement → arrow at left */
+.ju-tooltip--right .ju-tooltip__arrow {
+  left: -4px;
+  top: 50%;
+  margin-top: -4px;
+  border-top: none;
+  border-right: none;
+}
+
+/* ── Placement-specific animations ── */
+
+.ju-tooltip--top { animation-name: ju-tooltip-in-top; }
+.ju-tooltip--bottom { animation-name: ju-tooltip-in-bottom; }
+.ju-tooltip--left { animation-name: ju-tooltip-in-left; }
+.ju-tooltip--right { animation-name: ju-tooltip-in-right; }
+
+@keyframes ju-tooltip-in-top {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ju-tooltip-in-bottom {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ju-tooltip-in-left {
+  from { opacity: 0; transform: translateX(4px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes ju-tooltip-in-right {
+  from { opacity: 0; transform: translateX(-4px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
