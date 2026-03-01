@@ -5,14 +5,14 @@ A personal React component library by Julien Lietard.
 ## Installation
 
 ```bash
-pnpm add ju-design
+pnpm add ju-library
 ```
 
 ## Usage
 
 ```tsx
-import { JUButton } from 'ju-design';
-import 'ju-design/tokens'; // load design tokens
+import { JUButton } from 'ju-library';
+import 'ju-library/tokens'; // load design tokens
 
 <JUButton label="Click me" variant="primary" />
 ```
