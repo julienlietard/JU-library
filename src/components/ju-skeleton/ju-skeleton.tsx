@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ju-skeleton.module.css';
+import './ju-skeleton.css';
 
 export interface JUSkeletonProps {
   /** Shape variant */
@@ -27,15 +27,15 @@ export const JUSkeleton: React.FC<JUSkeletonProps> = ({
   className,
 }) => {
   const cls = [
-    styles['ju-sk'],
-    styles[`ju-sk--${variant}`],
-    styles[`ju-sk--${animation}`],
+    'ju-sk',
+    `ju-sk--${variant}`,
+    `ju-sk--${animation}`,
     className ?? '',
   ].filter(Boolean).join(' ');
 
   if (variant === 'text' && lines > 1) {
     return (
-      <div className={styles['ju-sk__lines']} style={{ width }}>
+      <div className={'ju-sk__lines'} style={{ width }}>
         {Array.from({ length: lines }, (_, i) => (
           <div
             key={i}

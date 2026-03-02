@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import styles from './ju-toast.module.css';
+import './ju-toast.css';
 
 export type JUToastVariant = 'info' | 'success' | 'warning' | 'error';
 export type JUToastPosition = 'top-right' | 'top-left' | 'top-center' | 'bottom-right' | 'bottom-left' | 'bottom-center';
@@ -47,16 +47,16 @@ export const JUToast: React.FC<JUToastProps> = ({
   }, [duration, dismiss]);
 
   const cls = [
-    styles['ju-toast'],
-    styles[`ju-toast--${variant}`],
-    exiting ? styles['ju-toast--exit'] : '',
+    'ju-toast',
+    `ju-toast--${variant}`,
+    exiting ? 'ju-toast--exit' : '',
   ].filter(Boolean).join(' ');
 
   return (
     <div className={cls} role="alert">
-      <span className={styles['ju-toast__icon']}>{ICONS[variant]}</span>
-      <span className={styles['ju-toast__msg']}>{toast.message}</span>
-      <button className={styles['ju-toast__close']} onClick={dismiss} aria-label="Fermer">
+      <span className={'ju-toast__icon'}>{ICONS[variant]}</span>
+      <span className={'ju-toast__msg'}>{toast.message}</span>
+      <button className={'ju-toast__close'} onClick={dismiss} aria-label="Fermer">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
@@ -80,7 +80,7 @@ export const JUToastContainer: React.FC<JUToastContainerProps> = ({
   position = 'bottom-right',
 }) => {
   return (
-    <div className={`${styles['ju-toast-container']} ${styles[`ju-toast-container--${position}`]}`}>
+    <div className={`${'ju-toast-container'} ${`ju-toast-container--${position}`}`}>
       {toasts.map((t) => (
         <JUToast key={t.id} toast={t} onDismiss={onDismiss} position={position} />
       ))}

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ju-breadcrumbs.module.css';
+import './ju-breadcrumbs.css';
 
 export interface JUBreadcrumbItem {
   label: string;
@@ -39,26 +39,26 @@ export const JUBreadcrumbs: React.FC<JUBreadcrumbsProps> = ({
   }
 
   return (
-    <nav aria-label="Breadcrumb" className={`${styles['ju-bc']} ${className ?? ''}`}>
-      <ol className={styles['ju-bc__list']}>
+    <nav aria-label="Breadcrumb" className={`${'ju-bc'} ${className ?? ''}`}>
+      <ol className={'ju-bc__list'}>
         {visibleItems.map((item, i) => {
           const isLast = i === visibleItems.length - 1;
           return (
-            <li key={i} className={styles['ju-bc__item']}>
+            <li key={i} className={'ju-bc__item'}>
               {!isLast && item.href ? (
-                <a href={item.href} className={styles['ju-bc__link']} onClick={item.onClick}>
+                <a href={item.href} className={'ju-bc__link'} onClick={item.onClick}>
                   {item.label}
                 </a>
               ) : !isLast && item.onClick ? (
-                <button type="button" className={styles['ju-bc__link']} onClick={item.onClick}>
+                <button type="button" className={'ju-bc__link'} onClick={item.onClick}>
                   {item.label}
                 </button>
               ) : (
-                <span className={isLast ? styles['ju-bc__current'] : styles['ju-bc__link']} aria-current={isLast ? 'page' : undefined}>
+                <span className={isLast ? 'ju-bc__current' : 'ju-bc__link'} aria-current={isLast ? 'page' : undefined}>
                   {item.label}
                 </span>
               )}
-              {!isLast && <span className={styles['ju-bc__sep']} aria-hidden="true">{sep}</span>}
+              {!isLast && <span className={'ju-bc__sep'} aria-hidden="true">{sep}</span>}
             </li>
           );
         })}

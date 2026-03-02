@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ju-section-header.module.css';
+import './ju-section-header.css';
 
 export interface JUSectionHeaderProps {
   /** Small subtitle above the title (e.g. "Découvrez mon") */
@@ -19,15 +19,15 @@ export const JUSectionHeader: React.FC<JUSectionHeaderProps> = ({
   className,
 }) => {
   const classNames = [
-    styles['ju-section-header'],
-    styles[`ju-section-header--${align}`],
+    'ju-section-header',
+    `ju-section-header--${align}`,
     className ?? '',
   ].filter(Boolean).join(' ');
 
   return (
     <header className={classNames}>
-      {subtitle && <p className={styles['ju-section-header__subtitle']}>{subtitle}</p>}
-      <h2 className={styles['ju-section-header__title']}>{title}</h2>
+      {subtitle && <p className={'ju-section-header__subtitle'}>{subtitle}</p>}
+      <h2 className={'ju-section-header__title'}>{title}</h2>
     </header>
   );
 };

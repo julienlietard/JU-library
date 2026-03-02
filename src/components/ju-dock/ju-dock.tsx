@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ju-dock.module.css';
+import './ju-dock.css';
 
 export interface JUDockItem {
   /** Unique identifier for the item */
@@ -40,10 +40,10 @@ export const JUDock: React.FC<JUDockProps> = ({
   className,
 }) => {
   const classNames = [
-    styles['ju-dock'],
-    styles[`ju-dock--${theme}`],
-    styles[`ju-dock--${position}`],
-    visible ? styles['ju-dock--visible'] : '',
+    'ju-dock',
+    `ju-dock--${theme}`,
+    `ju-dock--${position}`,
+    visible ? 'ju-dock--visible' : '',
     className ?? '',
   ]
     .filter(Boolean)
@@ -54,8 +54,8 @@ export const JUDock: React.FC<JUDockProps> = ({
       {items.map((item) => {
         const isActive = activeId === item.id;
         const itemClassNames = [
-          styles['ju-dock__item'],
-          isActive ? styles['ju-dock__item--active'] : '',
+          'ju-dock__item',
+          isActive ? 'ju-dock__item--active' : '',
         ]
           .filter(Boolean)
           .join(' ');

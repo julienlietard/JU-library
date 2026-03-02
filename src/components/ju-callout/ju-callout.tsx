@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ju-callout.module.css';
+import './ju-callout.css';
 
 export type JUCalloutVariant = 'note' | 'info' | 'warning' | 'success' | 'danger';
 
@@ -33,21 +33,21 @@ export const JUCallout: React.FC<JUCalloutProps> = ({
   className,
 }) => {
   const cls = [
-    styles['ju-callout'],
-    styles[`ju-callout--${variant}`],
+    'ju-callout',
+    `ju-callout--${variant}`,
     className ?? '',
   ].filter(Boolean).join(' ');
 
   return (
     <aside className={cls} role="note">
       {!hideIcon && (
-        <span className={styles['ju-callout__icon']} aria-hidden="true">
+        <span className={'ju-callout__icon'} aria-hidden="true">
           {icon ?? DEFAULT_ICONS[variant]}
         </span>
       )}
-      <div className={styles['ju-callout__body']}>
-        {title && <strong className={styles['ju-callout__title']}>{title}</strong>}
-        <div className={styles['ju-callout__text']}>{children}</div>
+      <div className={'ju-callout__body'}>
+        {title && <strong className={'ju-callout__title'}>{title}</strong>}
+        <div className={'ju-callout__text'}>{children}</div>
       </div>
     </aside>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import styles from './ju-code-block.module.css';
+import './ju-code-block.css';
 
 export interface JUCodeBlockProps {
   /** Code content */
@@ -38,16 +38,16 @@ export const JUCodeBlock: React.FC<JUCodeBlockProps> = ({
   }, [code]);
 
   return (
-    <div className={`${styles['ju-cb']} ${className ?? ''}`}>
+    <div className={`${'ju-cb'} ${className ?? ''}`}>
       {/* Header bar */}
-      <div className={styles['ju-cb__header']}>
-        <div className={styles['ju-cb__dots']}>
+      <div className={'ju-cb__header'}>
+        <div className={'ju-cb__dots'}>
           <span /><span /><span />
         </div>
-        {language && <span className={styles['ju-cb__lang']}>{language}</span>}
+        {language && <span className={'ju-cb__lang'}>{language}</span>}
         {copyable && (
           <button
-            className={`${styles['ju-cb__copy']} ${copied ? styles['ju-cb__copy--done'] : ''}`}
+            className={`${'ju-cb__copy'} ${copied ? 'ju-cb__copy--done' : ''}`}
             onClick={handleCopy}
             aria-label={copied ? 'Copied!' : 'Copy code'}
           >
@@ -62,15 +62,15 @@ export const JUCodeBlock: React.FC<JUCodeBlockProps> = ({
       </div>
 
       {/* Code area */}
-      <pre className={styles['ju-cb__pre']} style={maxHeight ? { maxHeight } : undefined}>
-        <code className={styles['ju-cb__code']}>
+      <pre className={'ju-cb__pre'} style={maxHeight ? { maxHeight } : undefined}>
+        <code className={'ju-cb__code'}>
           {lines.map((line, i) => (
             <div
               key={i}
-              className={`${styles['ju-cb__line']} ${highlightLines.includes(i + 1) ? styles['ju-cb__line--hl'] : ''}`}
+              className={`${'ju-cb__line'} ${highlightLines.includes(i + 1) ? 'ju-cb__line--hl' : ''}`}
             >
-              {lineNumbers && <span className={styles['ju-cb__ln']}>{i + 1}</span>}
-              <span className={styles['ju-cb__content']}>{line || ' '}</span>
+              {lineNumbers && <span className={'ju-cb__ln'}>{i + 1}</span>}
+              <span className={'ju-cb__content'}>{line || ' '}</span>
             </div>
           ))}
         </code>

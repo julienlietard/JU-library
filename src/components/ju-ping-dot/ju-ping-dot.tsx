@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ju-ping-dot.module.css';
+import './ju-ping-dot.css';
 
 export type JUPingDotColor = 'green' | 'orange' | 'red' | 'gray' | 'blue';
 
@@ -24,9 +24,9 @@ export const JUPingDot: React.FC<JUPingDotProps> = ({
   className,
 }) => {
   const classNames = [
-    styles['ju-ping-dot'],
-    styles[`ju-ping-dot--${color}`],
-    pulse ? styles['ju-ping-dot--pulse'] : '',
+    'ju-ping-dot',
+    `ju-ping-dot--${color}`,
+    pulse ? 'ju-ping-dot--pulse' : '',
     className ?? '',
   ].filter(Boolean).join(' ');
 

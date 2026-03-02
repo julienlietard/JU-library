@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import styles from './ju-island.module.css';
+import './ju-island.css';
 
 export interface JUIslandLink {
   /** Unique identifier */
@@ -85,8 +85,8 @@ export const JUIsland: React.FC<JUIslandProps> = ({
   if (!visible) return null;
 
   const containerClass = [
-    styles['ju-island'],
-    isOpen ? styles['ju-island--open'] : '',
+    'ju-island',
+    isOpen ? 'ju-island--open' : '',
     className ?? '',
   ]
     .filter(Boolean)
@@ -106,7 +106,7 @@ export const JUIsland: React.FC<JUIslandProps> = ({
       <svg
         width="30"
         height="30"
-        className={styles['ju-island__ring']}
+        className={'ju-island__ring'}
         aria-hidden="true"
       >
         <circle
@@ -132,19 +132,19 @@ export const JUIsland: React.FC<JUIslandProps> = ({
       </svg>
 
       {/* Section name */}
-      <div className={styles['ju-island__label']}>
+      <div className={'ju-island__label'}>
         {sectionLabel}
       </div>
 
       {/* Progress badge */}
-      <div className={styles['ju-island__progress']}>
+      <div className={'ju-island__progress'}>
         {Math.round(clampedProgress)}%
       </div>
 
       {/* Expanded links */}
       {isOpen && links.length > 0 && (
         <nav
-          className={styles['ju-island__links']}
+          className={'ju-island__links'}
           aria-label="Page sections"
           onClick={(e) => e.stopPropagation()}
         >
@@ -152,7 +152,7 @@ export const JUIsland: React.FC<JUIslandProps> = ({
             <a
               key={link.id}
               href={link.href}
-              className={styles['ju-island__link']}
+              className={'ju-island__link'}
               onClick={(e) => handleLinkClick(e, link)}
             >
               {link.label}

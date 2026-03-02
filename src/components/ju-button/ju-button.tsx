@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ju-button.module.css';
+import './ju-button.css';
 
 export type JUButtonSize = 's' | 'm' | 'l';
 export type JUButtonVariant = 'primary' | 'secondary' | 'accent' | 'ghost' | 'glass' | 'danger';
@@ -30,10 +30,10 @@ export const JUButton: React.FC<JUButtonProps> = ({
   ...rest
 }) => {
   const classNames = [
-    styles['ju-button'],
-    styles[`ju-button--${size}`],
-    styles[`ju-button--${variant}`],
-    disabled ? styles['ju-button--disabled'] : '',
+    'ju-button',
+    `ju-button--${size}`,
+    `ju-button--${variant}`,
+    disabled ? 'ju-button--disabled' : '',
     className ?? '',
   ]
     .filter(Boolean)
@@ -46,9 +46,9 @@ export const JUButton: React.FC<JUButtonProps> = ({
       aria-disabled={disabled}
       {...rest}
     >
-      {iconLeft && <span className={styles['ju-button__icon']} aria-hidden="true">{iconLeft}</span>}
+      {iconLeft && <span className="ju-button__icon" aria-hidden="true">{iconLeft}</span>}
       <span>{label}</span>
-      {iconRight && <span className={styles['ju-button__icon']} aria-hidden="true">{iconRight}</span>}
+      {iconRight && <span className="ju-button__icon" aria-hidden="true">{iconRight}</span>}
     </button>
   );
 };

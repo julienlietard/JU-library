@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ju-project-card.module.css';
+import './ju-project-card.css';
 
 /* ── Chat message type ── */
 
@@ -36,16 +36,16 @@ export const JUProjectCard: React.FC<JUProjectCardProps> = ({
   height = '620px',
   className,
 }) => {
-  const classNames = [styles['ju-project-card'], className ?? '']
+  const classNames = ['ju-project-card', className ?? '']
     .filter(Boolean)
     .join(' ');
 
   return (
     <article className={classNames} style={{ height }}>
       {/* Image */}
-      <div className={styles['ju-project-card__img-wrap']}>
+      <div className={'ju-project-card__img-wrap'}>
         <img
-          className={styles['ju-project-card__img']}
+          className={'ju-project-card__img'}
           src={image.src}
           alt={image.alt}
           loading="lazy"
@@ -54,47 +54,47 @@ export const JUProjectCard: React.FC<JUProjectCardProps> = ({
       </div>
 
       {/* Chat */}
-      <div className={styles['ju-project-card__chat']}>
+      <div className={'ju-project-card__chat'}>
         {messages.map((msg, i) => (
           <React.Fragment key={i}>
             <div
-              className={`${styles['ju-project-card__bubble']} ${
+              className={`${'ju-project-card__bubble'} ${
                 msg.side === 'right'
-                  ? styles['ju-project-card__bubble--right']
-                  : styles['ju-project-card__bubble--left']
+                  ? 'ju-project-card__bubble--right'
+                  : 'ju-project-card__bubble--left'
               }`}
             >
               {msg.side === 'left' && (
-                <span className={styles['ju-project-card__avatar']} aria-hidden="true">
+                <span className={'ju-project-card__avatar'} aria-hidden="true">
                   {avatar}
                 </span>
               )}
-              <div className={styles['ju-project-card__body']}>
+              <div className={'ju-project-card__body'}>
                 <span
-                  className={`${styles['ju-project-card__sender']} ${
-                    msg.side === 'right' ? styles['ju-project-card__sender--right'] : ''
+                  className={`${'ju-project-card__sender'} ${
+                    msg.side === 'right' ? 'ju-project-card__sender--right' : ''
                   }`}
                 >
                   {msg.sender}
                 </span>
-                <p className={styles['ju-project-card__text']}>{msg.text}</p>
+                <p className={'ju-project-card__text'}>{msg.text}</p>
               </div>
             </div>
 
             {/* Link bubble (always from left sender) */}
             {msg.link && (
               <div
-                className={`${styles['ju-project-card__bubble']} ${styles['ju-project-card__bubble--left']}`}
+                className={`${'ju-project-card__bubble'} ${'ju-project-card__bubble--left'}`}
               >
-                <span className={styles['ju-project-card__avatar']} aria-hidden="true">
+                <span className={'ju-project-card__avatar'} aria-hidden="true">
                   {avatar}
                 </span>
-                <div className={styles['ju-project-card__body']}>
+                <div className={'ju-project-card__body'}>
                   <a
                     href={msg.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={styles['ju-project-card__link']}
+                    className={'ju-project-card__link'}
                   >
                     {msg.link}
                   </a>

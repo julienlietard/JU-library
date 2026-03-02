@@ -1,0 +1,185 @@
+/* ─── Wrapper : contient panel + toggle tab ─────────────────────── */
+.ju-sb__wrapper {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+.ju-sb__wrapper--overlay {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  z-index: 50;
+}
+
+.ju-sb__wrapper--left  { flex-direction: row; }
+.ju-sb__wrapper--right { flex-direction: row-reverse; }
+
+/* ─── Aside panel ────────────────────────────────────────────────── */
+.ju-sb {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  background: #ffffff;
+  transition: width var(--ju-duration-normal, 250ms) cubic-bezier(.34, 1.56, .64, 1);
+}
+
+.ju-sb--left  { border-right: 1px solid #f3f4f6; }
+.ju-sb--right { border-left: 1px solid #f3f4f6; }
+
+.ju-sb--closed { border-color: transparent; }
+
+.ju-sb--overlay.ju-sb--left  { border-right: 1px solid #e5e7eb; }
+.ju-sb--overlay.ju-sb--right { border-left:  1px solid #e5e7eb; }
+
+/* ─── Backdrop ───────────────────────────────────────────────────── */
+.ju-sb__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 49;
+}
+
+/* ─── Inner scroll container ─────────────────────────────────────── */
+.ju-sb__inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* ─── Header ─────────────────────────────────────────────────────── */
+.ju-sb__header {
+  display: flex;
+  align-items: center;
+  padding: var(--ju-space-md, 1rem);
+  border-bottom: 1px solid #f3f4f6;
+  flex-shrink: 0;
+}
+
+/* ─── Toggle tab (always visible) ───────────────────────────────── */
+.ju-sb__toggle {
+  /* Vertically centred, flush against the panel edge */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 48px;
+  border: 1px solid #e5e7eb;
+  border-radius: 0 var(--ju-radius-sm, 6px) var(--ju-radius-sm, 6px) 0;
+  background: #ffffff;
+  color: #6b7280;
+  cursor: pointer;
+  z-index: 10;
+
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
+
+  /* No focus outline flash */
+  outline: none;
+}
+
+.ju-sb__toggle:hover {
+  background: #f9fafb;
+  color: #111827;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
+}
+
+.ju-sb__toggle:focus-visible {
+  outline: 2px solid var(--ju-color-primary, #1d4ed8);
+  outline-offset: 2px;
+}
+
+/* Left sidebar: toggle is on the RIGHT edge of the panel */
+.ju-sb__toggle--left {
+  right: -24px;
+  border-left: none;
+  border-radius: 0 var(--ju-radius-sm, 6px) var(--ju-radius-sm, 6px) 0;
+}
+
+/* Right sidebar: toggle is on the LEFT edge of the panel */
+.ju-sb__toggle--right {
+  left: -24px;
+  border-right: none;
+  border-radius: var(--ju-radius-sm, 6px) 0 0 var(--ju-radius-sm, 6px);
+}
+
+/* ─── Nav ────────────────────────────────────────────────────────── */
+.ju-sb__nav {
+  flex: 1;
+  padding: var(--ju-space-sm, 0.5rem) 0;
+}
+
+.ju-sb__section { padding: var(--ju-space-xs, 0.25rem) 0; }
+
+.ju-sb__section-title {
+  font-family: var(--ju-font-family, system-ui);
+  font-size: var(--ju-font-size-xs, 0.7rem);
+  font-weight: var(--ju-font-weight-bold, 700);
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: var(--ju-space-sm, 0.5rem) var(--ju-space-md, 1rem);
+  margin: 0;
+}
+
+.ju-sb__list {
+  list-style: none;
+  margin: 0;
+  padding: 0 8px;
+}
+
+.ju-sb__link {
+  display: flex;
+  align-items: center;
+  gap: var(--ju-space-sm, 0.5rem);
+  width: 100%;
+  padding: var(--ju-space-sm, 0.5rem) var(--ju-space-md, 1rem);
+  border: none;
+  background: transparent;
+  font-family: var(--ju-font-family, system-ui);
+  font-size: var(--ju-font-size-sm, 0.875rem);
+  color: #4b5563;
+  text-decoration: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease;
+  border-radius: var(--ju-radius-md, 8px);
+  white-space: nowrap;
+}
+
+.ju-sb__link:hover {
+  background: #f9fafb;
+  color: #111827;
+}
+
+.ju-sb__link--active {
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-weight: var(--ju-font-weight-bold, 700);
+}
+
+.ju-sb__link:focus-visible {
+  outline: 2px solid var(--ju-color-primary, #1d4ed8);
+  outline-offset: -2px;
+}
+
+.ju-sb__icon {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  opacity: 0.8;
+  flex-shrink: 0;
+}
