@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
-import styles from './ju-editor.module.css';
+import './ju-editor.css';
 
 export type JUEditorAction = 'bold' | 'italic' | 'heading' | 'link' | 'code' | 'quote' | 'ul' | 'ol' | 'image';
 
@@ -82,21 +82,21 @@ export const JUEditor: React.FC<JUEditorProps> = ({
   const wordCount = currentVal.trim() ? currentVal.trim().split(/\s+/).length : 0;
 
   const cls = [
-    styles['ju-ed'],
-    styles[`ju-ed--toolbar-${toolbarPosition}`],
-    focused ? styles['ju-ed--focused'] : '',
-    disabled ? styles['ju-ed--disabled'] : '',
+    'ju-ed',
+    `ju-ed--toolbar-${toolbarPosition}`,
+    focused ? 'ju-ed--focused' : '',
+    disabled ? 'ju-ed--disabled' : '',
     className ?? '',
   ].filter(Boolean).join(' ');
 
   return (
     <div className={cls}>
-      <div className={styles['ju-ed__toolbar']} role="toolbar" aria-label="Formatting">
+      <div className={'ju-ed__toolbar'} role="toolbar" aria-label="Formatting">
         {actions.map((a) => (
           <button
             key={a}
             type="button"
-            className={styles['ju-ed__action']}
+            className={'ju-ed__action'}
             onClick={() => insertMarkdown(a)}
             title={ACTION_ICONS[a].label}
             aria-label={ACTION_ICONS[a].label}
@@ -108,7 +108,7 @@ export const JUEditor: React.FC<JUEditorProps> = ({
       </div>
       <textarea
         ref={textareaRef}
-        className={styles['ju-ed__textarea']}
+        className={'ju-ed__textarea'}
         value={controlled ? value : undefined}
         defaultValue={controlled ? undefined : defaultValue}
         onChange={handleChange}
@@ -118,9 +118,9 @@ export const JUEditor: React.FC<JUEditorProps> = ({
         disabled={disabled}
         style={{ minHeight }}
       />
-      <div className={styles['ju-ed__footer']}>
-        <span className={styles['ju-ed__count']}>{wordCount} mot{wordCount !== 1 ? 's' : ''}</span>
-        <span className={styles['ju-ed__format']}>Markdown</span>
+      <div className={'ju-ed__footer'}>
+        <span className={'ju-ed__count'}>{wordCount} mot{wordCount !== 1 ? 's' : ''}</span>
+        <span className={'ju-ed__format'}>Markdown</span>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ju-status.module.css';
+import './ju-status.css';
 
 export type JUStatusColor = 'orange' | 'blue' | 'purple' | 'yellow' | 'green' | 'red' | 'gray';
 
@@ -21,14 +21,14 @@ export const JUStatus: React.FC<JUStatusProps> = ({
   className,
 }) => {
   const classNames = [
-    styles['ju-status'],
-    styles[`ju-status--${color}`],
+    'ju-status',
+    `ju-status--${color}`,
     className ?? '',
   ].filter(Boolean).join(' ');
 
   return (
     <span className={classNames} role="status">
-      {icon && <span className={styles['ju-status__icon']} aria-hidden="true">{icon}</span>}
+      {icon && <span className={'ju-status__icon'} aria-hidden="true">{icon}</span>}
       <span>{label}</span>
     </span>
   );

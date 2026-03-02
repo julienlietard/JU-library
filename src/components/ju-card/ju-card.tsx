@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ju-card.module.css';
+import './ju-card.css';
 
 export type JUCardVariant = 'glass' | 'solid' | 'outline' | 'chat' | 'visual';
 export type JUCardPadding = 'none' | 'sm' | 'md' | 'lg';
@@ -37,10 +37,10 @@ export const JUCard: React.FC<JUCardProps> = ({
   ...rest
 }) => {
   const classNames = [
-    styles['ju-card'],
-    styles[`ju-card--${variant}`],
-    styles[`ju-card--p-${padding}`],
-    interactive ? styles['ju-card--interactive'] : '',
+    'ju-card',
+    `ju-card--${variant}`,
+    `ju-card--p-${padding}`,
+    interactive ? 'ju-card--interactive' : '',
     className ?? '',
   ]
     .filter(Boolean)
@@ -59,7 +59,7 @@ export const JUCard: React.FC<JUCardProps> = ({
       {/* Top image (non-visual variants) */}
       {image && variant !== 'visual' && (
         <img
-          className={styles['ju-card__image']}
+          className={'ju-card__image'}
           src={image.src}
           alt={image.alt}
           style={image.height ? { height: image.height } : undefined}
@@ -70,7 +70,7 @@ export const JUCard: React.FC<JUCardProps> = ({
 
       {/* Overlay content for visual variant */}
       {variant === 'visual' && children && (
-        <div className={styles['ju-card__overlay']}>{children}</div>
+        <div className={'ju-card__overlay'}>{children}</div>
       )}
 
       {/* Normal content for other variants */}

@@ -1,14 +1,24 @@
 import { defineConfig } from 'tsup';
+import cssModulesPlugin from 'esbuild-css-modules-plugin';
 
 export default defineConfig({
-  entry: ['src/index.ts'],
+  entry: {
+    index: 'src/index.ts',
+    tokens: 'src/tokens/tokens.css',
+    styles: 'src/styles/reset.css',
+  },
   format: ['esm', 'cjs'],
   dts: true,
   sourcemap: true,
   clean: true,
+  minify: true,
   external: ['react', 'react-dom'],
   esbuildOptions(options) {
     options.jsx = 'automatic';
   },
-  onSuccess: 'cp src/tokens/tokens.css dist/tokens.css && cp src/styles/reset.css dist/styles.css',
+  esbuildPlugins: [
+    cssModulesPlugin({
+      inject: false,
+    }),
+  ],
 });

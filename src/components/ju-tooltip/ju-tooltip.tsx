@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
-import styles from './ju-tooltip.module.css';
+import './ju-tooltip.css';
 
 /* ── Types ── */
 
@@ -147,8 +147,8 @@ export const JUTooltip: React.FC<JUTooltipProps> = ({
           id="ju-tooltip-content"
           role="tooltip"
           className={[
-            styles['ju-tooltip'],
-            styles[`ju-tooltip--${actualPlacement}`],
+            'ju-tooltip',
+            `ju-tooltip--${actualPlacement}`,
             className ?? '',
           ].filter(Boolean).join(' ')}
           style={{
@@ -162,8 +162,8 @@ export const JUTooltip: React.FC<JUTooltipProps> = ({
           }}
           onMouseLeave={hide}
         >
-          <div className={styles['ju-tooltip__content']}>{content}</div>
-          <div className={styles['ju-tooltip__arrow']} />
+          <div className={'ju-tooltip__content'}>{content}</div>
+          <div className={'ju-tooltip__arrow'} />
         </div>
       )}
     </>

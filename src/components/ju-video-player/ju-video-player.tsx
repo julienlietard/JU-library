@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
-import styles from './ju-video-player.module.css';
+import './ju-video-player.css';
 
 /* ── Types ── */
 
@@ -114,14 +114,14 @@ export const JUVideoPlayer: React.FC<JUVideoPlayerProps> = ({
 
   return (
     <div
-      className={`${styles['ju-vp']} ${className ?? ''}`}
+      className={`${'ju-vp'} ${className ?? ''}`}
       style={{ aspectRatio, borderRadius, ...cssVars }}
       onMouseMove={scheduleHide}
       onMouseLeave={() => playing && setControlsVisible(false)}
     >
       <video
         ref={videoRef}
-        className={styles['ju-vp__video']}
+        className={'ju-vp__video'}
         src={src}
         poster={poster}
         autoPlay={autoPlay}
@@ -135,16 +135,16 @@ export const JUVideoPlayer: React.FC<JUVideoPlayerProps> = ({
 
       {/* Blurred backdrop when controls shown */}
       <div
-        className={`${styles['ju-vp__backdrop']} ${controlsVisible ? styles['ju-vp__backdrop--visible'] : ''}`}
+        className={`${'ju-vp__backdrop'} ${controlsVisible ? 'ju-vp__backdrop--visible' : ''}`}
       />
 
       {/* Center controls: rewind · play · forward */}
       <div
-        className={`${styles['ju-vp__center']} ${controlsVisible ? styles['ju-vp__center--visible'] : ''}`}
+        className={`${'ju-vp__center'} ${controlsVisible ? 'ju-vp__center--visible' : ''}`}
       >
         {/* Rewind */}
         <button
-          className={styles['ju-vp__btn-side']}
+          className={'ju-vp__btn-side'}
           onClick={(e) => { e.stopPropagation(); skip(-skipAmount); }}
           aria-label={`Rewind ${skipAmount} seconds`}
         >
@@ -155,7 +155,7 @@ export const JUVideoPlayer: React.FC<JUVideoPlayerProps> = ({
 
         {/* Play / Pause (big, accented) */}
         <button
-          className={styles['ju-vp__btn-play']}
+          className={'ju-vp__btn-play'}
           onClick={(e) => { e.stopPropagation(); togglePlay(); }}
           aria-label={playing ? 'Pause' : 'Play'}
         >
@@ -173,7 +173,7 @@ export const JUVideoPlayer: React.FC<JUVideoPlayerProps> = ({
 
         {/* Forward */}
         <button
-          className={styles['ju-vp__btn-side']}
+          className={'ju-vp__btn-side'}
           onClick={(e) => { e.stopPropagation(); skip(skipAmount); }}
           aria-label={`Forward ${skipAmount} seconds`}
         >
@@ -186,7 +186,7 @@ export const JUVideoPlayer: React.FC<JUVideoPlayerProps> = ({
       {/* Bottom progress bar */}
       <div
         ref={progressRef}
-        className={`${styles['ju-vp__progress']} ${controlsVisible || !hasStarted ? styles['ju-vp__progress--visible'] : ''}`}
+        className={`${'ju-vp__progress'} ${controlsVisible || !hasStarted ? 'ju-vp__progress--visible' : ''}`}
         onClick={onProgressClick}
         role="slider"
         aria-label="Video progress"
@@ -194,9 +194,9 @@ export const JUVideoPlayer: React.FC<JUVideoPlayerProps> = ({
         aria-valuemin={0}
         aria-valuemax={100}
       >
-        <div className={styles['ju-vp__progress-track']}>
+        <div className={'ju-vp__progress-track'}>
           <div
-            className={styles['ju-vp__progress-fill']}
+            className={'ju-vp__progress-fill'}
             style={{ width: `${progress}%` }}
           />
         </div>

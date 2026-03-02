@@ -2,6 +2,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { JUCarousel } from './ju-carousel';
 import { JUCard } from '../ju-card/ju-card';
+import { JUProjectCard } from '../ju-project-card/ju-project-card';
 import { JUButton } from '../ju-button/ju-button';
 
 const meta: Meta<typeof JUCarousel> = {
@@ -18,7 +19,7 @@ const meta: Meta<typeof JUCarousel> = {
 export default meta;
 type Story = StoryObj<typeof JUCarousel>;
 
-/* ── Sample cards ── */
+/* ── Generic card content (pour les démos non-projet) ── */
 const sampleCards = [
   { title: 'Portfolio', desc: 'Mon portfolio développé en React et déployé via Azure.', emoji: '🌐' },
   { title: 'JU Design', desc: 'Ma librairie React de composants réutilisables.', emoji: '🎨' },
@@ -37,7 +38,76 @@ const CardContent: React.FC<{ title: string; desc: string; emoji: string }> = ({
   </div>
 );
 
-/* ── Default: 3 per slide ── */
+/* ── Real project data ── */
+const projects = [
+  {
+    image: { src: 'https://placehold.co/600x300/1a1a2e/ffffff?text=JU+Design', alt: 'JU Design' },
+    messages: [
+      { sender: 'Julien', text: 'Ma librairie React avec Storybook, déployée via Azure.', side: 'left' as const },
+      { sender: 'Moi', text: 'Il est stylé le bouton 😲', side: 'right' as const },
+      { sender: 'Julien', text: 'Explore la librairie', side: 'left' as const, link: 'https://ju-design.azurestaticapps.net/' },
+    ],
+  },
+  {
+    image: { src: 'https://placehold.co/600x300/667eea/ffffff?text=Le+Labo', alt: 'Le Labo' },
+    messages: [
+      { sender: 'Julien', text: 'Mon blog tech pour partager des articles passionnants.', side: 'left' as const },
+      { sender: 'Moi', text: "J'aimerai bien suivre l'actu tech", side: 'right' as const },
+      { sender: 'Julien', text: 'Va lire le tout dernier article !', side: 'left' as const, link: 'https://blog.julienlietard.fr/' },
+    ],
+  },
+  {
+    image: { src: 'https://placehold.co/600x300/2d6a4f/ffffff?text=UDESMA45', alt: 'UDESMA45' },
+    messages: [
+      { sender: 'Julien', text: "Site web de l'association UDESMA45.", side: 'left' as const },
+      { sender: 'Moi', text: "Elle a l'air super cette association !", side: 'right' as const },
+      { sender: 'Julien', text: "Hésite pas à t'inscrire !", side: 'left' as const, link: 'https://udesma45.fr/' },
+    ],
+  },
+  {
+    image: { src: 'https://placehold.co/600x300/764ba2/ffffff?text=Portfolio', alt: 'Portfolio' },
+    messages: [
+      { sender: 'Julien', text: 'Mon portfolio personnel développé sous React.', side: 'left' as const },
+      { sender: 'Moi', text: 'Mais je suis déjà dessus non ?', side: 'right' as const },
+      { sender: 'Julien', text: 'Exactement 😉', side: 'left' as const, link: 'https://julienlietard.fr/' },
+    ],
+  },
+];
+
+/* ─────────────────────────────────────────────────────────────────────────
+ * ✦ PROJECT CAROUSEL — la story principale, avec JUProjectCard
+ * ───────────────────────────────────────────────────────────────────────── */
+export const ProjectCarousel: Story = {
+  args: {
+    autoPlay: true,
+    interval: 6000,
+    itemsPerSlide: 3,
+  },
+  render: (args) => (
+    <JUCarousel {...args}>
+      {projects.map((p, i) => (
+        <JUProjectCard key={i} {...p} />
+      ))}
+    </JUCarousel>
+  ),
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          padding: '3rem 1rem',
+          background: 'linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%)',
+          minHeight: '500px',
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
+};
+
+/* ─────────────────────────────────────────────────────────────────────────
+ * Default: 3 per slide, JUCard générique
+ * ───────────────────────────────────────────────────────────────────────── */
 export const Default: Story = {
   args: {
     autoPlay: true,
@@ -70,19 +140,19 @@ export const Default: Story = {
   ],
 };
 
-/* ── Single slide ── */
+/* ─────────────────────────────────────────────────────────────────────────
+ * Single slide
+ * ───────────────────────────────────────────────────────────────────────── */
 export const SingleSlide: Story = {
   args: {
     autoPlay: false,
     itemsPerSlide: 1,
   },
   render: (args) => (
-    <div style={{ maxWidth: '400px', margin: '0 auto' }}>
+    <div style={{ maxWidth: '420px', margin: '0 auto' }}>
       <JUCarousel {...args}>
-        {sampleCards.slice(0, 3).map((card, i) => (
-          <JUCard key={i} variant="solid">
-            <CardContent {...card} />
-          </JUCard>
+        {projects.slice(0, 3).map((p, i) => (
+          <JUProjectCard key={i} {...p} />
         ))}
       </JUCarousel>
     </div>
@@ -93,7 +163,7 @@ export const SingleSlide: Story = {
         style={{
           padding: '3rem 1rem',
           background: 'linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 100%)',
-          minHeight: '400px',
+          minHeight: '500px',
         }}
       >
         <Story />
@@ -102,7 +172,9 @@ export const SingleSlide: Story = {
   ],
 };
 
-/* ── No auto-play, no play button ── */
+/* ─────────────────────────────────────────────────────────────────────────
+ * Manual only — no auto-play, no play button
+ * ───────────────────────────────────────────────────────────────────────── */
 export const ManualOnly: Story = {
   args: {
     autoPlay: false,

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback, useId } from 'react';
-import styles from './ju-file-upload.module.css';
+import './ju-file-upload.css';
 
 export interface JUFileUploadProps {
   /** Accepted MIME types */
@@ -88,16 +88,16 @@ export const JUFileUpload: React.FC<JUFileUploadProps> = ({
   };
 
   const cls = [
-    styles['ju-fu'],
-    dragOver ? styles['ju-fu--drag'] : '',
-    disabled ? styles['ju-fu--disabled'] : '',
+    'ju-fu',
+    dragOver ? 'ju-fu--drag' : '',
+    disabled ? 'ju-fu--disabled' : '',
     className ?? '',
   ].filter(Boolean).join(' ');
 
   return (
     <div className={cls}>
       <div
-        className={styles['ju-fu__zone']}
+        className={'ju-fu__zone'}
         onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
         onDragLeave={() => setDragOver(false)}
         onDrop={onDrop}
@@ -114,28 +114,28 @@ export const JUFileUpload: React.FC<JUFileUploadProps> = ({
           accept={accept}
           multiple={multiple}
           disabled={disabled}
-          className={styles['ju-fu__input']}
+          className={'ju-fu__input'}
           onChange={(e) => handleFiles(e.target.files)}
         />
-        <div className={styles['ju-fu__icon']} aria-hidden="true">
+        <div className={'ju-fu__icon'} aria-hidden="true">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
             <polyline points="17 8 12 3 7 8" />
             <line x1="12" y1="3" x2="12" y2="15" />
           </svg>
         </div>
-        <span className={styles['ju-fu__label']}>{label}</span>
-        <span className={styles['ju-fu__hint']}>{hint}</span>
+        <span className={'ju-fu__label'}>{label}</span>
+        <span className={'ju-fu__hint'}>{hint}</span>
       </div>
 
       {showPreview && files.length > 0 && (
-        <ul className={styles['ju-fu__list']}>
+        <ul className={'ju-fu__list'}>
           {files.map((f, i) => (
-            <li key={`${f.name}-${i}`} className={styles['ju-fu__file']}>
-              <span className={styles['ju-fu__file-name']}>{f.name}</span>
-              <span className={styles['ju-fu__file-size']}>{formatSize(f.size)}</span>
+            <li key={`${f.name}-${i}`} className={'ju-fu__file'}>
+              <span className={'ju-fu__file-name'}>{f.name}</span>
+              <span className={'ju-fu__file-size'}>{formatSize(f.size)}</span>
               <button
-                className={styles['ju-fu__file-remove']}
+                className={'ju-fu__file-remove'}
                 onClick={() => removeFile(i)}
                 aria-label={`Supprimer ${f.name}`}
                 type="button"

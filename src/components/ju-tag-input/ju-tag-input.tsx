@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback, useId } from 'react';
-import styles from './ju-tag-input.module.css';
+import './ju-tag-input.css';
 
 export interface JUTagInputProps {
   /** Current tags (controlled) */
@@ -67,15 +67,15 @@ export const JUTagInput: React.FC<JUTagInputProps> = ({
   }, [input, tags, addTag, removeTag]);
 
   return (
-    <div className={`${styles['ju-ti']} ${error ? styles['ju-ti--error'] : ''} ${disabled ? styles['ju-ti--disabled'] : ''} ${className ?? ''}`}>
-      {label && <label htmlFor={id} className={styles['ju-ti__label']}>{label}</label>}
-      <div className={styles['ju-ti__wrapper']} onClick={() => inputRef.current?.focus()}>
+    <div className={`${'ju-ti'} ${error ? 'ju-ti--error' : ''} ${disabled ? 'ju-ti--disabled' : ''} ${className ?? ''}`}>
+      {label && <label htmlFor={id} className={'ju-ti__label'}>{label}</label>}
+      <div className={'ju-ti__wrapper'} onClick={() => inputRef.current?.focus()}>
         {tags.map((tag, i) => (
-          <span key={tag} className={styles['ju-ti__tag']}>
+          <span key={tag} className={'ju-ti__tag'}>
             <span>{tag}</span>
             {!disabled && (
               <button
-                className={styles['ju-ti__tag-x']}
+                className={'ju-ti__tag-x'}
                 onClick={(e) => { e.stopPropagation(); removeTag(i); }}
                 aria-label={`Remove ${tag}`}
                 tabIndex={-1}
@@ -88,7 +88,7 @@ export const JUTagInput: React.FC<JUTagInputProps> = ({
         <input
           ref={inputRef}
           id={id}
-          className={styles['ju-ti__input']}
+          className={'ju-ti__input'}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={onKeyDown}
@@ -98,8 +98,8 @@ export const JUTagInput: React.FC<JUTagInputProps> = ({
           aria-invalid={!!error}
         />
       </div>
-      {error && <span className={styles['ju-ti__error']} role="alert">{error}</span>}
-      {max && <span className={styles['ju-ti__count']}>{tags.length}/{max}</span>}
+      {error && <span className={'ju-ti__error'} role="alert">{error}</span>}
+      {max && <span className={'ju-ti__count'}>{tags.length}/{max}</span>}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useId, useState } from 'react';
-import styles from './ju-switch.module.css';
+import './ju-switch.css';
 
 export interface JUSwitchProps {
   /** Controlled checked state */
@@ -45,10 +45,10 @@ export const JUSwitch: React.FC<JUSwitchProps> = ({
   };
 
   const cls = [
-    styles['ju-sw'],
-    styles[`ju-sw--${size}`],
-    isOn ? styles['ju-sw--on'] : '',
-    disabled ? styles['ju-sw--disabled'] : '',
+    'ju-sw',
+    `ju-sw--${size}`,
+    isOn ? 'ju-sw--on' : '',
+    disabled ? 'ju-sw--disabled' : '',
     className ?? '',
   ].filter(Boolean).join(' ');
 
@@ -57,7 +57,7 @@ export const JUSwitch: React.FC<JUSwitchProps> = ({
   return (
     <div className={cls} style={cssVars}>
       {label && labelPosition === 'left' && (
-        <label htmlFor={id} className={styles['ju-sw__label']}>{label}</label>
+        <label htmlFor={id} className={'ju-sw__label'}>{label}</label>
       )}
       <button
         id={id}
@@ -65,13 +65,13 @@ export const JUSwitch: React.FC<JUSwitchProps> = ({
         role="switch"
         aria-checked={isOn}
         disabled={disabled}
-        className={styles['ju-sw__track']}
+        className={'ju-sw__track'}
         onClick={toggle}
       >
-        <span className={styles['ju-sw__thumb']} />
+        <span className={'ju-sw__thumb'} />
       </button>
       {label && labelPosition === 'right' && (
-        <label htmlFor={id} className={styles['ju-sw__label']}>{label}</label>
+        <label htmlFor={id} className={'ju-sw__label'}>{label}</label>
       )}
     </div>
   );

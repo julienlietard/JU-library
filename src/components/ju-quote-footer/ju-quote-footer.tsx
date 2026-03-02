@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import styles from './ju-quote-footer.module.css';
+import './ju-quote-footer.css';
 
 /* ── Types ── */
 
@@ -86,14 +86,14 @@ export const JUQuoteFooter: React.FC<JUQuoteFooterProps> = ({
   return (
     <>
       <footer
-        className={`${styles['ju-quote-footer']} ${className ?? ''}`}
+        className={`${'ju-quote-footer'} ${className ?? ''}`}
         style={footerStyle}
         role="region"
         aria-label="Footer with quotes"
       >
         {logo && (
           <img
-            className={styles['ju-quote-footer__logo']}
+            className={'ju-quote-footer__logo'}
             src={logo.src}
             alt={logo.alt}
             draggable={false}
@@ -101,24 +101,24 @@ export const JUQuoteFooter: React.FC<JUQuoteFooterProps> = ({
         )}
 
         <div
-          className={`${styles['ju-quote-footer__quote-wrapper']} ${styles[`ju-quote-footer__quote-wrapper--${phase}`]}`}
+          className={`${'ju-quote-footer__quote-wrapper'} ${`ju-quote-footer__quote-wrapper--${phase}`}`}
           aria-live="polite"
           aria-atomic="true"
           style={{ '--transition-duration': `${transitionDuration}ms` } as React.CSSProperties}
         >
-          <h2 className={styles['ju-quote-footer__quote']}>"{current.text}"</h2>
-          <p className={styles['ju-quote-footer__author']}>— {current.author}</p>
+          <h2 className={'ju-quote-footer__quote'}>"{current.text}"</h2>
+          <p className={'ju-quote-footer__author'}>— {current.author}</p>
         </div>
 
         {quotes.length > 1 && (
-          <div className={styles['ju-quote-footer__dots']} role="tablist" aria-label="Quotes">
+          <div className={'ju-quote-footer__dots'} role="tablist" aria-label="Quotes">
             {quotes.map((_, i) => (
               <button
                 key={i}
                 role="tab"
                 aria-selected={i === index}
                 aria-label={`Quote ${i + 1}`}
-                className={`${styles['ju-quote-footer__dot']} ${i === index ? styles['ju-quote-footer__dot--active'] : ''}`}
+                className={`${'ju-quote-footer__dot'} ${i === index ? 'ju-quote-footer__dot--active' : ''}`}
                 onClick={() => goTo(i)}
               />
             ))}
@@ -127,11 +127,11 @@ export const JUQuoteFooter: React.FC<JUQuoteFooterProps> = ({
       </footer>
 
       {legal && (
-        <div className={styles['ju-quote-footer__legal-wrapper']}>
-          <div className={styles['ju-quote-footer__legal-content']}>
+        <div className={'ju-quote-footer__legal-wrapper'}>
+          <div className={'ju-quote-footer__legal-content'}>
             <span>{legal.copyright}</span>
             {legal.links && legal.links.length > 0 && (
-              <nav className={styles['ju-quote-footer__legal-links']}>
+              <nav className={'ju-quote-footer__legal-links'}>
                 {legal.links.map((link, i) => (
                   <a key={i} href={link.href}>{link.label}</a>
                 ))}

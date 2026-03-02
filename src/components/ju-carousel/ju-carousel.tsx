@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
-import styles from './ju-carousel.module.css';
+import './ju-carousel.css';
 
 export interface JUCarouselProps {
   /** Slides to display */
@@ -108,7 +108,7 @@ export const JUCarousel: React.FC<JUCarouselProps> = ({
     ? `calc(${-currentIndex * slideW}% + ${dragOffset}px)`
     : `${-currentIndex * slideW}%`;
 
-  const carouselClass = [styles['ju-carousel'], className ?? '']
+  const carouselClass = ['ju-carousel', className ?? '']
     .filter(Boolean)
     .join(' ');
 
@@ -127,11 +127,11 @@ export const JUCarousel: React.FC<JUCarouselProps> = ({
       aria-label="Carousel"
     >
       <div
-        className={`${styles['ju-carousel__viewport']}${isDragging ? ` ${styles['ju-carousel__viewport--grabbing']}` : ''}`}
+        className={`${'ju-carousel__viewport'}${isDragging ? ` ${'ju-carousel__viewport--grabbing'}` : ''}`}
         ref={containerRef}
       >
         <div
-          className={styles['ju-carousel__track']}
+          className={'ju-carousel__track'}
           style={{
             transform: `translateX(${translateX})`,
             transition: isDragging
@@ -143,7 +143,7 @@ export const JUCarousel: React.FC<JUCarouselProps> = ({
           {items.map((item, i) => (
             <div
               key={i}
-              className={styles['ju-carousel__slide']}
+              className={'ju-carousel__slide'}
               style={{ flex: `0 0 ${slideW}%` }}
               role="group"
               aria-roledescription="slide"
@@ -156,10 +156,10 @@ export const JUCarousel: React.FC<JUCarouselProps> = ({
       </div>
 
       {(showDots || showPlayButton) && (
-        <div className={styles['ju-carousel__controls']}>
+        <div className={'ju-carousel__controls'}>
           {showPlayButton && !isMobile && (
             <button
-              className={styles['ju-carousel__play-btn']}
+              className={'ju-carousel__play-btn'}
               onClick={() => setIsPlaying((p) => !p)}
               aria-label={isPlaying ? 'Pause auto-play' : 'Start auto-play'}
             >
@@ -169,11 +169,11 @@ export const JUCarousel: React.FC<JUCarouselProps> = ({
             </button>
           )}
           {showDots && (
-            <div className={styles['ju-carousel__dots']} role="tablist">
+            <div className={'ju-carousel__dots'} role="tablist">
               {Array.from({ length: totalSlides }).map((_, i) => (
                 <button
                   key={i}
-                  className={`${styles['ju-carousel__dot']}${i === currentIndex ? ` ${styles['ju-carousel__dot--active']}` : ''}`}
+                  className={`${'ju-carousel__dot'}${i === currentIndex ? ` ${'ju-carousel__dot--active'}` : ''}`}
                   onClick={() => goTo(i)}
                   role="tab"
                   aria-selected={i === currentIndex}

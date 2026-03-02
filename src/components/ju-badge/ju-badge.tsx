@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ju-badge.module.css';
+import './ju-badge.css';
 
 export type JUBadgeColor = 'default' | 'green' | 'blue' | 'purple' | 'orange' | 'red' | 'pink';
 
@@ -24,15 +24,15 @@ export const JUBadge: React.FC<JUBadgeProps> = ({
   className,
 }) => {
   const classNames = [
-    styles['ju-badge'],
-    styles[`ju-badge--${color}`],
-    glass ? styles['ju-badge--glass'] : '',
+    'ju-badge',
+    `ju-badge--${color}`,
+    glass ? 'ju-badge--glass' : '',
     className ?? '',
   ].filter(Boolean).join(' ');
 
   return (
     <span className={classNames}>
-      {icon && <span className={styles['ju-badge__icon']} aria-hidden="true">{icon}</span>}
+      {icon && <span className={'ju-badge__icon'} aria-hidden="true">{icon}</span>}
       <span>{label}</span>
     </span>
   );

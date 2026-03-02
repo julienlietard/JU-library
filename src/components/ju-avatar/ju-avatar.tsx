@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ju-avatar.module.css';
+import './ju-avatar.css';
 
 export type JUAvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
@@ -30,9 +30,9 @@ export const JUAvatar: React.FC<JUAvatarProps> = ({
   className,
 }) => {
   const classNames = [
-    styles['ju-avatar'],
-    styles[`ju-avatar--${size}`],
-    glass ? styles['ju-avatar--glass'] : '',
+    'ju-avatar',
+    `ju-avatar--${size}`,
+    glass ? 'ju-avatar--glass' : '',
     className ?? '',
   ].filter(Boolean).join(' ');
 
@@ -40,20 +40,20 @@ export const JUAvatar: React.FC<JUAvatarProps> = ({
     <div className={classNames}>
       {src ? (
         <img
-          className={styles['ju-avatar__image']}
+          className={'ju-avatar__image'}
           src={src}
           alt={alt}
           loading="lazy"
           draggable={false}
         />
       ) : (
-        <span className={styles['ju-avatar__initials']} aria-label={alt || initials}>
+        <span className={'ju-avatar__initials'} aria-label={alt || initials}>
           {initials ?? '?'}
         </span>
       )}
       {status && (
         <span
-          className={`${styles['ju-avatar__status']} ${styles[`ju-avatar__status--${status}`]}`}
+          className={`${'ju-avatar__status'} ${`ju-avatar__status--${status}`}`}
           aria-label={status}
         />
       )}

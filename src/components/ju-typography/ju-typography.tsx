@@ -1,5 +1,5 @@
 //Un composant parent pour gérer les titres (H1-H6), le corps de texte, les citations et les légendes de manière cohérente.import React from 'react';
-import styles from './ju-typography.module.css';
+import './ju-typography.css';
 
 export type JUTypographyVariant = 'h1' | 'h2' | 'h3' | 'h4' | 'body' | 'lead' | 'small' | 'caption';
 
@@ -37,11 +37,11 @@ export const JUTypography: React.FC<JUTypographyProps> = ({
 }) => {
   const Tag = (as ?? TAG_MAP[variant]) as any;
   const cls = [
-    styles['ju-typo'],
-    styles[`ju-typo--${variant}`],
-    muted ? styles['ju-typo--muted'] : '',
-    gradient ? styles['ju-typo--gradient'] : '',
-    balance ? styles['ju-typo--balance'] : '',
+    'ju-typo',
+    `ju-typo--${variant}`,
+    muted ? 'ju-typo--muted' : '',
+    gradient ? 'ju-typo--gradient' : '',
+    balance ? 'ju-typo--balance' : '',
     className ?? '',
   ].filter(Boolean).join(' ');
 
