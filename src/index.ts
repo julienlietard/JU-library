@@ -88,7 +88,7 @@ export type { JUTagInputProps } from './components/ju-tag-input/ju-tag-input';
 
 // Editor
 export { JUEditor } from './components/ju-editor/ju-editor';
-export type { JUEditorProps, JUEditorAction } from './components/ju-editor/ju-editor';
+export type { JUEditorProps, JUEditorFontFamily, JUEditorFontSize } from './components/ju-editor/ju-editor';
 
 // File Upload
 export { JUFileUpload } from './components/ju-file-upload/ju-file-upload';

@@ -105,4 +105,49 @@
   /* --- Transitions --- */
   --ju-transition-default: all var(--ju-duration-normal) var(--ju-ease-smooth);
   --ju-transition-bounce: all var(--ju-duration-normal) var(--ju-ease-bounce);
+
+  /* --- Semantic Theme Tokens (light by default) --- */
+  --ju-color-text: var(--ju-color-gray-900);
+  --ju-color-text-heading: #000000;
+  --ju-color-text-body: #2d2d2d;
+  --ju-color-text-muted: var(--ju-color-gray-500);
+  --ju-color-text-lead: var(--ju-color-gray-700);
+  --ju-color-surface: #ffffff;
+  --ju-color-surface-hover: #f9fafb;
+  --ju-color-surface-active: #eff6ff;
+  --ju-color-surface-active-text: #1d4ed8;
+  --ju-color-border: #f3f4f6;
+  --ju-color-border-strong: #e5e7eb;
+}
+
+/* --- Dark theme via data attribute --- */
+[data-theme="dark"] {
+  --ju-color-text: var(--ju-color-gray-100);
+  --ju-color-text-heading: #ffffff;
+  --ju-color-text-body: var(--ju-color-gray-200);
+  --ju-color-text-muted: var(--ju-color-gray-400);
+  --ju-color-text-lead: var(--ju-color-gray-300);
+  --ju-color-surface: var(--ju-color-gray-900);
+  --ju-color-surface-hover: var(--ju-color-gray-800);
+  --ju-color-surface-active: rgba(27, 130, 255, 0.15);
+  --ju-color-surface-active-text: #60a5fa;
+  --ju-color-border: var(--ju-color-gray-800);
+  --ju-color-border-strong: var(--ju-color-gray-700);
+}
+
+/* --- Dark theme via OS preference (fallback) --- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ju-color-text: var(--ju-color-gray-100);
+    --ju-color-text-heading: #ffffff;
+    --ju-color-text-body: var(--ju-color-gray-200);
+    --ju-color-text-muted: var(--ju-color-gray-400);
+    --ju-color-text-lead: var(--ju-color-gray-300);
+    --ju-color-surface: var(--ju-color-gray-900);
+    --ju-color-surface-hover: var(--ju-color-gray-800);
+    --ju-color-surface-active: rgba(27, 130, 255, 0.15);
+    --ju-color-surface-active-text: #60a5fa;
+    --ju-color-border: var(--ju-color-gray-800);
+    --ju-color-border-strong: var(--ju-color-gray-700);
+  }
 }

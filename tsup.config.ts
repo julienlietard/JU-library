@@ -12,7 +12,7 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   minify: true,
-  external: ['react', 'react-dom'],
+  external: ['react', 'react-dom', 'prismjs'],
   esbuildOptions(options) {
     options.jsx = 'automatic';
   },

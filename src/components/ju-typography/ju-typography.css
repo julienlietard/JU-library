@@ -1,23 +1,24 @@
 /* ============================================
-   JUTypography — White-first type system
+   JUTypography — Flexible type system
+   Inherits color from parent context.
+   Use muted/gradient modifiers for overrides.
    ============================================ */
 
 .ju-typo {
   font-family: var(--ju-font-family);
-  /* On force une base sombre sur fond clair */
-  color: var(--ju-color-gray-900, #1a1a1a);
+  color: inherit;
   margin: 0;
   padding: 0;
 }
 
 .ju-typo--balance { text-wrap: balance; }
 
-/* Plus subtil en mode clair pour rester lisible */
-.ju-typo--muted { color: var(--ju-color-gray-500, #666); }
+/* ── Color modifiers ── */
+
+.ju-typo--muted { color: var(--ju-color-text-muted); }
 
 .ju-typo--gradient {
-  /* Inversion du dégradé : du noir vers un gris profond ou vers ta couleur primaire */
-  background: linear-gradient(135deg, #000000 0%, var(--ju-color-primary) 100%);
+  background: linear-gradient(135deg, currentColor 0%, var(--ju-color-primary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -31,7 +32,6 @@
   line-height: 1.1;
   letter-spacing: -0.03em;
   margin-bottom: 1em;
-  color: #000000;
 }
 
 .ju-typo--h2 {
@@ -65,7 +65,6 @@
   font-weight: var(--ju-font-weight-normal);
   line-height: 1.75;
   max-width: 65ch;
-  color: #2d2d2d;
 }
 
 .ju-typo--lead {
@@ -73,7 +72,6 @@
   font-weight: var(--ju-font-weight-normal);
   line-height: 1.65;
   max-width: 60ch;
-  color: var(--ju-color-gray-700);
 }
 
 .ju-typo--small {
@@ -88,5 +86,5 @@
   line-height: 1.4;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--ju-color-gray-500);
+  opacity: 0.5;
 }

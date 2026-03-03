@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install prismjs)",
+      "Bash(npm install -D @types/prismjs)",
+      "Bash(npm install prismjs --legacy-peer-deps)",
+      "Bash(npm install -D @types/prismjs --legacy-peer-deps)",
+      "Bash(npm install prismjs --force)",
+      "Bash(npm install)",
+      "Bash(npx vitest run)",
+      "Bash(npm run build)"
+    ]
+  }
+}
