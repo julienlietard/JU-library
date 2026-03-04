@@ -125,3 +125,7 @@ export type { JUToastProps, JUToastContainerProps, JUToastData, JUToastVariant, 
 // Tooltip
 export { JUTooltip } from './components/ju-tooltip/ju-tooltip';
 export type { JUTooltipProps, JUTooltipPlacement } from './components/ju-tooltip/ju-tooltip';
+
+// Signature
+export { JUSignature } from './components/ju-signature/ju-signature';
+export type { JUSignatureProps } from './components/ju-signature/ju-signature';

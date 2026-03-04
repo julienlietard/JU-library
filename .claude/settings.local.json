@@ -12,7 +12,8 @@
       "Bash(xargs grep -l \"Island\\\\|island\")",
       "Bash(npx vitest run src/components/ju-island/ju-island.test.tsx)",
       "Bash(npx tsc --noEmit --project tsconfig.json)",
-      "Bash(npx tsc --noEmit)"
+      "Bash(npx tsc --noEmit)",
+      "Bash(npx vitest run src/components/ju-signature/ju-signature.test.tsx)"
     ]
   }
 }

@@ -146,6 +146,19 @@
   box-shadow: 0 8px 24px rgba(255, 59, 92, 0.4);
 }
 
+/* --- Variant: Custom (color prop) --- */
+
+.ju-button--custom {
+  background-color: var(--ju-btn-color);
+  color: var(--ju-btn-text);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--ju-btn-color) 30%, transparent);
+}
+
+.ju-button--custom:hover:not(.ju-button--disabled) {
+  background-color: color-mix(in srgb, var(--ju-btn-color) 85%, black);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--ju-btn-color) 40%, transparent);
+}
+
 /* --- Disabled --- */
 
 .ju-button--disabled {
