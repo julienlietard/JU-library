@@ -61,15 +61,22 @@ describe('JUTooltip', () => {
     });
   });
 
-  it('sets aria-describedby on trigger when visible', async () => {
+  it('sets aria-describedby on trigger when visible matching the tooltip ID', async () => {
     render(
       <JUTooltip content="Tip text" delay={0}>
         <button>Hover me</button>
       </JUTooltip>
     );
-    fireEvent.mouseEnter(screen.getByText('Hover me'));
+    const trigger = screen.getByText('Hover me');
+    
+    expect(trigger.getAttribute('aria-describedby')).toBeNull();
+    
+    fireEvent.mouseEnter(trigger);
+    
     await waitFor(() => {
-      expect(screen.getByText('Hover me').getAttribute('aria-describedby')).toBe('ju-tooltip-content');
+      const tooltip = screen.getByRole('tooltip');
+      const tooltipId = tooltip.getAttribute('id');
+      expect(trigger.getAttribute('aria-describedby')).toBe(tooltipId);
     });
   });
 });

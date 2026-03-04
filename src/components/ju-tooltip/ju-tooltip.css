@@ -4,8 +4,9 @@
 
 .ju-tooltip {
   position: fixed;
-  z-index: 9999;
+  z-index: 99999; /* Z-index très élevé pour passer au-dessus des modals */
   pointer-events: auto;
+  will-change: transform, opacity;
 
   /* Entry animation */
   animation: ju-tooltip-in var(--ju-duration-fast, 150ms) var(--ju-ease-out, cubic-bezier(0.22, 0.61, 0.36, 1)) both;
@@ -21,6 +22,7 @@
   line-height: 1.4;
   color: rgba(255, 255, 255, 0.95);
   white-space: pre-line;
+  word-wrap: break-word;
 
   /* Glass */
   background: rgba(30, 30, 34, 0.85);

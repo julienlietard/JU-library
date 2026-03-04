@@ -1,4 +1,5 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
+import React, { useState, useRef, useCallback, useEffect, useId } from 'react';
+import { createPortal } from 'react-dom';
 import './ju-tooltip.css';
 
 /* ── Types ── */
@@ -24,6 +25,21 @@ export interface JUTooltipProps {
   className?: string;
 }
 
+/* ── Utils ── */
+
+// Fusionne la ref interne du tooltip avec la ref potentiellement déjà présente sur l'enfant
+function mergeRefs<T>(...refs: (React.Ref<T> | undefined | null)[]) {
+  return (value: T | null) => {
+    refs.forEach((ref) => {
+      if (typeof ref === 'function') {
+        ref(value);
+      } else if (ref != null) {
+        (ref as React.MutableRefObject<T | null>).current = value;
+      }
+    });
+  };
+}
+
 export const JUTooltip: React.FC<JUTooltipProps> = ({
   content,
   placement = 'top',
@@ -34,13 +50,15 @@ export const JUTooltip: React.FC<JUTooltipProps> = ({
   children,
   className,
 }) => {
+  const tooltipId = `ju-tooltip-${useId()}`;
   const [visible, setVisible] = useState(false);
   const [coords, setCoords] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
   const [actualPlacement, setActualPlacement] = useState(placement);
+  
   const triggerRef = useRef<HTMLElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
-  const showTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const showTimer = useRef<number | null>(null);
+  const hideTimer = useRef<number | null>(null);
 
   /* ── Position calculation ── */
   const updatePosition = useCallback(() => {
@@ -91,34 +109,40 @@ export const JUTooltip: React.FC<JUTooltipProps> = ({
   /* ── Show / hide with delays ── */
   const show = useCallback(() => {
     if (disabled) return;
-    if (hideTimer.current) { clearTimeout(hideTimer.current); hideTimer.current = null; }
-    showTimer.current = setTimeout(() => setVisible(true), delay);
+    if (hideTimer.current) { window.clearTimeout(hideTimer.current); hideTimer.current = null; }
+    showTimer.current = window.setTimeout(() => setVisible(true), delay);
   }, [disabled, delay]);
 
   const hide = useCallback(() => {
-    if (showTimer.current) { clearTimeout(showTimer.current); showTimer.current = null; }
-    hideTimer.current = setTimeout(() => setVisible(false), hideDelay);
+    if (showTimer.current) { window.clearTimeout(showTimer.current); showTimer.current = null; }
+    hideTimer.current = window.setTimeout(() => setVisible(false), hideDelay);
   }, [hideDelay]);
 
-  /* ── Update position when visible ── */
+  /* ── Update position when visible & track scrolling ── */
   useEffect(() => {
     if (visible) {
-      /* Run on next frame so tooltip has rendered */
       requestAnimationFrame(updatePosition);
+      // Mode capture pour intercepter le scroll de n'importe quel conteneur parent
+      window.addEventListener('scroll', updatePosition, true);
+      window.addEventListener('resize', updatePosition);
     }
+    return () => {
+      window.removeEventListener('scroll', updatePosition, true);
+      window.removeEventListener('resize', updatePosition);
+    };
   }, [visible, updatePosition]);
 
   /* ── Cleanup ── */
   useEffect(() => {
     return () => {
-      if (showTimer.current) clearTimeout(showTimer.current);
-      if (hideTimer.current) clearTimeout(hideTimer.current);
+      if (showTimer.current) window.clearTimeout(showTimer.current);
+      if (hideTimer.current) window.clearTimeout(hideTimer.current);
     };
   }, []);
 
   /* ── Clone child to attach events + ref ── */
   const trigger = React.cloneElement(children, {
-    ref: triggerRef,
+    ref: mergeRefs(triggerRef, (children as any).ref),
     onMouseEnter: (e: React.MouseEvent) => {
       show();
       children.props.onMouseEnter?.(e);
@@ -135,37 +159,39 @@ export const JUTooltip: React.FC<JUTooltipProps> = ({
       hide();
       children.props.onBlur?.(e);
     },
-    'aria-describedby': visible ? 'ju-tooltip-content' : undefined,
+    'aria-describedby': visible ? tooltipId : children.props['aria-describedby'],
   });
+
+  const tooltipNode = visible ? (
+    <div
+      ref={tooltipRef}
+      id={tooltipId}
+      role="tooltip"
+      className={[
+        'ju-tooltip',
+        `ju-tooltip--${actualPlacement}`,
+        className ?? '',
+      ].filter(Boolean).join(' ')}
+      style={{
+        top: coords.top,
+        left: coords.left,
+        maxWidth,
+      }}
+      onMouseEnter={() => {
+        if (hideTimer.current) { window.clearTimeout(hideTimer.current); hideTimer.current = null; }
+      }}
+      onMouseLeave={hide}
+    >
+      <div className="ju-tooltip__content">{content}</div>
+      <div className="ju-tooltip__arrow" />
+    </div>
+  ) : null;
 
   return (
     <>
       {trigger}
-      {visible && (
-        <div
-          ref={tooltipRef}
-          id="ju-tooltip-content"
-          role="tooltip"
-          className={[
-            'ju-tooltip',
-            `ju-tooltip--${actualPlacement}`,
-            className ?? '',
-          ].filter(Boolean).join(' ')}
-          style={{
-            top: coords.top,
-            left: coords.left,
-            maxWidth,
-          }}
-          onMouseEnter={() => {
-            /* Keep tooltip open when hovering it */
-            if (hideTimer.current) { clearTimeout(hideTimer.current); hideTimer.current = null; }
-          }}
-          onMouseLeave={hide}
-        >
-          <div className={'ju-tooltip__content'}>{content}</div>
-          <div className={'ju-tooltip__arrow'} />
-        </div>
-      )}
+      {/* Rendu via Portal pour éviter les soucis d'overflow: hidden des parents */}
+      {tooltipNode && typeof document !== 'undefined' && createPortal(tooltipNode, document.body)}
     </>
   );
 };
