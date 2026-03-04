@@ -3,10 +3,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUIsland } from './ju-island';
 
 const demoLinks = [
-  { id: 'about', label: 'About Me', href: '#about' },
-  { id: 'skills', label: 'My Skills', href: '#skills' },
-  { id: 'projects', label: 'My Projects', href: '#projects' },
-  { id: 'contact', label: 'Contact', href: '#contact' },
+  { id: 'intro', label: 'Introduction', href: '#intro' },
+  { id: 'context', label: 'Contexte', href: '#context' },
+  { id: 'method', label: 'Méthodologie', href: '#method' },
+  { id: 'results', label: 'Résultats', href: '#results' },
+  { id: 'discussion', label: 'Discussion', href: '#discussion' },
+  { id: 'conclusion', label: 'Conclusion', href: '#conclusion' },
 ];
 
 const meta: Meta<typeof JUIsland> = {
@@ -42,9 +44,10 @@ type Story = StoryObj<typeof JUIsland>;
 /* ── Default ── */
 export const Default: Story = {
   args: {
-    sectionLabel: 'Compétences',
+    sectionLabel: 'Méthodologie',
     progress: 45,
     links: demoLinks,
+    activeId: 'method',
     visible: true,
   },
 };
@@ -85,15 +88,16 @@ const InteractiveDemo = () => {
   const [progress, setProgress] = useState(0);
 
   const sections = [
-    { threshold: 25, label: 'Accueil' },
-    { threshold: 45, label: 'Sur moi' },
-    { threshold: 68, label: 'Compétences' },
-    { threshold: 90, label: 'Workspace' },
-    { threshold: 101, label: 'Contact' },
+    { threshold: 15, label: 'Introduction', id: 'intro' },
+    { threshold: 30, label: 'Contexte', id: 'context' },
+    { threshold: 50, label: 'Méthodologie', id: 'method' },
+    { threshold: 70, label: 'Résultats', id: 'results' },
+    { threshold: 88, label: 'Discussion', id: 'discussion' },
+    { threshold: 101, label: 'Conclusion', id: 'conclusion' },
   ];
 
-  const currentLabel =
-    sections.find((s) => progress < s.threshold)?.label ?? 'Contact';
+  const currentSection =
+    sections.find((s) => progress < s.threshold) ?? sections[sections.length - 1];
 
   return (
     <div
@@ -106,15 +110,18 @@ const InteractiveDemo = () => {
       }}
     >
       <JUIsland
-        sectionLabel={currentLabel}
+        sectionLabel={currentSection.label}
         progress={progress}
         links={demoLinks}
+        activeId={currentSection.id}
         onLinkClick={(id) => {
           const map: Record<string, number> = {
-            about: 30,
-            skills: 55,
-            projects: 78,
-            contact: 95,
+            intro: 5,
+            context: 20,
+            method: 40,
+            results: 60,
+            discussion: 78,
+            conclusion: 92,
           };
           setProgress(map[id] ?? 0);
         }}

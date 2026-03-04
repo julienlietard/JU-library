@@ -8,7 +8,11 @@
       "Bash(npm install prismjs --force)",
       "Bash(npm install)",
       "Bash(npx vitest run)",
-      "Bash(npm run build)"
+      "Bash(npm run build)",
+      "Bash(xargs grep -l \"Island\\\\|island\")",
+      "Bash(npx vitest run src/components/ju-island/ju-island.test.tsx)",
+      "Bash(npx tsc --noEmit --project tsconfig.json)",
+      "Bash(npx tsc --noEmit)"
     ]
   }
 }

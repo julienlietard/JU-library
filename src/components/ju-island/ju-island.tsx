@@ -15,8 +15,10 @@ export interface JUIslandProps {
   sectionLabel?: string;
   /** Scroll progress percentage (0-100) */
   progress?: number;
-  /** Links shown when the island is expanded */
+  /** Links shown when the island is expanded (table of contents) */
   links?: JUIslandLink[];
+  /** ID of the currently active link (highlights in the TOC) */
+  activeId?: string;
   /** Whether the island is visible */
   visible?: boolean;
   /** Auto-close delay in ms when mouse leaves (0 to disable) */
@@ -33,6 +35,7 @@ export const JUIsland: React.FC<JUIslandProps> = ({
   sectionLabel = '',
   progress = 0,
   links = [],
+  activeId,
   visible = true,
   autoCloseDelay = 2000,
   onLinkClick,
@@ -96,69 +99,92 @@ export const JUIsland: React.FC<JUIslandProps> = ({
     <div
       ref={islandRef}
       className={containerClass}
+      style={{ '--ju-island-color': progressColor } as React.CSSProperties}
       onClick={handleToggle}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       role="status"
       aria-label={`${sectionLabel} — ${Math.round(clampedProgress)}% scrolled`}
     >
-      {/* Progress ring */}
-      <svg
-        width="30"
-        height="30"
-        className={'ju-island__ring'}
-        aria-hidden="true"
-      >
-        <circle
-          cx="15"
-          cy="15"
-          r={radius}
-          stroke="rgba(255, 255, 255, 0.15)"
-          strokeWidth="4"
-          fill="transparent"
-        />
-        <circle
-          cx="15"
-          cy="15"
-          r={radius}
-          stroke={progressColor}
-          strokeWidth="4"
-          fill="transparent"
-          strokeDasharray={circumference}
-          strokeDashoffset={offset}
-          strokeLinecap="round"
-          style={{ transition: 'stroke-dashoffset 0.5s ease-in-out' }}
-        />
-      </svg>
+      {/* Closed bar — fades out when open via CSS */}
+      <div className="ju-island__bar">
+        <svg
+          width="30"
+          height="30"
+          className="ju-island__ring"
+          aria-hidden="true"
+        >
+          <circle
+            cx="15"
+            cy="15"
+            r={radius}
+            stroke="rgba(255, 255, 255, 0.15)"
+            strokeWidth="4"
+            fill="transparent"
+          />
+          <circle
+            cx="15"
+            cy="15"
+            r={radius}
+            stroke={progressColor}
+            strokeWidth="4"
+            fill="transparent"
+            strokeDasharray={circumference}
+            strokeDashoffset={offset}
+            strokeLinecap="round"
+            style={{ transition: 'stroke-dashoffset 0.5s ease-in-out' }}
+          />
+        </svg>
 
-      {/* Section name */}
-      <div className={'ju-island__label'}>
-        {sectionLabel}
+        <div className="ju-island__label">{sectionLabel}</div>
+
+        <div className="ju-island__badge">{Math.round(clampedProgress)}%</div>
       </div>
 
-      {/* Progress badge */}
-      <div className={'ju-island__progress'}>
-        {Math.round(clampedProgress)}%
-      </div>
-
-      {/* Expanded links */}
+      {/* TOC view — replaces bar content when open */}
       {isOpen && links.length > 0 && (
-        <nav
-          className={'ju-island__links'}
-          aria-label="Page sections"
+        <div
+          className="ju-island__toc"
           onClick={(e) => e.stopPropagation()}
         >
-          {links.map((link) => (
-            <a
-              key={link.id}
-              href={link.href}
-              className={'ju-island__link'}
-              onClick={(e) => handleLinkClick(e, link)}
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
+          <div className="ju-island__toc-header">
+            <span className="ju-island__toc-title">{sectionLabel}</span>
+            <span className="ju-island__toc-percent">
+              {Math.round(clampedProgress)}%
+            </span>
+          </div>
+
+          <div className="ju-island__toc-track">
+            <div
+              className="ju-island__toc-fill"
+              style={{
+                width: `${clampedProgress}%`,
+                backgroundColor: progressColor,
+              }}
+            />
+          </div>
+
+          <nav
+            className="ju-island__toc-list"
+            aria-label="Table of contents"
+          >
+            {links.map((link, i) => (
+              <a
+                key={link.id}
+                href={link.href}
+                className={
+                  'ju-island__toc-item' +
+                  (activeId === link.id ? ' ju-island__toc-item--active' : '')
+                }
+                aria-current={activeId === link.id ? 'location' : undefined}
+                style={{ animationDelay: `${i * 0.04}s` }}
+                onClick={(e) => handleLinkClick(e, link)}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        </div>
       )}
     </div>
   );
