@@ -18,6 +18,7 @@ export const Rounded: Story = { args: { variant: 'rounded', width: 300, height: 
 export const Pulse: Story = { args: { variant: 'rounded', width: 300, height: 120, animation: 'pulse' } };
 
 export const ArticleCard: Story = {
+  name: 'Carte de composant',
   render: () => (
     <div style={{ display: 'flex', gap: 16, padding: 20, background: 'white', borderRadius: 16, maxWidth: 500 }}>
       <JUSkeleton variant="rounded" width={120} height={120} />

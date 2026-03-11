@@ -1,0 +1,369 @@
+/* ═══════════════════════════════════════════════════════
+   JUSlider — Range Slider
+   Glassmorphism 2.0 · White-First · Squircle · Organic
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Sizing tokens ── */
+.ju-slider {
+  --_thumb: 22px;
+  --_track-h: 6px;
+  --_mark-size: 8px;
+  --_tooltip-offset: 8px;
+}
+
+.ju-slider--sm {
+  --_thumb: 16px;
+  --_track-h: 4px;
+  --_mark-size: 6px;
+}
+
+.ju-slider--lg {
+  --_thumb: 28px;
+  --_track-h: 8px;
+  --_mark-size: 10px;
+}
+
+/* ── Root ── */
+
+.ju-slider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  font-family: var(--ju-font-family, 'Inter', system-ui, sans-serif);
+  user-select: none;
+  touch-action: none;
+}
+
+.ju-slider--disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* ── Min / Max labels ── */
+
+.ju-slider__label {
+  font-size: 0.75rem;
+  font-weight: var(--ju-font-weight-medium, 500);
+  color: var(--ju-color-text-muted, rgba(0, 0, 0, 0.4));
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+  min-width: 2ch;
+  text-align: center;
+}
+
+/* ── Track area (contains track + mark labels) ── */
+
+.ju-slider__track-area {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ── Track ── */
+
+.ju-slider__track {
+  position: relative;
+  height: var(--_thumb);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.ju-slider__track::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: var(--_track-h);
+  border-radius: var(--ju-radius-full, 999px);
+  background: var(--ju-track-bg, rgba(0, 0, 0, 0.06));
+  transition: background 0.15s ease;
+}
+
+.ju-slider__track:hover::before {
+  background: var(--ju-track-bg-hover, rgba(0, 0, 0, 0.08));
+}
+
+/* ── Fill ── */
+
+.ju-slider__fill {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: var(--_track-h);
+  border-radius: var(--ju-radius-full, 999px);
+  background: var(--ju-color-primary, #1b82ff);
+  pointer-events: none;
+  transition: width 0.06s ease, left 0.06s ease;
+}
+
+/* Gradient variant */
+.ju-slider--gradient .ju-slider__fill {
+  background: var(
+    --ju-gradient-aurora,
+    linear-gradient(90deg, #FF9D6C 0%, #FF6B98 33%, #7A60FF 66%, #1b82ff 100%)
+  );
+}
+
+/* Minimal variant — thinner track */
+.ju-slider--minimal .ju-slider__track::before {
+  height: 2px;
+}
+
+.ju-slider--minimal .ju-slider__fill {
+  height: 2px;
+}
+
+/* During drag — remove transition for instant response */
+.ju-slider--dragging .ju-slider__fill {
+  transition: none;
+}
+
+/* ── Thumb wrap (positioning + tooltip container) ── */
+
+.ju-slider__thumb-wrap {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Thumb ── */
+
+.ju-slider__thumb {
+  width: var(--_thumb);
+  height: var(--_thumb);
+  border-radius: var(--ju-radius-full, 999px);
+  background: #fff;
+  border: 2px solid var(--ju-color-primary, #1b82ff);
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.06);
+  cursor: grab;
+  transition:
+    transform 0.22s var(--ju-ease-spring, cubic-bezier(0.22, 1.4, 0.32, 1)),
+    box-shadow 0.18s ease,
+    border-color 0.15s ease;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.ju-slider__thumb:hover {
+  transform: scale(1.12);
+  box-shadow:
+    0 2px 8px rgba(27, 130, 255, 0.15),
+    0 6px 20px rgba(27, 130, 255, 0.10);
+}
+
+.ju-slider__thumb--active {
+  transform: scale(1.22);
+  cursor: grabbing;
+  border-color: var(--ju-color-primary-hover, #0066e0);
+  box-shadow:
+    0 0 0 4px rgba(27, 130, 255, 0.12),
+    0 4px 16px rgba(27, 130, 255, 0.20);
+}
+
+.ju-slider__thumb:focus-visible {
+  outline: 2px solid var(--ju-color-primary, #1b82ff);
+  outline-offset: 3px;
+}
+
+/* Gradient variant thumb */
+.ju-slider--gradient .ju-slider__thumb {
+  border-color: #7A60FF;
+}
+
+.ju-slider--gradient .ju-slider__thumb--active {
+  border-color: #6B4EFF;
+  box-shadow:
+    0 0 0 4px rgba(122, 96, 255, 0.12),
+    0 4px 16px rgba(122, 96, 255, 0.20);
+}
+
+/* Minimal variant thumb */
+.ju-slider--minimal .ju-slider__thumb {
+  width: calc(var(--_thumb) * 0.75);
+  height: calc(var(--_thumb) * 0.75);
+  border-width: 1.5px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Tooltip ── */
+
+.ju-slider__tooltip {
+  position: absolute;
+  bottom: calc(100% + var(--_tooltip-offset));
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  animation: ju-slider-tooltip-in 0.2s var(--ju-ease-spring, cubic-bezier(0.22, 1.4, 0.32, 1)) both;
+}
+
+.ju-slider__tooltip-text {
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  font-weight: var(--ju-font-weight-semibold, 600);
+  color: #fff;
+  background: var(--ju-color-gray-900, #18181b);
+  border-radius: var(--ju-radius-sm, 8px);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.ju-slider__tooltip-arrow {
+  width: 8px;
+  height: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.ju-slider__tooltip-arrow::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 6px;
+  height: 6px;
+  background: var(--ju-color-gray-900, #18181b);
+  border-radius: 1px;
+}
+
+/* ── Marks ── */
+
+.ju-slider__marks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ju-slider__mark {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--_mark-size);
+  height: var(--_mark-size);
+  border-radius: var(--ju-radius-full, 999px);
+  background: rgba(0, 0, 0, 0.12);
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.ju-slider__mark--filled {
+  background: var(--ju-color-primary, #1b82ff);
+  transform: translate(-50%, -50%) scale(0.85);
+}
+
+.ju-slider--gradient .ju-slider__mark--filled {
+  background: #7A60FF;
+}
+
+/* ── Mark labels ── */
+
+.ju-slider__mark-labels {
+  position: relative;
+  height: 18px;
+}
+
+.ju-slider__mark-label {
+  position: absolute;
+  transform: translateX(-50%);
+  font-size: 0.65rem;
+  font-weight: var(--ju-font-weight-medium, 500);
+  color: var(--ju-color-text-muted, rgba(0, 0, 0, 0.4));
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════
+   Animations
+   ═══════════════════════════════════════════ */
+
+@keyframes ju-slider-tooltip-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(4px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   Dark mode
+   ═══════════════════════════════════════════ */
+
+[data-theme="dark"] .ju-slider__track::before {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .ju-slider__track:hover::before {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"] .ju-slider__thumb {
+  background: var(--ju-color-gray-900, #18181b);
+  border-color: var(--ju-color-primary, #1b82ff);
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .ju-slider__thumb:hover {
+  box-shadow:
+    0 2px 8px rgba(27, 130, 255, 0.25),
+    0 6px 20px rgba(27, 130, 255, 0.15);
+}
+
+[data-theme="dark"] .ju-slider__thumb--active {
+  box-shadow:
+    0 0 0 4px rgba(27, 130, 255, 0.20),
+    0 4px 16px rgba(27, 130, 255, 0.30);
+}
+
+[data-theme="dark"] .ju-slider__mark {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="dark"] .ju-slider__label {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+[data-theme="dark"] .ju-slider__mark-label {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+[data-theme="dark"] .ju-slider__tooltip-text {
+  background: rgba(255, 255, 255, 0.92);
+  color: #000;
+}
+
+[data-theme="dark"] .ju-slider__tooltip-arrow::before {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+/* ═══════════════════════════════════════════
+   Reduced motion
+   ═══════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .ju-slider__thumb {
+    transition-duration: 0.01ms !important;
+  }
+  .ju-slider__tooltip {
+    animation-duration: 0.01ms !important;
+  }
+}

@@ -13,7 +13,7 @@
   font-family: var(--ju-font-family);
   font-size: var(--ju-font-size-sm);
   font-weight: var(--ju-font-weight-medium);
-  color: #374151;
+  color: #111827;
   cursor: pointer;
   user-select: none;
 }
@@ -47,11 +47,11 @@
   border-radius: 50%;
   transition: transform var(--ju-duration-normal) var(--ju-ease-bounce),
               box-shadow var(--ju-duration-normal) var(--ju-ease-smooth);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
 .ju-sw--on .ju-sw__thumb {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .ju-sw--sm .ju-sw__track { width: 36px; height: 20px; }

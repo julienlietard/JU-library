@@ -16,8 +16,8 @@ export const Default: Story = {
     return (
       <>
         <button onClick={() => setOpen(true)}>Ouvrir la modale</button>
-        <JUModal open={open} onClose={() => setOpen(false)} title="Confirmation">
-          <p>Êtes-vous sûr de vouloir publier cet article ?</p>
+        <JUModal open={open} onClose={() => setOpen(false)} title="Publier le composant">
+          <p>Êtes-vous sûr de vouloir publier ce composant dans le design system ?</p>
         </JUModal>
       </>
     );
@@ -29,11 +29,11 @@ export const WithFooter: Story = {
     const [open, setOpen] = useState(false);
     return (
       <>
-        <button onClick={() => setOpen(true)}>Avec footer</button>
+        <button onClick={() => setOpen(true)}>Avec pied de page</button>
         <JUModal
           open={open}
           onClose={() => setOpen(false)}
-          title="Supprimer l'article"
+          title="Supprimer la maquette"
           footer={
             <>
               <button onClick={() => setOpen(false)} style={{ padding: '8px 16px', border: '1px solid #e4e4e7', borderRadius: 10, background: 'white', cursor: 'pointer' }}>Annuler</button>
@@ -41,7 +41,7 @@ export const WithFooter: Story = {
             </>
           }
         >
-          <p>Cette action est irréversible. L'article et tous ses commentaires seront définitivement supprimés.</p>
+          <p>Cette action est irréversible. La maquette et tous ses composants associés seront définitivement supprimés du design system.</p>
         </JUModal>
       </>
     );
@@ -54,8 +54,8 @@ export const Large: Story = {
     return (
       <>
         <button onClick={() => setOpen(true)}>Grande modale</button>
-        <JUModal open={open} onClose={() => setOpen(false)} title="Paramètres avancés" size="lg">
-          <p>Contenu étendu avec de nombreux réglages possibles.</p>
+        <JUModal open={open} onClose={() => setOpen(false)} title="Configuration de la grille" size="lg">
+          <p>Personnalisez les colonnes, les gouttières et les marges de votre grille de mise en page.</p>
         </JUModal>
       </>
     );

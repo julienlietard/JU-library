@@ -3,12 +3,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUDock, JUDockItem } from './ju-dock';
 
 const demoItems: JUDockItem[] = [
-  { id: 'home', icon: <span>🏠</span>, label: 'Home' },
-  { id: 'about', icon: <span>👤</span>, label: 'About' },
-  { id: 'skills', icon: <span>⚡</span>, label: 'Skills' },
-  { id: 'projects', icon: <span>📁</span>, label: 'Projects' },
+  { id: 'home', icon: <span>🏠</span>, label: 'Accueil' },
+  { id: 'about', icon: <span>👤</span>, label: 'Profil' },
+  { id: 'skills', icon: <span>⚡</span>, label: 'Competences' },
+  { id: 'projects', icon: <span>📁</span>, label: 'Projets' },
   { id: 'contact', icon: <span>💬</span>, label: 'Contact' },
-  { id: 'gallery', icon: <span>⭐</span>, label: 'Gallery' },
+  { id: 'gallery', icon: <span>⭐</span>, label: 'Galerie' },
 ];
 
 const meta: Meta<typeof JUDock> = {
@@ -25,7 +25,7 @@ const meta: Meta<typeof JUDock> = {
 export default meta;
 type Story = StoryObj<typeof JUDock>;
 
-/* ── Light theme (portfolio style) ── */
+/* ── Theme clair (style portfolio) ── */
 export const Light: Story = {
   args: {
     items: demoItems,
@@ -51,7 +51,7 @@ export const Light: Story = {
   ],
 };
 
-/* ── Dark theme ── */
+/* ── Theme sombre ── */
 export const Dark: Story = {
   args: {
     items: demoItems,
@@ -77,7 +77,7 @@ export const Dark: Story = {
   ],
 };
 
-/* ── Interactive demo ── */
+/* ── Demo interactive ── */
 const InteractiveDemo = () => {
   const [activeId, setActiveId] = useState('home');
 
@@ -102,7 +102,7 @@ const InteractiveDemo = () => {
           fontSize: '1rem',
         }}
       >
-        Active section: <strong>{activeId}</strong>
+        Section active : <strong>{activeId}</strong>
       </div>
       <JUDock
         items={demoItems}
@@ -119,7 +119,7 @@ export const Interactive: Story = {
   render: () => <InteractiveDemo />,
 };
 
-/* ── Both themes side by side ── */
+/* ── Comparaison des deux themes ── */
 export const ThemeComparison: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>

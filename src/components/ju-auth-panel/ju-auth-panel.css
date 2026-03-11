@@ -1,0 +1,198 @@
+/* ============================================
+   JUAuthPanel — Authentication · White-Glass
+   ============================================ */
+
+.ju-auth-panel {
+  width: 380px;
+  max-width: 100%;
+  font-family: var(--ju-font-family);
+
+  /* Raised glass — white edge on frosted surface */
+  background: var(--ju-raised-bg) !important;
+  backdrop-filter: blur(var(--ju-raised-blur)) !important;
+  -webkit-backdrop-filter: blur(var(--ju-raised-blur)) !important;
+  border: var(--ju-raised-border) !important;
+  border-radius: var(--ju-radius-2xl) !important;
+  box-shadow: var(--ju-raised-shadow) !important;
+}
+
+/* --- Form layout --- */
+
+.ju-auth-panel__form {
+  display: flex;
+  flex-direction: column;
+  padding: var(--ju-space-xl);
+  gap: var(--ju-space-md);
+}
+
+/* --- Header --- */
+
+.ju-auth-panel__header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ju-auth-panel__title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: var(--ju-font-weight-bold);
+  color: var(--ju-color-text-heading);
+  letter-spacing: -0.02em;
+}
+
+.ju-auth-panel__switch {
+  margin: 0;
+  font-size: var(--ju-font-size-sm);
+  color: var(--ju-color-text-muted);
+}
+
+.ju-auth-panel__switch-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-medium);
+  color: var(--ju-color-primary);
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.ju-auth-panel__switch-link:hover {
+  color: var(--ju-color-primary-hover);
+  text-decoration: underline;
+}
+
+/* --- Fields --- */
+
+.ju-auth-panel__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ju-space-sm);
+}
+
+/* --- Forgot password --- */
+
+.ju-auth-panel__forgot {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: -4px;
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-xs);
+  font-weight: var(--ju-font-weight-medium);
+  color: var(--ju-color-primary);
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.ju-auth-panel__forgot:hover {
+  color: var(--ju-color-primary-hover);
+  text-decoration: underline;
+}
+
+/* --- Error --- */
+
+.ju-auth-panel__error {
+  margin: 0;
+  font-size: var(--ju-font-size-xs);
+  font-weight: var(--ju-font-weight-medium);
+  color: var(--ju-color-danger);
+  padding: 10px 14px;
+  background: rgba(255, 59, 48, 0.05);
+  /* Squircle nesting with panel outer radius */
+  border-radius: var(--ju-radius-md);
+  border: 1px solid rgba(255, 59, 48, 0.12);
+}
+
+/* --- Separator --- */
+
+.ju-auth-panel__sep {
+  display: flex;
+  align-items: center;
+  gap: var(--ju-space-md);
+}
+
+.ju-auth-panel__sep::before,
+.ju-auth-panel__sep::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--ju-color-border, rgba(0, 0, 0, 0.06));
+}
+
+.ju-auth-panel__sep-text {
+  font-size: var(--ju-font-size-xs);
+  color: var(--ju-color-gray-400);
+  flex-shrink: 0;
+}
+
+/* --- Social buttons --- */
+
+.ju-auth-panel__social {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ju-space-sm);
+}
+
+.ju-auth-panel__social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 11px 16px;
+  border: 1.5px solid rgba(0, 0, 0, 0.06);
+  /* Squircle nesting: outer 36px – 32px padding ≈ 14px inner */
+  border-radius: var(--ju-radius-md);
+  background: rgba(255, 255, 255, 0.65);
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-medium);
+  color: var(--ju-color-text-body);
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s var(--ju-ease-bounce);
+}
+
+.ju-auth-panel__social-btn:hover {
+  background: rgba(255, 255, 255, 0.90);
+  border-color: rgba(0, 0, 0, 0.10);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.ju-auth-panel__social-btn:active {
+  transform: scale(0.98);
+}
+
+.ju-auth-panel__social-btn svg {
+  flex-shrink: 0;
+}
+
+/* --- Footer --- */
+
+.ju-auth-panel__footer {
+  margin: 0;
+  text-align: center;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  color: var(--ju-color-gray-400);
+}
+
+.ju-auth-panel__link {
+  color: var(--ju-color-primary);
+  text-decoration: none;
+  font-weight: var(--ju-font-weight-medium);
+}
+
+.ju-auth-panel__link:hover {
+  text-decoration: underline;
+}

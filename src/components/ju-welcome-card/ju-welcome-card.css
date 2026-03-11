@@ -1,0 +1,226 @@
+/* ============================================
+   JUWelcomeCard — Onboarding Welcome Panel
+   ============================================ */
+
+.ju-welcome-card {
+  width: 380px;
+  max-width: 100%;
+  font-family: var(--ju-font-family);
+  background: var(--ju-raised-bg);
+  backdrop-filter: blur(var(--ju-raised-blur));
+  -webkit-backdrop-filter: blur(var(--ju-raised-blur));
+  border: var(--ju-raised-border);
+  border-radius: var(--ju-radius-2xl);
+  box-shadow: var(--ju-raised-shadow);
+  overflow: hidden;
+}
+
+/* --- Hero image --- */
+
+.ju-welcome-card__hero {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--ju-radius-xl);
+  margin: 10px;
+  width: calc(100% - 20px);
+}
+
+.ju-welcome-card__hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- Body --- */
+
+.ju-welcome-card__body {
+  display: flex;
+  flex-direction: column;
+  padding: var(--ju-space-lg) var(--ju-space-xl) var(--ju-space-xl);
+  gap: var(--ju-space-lg);
+}
+
+/* --- Header --- */
+
+.ju-welcome-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ju-space-xs);
+}
+
+.ju-welcome-card__title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: var(--ju-font-weight-bold);
+  color: var(--ju-color-text-heading);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.ju-welcome-card__subtitle {
+  margin: 0;
+  font-size: var(--ju-font-size-sm);
+  color: var(--ju-color-text-muted);
+  line-height: 1.4;
+}
+
+/* --- Photo upload row --- */
+
+.ju-welcome-card__upload {
+  display: flex;
+  align-items: center;
+  gap: var(--ju-space-md);
+  padding: var(--ju-space-md);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: var(--ju-radius-xl);
+}
+
+.ju-welcome-card__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(200, 180, 255, 0.15);
+}
+
+.ju-welcome-card__avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ju-welcome-card__avatar-placeholder {
+  font-size: 1.4rem;
+}
+
+.ju-welcome-card__upload-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ju-welcome-card__upload-label {
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-semibold);
+  color: var(--ju-color-text-heading);
+}
+
+.ju-welcome-card__upload-hint {
+  font-size: 0.65rem;
+  color: var(--ju-color-text-muted);
+  line-height: 1.3;
+}
+
+.ju-welcome-card__upload-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: var(--ju-radius-md);
+  background: #1a1a1a;
+  color: #fff;
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-medium);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s ease;
+}
+
+.ju-welcome-card__upload-btn:hover {
+  background: #333;
+}
+
+.ju-welcome-card__file-input {
+  display: none;
+}
+
+/* --- Display name field --- */
+
+.ju-welcome-card__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ju-space-xs);
+}
+
+.ju-welcome-card__label {
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-semibold);
+  color: var(--ju-color-text-heading);
+}
+
+.ju-welcome-card__input-wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--ju-radius-lg);
+  padding: 0 var(--ju-space-md);
+  background: rgba(255, 255, 255, 0.5);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ju-welcome-card__input-wrap:focus-within {
+  border-color: rgba(0, 0, 0, 0.18);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.04);
+}
+
+.ju-welcome-card__input-prefix {
+  font-size: var(--ju-font-size-sm);
+  color: var(--ju-color-text-muted);
+  font-weight: var(--ju-font-weight-medium);
+  user-select: none;
+  padding-right: 2px;
+}
+
+.ju-welcome-card__input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 12px 0;
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-sm);
+  color: var(--ju-color-text-body);
+  outline: none;
+}
+
+.ju-welcome-card__input::placeholder {
+  color: var(--ju-color-gray-300);
+}
+
+/* --- Submit button --- */
+
+.ju-welcome-card__submit {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: var(--ju-radius-xl);
+  background: #1a1a1a;
+  color: #fff;
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-base);
+  font-weight: var(--ju-font-weight-semibold);
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.ju-welcome-card__submit:hover {
+  background: #333;
+}
+
+.ju-welcome-card__submit:active {
+  transform: scale(0.98);
+}
+
+.ju-welcome-card__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

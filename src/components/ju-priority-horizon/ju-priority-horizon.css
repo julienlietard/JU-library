@@ -1,0 +1,167 @@
+/* ============================================
+   JUPriorityHorizon — AI Email Priority Widget
+   Glassmorphism 2.0 · White-First
+   ============================================ */
+
+.ju-priority-horizon {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  max-width: 100%;
+  font-family: var(--ju-font-family);
+}
+
+/* --- Header --- */
+
+.ju-priority-horizon__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ju-space-sm) var(--ju-space-md);
+  border-bottom: 1px solid var(--ju-glass-border);
+}
+
+.ju-priority-horizon__title {
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-semibold);
+  color: var(--ju-color-text-heading);
+  letter-spacing: 0.02em;
+}
+
+.ju-priority-horizon__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: var(--ju-radius-full);
+  background: var(--ju-color-surface-muted);
+  font-size: 0.7rem;
+  font-weight: var(--ju-font-weight-semibold);
+  color: var(--ju-color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- List --- */
+
+.ju-priority-horizon__list {
+  display: flex;
+  flex-direction: column;
+  padding: var(--ju-space-sm);
+  gap: var(--ju-space-xs);
+}
+
+.ju-priority-horizon__empty {
+  text-align: center;
+  padding: var(--ju-space-lg) var(--ju-space-md);
+  font-size: var(--ju-font-size-sm);
+  color: var(--ju-color-text-muted);
+}
+
+/* --- Mail card --- */
+
+.ju-priority-horizon__mail {
+  display: flex;
+  flex-direction: column;
+  padding: var(--ju-space-sm) var(--ju-space-md);
+  border-radius: var(--ju-radius-lg);
+  border: 1px solid var(--ju-glass-border);
+  background: var(--ju-color-white);
+  transition:
+    background var(--ju-duration-fast) ease,
+    border-color var(--ju-duration-fast) ease,
+    box-shadow var(--ju-duration-fast) ease;
+  cursor: default;
+}
+
+.ju-priority-horizon__mail:hover {
+  background: var(--ju-color-surface-muted);
+  border-color: var(--ju-color-border-strong);
+  box-shadow: var(--ju-shadow-sm);
+}
+
+/* --- Mail top row --- */
+
+.ju-priority-horizon__mail-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--ju-space-sm);
+  min-height: 32px;
+}
+
+.ju-priority-horizon__mail-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.ju-priority-horizon__sender {
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-semibold);
+  color: var(--ju-color-text-heading);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ju-priority-horizon__subject {
+  font-size: var(--ju-font-size-xs);
+  color: var(--ju-color-text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ju-priority-horizon__mail-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ju-priority-horizon__check {
+  opacity: 0;
+  transform: scale(0.85);
+  transition:
+    opacity var(--ju-duration-fast) ease,
+    transform var(--ju-duration-fast) var(--ju-ease-bounce);
+}
+
+.ju-priority-horizon__mail:hover .ju-priority-horizon__check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* --- AI Summary (expand on click) --- */
+
+.ju-priority-horizon__summary {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s var(--ju-ease-out);
+  overflow: hidden;
+}
+
+.ju-priority-horizon__mail--expanded .ju-priority-horizon__summary {
+  grid-template-rows: 1fr;
+}
+
+.ju-priority-horizon__summary-text {
+  min-height: 0;
+  overflow: hidden;
+  margin: 0;
+  font-size: var(--ju-font-size-xs);
+  line-height: 1.55;
+  color: var(--ju-color-text-muted);
+  padding: 0;
+  transition: padding 0.25s var(--ju-ease-out);
+}
+
+.ju-priority-horizon__mail--expanded .ju-priority-horizon__summary-text {
+  padding-top: var(--ju-space-sm);
+}

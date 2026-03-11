@@ -1,163 +1,258 @@
 /* ============================================
-   JUButton — Luxe Portfolio Style
+   JUButton — Glassmorphism 2.0 · Aurora Actions
    ============================================ */
 
+:root {
+  --ju-aurora: linear-gradient(135deg, #FF9D6C 0%, #FF6B98 33%, #7A60FF 66%, #1b82ff 100%);
+  --ju-ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .ju-button {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--ju-space-sm);
-  border: none;
-  border-radius: var(--ju-radius-full);
-  font-family: var(--ju-font-family);
-  font-weight: var(--ju-font-weight-medium);
+  border-radius: var(--ju-radius-md);
+  border: 1px solid transparent;
+  font-family: inherit;
+  font-weight: 600;
   cursor: pointer;
-  user-select: none;
+  overflow: hidden;
+  transition: all 0.3s var(--ju-ease-out-expo);
   text-decoration: none;
-  white-space: nowrap;
-  position: relative;
-  transition:
-    transform 0.25s var(--ju-ease-bounce),
-    box-shadow 0.25s ease,
-    background-color 0.2s ease;
-}
-
-.ju-button:hover:not(.ju-button--disabled) {
-  transform: translateY(-2px);
-}
-
-.ju-button:active:not(.ju-button--disabled) {
-  transform: translateY(0) scale(0.98);
-}
-
-.ju-button:focus-visible {
-  outline: 2px solid var(--ju-color-primary);
-  outline-offset: 3px;
+  user-select: none;
 }
 
 /* --- Sizes --- */
+.ju-button--sm { padding: 8px 16px; font-size: 0.8rem; gap: 6px; }
+.ju-button--md { padding: 10px 22px; font-size: 0.95rem; gap: 8px; }
+.ju-button--lg { padding: 14px 28px; font-size: 1.1rem; gap: 10px; }
+.ju-button--full { width: 100%; }
 
-.ju-button--s {
-  padding: 0.5rem 1rem;
-  font-size: var(--ju-font-size-xs);
-}
+/* --- Variants --- */
 
-.ju-button--m {
-  padding: 0.75rem 1.4rem;
-  font-size: var(--ju-font-size-sm);
-}
-
-.ju-button--l {
-  padding: 1rem 2rem;
-  font-size: var(--ju-font-size-md);
-}
-
-/* --- Variant: Primary (dark CTA — portfolio presentation__cta) --- */
-
+/* Primary = Solid clean (White-First) */
 .ju-button--primary {
-  background-color: #161616;
-  color: var(--ju-color-white);
-  box-shadow: var(--ju-shadow-inset-3d);
+  background: var(--ju-btn-bg, var(--ju-color-primary, #1b82ff));
+  color: var(--ju-btn-text, #fff);
+  border: none;
+  box-shadow: 0 2px 12px rgba(27, 130, 255, 0.18);
 }
 
-.ju-button--primary:hover:not(.ju-button--disabled) {
-  background-color: #2a2a2a;
-  box-shadow:
-    inset 0 1px 4px rgba(255, 255, 255, 0.55),
-    inset 0 -4px 6px rgba(0, 0, 0, 0.1),
-    0 8px 24px rgba(0, 0, 0, 0.15),
-    0 4px 8px rgba(0, 0, 0, 0.1);
+.ju-button--primary:hover {
+  background: var(--ju-btn-bg, var(--ju-color-primary-hover, #0066e0));
+  box-shadow: 0 4px 20px rgba(27, 130, 255, 0.28);
 }
-
-/* --- Variant: Secondary (light pill — portfolio contact-status) --- */
 
 .ju-button--secondary {
-  background-color: #f0f0f0;
-  color: #222;
-  box-shadow: inset 0 0 0 1px #dcdcdc;
+  background: var(--ju-btn-bg, var(--ju-color-surface-muted, #f5f5f7));
+  color: var(--ju-btn-text, var(--ju-color-gray-900));
 }
 
-.ju-button--secondary:hover:not(.ju-button--disabled) {
-  background-color: #e9e9e9;
-  box-shadow: inset 0 0 0 1px #ccc;
+.ju-button--secondary:hover {
+  background: var(--ju-btn-bg, #ececee);
 }
 
-/* --- Variant: Accent (gradient CTA — portfolio header) --- */
-
-.ju-button--accent {
-  background: linear-gradient(120deg, var(--ju-color-accent) 0%, var(--ju-color-accent-hover) 100%);
-  color: var(--ju-color-white);
-  box-shadow:
-    0 4px 14px rgba(255, 4, 54, 0.3),
-    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+.ju-button--outline {
+  background: transparent;
+  border-color: var(--ju-btn-border, rgba(0, 0, 0, 0.10));
+  color: var(--ju-btn-text, var(--ju-color-gray-900));
 }
 
-.ju-button--accent:hover:not(.ju-button--disabled) {
-  box-shadow:
-    0 8px 24px rgba(255, 4, 54, 0.4),
-    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+.ju-button--outline:hover {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.18);
 }
-
-/* --- Variant: Ghost (outline) --- */
 
 .ju-button--ghost {
-  background-color: transparent;
-  color: var(--ju-color-white);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(4px);
+  background: transparent;
+  color: var(--ju-btn-text, var(--ju-color-gray-700));
 }
 
-.ju-button--ghost:hover:not(.ju-button--disabled) {
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.35);
+.ju-button--ghost:hover {
+  background: var(--ju-color-surface-muted, #f5f5f7);
 }
 
-/* --- Variant: Glass (dock-style glass button) --- */
-
-.ju-button--glass {
-  background: rgba(255, 255, 255, 0.12);
-  color: var(--ju-color-white);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow:
-    inset 0 1px 4px rgba(255, 255, 255, 0.1),
-    0 4px 12px rgba(0, 0, 0, 0.15);
+/* AI variant = Aurora (inchangé) */
+.ju-button--ai {
+  background: var(--ju-aurora);
+  background-size: 200% 200%;
+  color: #fff;
+  border: none;
+  animation: aurora-move 6s ease infinite;
+  box-shadow: 0 2px 12px rgba(122, 96, 255, 0.15);
 }
 
-.ju-button--glass:hover:not(.ju-button--disabled) {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow:
-    inset 0 1px 4px rgba(255, 255, 255, 0.15),
-    0 8px 24px rgba(0, 0, 0, 0.2);
+.ju-button--ai:hover {
+  box-shadow: 0 4px 20px rgba(122, 96, 255, 0.25);
+  filter: brightness(1.05);
 }
 
-/* --- Variant: Danger --- */
+/* Dark = Solid black, clean & modern */
+.ju-button--dark {
+  background: var(--ju-btn-bg, #111111);
+  color: var(--ju-btn-text, #fff);
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.ju-button--dark:hover {
+  background: var(--ju-btn-bg, #222222);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.20);
+}
 
 .ju-button--danger {
-  background-color: var(--ju-color-danger);
-  color: var(--ju-color-white);
-  box-shadow: 0 4px 14px rgba(255, 59, 92, 0.3);
+  background: var(--ju-btn-bg, var(--ju-color-danger));
+  color: var(--ju-btn-text, #fff);
 }
 
-.ju-button--danger:hover:not(.ju-button--disabled) {
-  background-color: var(--ju-color-danger-hover);
-  box-shadow: 0 8px 24px rgba(255, 59, 92, 0.4);
+.ju-button--danger:hover {
+  background: var(--ju-btn-bg, var(--ju-color-danger-hover));
+}
+
+/* --- Effects --- */
+.ju-effect--glow:hover {
+  box-shadow: 0 0 20px var(--ju-btn-glow, rgba(122, 96, 255, 0.3));
+  transform: translateY(-2px);
+}
+
+.ju-effect--glass {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: var(--ju-color-gray-900);
+}
+
+.ju-effect--glass:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.ju-effect--aurora:hover {
+  background-size: 150% 150%;
+  filter: brightness(1.08);
+}
+
+/* --- Border styles (composable with any variant) --- */
+
+.ju-border--subtle {
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+}
+.ju-border--subtle:hover {
+  border-color: rgba(0, 0, 0, 0.10) !important;
+}
+
+.ju-border--bold {
+  border: 1.5px solid rgba(0, 0, 0, 0.14) !important;
+}
+.ju-border--bold:hover {
+  border-color: rgba(0, 0, 0, 0.22) !important;
+}
+
+.ju-border--raised {
+  border: var(--ju-raised-border) !important;
+  box-shadow: var(--ju-raised-shadow);
+}
+.ju-border--raised:hover {
+  box-shadow: var(--ju-raised-shadow-hover);
+}
+
+/* Accent — colored ring matching the variant */
+.ju-border--accent {
+  border: 1.5px solid var(--ju-btn-accent, rgba(0, 0, 0, 0.12)) !important;
+}
+.ju-border--accent:hover {
+  border-width: 2px !important;
+}
+
+/* Accent colors per variant */
+.ju-button--primary.ju-border--accent   { --ju-btn-accent: rgba(27, 130, 255, 0.35); }
+.ju-button--secondary.ju-border--accent { --ju-btn-accent: rgba(0, 0, 0, 0.10); }
+.ju-button--dark.ju-border--accent      { --ju-btn-accent: rgba(255, 255, 255, 0.18); }
+.ju-button--ghost.ju-border--accent     { --ju-btn-accent: rgba(0, 0, 0, 0.08); }
+.ju-button--outline.ju-border--accent   { --ju-btn-accent: rgba(0, 0, 0, 0.18); }
+.ju-button--ai.ju-border--accent        { --ju-btn-accent: rgba(122, 96, 255, 0.35); }
+.ju-button--danger.ju-border--accent    { --ju-btn-accent: rgba(255, 59, 92, 0.35); }
+
+/* --- Micro-interactions --- */
+.ju-button:active {
+  transform: scale(0.96);
+  filter: brightness(0.92);
+}
+
+.ju-button__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+}
+
+.ju-button__icon {
+  display: flex;
+  align-items: center;
+}
+
+/* --- Icon-only (square/round) --- */
+.ju-button--icon-only.ju-button--sm { padding: 8px; }
+.ju-button--icon-only.ju-button--md { padding: 10px; }
+.ju-button--icon-only.ju-button--lg { padding: 14px; }
+.ju-button--icon-only { aspect-ratio: 1; }
+
+/* --- Loading --- */
+.ju-button--loading { cursor: wait; }
+
+.ju-button__content--hidden {
+  visibility: hidden;
+}
+
+.ju-button__loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.ju-button__spinner {
+  animation: ju-spin 0.7s linear infinite;
+}
+
+@keyframes ju-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* --- Disabled --- */
-
 .ju-button--disabled {
-  opacity: 0.4;
+  opacity: 0.45;
   cursor: not-allowed;
-  filter: grayscale(0.5);
+  filter: grayscale(0.6);
+  pointer-events: none;
 }
 
-/* --- Icon --- */
+/* --- Animations --- */
+@keyframes aurora-move {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-.ju-button__icon {
-  display: inline-flex;
-  align-items: center;
-  font-size: 1.15em;
+/* Shine overlay on hover */
+.ju-button__overlay {
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  transition: left 0.6s ease;
+  z-index: 1;
+}
+
+.ju-button:hover .ju-button__overlay {
+  left: 100%;
 }

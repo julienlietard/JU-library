@@ -1,101 +1,542 @@
+/* ============================================
+   JUEditor — Inline rich-text editor
+   Glassmorphism 2.0 · White-First
+   ============================================ */
+
+/* --- Root --- */
 .ju-ed {
+  position: relative;
+  font-family: var(--ju-font-family);
   display: flex;
   flex-direction: column;
-  border: 1px solid #e5e7eb;
-  border-radius: var(--ju-radius-lg);
-  background: #ffffff;
-  overflow: hidden;
-  transition: var(--ju-transition-default);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  gap: var(--ju-space-lg);
 }
 
-.ju-ed--focused {
-  border-color: var(--ju-color-primary);
-  box-shadow: 0 0 0 3px rgba(27, 130, 255, 0.1);
+.ju-ed--disabled {
+  opacity: 0.45;
+  pointer-events: none;
 }
 
-.ju-ed--disabled { 
-  opacity: 0.6; 
-  background: #f9fafb;
-  pointer-events: none; 
+/* --- Editable content --- */
+.ju-ed__content {
+  outline: none;
+  min-height: 200px;
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-md);
+  line-height: 1.8;
+  color: #1c1c1e;
+  cursor: text;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
+.ju-ed__content:empty::before {
+  content: attr(data-placeholder);
+  color: var(--ju-color-text-muted);
+  pointer-events: none;
+  font-style: italic;
+}
+
+.ju-ed__content p { margin: 0 0 0.6em; }
+.ju-ed__content h1,
+.ju-ed__content h2,
+.ju-ed__content h3 { margin: 0 0 0.4em; }
+
+/* ============================================
+   Toolbar — White glass · subtle breathing
+   ============================================ */
 .ju-ed__toolbar {
-  display: flex;
-  gap: 4px;
-  padding: var(--ju-space-xs) var(--ju-space-sm);
-  border-bottom: 1px solid #f3f4f6;
-  background: #fcfcfd;
-  flex-wrap: wrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 5px 7px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 100px;
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.03),
+    0 2px 8px rgba(0, 0, 0, 0.03),
+    0 8px 32px rgba(0, 0, 0, 0.04);
+  user-select: none;
+  align-self: flex-start;
+  animation: ju-ed-breathe 5s ease-in-out infinite;
+  will-change: transform, box-shadow;
+  transition:
+    box-shadow 0.5s var(--ju-ease-smooth),
+    background 0.5s var(--ju-ease-smooth);
 }
 
-.ju-ed--toolbar-floating .ju-ed__toolbar {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid #e5e7eb;
+/* Gentle floating / breathing animation — subtle 1px */
+@keyframes ju-ed-breathe {
+  0%   { transform: translateY(0px); }
+  25%  { transform: translateY(-1px); }
+  50%  { transform: translateY(0px); }
+  75%  { transform: translateY(-0.5px); }
+  100% { transform: translateY(0px); }
 }
 
-.ju-ed__action {
+/* On hover — settle down, glow slightly */
+.ju-ed__toolbar:hover {
+  animation-play-state: paused;
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(0, 0, 0, 0.04),
+    0 12px 40px rgba(0, 0, 0, 0.06);
+}
+
+/* ============================================
+   Separator
+   ============================================ */
+.ju-ed__separator {
+  width: 1px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.06);
+  margin: 0 6px;
+  flex-shrink: 0;
+  border-radius: 1px;
+}
+
+/* ============================================
+   Buttons — dark icons, #f5f5f7 hover bg
+   ============================================ */
+.ju-ed__btn {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: var(--ju-radius-md);
+  background: transparent;
+  color: rgba(0, 0, 0, 0.65);
+  font-family: var(--ju-font-family);
+  font-size: 15px;
+  cursor: pointer;
+  position: relative;
+  transition:
+    background 0.35s var(--ju-ease-smooth),
+    color 0.35s var(--ju-ease-smooth),
+    transform 0.35s var(--ju-ease-spring),
+    box-shadow 0.4s var(--ju-ease-smooth);
+}
+
+.ju-ed__btn:hover {
+  background: #f5f5f7;
+  color: rgba(0, 0, 0, 0.85);
+  transform: scale(1.06);
+}
+
+.ju-ed__btn:active {
+  transform: scale(0.94);
+  transition-duration: 0.08s;
+}
+
+.ju-ed__btn--active {
+  background: #ffffff;
+  color: rgba(0, 0, 0, 0.9);
+  box-shadow:
+    0 0.5px 1px rgba(0, 0, 0, 0.05),
+    0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.ju-ed__btn--active:hover {
+  background: #ffffff;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.05),
+    0 3px 10px rgba(0, 0, 0, 0.06);
+  transform: scale(1);
+}
+
+.ju-ed__btn:focus-visible {
+  outline: 2px solid var(--ju-color-primary);
+  outline-offset: 1px;
+}
+
+/* Bold */
+.ju-ed__btn--bold { font-weight: var(--ju-font-weight-bold); }
+/* Italic */
+.ju-ed__btn--italic { font-style: italic; font-family: Georgia, 'Times New Roman', serif; }
+/* Underline */
+.ju-ed__btn--underline { text-decoration: underline; text-underline-offset: 2px; }
+
+/* SVG icons */
+.ju-ed__btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+/* ============================================
+   Group (alignment) — light backgrounds
+   ============================================ */
+.ju-ed__group {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  padding: 3px 3px;
+  border-radius: var(--ju-radius-xl);
+  background: #f5f5f7;
+  transition: background 0.35s var(--ju-ease-smooth);
+}
+
+.ju-ed__group .ju-ed__btn {
   width: 32px;
   height: 32px;
-  border: none;
-  border-radius: var(--ju-radius-sm);
-  background: transparent;
-  font-family: var(--ju-font-family);
-  font-size: var(--ju-font-size-sm);
-  font-weight: var(--ju-font-weight-bold);
-  color: #6b7280;
-  cursor: pointer;
-  transition: var(--ju-transition-default);
+  border-radius: var(--ju-radius-lg);
 }
 
-.ju-ed__action:hover {
-  background: #f3f4f6;
-  color: #111827;
+.ju-ed__group .ju-ed__btn--active {
+  border-radius: var(--ju-radius-lg);
 }
 
-.ju-ed__action:focus-visible {
-  outline: 2px solid var(--ju-color-primary);
-  outline-offset: -2px;
+/* ============================================
+   Dropdowns
+   ============================================ */
+.ju-ed__dropdown {
+  position: relative;
 }
 
-.ju-ed__textarea {
-  flex: 1;
-  padding: var(--ju-space-md);
-  border: none;
-  outline: none;
-  resize: vertical;
-  min-height: 200px;
-  font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', monospace;
-  font-size: var(--ju-font-size-md);
-  line-height: 1.7;
-  color: #1f2937;
-  background: transparent;
-}
-
-.ju-ed__textarea::placeholder {
-  color: #9ca3af;
-}
-
-.ju-ed__footer {
+.ju-ed__dropdown-trigger {
   display: flex;
-  justify-content: space-between;
-  padding: var(--ju-space-xs) var(--ju-space-md);
-  border-top: 1px solid #f3f4f6;
-  background: #fcfcfd;
-}
-
-.ju-ed__count,
-.ju-ed__format {
+  align-items: center;
+  gap: 5px;
+  height: 34px;
+  padding: 0 10px;
+  border: none;
+  border-radius: var(--ju-radius-md);
+  background: transparent;
+  color: rgba(0, 0, 0, 0.6);
   font-family: var(--ju-font-family);
   font-size: var(--ju-font-size-xs);
-  color: #6b7280;
   font-weight: var(--ju-font-weight-medium);
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background 0.35s var(--ju-ease-smooth),
+    color 0.35s var(--ju-ease-smooth),
+    transform 0.35s var(--ju-ease-spring);
+}
+
+.ju-ed__dropdown-trigger:hover {
+  background: #f5f5f7;
+  color: rgba(0, 0, 0, 0.85);
+  transform: scale(1.03);
+}
+
+.ju-ed__dropdown-trigger:active {
+  transform: scale(0.97);
+  transition-duration: 0.08s;
+}
+
+.ju-ed__dropdown-chevron {
+  width: 8px;
+  height: 8px;
+  opacity: 0.3;
+  flex-shrink: 0;
+  transition: transform 0.35s var(--ju-ease-spring), opacity 0.35s;
+}
+
+.ju-ed__dropdown-trigger:hover .ju-ed__dropdown-chevron {
+  opacity: 0.5;
+}
+
+.ju-ed__dropdown-trigger[aria-expanded="true"] .ju-ed__dropdown-chevron {
+  transform: rotate(180deg);
+  opacity: 0.6;
+}
+
+/* --- Panel (white glass) --- */
+.ju-ed__dropdown-panel {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 120px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: var(--ju-radius-lg);
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.03),
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    0 12px 40px rgba(0, 0, 0, 0.04);
+  padding: 4px;
+  z-index: 10;
+  animation: ju-ed-dd-in 0.3s var(--ju-ease-spring);
+}
+
+@keyframes ju-ed-dd-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(6px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+/* --- Option --- */
+.ju-ed__dropdown-option {
+  display: block;
+  width: 100%;
+  padding: 7px 12px;
+  border: none;
+  border-radius: var(--ju-radius-md);
+  background: transparent;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-sm);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background 0.25s var(--ju-ease-smooth),
+    color 0.25s var(--ju-ease-smooth),
+    transform 0.25s var(--ju-ease-spring);
+}
+
+.ju-ed__dropdown-option:hover {
+  background: #f5f5f7;
+  color: rgba(0, 0, 0, 0.9);
+  transform: translateX(2px);
+}
+
+.ju-ed__dropdown-option--active {
+  background: var(--ju-color-primary-soft);
+  color: var(--ju-color-primary);
+  font-weight: var(--ju-font-weight-semibold);
+}
+
+.ju-ed__dropdown-option--active:hover {
+  transform: translateX(0);
+}
+
+/* ============================================
+   Color picker — keep as-is (shows colors)
+   ============================================ */
+.ju-ed__dropdown--color .ju-ed__dropdown-panel {
+  min-width: auto;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.ju-ed__color-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.ju-ed__color-swatch {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2.5px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  transition:
+    transform 0.3s var(--ju-ease-spring),
+    border-color 0.3s var(--ju-ease-smooth),
+    box-shadow 0.3s var(--ju-ease-smooth);
+}
+
+.ju-ed__color-swatch:hover {
+  transform: scale(1.25);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+.ju-ed__color-swatch:active {
+  transform: scale(1.05);
+  transition-duration: 0.08s;
+}
+
+.ju-ed__color-swatch--active {
+  border-color: var(--ju-color-primary);
+  box-shadow: 0 0 0 2px var(--ju-color-primary-soft);
+  transform: scale(1.1);
+}
+
+/* Color dot */
+.ju-ed__color-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(255, 255, 255, 0.85);
+  flex-shrink: 0;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.08),
+    0 1px 4px rgba(0, 0, 0, 0.12);
+  transition:
+    transform 0.35s var(--ju-ease-spring),
+    box-shadow 0.35s var(--ju-ease-smooth);
+}
+
+.ju-ed__dropdown-trigger:hover .ju-ed__color-dot {
+  transform: scale(1.12);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.16);
+}
+
+/* ============================================
+   Dark mode — data attribute (dark glass values)
+   ============================================ */
+[data-theme="dark"] .ju-ed__toolbar {
+  background: rgba(38, 38, 42, 0.78);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 0 0 0.5px rgba(255, 255, 255, 0.05),
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .ju-ed__toolbar:hover {
+  box-shadow:
+    0 0 0 0.5px rgba(255, 255, 255, 0.06),
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] .ju-ed__separator {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .ju-ed__btn {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+[data-theme="dark"] .ju-ed__btn:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+[data-theme="dark"] .ju-ed__btn--active {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 0.5px 1px rgba(0, 0, 0, 0.2),
+    0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .ju-ed__group {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .ju-ed__dropdown-trigger {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+[data-theme="dark"] .ju-ed__dropdown-trigger:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+[data-theme="dark"] .ju-ed__dropdown-panel {
+  background: rgba(38, 38, 42, 0.88);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 0 0 0.5px rgba(255, 255, 255, 0.04),
+    0 4px 16px rgba(0, 0, 0, 0.25),
+    0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .ju-ed__dropdown-option {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+[data-theme="dark"] .ju-ed__dropdown-option:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+[data-theme="dark"] .ju-ed__color-dot {
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* ============================================
+   Dark mode — OS preference fallback
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .ju-ed__toolbar {
+    background: rgba(38, 38, 42, 0.78);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 0 0 0.5px rgba(255, 255, 255, 0.05),
+      0 2px 8px rgba(0, 0, 0, 0.15),
+      0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  :root:not([data-theme="light"]) .ju-ed__toolbar:hover {
+    box-shadow:
+      0 0 0 0.5px rgba(255, 255, 255, 0.06),
+      0 4px 12px rgba(0, 0, 0, 0.2),
+      0 12px 40px rgba(0, 0, 0, 0.25);
+  }
+
+  :root:not([data-theme="light"]) .ju-ed__separator {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  :root:not([data-theme="light"]) .ju-ed__btn {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  :root:not([data-theme="light"]) .ju-ed__btn:hover {
+    background: rgba(255, 255, 255, 0.07);
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  :root:not([data-theme="light"]) .ju-ed__btn--active {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+    box-shadow:
+      0 0.5px 1px rgba(0, 0, 0, 0.2),
+      0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  :root:not([data-theme="light"]) .ju-ed__group {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  :root:not([data-theme="light"]) .ju-ed__dropdown-trigger {
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  :root:not([data-theme="light"]) .ju-ed__dropdown-trigger:hover {
+    background: rgba(255, 255, 255, 0.07);
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  :root:not([data-theme="light"]) .ju-ed__dropdown-panel {
+    background: rgba(38, 38, 42, 0.88);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 0 0 0.5px rgba(255, 255, 255, 0.04),
+      0 4px 16px rgba(0, 0, 0, 0.25),
+      0 12px 40px rgba(0, 0, 0, 0.2);
+  }
+
+  :root:not([data-theme="light"]) .ju-ed__dropdown-option {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  :root:not([data-theme="light"]) .ju-ed__dropdown-option:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  :root:not([data-theme="light"]) .ju-ed__color-dot {
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.08),
+      0 1px 4px rgba(0, 0, 0, 0.25);
+  }
 }

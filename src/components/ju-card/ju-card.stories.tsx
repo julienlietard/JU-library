@@ -16,20 +16,38 @@ const meta: Meta<typeof JUCard> = {
 export default meta;
 type Story = StoryObj<typeof JUCard>;
 
-/* ── Glass ── */
+/* ── Glass (white background) ── */
 export const Glass: Story = {
   args: {
     variant: 'glass', interactive: true,
     children: <div style={{ textAlign: 'center' }}><span style={{ fontSize: '2rem' }}>🎨</span><h3 style={{ margin: '8px 0', fontWeight: 600 }}>JU Design</h3><p style={{ margin: 0, fontSize: '0.85rem', opacity: 0.7 }}>Ma librairie React</p></div>,
   },
-  decorators: [(Story) => <div style={{ padding: '3rem', background: 'linear-gradient(135deg, #0f0f0f, #1a1a2e)', borderRadius: '24px', maxWidth: '300px' }}><Story /></div>],
+  decorators: [(Story) => <div style={{ padding: '3rem', maxWidth: '300px' }}><Story /></div>],
+};
+
+/* ── Glass on dark (for dark theme demo) ── */
+export const GlassDark: Story = {
+  args: {
+    variant: 'glass', interactive: true,
+    children: <div style={{ textAlign: 'center' }}><span style={{ fontSize: '2rem' }}>🎨</span><h3 style={{ margin: '8px 0', fontWeight: 600 }}>JU Design</h3><p style={{ margin: 0, fontSize: '0.85rem', opacity: 0.7 }}>Ma librairie React</p></div>,
+  },
+  decorators: [(Story) => <div style={{ padding: '3rem', background: 'linear-gradient(135deg, #0f0f0f, #1a1a2e)', borderRadius: '24px', maxWidth: '300px' }} data-theme="dark"><Story /></div>],
+};
+
+/* ── Solid ── */
+export const Solid: Story = {
+  args: {
+    variant: 'solid', interactive: true,
+    children: <div style={{ textAlign: 'center' }}><span style={{ fontSize: '2rem' }}>🎯</span><h3 style={{ margin: '8px 0', fontWeight: 600 }}>Solid Card</h3><p style={{ margin: 0, fontSize: '0.85rem', opacity: 0.7 }}>Clean white surface</p></div>,
+  },
+  decorators: [(Story) => <div style={{ padding: '3rem', maxWidth: '300px' }}><Story /></div>],
 };
 
 /* ── Chat ── */
 export const Chat: Story = {
   args: {
     variant: 'chat', padding: 'md', interactive: true,
-    children: <div><h4 style={{ margin: '0 0 6px', fontWeight: 600 }}>Project Card</h4><p style={{ margin: '0 0 12px', fontSize: '0.85rem', color: '#666' }}>Developed with React & Azure.</p><JUButton label="View" variant="primary" size="s" /></div>,
+    children: <div><h4 style={{ margin: '0 0 6px', fontWeight: 600 }}>Project Card</h4><p style={{ margin: '0 0 12px', fontSize: '0.85rem', color: '#666' }}>Developed with React & Azure.</p><JUButton label="View" variant="primary" size="sm" /></div>,
   },
   decorators: [(Story) => <div style={{ padding: '3rem', maxWidth: '320px' }}><Story /></div>],
 };
@@ -83,23 +101,21 @@ export const VisualPure: Story = {
   decorators: [(Story) => <div style={{ padding: '2rem', maxWidth: '280px' }}><Story /></div>],
 };
 
-/* ── All variants showcase ── */
+/* ── All variants showcase (white theme) ── */
 export const AllVariants: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', padding: '2rem' }}>
-      {/* Dark bg variants */}
-      <div style={{ padding: '2rem', background: 'linear-gradient(135deg, #0f0f0f, #1a1a2e)', borderRadius: '24px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-          <JUCard variant="glass" interactive>
-            <div style={{ textAlign: 'center' }}><span style={{ fontSize: '2rem' }}>🌐</span><h4 style={{ margin: '8px 0 4px', fontWeight: 600 }}>Glass</h4></div>
-          </JUCard>
-          <JUCard variant="solid" interactive>
-            <div style={{ textAlign: 'center' }}><span style={{ fontSize: '2rem' }}>🎯</span><h4 style={{ margin: '8px 0 4px', fontWeight: 600 }}>Solid</h4></div>
-          </JUCard>
-          <JUCard variant="outline" interactive>
-            <div style={{ textAlign: 'center' }}><span style={{ fontSize: '2rem' }}>✨</span><h4 style={{ margin: '8px 0 4px', fontWeight: 600 }}>Outline</h4></div>
-          </JUCard>
-        </div>
+      {/* Light bg variants */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+        <JUCard variant="glass" interactive>
+          <div style={{ textAlign: 'center' }}><span style={{ fontSize: '2rem' }}>🌐</span><h4 style={{ margin: '8px 0 4px', fontWeight: 600 }}>Glass</h4></div>
+        </JUCard>
+        <JUCard variant="solid" interactive>
+          <div style={{ textAlign: 'center' }}><span style={{ fontSize: '2rem' }}>🎯</span><h4 style={{ margin: '8px 0 4px', fontWeight: 600 }}>Solid</h4></div>
+        </JUCard>
+        <JUCard variant="outline" interactive>
+          <div style={{ textAlign: 'center' }}><span style={{ fontSize: '2rem' }}>✨</span><h4 style={{ margin: '8px 0 4px', fontWeight: 600 }}>Outline</h4></div>
+        </JUCard>
       </div>
 
       {/* Chat variant */}
@@ -119,6 +135,22 @@ export const AllVariants: Story = {
             </span>
           </div>
         </JUCard>
+      </div>
+
+      {/* Dark theme demo */}
+      <div style={{ padding: '2rem', background: 'linear-gradient(135deg, #0f0f0f, #1a1a2e)', borderRadius: '24px' }} data-theme="dark">
+        <p style={{ color: '#fff', margin: '0 0 1rem', fontSize: '0.85rem', opacity: 0.6 }}>Dark theme</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+          <JUCard variant="glass" interactive>
+            <div style={{ textAlign: 'center' }}><span style={{ fontSize: '2rem' }}>🌐</span><h4 style={{ margin: '8px 0 4px', fontWeight: 600 }}>Glass</h4></div>
+          </JUCard>
+          <JUCard variant="solid" interactive>
+            <div style={{ textAlign: 'center' }}><span style={{ fontSize: '2rem' }}>🎯</span><h4 style={{ margin: '8px 0 4px', fontWeight: 600 }}>Solid</h4></div>
+          </JUCard>
+          <JUCard variant="outline" interactive>
+            <div style={{ textAlign: 'center' }}><span style={{ fontSize: '2rem' }}>✨</span><h4 style={{ margin: '8px 0 4px', fontWeight: 600 }}>Outline</h4></div>
+          </JUCard>
+        </div>
       </div>
     </div>
   ),

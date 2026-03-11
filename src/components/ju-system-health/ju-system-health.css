@@ -1,0 +1,114 @@
+/* ============================================
+   JUSystemHealth — Compact Service Monitor
+   Glassmorphism 2.0 · White-First
+   ============================================ */
+
+.ju-system-health {
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  max-width: 100%;
+  font-family: var(--ju-font-family);
+}
+
+/* --- Header --- */
+
+.ju-system-health__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px var(--ju-space-sm);
+  border-bottom: 1px solid var(--ju-glass-border);
+}
+
+.ju-system-health__title {
+  font-size: var(--ju-font-size-xs);
+  font-weight: var(--ju-font-weight-semibold);
+  color: var(--ju-color-text-heading);
+  letter-spacing: 0.03em;
+}
+
+/* --- Refresh button --- */
+
+.ju-system-health__refresh {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: var(--ju-radius-sm);
+  background: transparent;
+  color: var(--ju-color-gray-400);
+  cursor: pointer;
+  transition:
+    color var(--ju-duration-fast) ease,
+    background var(--ju-duration-fast) ease;
+}
+
+.ju-system-health__refresh:hover {
+  color: var(--ju-color-gray-700);
+  background: var(--ju-color-surface-muted);
+}
+
+.ju-system-health__refresh:disabled {
+  cursor: default;
+}
+
+.ju-system-health__refresh--spin svg {
+  animation: ju-sh-spin 0.8s linear infinite;
+}
+
+/* --- Service list --- */
+
+.ju-system-health__list {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+}
+
+.ju-system-health__row {
+  display: flex;
+  align-items: center;
+  gap: var(--ju-space-sm);
+  padding: 5px var(--ju-space-sm);
+  transition: background var(--ju-duration-fast) ease;
+}
+
+.ju-system-health__row:hover {
+  background: var(--ju-color-surface-muted);
+}
+
+.ju-system-health__name {
+  flex: 1;
+  font-size: var(--ju-font-size-xs);
+  font-weight: var(--ju-font-weight-medium);
+  color: var(--ju-color-text-body);
+}
+
+.ju-system-health__status {
+  font-size: 0.65rem;
+  font-weight: var(--ju-font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+}
+
+.ju-system-health__status--online {
+  color: var(--ju-color-success);
+}
+
+.ju-system-health__status--offline {
+  color: var(--ju-color-danger);
+}
+
+.ju-system-health__status--checking {
+  color: var(--ju-color-text-muted);
+}
+
+/* --- Animations --- */
+
+@keyframes ju-sh-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

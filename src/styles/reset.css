@@ -1,11 +1,16 @@
 /* ============================================
-   JU Design — Minimal Reset
+   JU Design — Minimal Reset · White-First
    ============================================ */
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+body {
+  background: #ffffff;
+  color: var(--ju-color-gray-900);
 }
 
 button {

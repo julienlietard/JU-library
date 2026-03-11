@@ -1,0 +1,197 @@
+/* ============================================
+   JUNerveCenter — Compact AI Chat Interface
+   Glassmorphism 2.0 · White-First
+   ============================================ */
+
+.ju-nerve-center {
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+  max-width: 100%;
+  height: 480px;
+  overflow: hidden;
+  font-family: var(--ju-font-family);
+}
+
+/* --- Header --- */
+
+.ju-nerve-center__header {
+  display: flex;
+  align-items: center;
+  gap: var(--ju-space-sm);
+  padding: var(--ju-space-sm) var(--ju-space-md);
+  border-bottom: 1px solid var(--ju-glass-border);
+}
+
+.ju-nerve-center__status {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--ju-radius-full);
+  background: var(--ju-color-success);
+  box-shadow: 0 0 6px var(--ju-color-success);
+  animation: ju-nc-pulse 2s ease-in-out infinite;
+}
+
+.ju-nerve-center__title {
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-semibold);
+  color: var(--ju-color-text-heading);
+  letter-spacing: 0.02em;
+}
+
+/* --- Messages area --- */
+
+.ju-nerve-center__messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--ju-space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ju-space-sm);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.08) transparent;
+}
+
+.ju-nerve-center__messages::-webkit-scrollbar {
+  width: 4px;
+}
+
+.ju-nerve-center__messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ju-nerve-center__messages::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: var(--ju-radius-full);
+}
+
+/* --- Bubbles --- */
+
+.ju-nerve-center__bubble {
+  max-width: 80%;
+  padding: 0.6rem 0.9rem;
+  font-size: var(--ju-font-size-sm);
+  line-height: 1.5;
+  word-wrap: break-word;
+  animation: ju-nc-slide-in 0.25s var(--ju-ease-out) both;
+}
+
+.ju-nerve-center__bubble--ai {
+  align-self: flex-start;
+  background: var(--ju-color-surface-muted);
+  color: var(--ju-color-text-body);
+  border-radius: var(--ju-radius-lg) var(--ju-radius-lg) var(--ju-radius-lg) 4px;
+}
+
+.ju-nerve-center__bubble--user {
+  align-self: flex-end;
+  background: var(--ju-aurora);
+  background-size: 200% 200%;
+  color: #ffffff;
+  border-radius: var(--ju-radius-lg) var(--ju-radius-lg) 4px var(--ju-radius-lg);
+  animation: ju-nc-slide-in 0.25s var(--ju-ease-out) both, aurora-move 6s ease infinite;
+}
+
+/* --- Thinking animation --- */
+
+.ju-nerve-center__bubble--thinking {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0.7rem 1rem;
+  min-width: 56px;
+}
+
+.ju-nerve-center__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--ju-radius-full);
+  background: var(--ju-color-gray-400);
+  animation: ju-nc-bounce 1.4s ease-in-out infinite;
+}
+
+.ju-nerve-center__dot:nth-child(2) {
+  animation-delay: 0.16s;
+}
+
+.ju-nerve-center__dot:nth-child(3) {
+  animation-delay: 0.32s;
+}
+
+/* --- Input bar --- */
+
+.ju-nerve-center__input-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--ju-space-xs);
+  padding: var(--ju-space-sm) var(--ju-space-md);
+  border-top: 1px solid var(--ju-glass-border);
+}
+
+.ju-nerve-center__textarea {
+  flex: 1;
+  resize: none;
+  border: none;
+  outline: none;
+  background: var(--ju-color-surface-muted);
+  color: var(--ju-color-text-body);
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-sm);
+  line-height: 1.5;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--ju-radius-md);
+  max-height: 120px;
+  overflow-y: auto;
+  transition: background var(--ju-duration-fast) ease, box-shadow var(--ju-duration-fast) ease;
+}
+
+.ju-nerve-center__textarea::placeholder {
+  color: var(--ju-color-text-muted);
+}
+
+.ju-nerve-center__textarea:focus {
+  background: var(--ju-color-white);
+  box-shadow: 0 0 0 2px rgba(27, 130, 255, 0.12);
+}
+
+.ju-nerve-center__textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ju-nerve-center__send {
+  flex-shrink: 0;
+}
+
+/* --- Animations --- */
+
+@keyframes ju-nc-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes ju-nc-bounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes ju-nc-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes aurora-move {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

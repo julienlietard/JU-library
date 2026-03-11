@@ -1,5 +1,6 @@
 /* ============================================
    JUCarousel
+   Glassmorphism 2.0 · White-First
    ============================================ */
 
 .ju-carousel {
@@ -11,7 +12,7 @@
   padding: 0;
 }
 
-/* ── Viewport ── */
+/* -- Viewport -- */
 
 .ju-carousel__viewport {
   overflow: hidden;
@@ -22,14 +23,14 @@
   cursor: grabbing;
 }
 
-/* ── Track ── */
+/* -- Track -- */
 
 .ju-carousel__track {
   display: flex;
   will-change: transform;
 }
 
-/* ── Slide ── */
+/* -- Slide -- */
 
 .ju-carousel__slide {
   box-sizing: border-box;
@@ -49,23 +50,25 @@
   margin-top: 1.25rem;
 }
 
-/* ── Play / Pause ── */
+/* -- Play / Pause — white glass button -- */
 
 .ju-carousel__play-btn {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  border: none;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   color: rgba(0, 0, 0, 0.55);
   font-size: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: var(--ju-shadow-sm);
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.03),
+    0 2px 8px rgba(0, 0, 0, 0.04);
   transition:
     background 0.2s ease,
     transform 0.2s var(--ju-ease-bounce);
@@ -85,18 +88,21 @@
   outline-offset: 2px;
 }
 
-/* ── Dots ── */
+/* -- Dots — gray-300 default, gray-900 active -- */
 
 .ju-carousel__dots {
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   padding: 0.65rem 1rem;
   border-radius: var(--ju-radius-full);
-  box-shadow: var(--ju-shadow-sm);
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.03),
+    0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .ju-carousel__dot {
@@ -105,7 +111,7 @@
   border-radius: 50%;
   border: none;
   padding: 0;
-  background: rgba(0, 0, 0, 0.2);
+  background: #d1d5db;
   cursor: pointer;
   transition:
     background 0.3s ease,
@@ -115,13 +121,13 @@
 }
 
 .ju-carousel__dot--active {
-  background: rgba(0, 0, 0, 0.7);
+  background: #111827;
   width: 20px;
   border-radius: 4px;
 }
 
 .ju-carousel__dot:not(.ju-carousel__dot--active):hover {
-  background: rgba(0, 0, 0, 0.4);
+  background: #9ca3af;
   transform: scale(1.3);
 }
 

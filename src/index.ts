@@ -4,7 +4,7 @@
 
 // Button
 export { JUButton } from './components/ju-button/ju-button';
-export type { JUButtonProps, JUButtonSize, JUButtonVariant } from './components/ju-button/ju-button';
+export type { JUButtonProps, JUButtonSize, JUButtonVariant, JUButtonEffect, JUButtonBorder } from './components/ju-button/ju-button';
 
 // Card
 export { JUCard } from './components/ju-card/ju-card';
@@ -32,7 +32,7 @@ export type { JUStatusProps, JUStatusColor } from './components/ju-status/ju-sta
 
 // Badge
 export { JUBadge } from './components/ju-badge/ju-badge';
-export type { JUBadgeProps, JUBadgeColor } from './components/ju-badge/ju-badge';
+export type { JUBadgeProps, JUBadgeColor, JUBadgeSize, JUBadgeVariant, JUBadgeEffect } from './components/ju-badge/ju-badge';
 
 // Timeline
 export { JUTimeline } from './components/ju-timeline/ju-timeline';
@@ -88,7 +88,7 @@ export type { JUTagInputProps } from './components/ju-tag-input/ju-tag-input';
 
 // Editor
 export { JUEditor } from './components/ju-editor/ju-editor';
-export type { JUEditorProps, JUEditorAction } from './components/ju-editor/ju-editor';
+export type { JUEditorProps, JUEditorFontFamily, JUEditorFontSize } from './components/ju-editor/ju-editor';
 
 // File Upload
 export { JUFileUpload } from './components/ju-file-upload/ju-file-upload';
@@ -97,6 +97,10 @@ export type { JUFileUploadProps } from './components/ju-file-upload/ju-file-uplo
 // Switch
 export { JUSwitch } from './components/ju-switch/ju-switch';
 export type { JUSwitchProps } from './components/ju-switch/ju-switch';
+
+// Slider
+export { JUSlider } from './components/ju-slider/ju-slider';
+export type { JUSliderProps, JUSliderVariant, JUSliderSize, JUSliderTooltip, JUSliderMark } from './components/ju-slider/ju-slider';
 
 // Breadcrumbs
 export { JUBreadcrumbs } from './components/ju-breadcrumbs/ju-breadcrumbs';
@@ -125,3 +129,87 @@ export type { JUToastProps, JUToastContainerProps, JUToastData, JUToastVariant, 
 // Tooltip
 export { JUTooltip } from './components/ju-tooltip/ju-tooltip';
 export type { JUTooltipProps, JUTooltipPlacement } from './components/ju-tooltip/ju-tooltip';
+
+// Signature
+export { JUSignature } from './components/ju-signature/ju-signature';
+export type { JUSignatureProps } from './components/ju-signature/ju-signature';
+
+// User Pill
+export { JUUserPill } from './components/ju-user-pill/ju-user-pill';
+export type { JUUserPillProps } from './components/ju-user-pill/ju-user-pill';
+
+// Credit Card
+export { JUCreditCard } from './components/ju-credit-card/ju-credit-card';
+export type { JUCreditCardProps, JUCreditCardVariant, JUCreditCardBackground } from './components/ju-credit-card/ju-credit-card';
+
+// Nerve Center
+export { JUNerveCenter } from './components/ju-nerve-center/ju-nerve-center';
+export type { JUNerveCenterProps, JUNerveCenterMessage } from './components/ju-nerve-center/ju-nerve-center';
+
+// GPU Pulse
+export { JUGPUPulse } from './components/ju-gpu-pulse/ju-gpu-pulse';
+export type { JUGPUPulseProps, JUGPUPulseMetrics } from './components/ju-gpu-pulse/ju-gpu-pulse';
+
+// Priority Horizon
+export { JUPriorityHorizon } from './components/ju-priority-horizon/ju-priority-horizon';
+export type { JUPriorityHorizonProps, JUPriorityEmail } from './components/ju-priority-horizon/ju-priority-horizon';
+
+// Bio Sync
+export { JUBioSync } from './components/ju-bio-sync/ju-bio-sync';
+export type { JUBioSyncProps, JUBioSyncData } from './components/ju-bio-sync/ju-bio-sync';
+
+// System Health
+export { JUSystemHealth } from './components/ju-system-health/ju-system-health';
+export type { JUSystemHealthProps, JUSystemHealthService, JUServiceStatus } from './components/ju-system-health/ju-system-health';
+
+// Workflow Trigger
+export { JUWorkflowTrigger } from './components/ju-workflow-trigger/ju-workflow-trigger';
+export type { JUWorkflowTriggerProps, JUWorkflowAction } from './components/ju-workflow-trigger/ju-workflow-trigger';
+
+// Model Selector
+export { JUModelSelector } from './components/ju-model-selector/ju-model-selector';
+export type { JUModelSelectorProps, JUOllamaModel } from './components/ju-model-selector/ju-model-selector';
+
+// Temporal Bridge
+export { JUTemporalBridge } from './components/ju-temporal-bridge/ju-temporal-bridge';
+export type { JUTemporalBridgeProps, JUMeeting } from './components/ju-temporal-bridge/ju-temporal-bridge';
+
+// Global Context
+export { JUGlobalContext } from './components/ju-global-context/ju-global-context';
+export type { JUGlobalContextProps, JUWeatherData, JUAirQualityData, JUSkyCondition, JUAirQualityLevel } from './components/ju-global-context/ju-global-context';
+
+// Semantic Radar
+export { JUSemanticRadar } from './components/ju-semantic-radar/ju-semantic-radar';
+export type { JUSemanticRadarProps, JUSemanticTag } from './components/ju-semantic-radar/ju-semantic-radar';
+
+// Input
+export { JUInput } from './components/ju-input/ju-input';
+export type { JUInputProps } from './components/ju-input/ju-input';
+
+// Auth Panel
+export { JUAuthPanel } from './components/ju-auth-panel/ju-auth-panel';
+export type { JUAuthPanelProps, JUAuthPanelMode } from './components/ju-auth-panel/ju-auth-panel';
+
+// Search Bar
+export { JUSearchBar } from './components/ju-search-bar/ju-search-bar';
+export type { JUSearchBarProps, JUSearchBarSize, JUSearchBarVariant, JUSearchBarPlatform } from './components/ju-search-bar/ju-search-bar';
+
+// Ask Bar
+export { JUAskBar } from './components/ju-ask-bar/ju-ask-bar';
+export type { JUAskBarProps, JUAskBarSize, JUAskBarVariant } from './components/ju-ask-bar/ju-ask-bar';
+
+// Welcome Card
+export { JUWelcomeCard } from './components/ju-welcome-card/ju-welcome-card';
+export type { JUWelcomeCardProps } from './components/ju-welcome-card/ju-welcome-card';
+
+// Referral Card
+export { JUReferralCard } from './components/ju-referral-card/ju-referral-card';
+export type { JUReferralCardProps, JUReferralStep } from './components/ju-referral-card/ju-referral-card';
+
+// Contextual Menu
+export { JUContextualMenu } from './components/ju-contextual-menu/ju-contextual-menu';
+export type { JUContextualMenuProps, JUContextualMenuItem, JUContextualMenuSubItem } from './components/ju-contextual-menu/ju-contextual-menu';
+
+// Command Palette
+export { JUCommandPalette } from './components/ju-command-palette/ju-command-palette';
+export type { JUCommandPaletteProps, JUCommandPaletteItem, JUCommandPaletteHandle } from './components/ju-command-palette/ju-command-palette';

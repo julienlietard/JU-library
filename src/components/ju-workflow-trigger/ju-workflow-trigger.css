@@ -1,0 +1,117 @@
+/* ============================================
+   JUWorkflowTrigger — Action Grid Widget
+   Glassmorphism 2.0 · White-First
+   ============================================ */
+
+.ju-workflow-trigger {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  max-width: 100%;
+  font-family: var(--ju-font-family);
+}
+
+/* --- Header --- */
+
+.ju-workflow-trigger__header {
+  padding: var(--ju-space-sm) var(--ju-space-md);
+  border-bottom: 1px solid var(--ju-glass-border);
+}
+
+.ju-workflow-trigger__title {
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-semibold);
+  color: var(--ju-color-text-heading);
+  letter-spacing: 0.02em;
+}
+
+/* --- Grid --- */
+
+.ju-workflow-trigger__grid {
+  display: grid;
+  gap: var(--ju-space-sm);
+  padding: var(--ju-space-sm);
+}
+
+/* --- Button tile --- */
+
+.ju-workflow-trigger__btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  aspect-ratio: 1;
+  border: 1px solid var(--ju-glass-border);
+  border-radius: var(--ju-radius-lg);
+  background: var(--ju-glass-bg);
+  cursor: pointer;
+  padding: var(--ju-space-sm);
+  transition:
+    transform var(--ju-duration-fast) var(--ju-ease-bounce),
+    box-shadow var(--ju-duration-fast) ease,
+    border-color var(--ju-duration-fast) ease;
+}
+
+.ju-workflow-trigger__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--ju-shadow-md);
+  border-color: var(--ju-color-border-strong);
+  background: var(--ju-glass-bg-strong);
+}
+
+.ju-workflow-trigger__btn:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: none;
+}
+
+.ju-workflow-trigger__btn:disabled {
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
+
+.ju-workflow-trigger__btn--loading {
+  border-style: dashed;
+  border-color: var(--ju-glass-border);
+  opacity: 0.7;
+}
+
+/* --- Icon --- */
+
+.ju-workflow-trigger__btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ju-color-text-heading);
+  line-height: 0;
+}
+
+.ju-workflow-trigger__btn--loading .ju-workflow-trigger__btn-icon {
+  color: var(--ju-color-text-muted);
+}
+
+/* --- Label --- */
+
+.ju-workflow-trigger__btn-label {
+  font-size: 0.65rem;
+  font-weight: var(--ju-font-weight-medium);
+  color: var(--ju-color-text-muted);
+  text-align: center;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+/* --- Spinner --- */
+
+.ju-workflow-trigger__spinner {
+  animation: ju-wt-spin 1s linear infinite;
+}
+
+@keyframes ju-wt-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

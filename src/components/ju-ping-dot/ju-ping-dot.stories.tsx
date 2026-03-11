@@ -20,19 +20,19 @@ export const AllColors: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', padding: '2rem' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-        <JUPingDot color="green" pulse /> Available
+        <JUPingDot color="green" pulse /> Disponible
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-        <JUPingDot color="orange" pulse /> Busy
+        <JUPingDot color="orange" pulse /> Occupe
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-        <JUPingDot color="red" pulse /> Offline
+        <JUPingDot color="red" pulse /> Hors ligne
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-        <JUPingDot color="gray" pulse={false} /> Away
+        <JUPingDot color="gray" pulse={false} /> Absent
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-        <JUPingDot color="blue" pulse /> Streaming
+        <JUPingDot color="blue" pulse /> En diffusion
       </div>
     </div>
   ),
@@ -42,7 +42,7 @@ export const InContext: Story = {
   render: () => (
     <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.4rem 0.8rem', fontSize: '1rem', fontWeight: 500 }}>
       <JUPingDot color="green" pulse size={10} />
-      Disponible pour de nouvelles opportunités
+      Disponible pour de nouvelles opportunites
     </div>
   ),
 };

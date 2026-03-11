@@ -1,18 +1,20 @@
 /* ============================================
    JUProjectCard — iMessage Project Showcase
+   Glassmorphism 2.0 · White-First
    ============================================ */
 
 .ju-project-card {
   border-radius: 20px;
-  background: var(--ju-color-white);
+  background: #ffffff;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   user-select: none;
   cursor: default;
   box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.06),
-    0 4px 12px rgba(0, 0, 0, 0.07);
+    0 0 0 0.5px rgba(0, 0, 0, 0.03),
+    0 2px 8px rgba(0, 0, 0, 0.03),
+    0 8px 32px rgba(0, 0, 0, 0.04);
   transition:
     box-shadow 0.3s ease,
     transform 0.35s var(--ju-ease-bounce);
@@ -20,12 +22,13 @@
 
 .ju-project-card:hover {
   box-shadow:
-    0 2px 6px rgba(0, 0, 0, 0.07),
-    0 10px 28px rgba(0, 0, 0, 0.1);
+    0 0 0 0.5px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(0, 0, 0, 0.05),
+    0 16px 48px rgba(0, 0, 0, 0.08);
   transform: translateY(-3px);
 }
 
-/* ── Image ── */
+/* -- Image -- */
 
 .ju-project-card__img-wrap {
   overflow: hidden;
@@ -45,7 +48,7 @@
   transform: scale(1.04);
 }
 
-/* ── Chat ── */
+/* -- Chat -- */
 
 .ju-project-card__chat {
   padding: 1rem 0.9rem 1.1rem;
@@ -62,7 +65,7 @@
   display: none;
 }
 
-/* ── Bubble ── */
+/* -- Bubble -- */
 
 .ju-project-card__bubble {
   display: flex;
@@ -76,7 +79,7 @@
   flex-direction: row-reverse;
 }
 
-/* ── Avatar ── */
+/* -- Avatar -- */
 
 .ju-project-card__avatar {
   width: 26px;
@@ -93,7 +96,7 @@
   margin-bottom: 1.1rem;
 }
 
-/* ── Body ── */
+/* -- Body -- */
 
 .ju-project-card__body {
   display: flex;
@@ -113,10 +116,10 @@
   text-align: right;
 }
 
-/* ── Left bubble (Julien) ── */
+/* -- Left bubble (Julien) — white-first surface -- */
 
 .ju-project-card__bubble--left .ju-project-card__text {
-  background: #f2f2f7;
+  background: #f5f5f7;
   color: #1c1c1e;
   border-radius: 16px 16px 16px 4px;
   padding: 0.55rem 0.85rem;
@@ -126,11 +129,11 @@
   margin: 0;
 }
 
-/* ── Right bubble (user) ── */
+/* -- Right bubble (user) — aurora/primary -- */
 
 .ju-project-card__bubble--right .ju-project-card__text {
   background: #007aff;
-  color: var(--ju-color-white);
+  color: #ffffff;
   border-radius: 16px 16px 4px 16px;
   padding: 0.55rem 0.85rem;
   font-family: var(--ju-font-family);
@@ -139,10 +142,10 @@
   margin: 0;
 }
 
-/* ── Link ── */
+/* -- Link -- */
 
 .ju-project-card__link {
-  background: #f2f2f7;
+  background: #f5f5f7;
   color: #007aff;
   font-family: var(--ju-font-family);
   font-size: 0.8rem;
@@ -156,7 +159,7 @@
 }
 
 .ju-project-card__link:hover {
-  background: #e5e5ea;
+  background: #e8e8ed;
   text-decoration: underline;
 }
 
@@ -165,7 +168,7 @@
   outline-offset: 2px;
 }
 
-/* ── Responsive ── */
+/* -- Responsive -- */
 
 @media (max-width: 768px) {
   .ju-project-card {

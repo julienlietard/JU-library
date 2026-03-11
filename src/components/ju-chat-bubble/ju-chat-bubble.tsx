@@ -1,7 +1,7 @@
 import React from 'react';
 import './ju-chat-bubble.css';
 
-export type JUChatBubbleColor = 'blue' | 'gray' | 'green' | 'dark';
+export type JUChatBubbleColor = 'blue' | 'gray' | 'green' | 'dark' | 'ai';
 export type JUChatBubbleTail = 'left' | 'right' | 'none';
 
 export interface JUChatBubbleProps {

@@ -24,9 +24,9 @@ export const Default: Story = {
     image: { src: 'https://placehold.co/600x300/1a1a2e/ffffff?text=JU+Design', alt: 'JU Design' },
     avatar: 'J',
     messages: [
-      { sender: 'Julien', text: 'Ma librairie React avec Storybook, déployée via Azure.', side: 'left' },
-      { sender: 'Moi', text: 'Il est stylé le bouton 😲', side: 'right' },
-      { sender: 'Julien', text: 'Ma librairie React', side: 'left', link: 'https://ju-design.azurestaticapps.net/' },
+      { sender: 'Julien', text: 'Ma bibliotheque React avec Storybook, deployee via Azure.', side: 'left' },
+      { sender: 'Moi', text: 'Il est superbe le bouton 😲', side: 'right' },
+      { sender: 'Julien', text: 'Explorer la bibliotheque', side: 'left', link: 'https://ju-design.azurestaticapps.net/' },
     ],
   },
 };
@@ -36,9 +36,9 @@ export const Blog: Story = {
     image: { src: 'https://placehold.co/600x300/667eea/ffffff?text=Le+Labo', alt: 'Le Labo' },
     avatar: 'J',
     messages: [
-      { sender: 'Julien', text: 'Ma nouvelle application en développement : un blog pour lire des articles sur divers sujets tech.', side: 'left' },
-      { sender: 'Moi', text: "J'aimerai bien suivre l'actu tech", side: 'right' },
-      { sender: 'Julien', text: 'Va lire le tout dernier article, il était passionnant à écrire.', side: 'left', link: 'https://blog.julienlietard.fr/' },
+      { sender: 'Julien', text: 'Ma nouvelle application en developpement : un blog pour lire des articles sur divers sujets tech.', side: 'left' },
+      { sender: 'Moi', text: "J'aimerais bien suivre l'actu tech", side: 'right' },
+      { sender: 'Julien', text: 'Va lire le tout dernier article, il etait passionnant a ecrire.', side: 'left', link: 'https://blog.julienlietard.fr/' },
     ],
   },
 };
@@ -50,7 +50,7 @@ export const InCarouselContext: Story = {
         image={{ src: 'https://placehold.co/600x300/667eea/ffffff?text=Labo', alt: 'Labo' }}
         messages={[
           { sender: 'Julien', text: 'Mon blog tech pour partager des articles.', side: 'left' },
-          { sender: 'Moi', text: "J'aimerai bien suivre l'actu tech", side: 'right' },
+          { sender: 'Moi', text: "J'aimerais bien suivre l'actu tech", side: 'right' },
           { sender: 'Julien', text: 'Va lire le tout dernier article !', side: 'left', link: 'https://blog.julienlietard.fr/' },
         ]}
         height="580px"
@@ -58,9 +58,9 @@ export const InCarouselContext: Story = {
       <JUProjectCard
         image={{ src: 'https://placehold.co/600x300/1a1a2e/ffffff?text=JU+Design', alt: 'JU Design' }}
         messages={[
-          { sender: 'Julien', text: 'Ma librairie React avec Storybook.', side: 'left' },
-          { sender: 'Moi', text: 'Il est stylé le bouton 😲', side: 'right' },
-          { sender: 'Julien', text: 'Ma librairie React', side: 'left', link: 'https://ju-design.azurestaticapps.net/' },
+          { sender: 'Julien', text: 'Ma bibliotheque React avec Storybook.', side: 'left' },
+          { sender: 'Moi', text: 'Il est superbe le bouton 😲', side: 'right' },
+          { sender: 'Julien', text: 'Explorer la bibliotheque', side: 'left', link: 'https://ju-design.azurestaticapps.net/' },
         ]}
         height="580px"
       />
@@ -69,7 +69,7 @@ export const InCarouselContext: Story = {
         messages={[
           { sender: 'Julien', text: "Site web de l'association UDESMA45.", side: 'left' },
           { sender: 'Moi', text: "Elle a l'air super cette association !", side: 'right' },
-          { sender: 'Julien', text: "Hésite pas à t'inscrire !", side: 'left', link: 'https://udesma45.fr/' },
+          { sender: 'Julien', text: "N'hesite pas a t'inscrire !", side: 'left', link: 'https://udesma45.fr/' },
         ]}
         height="580px"
       />
@@ -84,8 +84,8 @@ export const FlexibleHeight: Story = {
     avatar: 'J',
     height: 'auto',
     messages: [
-      { sender: 'Julien', text: 'Découvrez mon portfolio.', side: 'left' },
-      { sender: 'Moi', text: 'Mais je suis déjà dessus non ?', side: 'right' },
+      { sender: 'Julien', text: 'Decouvrez mon portfolio.', side: 'left' },
+      { sender: 'Moi', text: 'Mais je suis deja dessus non ?', side: 'right' },
       { sender: 'Julien', text: 'Exactement 😉', side: 'left', link: 'https://julienlietard.fr/' },
     ],
   },

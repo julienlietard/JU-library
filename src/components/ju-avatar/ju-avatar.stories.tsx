@@ -39,10 +39,10 @@ export const AllSizes: Story = {
 export const StatusVariants: Story = {
   render: () => (
     <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '2rem' }}>
-      <JUAvatar src={DEMO_IMG} size="lg" status="online" alt="Online" />
-      <JUAvatar src={DEMO_IMG} size="lg" status="busy" alt="Busy" />
-      <JUAvatar src={DEMO_IMG} size="lg" status="away" alt="Away" />
-      <JUAvatar src={DEMO_IMG} size="lg" status="offline" alt="Offline" />
+      <JUAvatar src={DEMO_IMG} size="lg" status="online" alt="En ligne" />
+      <JUAvatar src={DEMO_IMG} size="lg" status="busy" alt="Occupe" />
+      <JUAvatar src={DEMO_IMG} size="lg" status="away" alt="Absent" />
+      <JUAvatar src={DEMO_IMG} size="lg" status="offline" alt="Hors ligne" />
     </div>
   ),
 };
@@ -57,7 +57,7 @@ export const GlassOnDark: Story = {
       <JUAvatar src={DEMO_IMG} size="xl" glass status="online" alt="" />
       <div style={{ color: 'white' }}>
         <div style={{ fontWeight: 600, fontSize: '1.1rem' }}>Julien Lietard</div>
-        <div style={{ fontSize: '0.85rem', opacity: 0.6 }}>Web Engineer @ Orléans</div>
+        <div style={{ fontSize: '0.85rem', opacity: 0.6 }}>Ingenieur Web @ Orleans</div>
       </div>
     </div>
   ),
@@ -67,7 +67,7 @@ export const InitialsFallback: Story = {
   render: () => (
     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '2rem' }}>
       <JUAvatar initials="JL" size="md" />
-      <JUAvatar initials="AB" size="md" />
+      <JUAvatar initials="MC" size="md" />
       <JUAvatar initials="?" size="md" />
     </div>
   ),

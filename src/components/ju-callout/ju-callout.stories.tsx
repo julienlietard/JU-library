@@ -14,19 +14,19 @@ type Story = StoryObj<typeof JUCallout>;
 export const AllVariants: Story = {
   render: () => (
     <>
-      <JUCallout variant="note" title="Note">A simple note to add context to your article.</JUCallout>
-      <JUCallout variant="info" title="Information">This component uses CSS custom properties from the JU Design token system.</JUCallout>
-      <JUCallout variant="warning" title="Attention">This API is deprecated and will be removed in v2.0.</JUCallout>
-      <JUCallout variant="success" title="Done!">Your component has been successfully published to npm.</JUCallout>
-      <JUCallout variant="danger" title="Breaking Change">This update contains breaking changes to the Button API.</JUCallout>
+      <JUCallout variant="note" title="Note">Une note simple pour ajouter du contexte à votre maquette.</JUCallout>
+      <JUCallout variant="info" title="Information">Ce composant utilise les propriétés CSS personnalisées du système de tokens JU Design.</JUCallout>
+      <JUCallout variant="warning" title="Attention">Cette API est obsolète et sera supprimée dans la version 2.0.</JUCallout>
+      <JUCallout variant="success" title="Terminé !">Votre composant a été publié avec succès sur npm.</JUCallout>
+      <JUCallout variant="danger" title="Changement majeur">Cette mise à jour contient des modifications incompatibles de l'API Bouton.</JUCallout>
     </>
   ),
 };
 
 export const NoTitle: Story = {
-  args: { variant: 'info', children: 'A simple callout without a title.' },
+  args: { variant: 'info', children: 'Un callout simple sans titre.' },
 };
 
 export const NoIcon: Story = {
-  args: { variant: 'warning', title: 'Custom', hideIcon: true, children: 'A callout without icon.' },
+  args: { variant: 'warning', title: 'Personnalisé', hideIcon: true, children: 'Un callout sans icône.' },
 };

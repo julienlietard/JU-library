@@ -68,9 +68,25 @@ describe('JUIsland', () => {
     expect(island).toHaveAttribute('aria-label', 'Home — 25% scrolled');
   });
 
-  it('renders links nav with aria-label when open', () => {
+  it('renders TOC nav with aria-label when open', () => {
     render(<JUIsland links={links} />);
     fireEvent.click(screen.getByRole('status'));
-    expect(screen.getByRole('navigation', { name: /page sections/i })).toBeInTheDocument();
+    expect(screen.getByRole('navigation', { name: /table of contents/i })).toBeInTheDocument();
+  });
+
+  it('marks active link with aria-current', () => {
+    render(<JUIsland links={links} activeId="about" />);
+    fireEvent.click(screen.getByRole('status'));
+    const activeLink = screen.getByText('About');
+    expect(activeLink).toHaveAttribute('aria-current', 'location');
+    expect(activeLink).toHaveClass('ju-island__toc-item--active');
+  });
+
+  it('does not mark inactive links with aria-current', () => {
+    render(<JUIsland links={links} activeId="about" />);
+    fireEvent.click(screen.getByRole('status'));
+    const inactiveLink = screen.getByText('Skills');
+    expect(inactiveLink).not.toHaveAttribute('aria-current');
+    expect(inactiveLink).not.toHaveClass('ju-island__toc-item--active');
   });
 });

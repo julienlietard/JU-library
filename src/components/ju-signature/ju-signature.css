@@ -1,0 +1,405 @@
+/* ============================================
+   JUSignature — Morphing Signature Component
+   Glassmorphism 2.0 · White-First
+   ============================================ */
+
+.ju-sig {
+  position: relative;
+  width: 130px;
+  height: 44px;
+  border-radius: 22px;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+
+  /* Close transition — smooth deceleration */
+  transition:
+    width 0.45s cubic-bezier(0.32, 0.72, 0, 1),
+    height 0.45s cubic-bezier(0.32, 0.72, 0, 1),
+    border-radius 0.45s cubic-bezier(0.32, 0.72, 0, 1),
+    transform 0.3s cubic-bezier(0.32, 0.72, 0, 1),
+    box-shadow 0.45s ease;
+}
+
+.ju-sig:hover:not(.ju-sig--open) {
+  transform: scale(1.04);
+}
+
+/* -- Open state -- */
+
+.ju-sig--open {
+  width: min(380px, 90vw);
+  height: 360px;
+  border-radius: 20px;
+  cursor: default;
+
+  /* Open transition — spring bounce */
+  transition:
+    width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+    height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-radius 0.5s cubic-bezier(0.32, 0.72, 0, 1),
+    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.5s ease;
+}
+
+/* ============================================
+   Light variant (default) — white glass panel
+   ============================================ */
+
+.ju-sig--light {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.03),
+    0 2px 8px rgba(0, 0, 0, 0.03),
+    0 8px 32px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.ju-sig--light.ju-sig--open {
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.03),
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    0 16px 48px rgba(0, 0, 0, 0.08);
+}
+
+.ju-sig--light .ju-sig__closed {
+  color: #1c1c1e;
+}
+
+.ju-sig--light .ju-sig__title {
+  color: #1c1c1e;
+}
+
+.ju-sig--light .ju-sig__header-btn {
+  background: #f5f5f7;
+  color: #6b7280;
+}
+
+.ju-sig--light .ju-sig__header-btn:hover:not(:disabled) {
+  background: #e8e8ed;
+  color: #1c1c1e;
+}
+
+.ju-sig--light .ju-sig__canvas-wrap {
+  border-color: rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+}
+
+.ju-sig--light .ju-sig__hint {
+  color: #9ca3af;
+}
+
+.ju-sig--light .ju-sig__save {
+  background: #f5f5f7;
+  color: #1c1c1e;
+}
+
+.ju-sig--light .ju-sig__save:hover:not(:disabled) {
+  background: #1c1c1e;
+  color: #ffffff;
+}
+
+/* ============================================
+   Dark variant — dark glass
+   ============================================ */
+
+.ju-sig--dark {
+  background: rgba(38, 38, 42, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    0 0 0 0.5px rgba(255, 255, 255, 0.05),
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ju-sig--dark.ju-sig--open {
+  box-shadow:
+    0 0 0 0.5px rgba(255, 255, 255, 0.06),
+    0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+.ju-sig--dark .ju-sig__closed {
+  color: #a1a1b7;
+}
+
+.ju-sig--dark .ju-sig__title {
+  color: #ffffff;
+}
+
+.ju-sig--dark .ju-sig__header-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #a1a1b7;
+}
+
+.ju-sig--dark .ju-sig__header-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.ju-sig--dark .ju-sig__canvas-wrap {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ju-sig--dark .ju-sig__hint {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.ju-sig--dark .ju-sig__save {
+  background: rgba(255, 255, 255, 0.1);
+  color: #a1a1b7;
+}
+
+.ju-sig--dark .ju-sig__save:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+/* ============================================
+   Closed state — trigger button content
+   ============================================ */
+
+.ju-sig__closed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ju-space-sm, 8px);
+  width: 100%;
+  height: 44px;
+  padding: 0 1.2rem;
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-medium, 500);
+  transition:
+    opacity 0.2s ease,
+    transform 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.ju-sig--open .ju-sig__closed {
+  opacity: 0;
+  transform: scale(0.85);
+  pointer-events: none;
+  position: absolute;
+}
+
+.ju-sig__closed-icon {
+  flex-shrink: 0;
+}
+
+/* ============================================
+   Open state — panel content
+   ============================================ */
+
+.ju-sig__content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  animation: ju-sig-content-in 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* -- Header -- */
+
+.ju-sig__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0.75rem 0.5rem;
+  flex-shrink: 0;
+}
+
+.ju-sig__title {
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-md);
+  font-weight: var(--ju-font-weight-semibold, 600);
+  text-align: center;
+  flex: 1;
+}
+
+.ju-sig__header-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: var(--ju-radius-full, 999px);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background-color var(--ju-duration-normal, 300ms) ease,
+    color var(--ju-duration-normal, 300ms) ease,
+    transform var(--ju-duration-normal, 300ms) var(--ju-ease-bounce, cubic-bezier(0.34, 1.56, 0.64, 1));
+}
+
+.ju-sig__header-btn--close:hover:not(:disabled) {
+  background: #fee2e2 !important;
+  color: #dc2626 !important;
+  transform: rotate(90deg);
+}
+
+.ju-sig__header-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.ju-sig__header-btn:focus-visible {
+  outline: 2px solid var(--ju-color-primary, #1b82ff);
+  outline-offset: 2px;
+}
+
+/* -- Canvas -- */
+
+.ju-sig__canvas-wrap {
+  position: relative;
+  margin: 0 0.75rem;
+  flex: 1;
+  border: 2px dashed;
+  border-radius: var(--ju-radius-lg, 16px);
+  overflow: hidden;
+}
+
+.ju-sig__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.ju-sig__hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.35;
+  pointer-events: none;
+  animation: ju-sig-hint-pulse 2.5s ease-in-out infinite;
+}
+
+/* ============================================
+   White variant — keep as-is
+   ============================================ */
+
+.ju-sig--white {
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+}
+
+.ju-sig--white.ju-sig--open {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border-color: #f3f4f6;
+}
+
+.ju-sig--white .ju-sig__closed {
+  color: #111111;
+}
+
+.ju-sig--white .ju-sig__title {
+  color: #111111;
+}
+
+.ju-sig--white .ju-sig__header-btn {
+  background: #f9fafb;
+  color: #6b7280;
+}
+
+.ju-sig--white .ju-sig__header-btn:hover:not(:disabled) {
+  background: #f3f4f6;
+  color: #111111;
+}
+
+.ju-sig--white .ju-sig__canvas-wrap {
+  border-color: #e5e7eb;
+  background: #ffffff;
+}
+
+.ju-sig--white .ju-sig__hint {
+  color: #d1d5db;
+}
+
+.ju-sig--white .ju-sig__save {
+  background: #f3f4f6;
+  color: #111111;
+}
+
+.ju-sig--white .ju-sig__save:hover:not(:disabled) {
+  background: #111111;
+  color: #ffffff;
+}
+
+/* -- Save button -- */
+
+.ju-sig__save {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ju-space-sm, 8px);
+  margin: 0.75rem;
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: var(--ju-radius-full, 999px);
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-semibold, 600);
+  cursor: pointer;
+  transition:
+    transform 0.25s var(--ju-ease-bounce, cubic-bezier(0.34, 1.56, 0.64, 1)),
+    box-shadow 0.25s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.ju-sig__save:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.ju-sig__save:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ju-sig__save:focus-visible {
+  outline: 2px solid var(--ju-color-primary, #1b82ff);
+  outline-offset: 3px;
+}
+
+.ju-sig__save-icon {
+  flex-shrink: 0;
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+
+@keyframes ju-sig-content-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes ju-sig-hint-pulse {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+}

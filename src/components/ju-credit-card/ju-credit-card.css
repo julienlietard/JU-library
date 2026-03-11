@@ -1,0 +1,170 @@
+/* ============================================
+   JUCreditCard — Glassmorphism 2.0 Card
+   ============================================ */
+
+.ju-credit-card {
+  position: relative;
+  width: 380px;
+  height: 240px;
+  border-radius: var(--ju-radius-xl);
+  overflow: hidden;
+  font-family: var(--ju-font-family, monospace, sans-serif);
+  color: #ffffff;
+  box-shadow: var(--ju-shadow-xl);
+  user-select: none;
+}
+
+/* ── 1. Arrière-plan (Base) ── */
+.ju-credit-card__background {
+  position: absolute;
+  inset: -20px; /* Débordement pour le blur */
+  z-index: 1;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Reproduction du fond de l'image (couleurs saumon/rouge) */
+.ju-credit-card--aurora .ju-credit-card__background {
+  background-color: #e2a69c; 
+}
+
+.ju-credit-card__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px); /* Flou progressif */
+}
+
+.ju-credit-card__blob--1 {
+  width: 250px;
+  height: 250px;
+  background-color: #ef7d59; /* Orange doux */
+  top: -50px;
+  left: -20px;
+}
+
+.ju-credit-card__blob--2 {
+  width: 300px;
+  height: 300px;
+  background-color: #d13d42; /* Rouge vif */
+  bottom: -80px;
+  right: -50px;
+}
+
+/* ── 2. Couche Glassmorphism (Flou global + Bordure) ── */
+.ju-credit-card__glass {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  backdrop-filter: blur(40px); /* Lisse les blobs en dessous */
+  -webkit-backdrop-filter: blur(40px);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--ju-radius-xl);
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+}
+
+/* ── 3. Contenu ── */
+.ju-credit-card__content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 24px;
+}
+
+.ju-credit-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.ju-credit-card__chip {
+  width: 44px;
+  height: 32px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.ju-credit-card__contactless {
+  width: 24px;
+  height: 24px;
+  color: rgba(255, 255, 255, 0.9);
+  transform: rotate(90deg); /* Style carte horizontale */
+}
+
+.ju-credit-card__number {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
+}
+
+.ju-credit-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.ju-credit-card__info {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.ju-credit-card__holder {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.ju-credit-card__expiry {
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+/* Surcharge pour la pilule utilisateur dans la carte */
+.ju-credit-card__user-pill {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+.ju-credit-card__user-pill .ju-user-pill__name {
+  color: #fff;
+  text-shadow: none;
+}
+.ju-credit-card__user-pill .ju-user-pill__dismiss {
+  color: #fff;
+}
+.ju-credit-card__user-pill .ju-user-pill__dismiss:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Logo Mastercard ── */
+.ju-credit-card__logo {
+  position: relative;
+  width: 48px;
+  height: 30px;
+  display: flex;
+}
+
+.ju-credit-card__circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.ju-credit-card__circle--left {
+  background-color: rgba(255, 255, 255, 0.9);
+  left: 0;
+  z-index: 1;
+}
+
+.ju-credit-card__circle--right {
+  background-color: rgba(255, 255, 255, 0.6);
+  right: 0;
+  z-index: 2;
+}

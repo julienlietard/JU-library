@@ -14,8 +14,8 @@ export const Default: Story = {
   args: {
     items: [
       { label: 'Accueil', href: '/' },
-      { label: 'Articles', href: '/articles' },
-      { label: 'Mon POC React' },
+      { label: 'Composants', href: '/composants' },
+      { label: 'Boutons' },
     ],
   },
 };
@@ -24,11 +24,11 @@ export const Long: Story = {
   args: {
     items: [
       { label: 'Accueil', href: '/' },
-      { label: 'Projets', href: '/projets' },
-      { label: 'Design System', href: '/projets/ds' },
-      { label: 'Composants', href: '/projets/ds/composants' },
-      { label: 'Navigation', href: '/projets/ds/composants/nav' },
-      { label: 'Breadcrumbs' },
+      { label: 'Système de Design', href: '/design-system' },
+      { label: 'Composants', href: '/design-system/composants' },
+      { label: 'Formulaires', href: '/design-system/composants/formulaires' },
+      { label: 'Champs de texte', href: '/design-system/composants/formulaires/champs' },
+      { label: 'Variantes' },
     ],
     maxItems: 4,
   },
@@ -37,9 +37,9 @@ export const Long: Story = {
 export const CustomSeparator: Story = {
   args: {
     items: [
-      { label: 'Home', href: '/' },
-      { label: 'Blog', href: '/blog' },
-      { label: 'Article' },
+      { label: 'Accueil', href: '/' },
+      { label: 'Maquettes', href: '/maquettes' },
+      { label: 'Grille responsive' },
     ],
     separator: '/',
   },

@@ -11,7 +11,7 @@
   padding: var(--ju-space-2xl) var(--ju-space-xl);
   border: 2px dashed #d1d5db;
   border-radius: var(--ju-radius-xl);
-  background: #f9fafb;
+  background: #f5f5f7;
   cursor: pointer;
   transition: var(--ju-transition-default);
 }
@@ -19,7 +19,7 @@
 .ju-fu__zone:hover,
 .ju-fu--drag .ju-fu__zone {
   border-color: var(--ju-color-primary);
-  background: #eff6ff;
+  background: rgba(27, 130, 255, 0.06);
 }
 
 .ju-fu__zone:focus-visible {
@@ -68,15 +68,15 @@
   padding: var(--ju-space-sm) var(--ju-space-md);
   border-radius: var(--ju-radius-md);
   background: #ffffff;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
 }
 
 .ju-fu__file-name {
   font-family: var(--ju-font-family);
   font-size: var(--ju-font-size-sm);
   font-weight: var(--ju-font-weight-medium);
-  color: #374151;
+  color: #1c1c1e;
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -98,7 +98,7 @@
   height: 24px;
   border: none;
   border-radius: 50%;
-  background: transparent;
+  background: #f5f5f7;
   color: #9ca3af;
   cursor: pointer;
   transition: var(--ju-transition-default);

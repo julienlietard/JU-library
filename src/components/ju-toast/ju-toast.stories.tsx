@@ -10,17 +10,17 @@ const meta: Meta<typeof JUToast> = {
 export default meta;
 type Story = StoryObj<typeof JUToast>;
 
-export const Info: Story = { args: { toast: { id: '1', message: 'Article enregistré en brouillon.', variant: 'info' }, onDismiss: () => {} } };
-export const Success: Story = { args: { toast: { id: '2', message: 'Article publié avec succès !', variant: 'success' }, onDismiss: () => {} } };
-export const Warning: Story = { args: { toast: { id: '3', message: 'Attention : ce champ est requis.', variant: 'warning' }, onDismiss: () => {} } };
-export const Error: Story = { args: { toast: { id: '4', message: 'Erreur lors de la sauvegarde.', variant: 'error' }, onDismiss: () => {} } };
+export const Info: Story = { args: { toast: { id: '1', message: 'Maquette enregistrée en brouillon.', variant: 'info' }, onDismiss: () => {} } };
+export const Success: Story = { args: { toast: { id: '2', message: 'Composant publié avec succès dans le design system !', variant: 'success' }, onDismiss: () => {} } };
+export const Warning: Story = { args: { toast: { id: '3', message: 'Attention : le token de couleur est manquant.', variant: 'warning' }, onDismiss: () => {} } };
+export const Error: Story = { args: { toast: { id: '4', message: 'Erreur lors de l\u2019export de la palette.', variant: 'error' }, onDismiss: () => {} } };
 
 export const Interactive: Story = {
   render: () => {
     const [toasts, setToasts] = useState<JUToastData[]>([]);
     let counter = 0;
     const variants = ['info', 'success', 'warning', 'error'] as const;
-    const messages = ['Brouillon sauvegardé', 'Article publié !', 'Champ manquant', 'Erreur serveur'];
+    const messages = ['Grille sauvegardée', 'Typographie mise à jour !', 'Token de spacing manquant', 'Erreur d\u2019import Figma'];
     const addToast = () => {
       const v = variants[counter % 4];
       setToasts((prev) => [...prev, { id: String(++counter), message: messages[counter % 4], variant: v }]);
@@ -28,7 +28,7 @@ export const Interactive: Story = {
     return (
       <>
         <button onClick={addToast} style={{ padding: '8px 16px', borderRadius: 10, border: 'none', background: '#1b82ff', color: 'white', cursor: 'pointer' }}>
-          Ajouter un toast
+          Ajouter une notification
         </button>
         <JUToastContainer toasts={toasts} onDismiss={(id) => setToasts((p) => p.filter((t) => t.id !== id))} />
       </>

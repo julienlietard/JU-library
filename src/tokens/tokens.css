@@ -1,5 +1,6 @@
 /* ============================================
    JU Design — Design Tokens
+   Glassmorphism 2.0 · White-First
    ============================================ */
 
 :root {
@@ -20,7 +21,7 @@
   /* Primary — portfolio blue */
   --ju-color-primary: #1b82ff;
   --ju-color-primary-hover: #0066e0;
-  --ju-color-primary-soft: rgba(27, 130, 255, 0.12);
+  --ju-color-primary-soft: rgba(27, 130, 255, 0.10);
 
   /* Accent — portfolio CTA gradient */
   --ju-color-accent: #ff4e6b;
@@ -30,7 +31,7 @@
   --ju-color-danger: #ff3b5c;
   --ju-color-danger-hover: #e0234a;
   --ju-color-success: #00b436;
-  --ju-color-success-soft: rgba(0, 180, 54, 0.12);
+  --ju-color-success-soft: rgba(0, 180, 54, 0.10);
   --ju-color-warning: #ffb800;
   --ju-color-info: #3898ff;
 
@@ -43,7 +44,7 @@
   --ju-color-red: #ff3b30;
 
   /* --- Typography --- */
-  --ju-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --ju-font-family: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --ju-font-size-xs: 0.75rem;
   --ju-font-size-sm: 0.875rem;
   --ju-font-size-md: 1rem;
@@ -62,36 +63,54 @@
   --ju-space-xl: 32px;
   --ju-space-2xl: 48px;
 
-  /* --- Border Radius --- */
-  --ju-radius-sm: 6px;
-  --ju-radius-md: 10px;
-  --ju-radius-lg: 16px;
-  --ju-radius-xl: 24px;
-  --ju-radius-2xl: 32px;
+  /* --- Border Radius (ultra-rounded) --- */
+  --ju-radius-sm: 8px;
+  --ju-radius-md: 14px;
+  --ju-radius-lg: 20px;
+  --ju-radius-xl: 28px;
+  --ju-radius-2xl: 36px;
   --ju-radius-full: 999px;
 
-  /* --- Shadows (luxe 3D) --- */
-  --ju-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --ju-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
-  --ju-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
-  --ju-shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.3);
+  /* --- Shadows (ultra-diffuse, depth by blur) --- */
+  --ju-shadow-sm: 0 1px 8px rgba(0, 0, 0, 0.03);
+  --ju-shadow-md: 0 2px 16px rgba(0, 0, 0, 0.04);
+  --ju-shadow-lg: 0 4px 24px rgba(0, 0, 0, 0.05);
+  --ju-shadow-xl: 0 8px 40px rgba(0, 0, 0, 0.06);
 
-  /* Inset 3D (portfolio CTA style) */
-  --ju-shadow-inset-3d:
-    inset 0 1px 4px rgba(255, 255, 255, 0.55),
-    inset 0 -4px 6px rgba(0, 0, 0, 0.1),
-    0 6px 16px rgba(0, 0, 0, 0.1),
-    0 2px 4px rgba(0, 0, 0, 0.1);
-
-  /* --- Glass Effect --- */
-  --ju-glass-bg: rgba(255, 255, 255, 0.08);
-  --ju-glass-bg-strong: rgba(255, 255, 255, 0.12);
-  --ju-glass-border: rgba(255, 255, 255, 0.18);
-  --ju-glass-blur: 24px;
+  /* --- Glass Effect (White-First) --- */
+  --ju-glass-bg: rgba(255, 255, 255, 0.60);
+  --ju-glass-bg-strong: rgba(255, 255, 255, 0.80);
+  --ju-glass-bg-subtle: rgba(255, 255, 255, 0.45);
+  --ju-glass-border: rgba(0, 0, 0, 0.06);
+  --ju-glass-blur: 20px;
   --ju-glass-shadow:
-    0 4px 6px rgba(0, 0, 0, 0.1),
-    0 10px 15px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    0 2px 20px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(0, 0, 0, 0.02);
+
+  /* --- Raised Glass (elevated frosted panels) ---
+   * Balanced: visible white edge but not heavy.              */
+  --ju-raised-bg: rgba(247, 247, 249, 0.70);
+  --ju-raised-border: 1.5px solid rgba(255, 255, 255, 0.92);
+  --ju-raised-blur: 26px;
+  --ju-raised-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.82),
+    0 1px 2px rgba(0, 0, 0, 0.03),
+    0 5px 18px rgba(0, 0, 0, 0.04),
+    0 14px 42px rgba(0, 0, 0, 0.03);
+  --ju-raised-shadow-hover:
+    inset 0 1px 0 rgba(255, 255, 255, 0.88),
+    0 2px 4px rgba(0, 0, 0, 0.04),
+    0 7px 24px rgba(0, 0, 0, 0.055),
+    0 18px 50px rgba(0, 0, 0, 0.04);
+
+  /* --- Aurora Gradient (Pillar 2 — Action Elements) --- */
+  --ju-aurora: linear-gradient(135deg, #FF9D6C 0%, #FF6B98 33%, #7A60FF 66%, #1b82ff 100%);
+  --ju-aurora-soft: linear-gradient(135deg, rgba(255,157,108,0.15) 0%, rgba(255,107,152,0.12) 33%, rgba(122,96,255,0.10) 66%, rgba(27,130,255,0.08) 100%);
+
+  /* --- Widget Surfaces (White-First tracks & backgrounds) --- */
+  --ju-track-bg: rgba(0, 0, 0, 0.04);
+  --ju-track-bg-hover: rgba(0, 0, 0, 0.06);
+  --ju-widget-divider: rgba(0, 0, 0, 0.06);
 
   /* --- Animation (signature curves) --- */
   --ju-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -105,4 +124,98 @@
   /* --- Transitions --- */
   --ju-transition-default: all var(--ju-duration-normal) var(--ju-ease-smooth);
   --ju-transition-bounce: all var(--ju-duration-normal) var(--ju-ease-bounce);
+
+  /* --- Semantic Theme Tokens (White-First light default) --- */
+  --ju-color-text: var(--ju-color-gray-900);
+  --ju-color-text-heading: #000000;
+  --ju-color-text-body: #2d2d2d;
+  --ju-color-text-muted: var(--ju-color-gray-500);
+  --ju-color-text-lead: var(--ju-color-gray-700);
+  --ju-color-surface: #ffffff;
+  --ju-color-surface-hover: #f5f5f7;
+  --ju-color-surface-muted: #f5f5f7;
+  --ju-color-surface-active: #eff6ff;
+  --ju-color-surface-active-text: #1d4ed8;
+  --ju-color-border: rgba(0, 0, 0, 0.06);
+  --ju-color-border-strong: rgba(0, 0, 0, 0.10);
+}
+
+/* --- Dark theme via data attribute --- */
+[data-theme="dark"] {
+  --ju-color-text: var(--ju-color-gray-100);
+  --ju-color-text-heading: #ffffff;
+  --ju-color-text-body: var(--ju-color-gray-200);
+  --ju-color-text-muted: var(--ju-color-gray-400);
+  --ju-color-text-lead: var(--ju-color-gray-300);
+  --ju-color-surface: var(--ju-color-gray-900);
+  --ju-color-surface-hover: var(--ju-color-gray-800);
+  --ju-color-surface-muted: var(--ju-color-gray-800);
+  --ju-color-surface-active: rgba(27, 130, 255, 0.15);
+  --ju-color-surface-active-text: #60a5fa;
+  --ju-color-border: var(--ju-color-gray-800);
+  --ju-color-border-strong: var(--ju-color-gray-700);
+
+  /* Dark glass (inverted) */
+  --ju-glass-bg: rgba(32, 32, 32, 0.60);
+  --ju-glass-bg-strong: rgba(32, 32, 32, 0.80);
+  --ju-glass-border: rgba(255, 255, 255, 0.10);
+  --ju-glass-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.15),
+    0 10px 15px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  /* Dark raised glass */
+  --ju-raised-bg: rgba(38, 38, 42, 0.68);
+  --ju-raised-border: 1.5px solid rgba(255, 255, 255, 0.10);
+  --ju-raised-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 2px 6px rgba(0, 0, 0, 0.12),
+    0 8px 24px rgba(0, 0, 0, 0.10),
+    0 16px 44px rgba(0, 0, 0, 0.08);
+  --ju-raised-shadow-hover:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 4px 8px rgba(0, 0, 0, 0.14),
+    0 10px 28px rgba(0, 0, 0, 0.12),
+    0 20px 52px rgba(0, 0, 0, 0.10);
+}
+
+/* --- Dark theme via OS preference (fallback) --- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ju-color-text: var(--ju-color-gray-100);
+    --ju-color-text-heading: #ffffff;
+    --ju-color-text-body: var(--ju-color-gray-200);
+    --ju-color-text-muted: var(--ju-color-gray-400);
+    --ju-color-text-lead: var(--ju-color-gray-300);
+    --ju-color-surface: var(--ju-color-gray-900);
+    --ju-color-surface-hover: var(--ju-color-gray-800);
+    --ju-color-surface-muted: var(--ju-color-gray-800);
+    --ju-color-surface-active: rgba(27, 130, 255, 0.15);
+    --ju-color-surface-active-text: #60a5fa;
+    --ju-color-border: var(--ju-color-gray-800);
+    --ju-color-border-strong: var(--ju-color-gray-700);
+
+    /* Dark glass (inverted) */
+    --ju-glass-bg: rgba(32, 32, 32, 0.60);
+    --ju-glass-bg-strong: rgba(32, 32, 32, 0.80);
+    --ju-glass-border: rgba(255, 255, 255, 0.10);
+    --ju-glass-shadow:
+      0 4px 6px rgba(0, 0, 0, 0.15),
+      0 10px 15px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+    /* Dark raised glass */
+    --ju-raised-bg: rgba(38, 38, 42, 0.68);
+    --ju-raised-border: 1.5px solid rgba(255, 255, 255, 0.10);
+    --ju-raised-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 2px 6px rgba(0, 0, 0, 0.12),
+      0 8px 24px rgba(0, 0, 0, 0.10),
+      0 16px 44px rgba(0, 0, 0, 0.08);
+    --ju-raised-shadow-hover:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 4px 8px rgba(0, 0, 0, 0.14),
+      0 10px 28px rgba(0, 0, 0, 0.12),
+      0 20px 52px rgba(0, 0, 0, 0.10);
+  }
 }

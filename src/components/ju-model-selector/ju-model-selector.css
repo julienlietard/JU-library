@@ -1,0 +1,293 @@
+/* ============================================
+   JUModelSelector — Ollama Model Manager
+   Glassmorphism 2.0 · White-First · Squircle
+   ============================================ */
+
+.ju-model-selector {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  max-width: 100%;
+  font-family: var(--ju-font-family);
+}
+
+/* --- Header --- */
+
+.ju-model-selector__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ju-space-sm) var(--ju-space-md);
+  border-bottom: 1px solid var(--ju-glass-border);
+}
+
+.ju-model-selector__title {
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-semibold);
+  color: var(--ju-color-text-heading);
+  letter-spacing: 0.02em;
+}
+
+.ju-model-selector__active-badge {
+  font-size: 0.65rem;
+  font-weight: var(--ju-font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ju-color-success);
+  padding: 2px 8px;
+  border-radius: var(--ju-radius-full);
+  border: 1px solid rgba(0, 180, 54, 0.20);
+  background: rgba(0, 180, 54, 0.06);
+}
+
+/* --- Body --- */
+
+.ju-model-selector__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ju-space-sm);
+  padding: var(--ju-space-md);
+}
+
+.ju-model-selector__error {
+  font-size: var(--ju-font-size-xs);
+  color: var(--ju-color-danger);
+  text-align: center;
+  padding: 6px 12px;
+  border-radius: var(--ju-radius-md);
+  background: rgba(255, 59, 92, 0.06);
+  border: 1px solid rgba(255, 59, 92, 0.12);
+}
+
+/* --- Custom select trigger --- */
+
+.ju-model-selector__select-wrap {
+  position: relative;
+}
+
+.ju-model-selector__select {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: var(--ju-space-xs);
+  padding: 10px 12px;
+  border: 1.5px solid var(--ju-glass-border);
+  border-radius: var(--ju-radius-lg);
+  background: var(--ju-color-surface-muted);
+  color: var(--ju-color-text-body);
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-sm);
+  cursor: pointer;
+  transition:
+    border-color var(--ju-duration-fast) ease,
+    background var(--ju-duration-fast) ease,
+    box-shadow var(--ju-duration-fast) ease;
+}
+
+.ju-model-selector__select:hover {
+  border-color: var(--ju-color-border-strong);
+  background: var(--ju-color-surface-hover);
+}
+
+.ju-model-selector__select--open {
+  border-color: var(--ju-color-primary);
+  box-shadow: 0 0 0 3px rgba(27, 130, 255, 0.10);
+}
+
+.ju-model-selector__select:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.ju-model-selector__select-text {
+  flex: 1;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ju-model-selector__size {
+  font-size: var(--ju-font-size-xs);
+  color: var(--ju-color-text-muted);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+.ju-model-selector__chevron {
+  display: flex;
+  color: var(--ju-color-gray-400);
+  transition: transform var(--ju-duration-fast) var(--ju-ease-out);
+  flex-shrink: 0;
+}
+
+.ju-model-selector__chevron--up {
+  transform: rotate(180deg);
+}
+
+/* --- Dropdown (portaled to body) --- */
+
+.ju-model-selector__dropdown {
+  z-index: 9999;
+  list-style: none;
+  margin: 0;
+  padding: 6px;
+  border: 1.5px solid rgba(0, 0, 0, 0.06);
+  border-radius: var(--ju-radius-xl, 20px);
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    0 12px 40px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  max-height: 240px;
+  overflow-y: auto;
+  animation: ju-ms-dropdown-in 0.18s var(--ju-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) both;
+}
+
+/* --- Options --- */
+
+.ju-model-selector__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  cursor: pointer;
+  border-radius: var(--ju-radius-md, 12px);
+  transition:
+    background var(--ju-duration-fast) ease,
+    color var(--ju-duration-fast) ease;
+}
+
+.ju-model-selector__option:hover,
+.ju-model-selector__option--focused {
+  background: var(--ju-color-surface-hover, rgba(0, 0, 0, 0.04));
+}
+
+.ju-model-selector__option--active {
+  background: var(--ju-color-primary, #1b82ff);
+  color: #fff;
+}
+
+.ju-model-selector__option--active:hover,
+.ju-model-selector__option--active.ju-model-selector__option--focused {
+  background: var(--ju-color-primary-hover, #0066e6);
+}
+
+.ju-model-selector__option-name {
+  font-size: var(--ju-font-size-sm);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ju-model-selector__option--active .ju-model-selector__option-name {
+  color: #fff;
+  font-weight: var(--ju-font-weight-semibold);
+}
+
+.ju-model-selector__option-size {
+  font-size: var(--ju-font-size-xs);
+  color: var(--ju-color-text-muted);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+  margin-left: var(--ju-space-sm);
+}
+
+.ju-model-selector__option--active .ju-model-selector__option-size {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* --- Eject button --- */
+
+.ju-model-selector__eject {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  align-self: flex-end;
+  padding: 6px 14px;
+  border: 1.5px solid rgba(255, 59, 92, 0.3);
+  border-radius: var(--ju-radius-lg);
+  background: rgba(255, 59, 92, 0.04);
+  color: var(--ju-color-danger);
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-xs);
+  font-weight: var(--ju-font-weight-medium);
+  cursor: pointer;
+  transition:
+    background var(--ju-duration-fast) ease,
+    border-color var(--ju-duration-fast) ease,
+    box-shadow var(--ju-duration-fast) ease;
+}
+
+.ju-model-selector__eject:hover {
+  background: rgba(255, 59, 92, 0.08);
+  border-color: rgba(255, 59, 92, 0.45);
+  box-shadow: 0 0 0 3px rgba(255, 59, 92, 0.06);
+}
+
+.ju-model-selector__eject:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.ju-model-selector__eject--busy {
+  border-style: dashed;
+}
+
+/* --- Animations --- */
+
+@keyframes ju-ms-dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* --- Scrollbar (dropdown) --- */
+
+.ju-model-selector__dropdown::-webkit-scrollbar {
+  width: 4px;
+}
+
+.ju-model-selector__dropdown::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ju-model-selector__dropdown::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+/* --- Dark mode --- */
+
+[data-theme="dark"] .ju-model-selector__dropdown,
+@media (prefers-color-scheme: dark) {
+  .ju-model-selector__dropdown {
+    background: rgba(28, 28, 32, 0.92);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.25),
+      0 12px 40px rgba(0, 0, 0, 0.20),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .ju-model-selector__option:hover,
+  .ju-model-selector__option--focused {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .ju-model-selector__option-size {
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  .ju-model-selector__dropdown::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+  }
+}
