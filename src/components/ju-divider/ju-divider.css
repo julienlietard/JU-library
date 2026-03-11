@@ -20,10 +20,10 @@ hr.ju-divider {
 .ju-divider--lg { margin: 3rem 0; }
 
 /* --- Variants (no label) --- */
-hr.ju-divider--solid { background: var(--ju-color-gray-200); }
-hr.ju-divider--dashed { background: none; border-top: 1px dashed var(--ju-color-gray-300); height: 0; }
-hr.ju-divider--gradient { background: linear-gradient(90deg, transparent, var(--ju-color-gray-300), transparent); }
-hr.ju-divider--dot { background: none; border-top: 2px dotted var(--ju-color-gray-300); height: 0; }
+hr.ju-divider--solid { background: #e5e7eb; }
+hr.ju-divider--dashed { background: none; border-top: 1px dashed rgba(0, 0, 0, 0.06); height: 0; }
+hr.ju-divider--gradient { background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.06), transparent); }
+hr.ju-divider--dot { background: none; border-top: 2px dotted rgba(0, 0, 0, 0.06); height: 0; }
 
 /* --- With label (div wrapper) --- */
 .ju-divider__line {
@@ -31,10 +31,10 @@ hr.ju-divider--dot { background: none; border-top: 2px dotted var(--ju-color-gra
   height: 1px;
 }
 
-.ju-divider--solid .ju-divider__line { background: var(--ju-color-gray-200); }
-.ju-divider--dashed .ju-divider__line { border-top: 1px dashed var(--ju-color-gray-300); }
-.ju-divider--gradient .ju-divider__line { background: linear-gradient(90deg, transparent, var(--ju-color-gray-300)); }
-.ju-divider--gradient .ju-divider__line:last-child { background: linear-gradient(90deg, var(--ju-color-gray-300), transparent); }
+.ju-divider--solid .ju-divider__line { background: #e5e7eb; }
+.ju-divider--dashed .ju-divider__line { border-top: 1px dashed rgba(0, 0, 0, 0.06); }
+.ju-divider--gradient .ju-divider__line { background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.06)); }
+.ju-divider--gradient .ju-divider__line:last-child { background: linear-gradient(90deg, rgba(0, 0, 0, 0.06), transparent); }
 
 .ju-divider__label {
   padding: 0 1rem;
@@ -43,6 +43,6 @@ hr.ju-divider--dot { background: none; border-top: 2px dotted var(--ju-color-gra
   font-weight: var(--ju-font-weight-semibold);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--ju-color-gray-400);
+  color: #111827;
   white-space: nowrap;
 }

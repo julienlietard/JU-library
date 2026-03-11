@@ -1,0 +1,167 @@
+/* ============================================
+   JUBioSync — Health Data Widget
+   Glassmorphism 2.0 · White-First
+   ============================================ */
+
+.ju-bio-sync {
+  display: flex;
+  flex-direction: column;
+  width: 340px;
+  max-width: 100%;
+  font-family: var(--ju-font-family);
+}
+
+/* --- Header --- */
+
+.ju-bio-sync__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ju-space-sm) var(--ju-space-md);
+  border-bottom: 1px solid var(--ju-glass-border);
+}
+
+.ju-bio-sync__title {
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-semibold);
+  color: var(--ju-color-text-heading);
+  letter-spacing: 0.02em;
+}
+
+.ju-bio-sync__date {
+  font-size: var(--ju-font-size-xs);
+  color: var(--ju-color-text-muted);
+  text-transform: capitalize;
+}
+
+/* --- Body --- */
+
+.ju-bio-sync__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ju-space-md);
+  padding: var(--ju-space-md);
+}
+
+.ju-bio-sync__error {
+  font-size: var(--ju-font-size-xs);
+  color: var(--ju-color-danger);
+  text-align: center;
+  padding: var(--ju-space-xs) 0;
+}
+
+/* --- Metric --- */
+
+.ju-bio-sync__metric {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ju-bio-sync__metric-row {
+  display: flex;
+  align-items: center;
+  gap: var(--ju-space-sm);
+}
+
+.ju-bio-sync__icon {
+  flex-shrink: 0;
+  color: var(--ju-color-gray-400);
+  transition: color var(--ju-duration-fast) ease;
+}
+
+.ju-bio-sync__icon--moon {
+  color: #a78bfa;
+}
+
+.ju-bio-sync__icon--shoe {
+  color: var(--ju-color-success);
+}
+
+.ju-bio-sync__metric-info {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ju-space-sm);
+  flex: 1;
+}
+
+.ju-bio-sync__metric-label {
+  font-size: var(--ju-font-size-sm);
+  color: var(--ju-color-text-muted);
+}
+
+.ju-bio-sync__metric-value {
+  font-size: var(--ju-font-size-lg);
+  font-weight: var(--ju-font-weight-bold);
+  color: var(--ju-color-text-heading);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* --- Progress bar --- */
+
+.ju-bio-sync__bar {
+  height: 5px;
+  border-radius: var(--ju-radius-full);
+  background: var(--ju-track-bg);
+  overflow: hidden;
+}
+
+.ju-bio-sync__bar-fill {
+  height: 100%;
+  border-radius: var(--ju-radius-full);
+  transition: width 0.6s var(--ju-ease-out);
+  min-width: 0;
+}
+
+.ju-bio-sync__bar-fill--sleep {
+  background: #a78bfa;
+}
+
+.ju-bio-sync__bar-fill--steps {
+  background: var(--ju-color-success);
+}
+
+/* --- Tip zone --- */
+
+.ju-bio-sync__tip {
+  padding: var(--ju-space-sm) var(--ju-space-md);
+  border-top: 1px solid var(--ju-glass-border);
+  border-radius: 0 0 var(--ju-radius-xl) var(--ju-radius-xl);
+  transition: background var(--ju-duration-normal) ease;
+}
+
+.ju-bio-sync__tip--neutral {
+  background: var(--ju-color-surface-muted);
+}
+
+.ju-bio-sync__tip--success {
+  background: rgba(0, 180, 54, 0.06);
+}
+
+.ju-bio-sync__tip--warn-sleep {
+  background: rgba(167, 139, 250, 0.08);
+}
+
+.ju-bio-sync__tip--warn-steps {
+  background: rgba(255, 184, 0, 0.06);
+}
+
+.ju-bio-sync__tip-text {
+  font-size: var(--ju-font-size-sm);
+  line-height: 1.55;
+  color: var(--ju-color-text-muted);
+  display: block;
+}
+
+.ju-bio-sync__tip--success .ju-bio-sync__tip-text {
+  color: var(--ju-color-success);
+}
+
+.ju-bio-sync__tip--warn-sleep .ju-bio-sync__tip-text {
+  color: #7c3aed;
+}
+
+.ju-bio-sync__tip--warn-steps .ju-bio-sync__tip-text {
+  color: #b45309;
+}

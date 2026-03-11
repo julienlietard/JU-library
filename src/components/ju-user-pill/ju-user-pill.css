@@ -1,0 +1,75 @@
+/* ============================================
+   JUUserPill — Profile Pill
+   Glassmorphism 2.0 · White-First
+   ============================================ */
+
+.ju-user-pill {
+  display: inline-flex;
+  align-items: center;
+  background: var(--ju-raised-bg);
+  backdrop-filter: blur(var(--ju-raised-blur));
+  -webkit-backdrop-filter: blur(var(--ju-raised-blur));
+  border: var(--ju-raised-border);
+  border-radius: var(--ju-radius-full);
+  padding: 4px 12px 4px 4px;
+  gap: 8px;
+  box-shadow: var(--ju-raised-shadow);
+  font-family: var(--ju-font-family);
+  transition: box-shadow var(--ju-duration-fast) ease, transform var(--ju-duration-fast) ease;
+}
+
+.ju-user-pill:hover {
+  box-shadow: var(--ju-raised-shadow-hover);
+}
+
+.ju-user-pill__avatar-container {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.ju-user-pill__avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ju-user-pill__avatar-fallback {
+  width: 100%;
+  height: 100%;
+  background: var(--ju-color-surface-muted);
+  color: var(--ju-color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: var(--ju-font-weight-semibold);
+}
+
+.ju-user-pill__name {
+  font-size: 0.9rem;
+  font-weight: var(--ju-font-weight-semibold);
+  color: var(--ju-color-text-heading);
+  white-space: nowrap;
+}
+
+.ju-user-pill__dismiss {
+  background: none;
+  border: none;
+  padding: 2px;
+  margin-left: 2px;
+  cursor: pointer;
+  color: var(--ju-color-gray-400);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--ju-duration-fast) ease, background var(--ju-duration-fast) ease;
+}
+
+.ju-user-pill__dismiss:hover {
+  color: var(--ju-color-gray-700);
+  background: var(--ju-color-surface-muted);
+}

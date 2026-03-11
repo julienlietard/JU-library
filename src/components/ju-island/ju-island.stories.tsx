@@ -5,8 +5,8 @@ import { JUIsland } from './ju-island';
 const demoLinks = [
   { id: 'intro', label: 'Introduction', href: '#intro' },
   { id: 'context', label: 'Contexte', href: '#context' },
-  { id: 'method', label: 'Méthodologie', href: '#method' },
-  { id: 'results', label: 'Résultats', href: '#results' },
+  { id: 'method', label: 'Methodologie', href: '#method' },
+  { id: 'results', label: 'Resultats', href: '#results' },
   { id: 'discussion', label: 'Discussion', href: '#discussion' },
   { id: 'conclusion', label: 'Conclusion', href: '#conclusion' },
 ];
@@ -41,10 +41,10 @@ const meta: Meta<typeof JUIsland> = {
 export default meta;
 type Story = StoryObj<typeof JUIsland>;
 
-/* ── Default ── */
+/* ── Par defaut ── */
 export const Default: Story = {
   args: {
-    sectionLabel: 'Méthodologie',
+    sectionLabel: 'Methodologie',
     progress: 45,
     links: demoLinks,
     activeId: 'method',
@@ -52,7 +52,7 @@ export const Default: Story = {
   },
 };
 
-/* ── Empty (no progress) ── */
+/* ── Vide (pas de progression) ── */
 export const Empty: Story = {
   args: {
     sectionLabel: 'Accueil',
@@ -62,7 +62,7 @@ export const Empty: Story = {
   },
 };
 
-/* ── Full progress ── */
+/* ── Progression complete ── */
 export const Complete: Story = {
   args: {
     sectionLabel: 'Contact',
@@ -72,10 +72,10 @@ export const Complete: Story = {
   },
 };
 
-/* ── Custom color ── */
+/* ── Couleur personnalisee ── */
 export const CustomColor: Story = {
   args: {
-    sectionLabel: 'Workspace',
+    sectionLabel: 'Espace de travail',
     progress: 72,
     links: demoLinks,
     progressColor: '#00b436',
@@ -83,15 +83,15 @@ export const CustomColor: Story = {
   },
 };
 
-/* ── Interactive slider demo ── */
+/* ── Demo interactive avec curseur ── */
 const InteractiveDemo = () => {
   const [progress, setProgress] = useState(0);
 
   const sections = [
     { threshold: 15, label: 'Introduction', id: 'intro' },
     { threshold: 30, label: 'Contexte', id: 'context' },
-    { threshold: 50, label: 'Méthodologie', id: 'method' },
-    { threshold: 70, label: 'Résultats', id: 'results' },
+    { threshold: 50, label: 'Methodologie', id: 'method' },
+    { threshold: 70, label: 'Resultats', id: 'results' },
     { threshold: 88, label: 'Discussion', id: 'discussion' },
     { threshold: 101, label: 'Conclusion', id: 'conclusion' },
   ];
@@ -139,7 +139,7 @@ const InteractiveDemo = () => {
         }}
       >
         <label style={{ fontSize: '0.9rem', fontWeight: 500 }}>
-          Simulate scroll:
+          Simuler le defilement :
         </label>
         <input
           type="range"

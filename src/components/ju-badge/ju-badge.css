@@ -1,66 +1,288 @@
 /* ============================================
-   JUBadge — Passion/Skill Tags
+   JUBadge — Polished badge system
+   Variants · Effects · Icon backgrounds
    ============================================ */
 
 .ju-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  font-family: var(--ju-font-family);
-  font-size: var(--ju-font-size-sm);
-  font-weight: var(--ju-font-weight-medium);
-  padding: 0.4rem 0.9rem;
-  border-radius: var(--ju-radius-full);
-  color: var(--ju-color-white);
+  font-family: var(--ju-font-family, system-ui, -apple-system, sans-serif);
+  font-weight: var(--ju-font-weight-semibold, 600);
+  letter-spacing: -0.01em;
+  line-height: 1;
   user-select: none;
+  white-space: nowrap;
+  border: 1.5px solid transparent;
+  position: relative;
+  overflow: hidden;
   transition:
-    transform 0.2s var(--ju-ease-bounce),
-    box-shadow 0.2s ease;
+    background var(--ju-duration-fast, 150ms) var(--ju-ease-smooth, ease),
+    color var(--ju-duration-fast, 150ms) var(--ju-ease-smooth, ease),
+    box-shadow var(--ju-duration-normal, 300ms) var(--ju-ease-smooth, ease),
+    transform var(--ju-duration-fast, 150ms) var(--ju-ease-bounce, ease),
+    border-color var(--ju-duration-fast, 150ms) var(--ju-ease-smooth, ease);
 }
 
-.ju-badge:hover {
-  transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+/* ========================
+   SIZE VARIANTS
+   ======================== */
+.ju-badge--xs {
+  font-size: 0.6875rem;
+  padding: 3px 8px;
+  gap: 4px;
+  border-radius: var(--ju-radius-sm, 8px);
+}
+.ju-badge--sm {
+  font-size: 0.75rem;
+  padding: 5px 10px;
+  gap: 5px;
+  border-radius: var(--ju-radius-sm, 8px);
+}
+.ju-badge--md {
+  font-size: 0.875rem;
+  padding: 8px 14px;
+  gap: 7px;
+  border-radius: var(--ju-radius-md, 14px);
+}
+.ju-badge--lg {
+  font-size: 1rem;
+  padding: 10px 18px;
+  gap: 8px;
+  border-radius: 16px;
 }
 
+/* Pill override */
+.ju-badge--pill {
+  border-radius: var(--ju-radius-full, 999px);
+}
+
+/* ========================
+   ICON
+   ======================== */
 .ju-badge__icon {
   display: inline-flex;
-  font-size: 1.15em;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1em;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
-/* --- Color variants (portfolio passion colors) --- */
+/* Icon with circle background — like the design reference */
+.ju-badge__icon--bg {
+  border-radius: var(--ju-radius-sm, 8px);
+  padding: 4px;
+  font-size: 1em;
+}
+.ju-badge--xs .ju-badge__icon--bg { padding: 2px; border-radius: 5px; }
+.ju-badge--sm .ju-badge__icon--bg { padding: 3px; border-radius: 6px; }
+.ju-badge--md .ju-badge__icon--bg { padding: 4px; border-radius: 7px; }
+.ju-badge--lg .ju-badge__icon--bg { padding: 5px; border-radius: 8px; }
 
-.ju-badge--default { background-color: #666; }
-.ju-badge--default:hover { background-color: #555; }
+/* ========================
+   DOT INDICATOR
+   ======================== */
+.ju-badge__dot {
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: ju-badge-dot-pulse 2s ease-in-out infinite;
+}
+.ju-badge--xs .ju-badge__dot { width: 5px; height: 5px; }
+.ju-badge--sm .ju-badge__dot { width: 6px; height: 6px; }
+.ju-badge--md .ju-badge__dot { width: 7px; height: 7px; }
+.ju-badge--lg .ju-badge__dot { width: 8px; height: 8px; }
 
-.ju-badge--green { background-color: seagreen; }
-.ju-badge--green:hover { background-color: #246b43; }
+@keyframes ju-badge-dot-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
 
-.ju-badge--blue { background-color: royalblue; }
-.ju-badge--blue:hover { background-color: #3454b2; }
+/* ========================
+   REMOVE BUTTON
+   ======================== */
+.ju-badge__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 2px;
+  cursor: pointer;
+  color: currentColor;
+  opacity: 0.5;
+  border-radius: 50%;
+  transition: opacity var(--ju-duration-fast, 150ms) ease, background var(--ju-duration-fast, 150ms) ease;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.ju-badge__remove:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.08);
+}
 
-.ju-badge--purple { background-color: rebeccapurple; }
-.ju-badge--purple:hover { background-color: #4b2671; }
+/* ========================
+   CLICKABLE
+   ======================== */
+.ju-badge--clickable {
+  cursor: pointer;
+}
+.ju-badge--clickable:hover {
+  transform: translateY(-1px);
+}
+.ju-badge--clickable:active {
+  transform: translateY(0) scale(0.97);
+}
+.ju-badge--clickable:focus-visible {
+  outline: 2px solid var(--ju-color-primary, #1b82ff);
+  outline-offset: 2px;
+}
 
-.ju-badge--orange { background-color: rgba(255, 161, 47, 0.85); }
-.ju-badge--orange:hover { background-color: rgba(252, 154, 35, 0.95); }
+/* ================================================================
+   COLOR × VARIANT MATRIX
+   Each color defines:  --_badge-bg, --_badge-fg, --_badge-accent
+   Variants consume these vars for consistent theming.
+   ================================================================ */
 
-.ju-badge--red { background-color: #e74c3c; }
-.ju-badge--red:hover { background-color: #c0392b; }
+/* --- Color palettes --- */
+.ju-badge--default  { --_badge-bg: #F1F5F9; --_badge-fg: #334155; --_badge-accent: #64748B; --_badge-border: #CBD5E1; --_badge-icon-bg: rgba(100,116,139,0.12); }
+.ju-badge--blue     { --_badge-bg: #EFF6FF; --_badge-fg: #1D4ED8; --_badge-accent: #3B82F6; --_badge-border: #93C5FD; --_badge-icon-bg: rgba(59,130,246,0.12); }
+.ju-badge--green    { --_badge-bg: #ECFDF5; --_badge-fg: #00b36b; --_badge-accent: #10B981; --_badge-border: #6EE7B7; --_badge-icon-bg: rgba(16,185,129,0.12); }
+.ju-badge--purple   { --_badge-bg: #F5F3FF; --_badge-fg: #6D28D9; --_badge-accent: #8B5CF6; --_badge-border: #C4B5FD; --_badge-icon-bg: rgba(139,92,246,0.12); }
+.ju-badge--orange   { --_badge-bg: #FFF7ED; --_badge-fg: #C2410C; --_badge-accent: #F97316; --_badge-border: #FDBA74; --_badge-icon-bg: rgba(249,115,22,0.12); }
+.ju-badge--red      { --_badge-bg: #FEF2F2; --_badge-fg: #B91C1C; --_badge-accent: #EF4444; --_badge-border: #FCA5A5; --_badge-icon-bg: rgba(239,68,68,0.12); }
+.ju-badge--pink     { --_badge-bg: #FDF2F8; --_badge-fg: #BE185D; --_badge-accent: #EC4899; --_badge-border: #F9A8D4; --_badge-icon-bg: rgba(236,72,153,0.12); }
+.ju-badge--yellow   { --_badge-bg: #FEFCE8; --_badge-fg: #A16207; --_badge-accent: #EAB308; --_badge-border: #FDE047; --_badge-icon-bg: rgba(234,179,8,0.12); }
+.ju-badge--cyan     { --_badge-bg: #ECFEFF; --_badge-fg: #0E7490; --_badge-accent: #06B6D4; --_badge-border: #67E8F9; --_badge-icon-bg: rgba(6,182,212,0.12); }
 
-.ju-badge--pink { background-color: #e91e90; }
-.ju-badge--pink:hover { background-color: #c2185b; }
+/* --- SOFT variant (default) — pastel bg, bold text --- */
+.ju-badge--soft {
+  background: var(--_badge-bg);
+  color: var(--_badge-fg);
+}
+.ju-badge--soft .ju-badge__dot { background: var(--_badge-accent); }
+.ju-badge--soft .ju-badge__icon--bg { background: var(--_badge-icon-bg); }
 
-/* --- Glass variant (dark bg) --- */
+/* --- SOLID variant — filled bg, white text --- */
+.ju-badge--solid {
+  background: var(--_badge-accent);
+  color: #fff;
+}
+.ju-badge--solid .ju-badge__dot { background: rgba(255,255,255,0.7); }
+.ju-badge--solid .ju-badge__icon--bg { background: rgba(255,255,255,0.2); }
+.ju-badge--solid.ju-badge--yellow { color: #422006; }
+.ju-badge--solid.ju-badge--yellow .ju-badge__dot { background: rgba(0,0,0,0.3); }
 
+/* --- OUTLINE variant — transparent bg, colored border --- */
+.ju-badge--outline {
+  background: transparent;
+  color: var(--_badge-fg);
+  border-color: var(--_badge-border);
+}
+.ju-badge--outline .ju-badge__dot { background: var(--_badge-accent); }
+.ju-badge--outline .ju-badge__icon--bg { background: var(--_badge-icon-bg); }
+
+/* --- GHOST variant — no bg, subtle hover --- */
+.ju-badge--ghost {
+  background: transparent;
+  color: var(--_badge-fg);
+}
+.ju-badge--ghost .ju-badge__dot { background: var(--_badge-accent); }
+.ju-badge--ghost .ju-badge__icon--bg { background: var(--_badge-icon-bg); }
+.ju-badge--ghost.ju-badge--clickable:hover {
+  background: var(--_badge-bg);
+}
+
+/* ========================
+   GLASS VARIANT (override)
+   ======================== */
 .ju-badge--glass {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px dashed rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: var(--ju-glass-bg, rgba(255,255,255,0.6)) !important;
+  color: var(--ju-color-text, #334155);
+  border-color: var(--ju-glass-border, rgba(0,0,0,0.06));
+  backdrop-filter: blur(var(--ju-glass-blur, 20px));
+  -webkit-backdrop-filter: blur(var(--ju-glass-blur, 20px));
+  box-shadow: var(--ju-glass-shadow);
 }
 
-.ju-badge--glass:hover {
-  background: rgba(255, 255, 255, 0.13) !important;
-  border-color: rgba(255, 255, 255, 0.3);
+/* ========================
+   EFFECTS
+   ======================== */
+
+/* --- Glow — colored shadow on hover --- */
+.ju-badge--effect-glow:hover {
+  box-shadow: 0 0 16px 2px color-mix(in srgb, var(--_badge-accent) 35%, transparent);
+}
+.ju-badge--effect-glow.ju-badge--solid:hover {
+  box-shadow: 0 0 20px 4px color-mix(in srgb, var(--_badge-accent) 45%, transparent);
+}
+
+/* --- Pulse — breathing scale --- */
+.ju-badge--effect-pulse {
+  animation: ju-badge-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes ju-badge-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+/* --- Shine — light sweep --- */
+.ju-badge__shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255,255,255,0.5) 45%,
+    rgba(255,255,255,0.7) 50%,
+    rgba(255,255,255,0.5) 55%,
+    transparent 70%
+  );
+  transform: translateX(-110%);
+  pointer-events: none;
+}
+.ju-badge--effect-shine:hover .ju-badge__shine {
+  animation: ju-badge-shine 0.7s ease-out forwards;
+}
+@keyframes ju-badge-shine {
+  to { transform: translateX(110%); }
+}
+
+/* --- Float — subtle levitation --- */
+.ju-badge--effect-float {
+  animation: ju-badge-float 3s ease-in-out infinite;
+}
+@keyframes ju-badge-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* ========================
+   DARK MODE
+   ======================== */
+[data-theme="dark"] .ju-badge--default  { --_badge-bg: rgba(148,163,184,0.12); --_badge-fg: #CBD5E1; --_badge-accent: #94A3B8; --_badge-border: #475569; --_badge-icon-bg: rgba(148,163,184,0.15); }
+[data-theme="dark"] .ju-badge--blue     { --_badge-bg: rgba(59,130,246,0.12);  --_badge-fg: #93C5FD; --_badge-accent: #3B82F6; --_badge-border: #1D4ED8; --_badge-icon-bg: rgba(59,130,246,0.18); }
+[data-theme="dark"] .ju-badge--green    { --_badge-bg: rgba(16,185,129,0.12);  --_badge-fg: #6EE7B7; --_badge-accent: #10B981; --_badge-border: #047857; --_badge-icon-bg: rgba(16,185,129,0.18); }
+[data-theme="dark"] .ju-badge--purple   { --_badge-bg: rgba(139,92,246,0.12);  --_badge-fg: #C4B5FD; --_badge-accent: #8B5CF6; --_badge-border: #6D28D9; --_badge-icon-bg: rgba(139,92,246,0.18); }
+[data-theme="dark"] .ju-badge--orange   { --_badge-bg: rgba(249,115,22,0.12);  --_badge-fg: #FDBA74; --_badge-accent: #F97316; --_badge-border: #C2410C; --_badge-icon-bg: rgba(249,115,22,0.18); }
+[data-theme="dark"] .ju-badge--red      { --_badge-bg: rgba(239,68,68,0.12);   --_badge-fg: #FCA5A5; --_badge-accent: #EF4444; --_badge-border: #B91C1C; --_badge-icon-bg: rgba(239,68,68,0.18); }
+[data-theme="dark"] .ju-badge--pink     { --_badge-bg: rgba(236,72,153,0.12);  --_badge-fg: #F9A8D4; --_badge-accent: #EC4899; --_badge-border: #BE185D; --_badge-icon-bg: rgba(236,72,153,0.18); }
+[data-theme="dark"] .ju-badge--yellow   { --_badge-bg: rgba(234,179,8,0.12);   --_badge-fg: #FDE047; --_badge-accent: #EAB308; --_badge-border: #A16207; --_badge-icon-bg: rgba(234,179,8,0.18); }
+[data-theme="dark"] .ju-badge--cyan     { --_badge-bg: rgba(6,182,212,0.12);   --_badge-fg: #67E8F9; --_badge-accent: #06B6D4; --_badge-border: #0E7490; --_badge-icon-bg: rgba(6,182,212,0.18); }
+
+[data-theme="dark"] .ju-badge--solid.ju-badge--yellow { color: #422006; }
+[data-theme="dark"] .ju-badge__remove:hover { background: rgba(255,255,255,0.12); }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .ju-badge--default  { --_badge-bg: rgba(148,163,184,0.12); --_badge-fg: #CBD5E1; --_badge-accent: #94A3B8; --_badge-border: #475569; --_badge-icon-bg: rgba(148,163,184,0.15); }
+  :root:not([data-theme="light"]) .ju-badge--blue     { --_badge-bg: rgba(59,130,246,0.12);  --_badge-fg: #93C5FD; --_badge-accent: #3B82F6; --_badge-border: #1D4ED8; --_badge-icon-bg: rgba(59,130,246,0.18); }
+  :root:not([data-theme="light"]) .ju-badge--green    { --_badge-bg: rgba(16,185,129,0.12);  --_badge-fg: #6EE7B7; --_badge-accent: #10B981; --_badge-border: #047857; --_badge-icon-bg: rgba(16,185,129,0.18); }
+  :root:not([data-theme="light"]) .ju-badge--purple   { --_badge-bg: rgba(139,92,246,0.12);  --_badge-fg: #C4B5FD; --_badge-accent: #8B5CF6; --_badge-border: #6D28D9; --_badge-icon-bg: rgba(139,92,246,0.18); }
+  :root:not([data-theme="light"]) .ju-badge--orange   { --_badge-bg: rgba(249,115,22,0.12);  --_badge-fg: #FDBA74; --_badge-accent: #F97316; --_badge-border: #C2410C; --_badge-icon-bg: rgba(249,115,22,0.18); }
+  :root:not([data-theme="light"]) .ju-badge--red      { --_badge-bg: rgba(239,68,68,0.12);   --_badge-fg: #FCA5A5; --_badge-accent: #EF4444; --_badge-border: #B91C1C; --_badge-icon-bg: rgba(239,68,68,0.18); }
+  :root:not([data-theme="light"]) .ju-badge--pink     { --_badge-bg: rgba(236,72,153,0.12);  --_badge-fg: #F9A8D4; --_badge-accent: #EC4899; --_badge-border: #BE185D; --_badge-icon-bg: rgba(236,72,153,0.18); }
+  :root:not([data-theme="light"]) .ju-badge--yellow   { --_badge-bg: rgba(234,179,8,0.12);   --_badge-fg: #FDE047; --_badge-accent: #EAB308; --_badge-border: #A16207; --_badge-icon-bg: rgba(234,179,8,0.18); }
+  :root:not([data-theme="light"]) .ju-badge--cyan     { --_badge-bg: rgba(6,182,212,0.12);   --_badge-fg: #67E8F9; --_badge-accent: #06B6D4; --_badge-border: #0E7490; --_badge-icon-bg: rgba(6,182,212,0.18); }
+  :root:not([data-theme="light"]) .ju-badge__remove:hover { background: rgba(255,255,255,0.12); }
 }

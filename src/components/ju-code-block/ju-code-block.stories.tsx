@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUCodeBlock } from './ju-code-block';
 
 const meta: Meta<typeof JUCodeBlock> = {
-  title: 'Content/JUCodeBlock',
+  title: 'Contenu/JUCodeBlock',
   component: JUCodeBlock,
   tags: ['autodocs'],
   decorators: [(S) => <div style={{ maxWidth: 700, margin: '0 auto', padding: 40 }}><S /></div>],

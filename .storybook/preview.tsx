@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import type { Preview } from '@storybook/react';
+import '@fontsource-variable/inter';
 import '../src/tokens/tokens.css';
 import '../src/styles/reset.css';
 
@@ -24,22 +25,22 @@ const preview: Preview = {
   decorators: [
     (Story, context) => {
       const theme = context.globals.theme ?? 'light';
-      return (
-        <div
-          data-theme={theme}
-          style={{
-            background: theme === 'dark' ? '#18181b' : '#ffffff',
-            color: theme === 'dark' ? '#f4f4f5' : '#18181b',
-            minHeight: '100vh',
-            transition: 'background 0.2s ease, color 0.2s ease',
-          }}
-        >
-          <Story />
-        </div>
-      );
+
+      // Set data-theme on :root so CSS tokens resolve correctly
+      useEffect(() => {
+        document.documentElement.setAttribute('data-theme', theme);
+        document.body.style.background = theme === 'dark' ? '#18181b' : 'transparent';
+        return () => {
+          document.documentElement.removeAttribute('data-theme');
+          document.body.style.background = '';
+        };
+      }, [theme]);
+
+      return <Story />;
     },
   ],
   parameters: {
+    backgrounds: { disable: true },
     controls: {
       matchers: {
         color: /(background|color)$/i,

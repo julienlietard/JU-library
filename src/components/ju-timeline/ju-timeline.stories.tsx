@@ -5,37 +5,37 @@ import { JUTimeline } from './ju-timeline';
 const sampleItems = [
   {
     id: 'exp-1',
-    date: '2023 – Present',
-    title: 'Scrum Master · Full Stack Developer',
-    badge: { label: 'Sopra Steria', color: '#fff5f5' },
-    subtitle: 'Société Générale',
+    date: '2023 – Aujourd\'hui',
+    title: 'Directeur Artistique · Designer UI/UX',
+    badge: { label: 'Studio Créatif', color: '#fff5f5' },
+    subtitle: 'Agence Digitale Paris',
     points: [
-      'Micro-frontends development (React) and back-for-front (Spring).',
-      'DevOps: Kubernetes, Docker, Jenkins.',
-      'Agile ceremonies facilitation (Scrum).',
+      'Conception de systèmes de design (Figma, Storybook).',
+      'Création de maquettes haute-fidélité et prototypes interactifs.',
+      'Animation d\'ateliers de co-conception et revues de design.',
     ],
   },
   {
     id: 'exp-2',
     date: '2021 – 2023',
-    title: 'Apprentice Full Stack Developer',
-    badge: { label: 'Sopra Steria', color: '#fff5f5' },
-    subtitle: 'CNP & SG',
+    title: 'Designer UI · Intégrateur',
+    badge: { label: 'Studio Créatif', color: '#fff5f5' },
+    subtitle: 'Projets E-commerce & SaaS',
     points: [
-      'Spring / React development in a Scrum squad.',
-      'CI/CD on Cloud (Kubernetes).',
-      '.NET + Angular stack for CNP Assurances.',
+      'Développement de composants React avec tokens de design.',
+      'Mise en place de grilles responsives et typographies fluides.',
+      'Harmonisation des palettes de couleurs et iconographies.',
     ],
   },
   {
     id: 'exp-3',
     date: '2020',
-    title: 'Developer Intern',
-    badge: { label: 'EDF', color: '#f6faff' },
-    subtitle: 'Logistics Department',
+    title: 'Stagiaire Designer Graphique',
+    badge: { label: 'Atelier Visuel', color: '#f6faff' },
+    subtitle: 'Département Communication',
     points: [
-      'Web business application design.',
-      'Documentation and specifications.',
+      'Création d\'identités visuelles et chartes graphiques.',
+      'Rédaction de spécifications et documentation design.',
     ],
   },
 ];
@@ -44,19 +44,19 @@ const educationItems = [
   {
     id: 'edu-1',
     date: '2021 – 2023',
-    title: 'Master MIAGE, SIR option',
-    badge: { label: "Université d'Orléans", color: '#beffe53d' },
-    subtitle: "Université d'Orléans",
+    title: 'Master Design d\'Interaction',
+    badge: { label: 'École de Design', color: '#beffe53d' },
+    subtitle: 'École Supérieure de Design Numérique',
     points: [
-      'Event manager at BDE @AMIGO.',
-      'Cryptography, networking, Big Data, data-mining, entrepreneurship…',
+      'Spécialisation en design de systèmes et accessibilité.',
+      'Typographie avancée, théorie des couleurs, grilles modulaires…',
     ],
   },
   {
     id: 'edu-2',
     date: '2020 – 2021',
-    title: 'Licence MIAGE',
-    badge: { label: "Université d'Orléans", color: '#beffe53d' },
+    title: 'Licence Arts Visuels & Multimédia',
+    badge: { label: 'École de Design', color: '#beffe53d' },
   },
 ];
 
@@ -82,12 +82,12 @@ export const FullPage: Story = {
   render: () => (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem' }}>
       <p style={{ fontSize: '0.85rem', fontWeight: 600, textTransform: 'uppercase', color: '#666', letterSpacing: '0.03em' }}>
-        Professional Experience
+        Expérience Professionnelle
       </p>
       <JUTimeline items={sampleItems} accordion />
       <hr style={{ border: 'none', height: '1px', background: '#eee', margin: '2.5rem 0' }} />
       <p style={{ fontSize: '0.85rem', fontWeight: 600, textTransform: 'uppercase', color: '#666', letterSpacing: '0.03em' }}>
-        Education
+        Formation
       </p>
       <JUTimeline items={educationItems} accordion />
     </div>

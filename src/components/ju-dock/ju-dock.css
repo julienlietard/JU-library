@@ -1,5 +1,5 @@
 /* ============================================
-   JUDock — Liquid Glass Navigation
+   JUDock — White Glass Navigation
    ============================================ */
 
 .ju-dock {
@@ -50,41 +50,31 @@
 }
 
 /* ============================================
-   Theme: Light (default — portfolio style)
-   Glass clair, icônes sombres
+   Theme: Light (default — white glass)
    ============================================ */
 
 .ju-dock--light {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.35), rgba(245, 245, 245, 0.3));
-  backdrop-filter: blur(7px) saturate(180%);
-  -webkit-backdrop-filter: blur(7px) saturate(180%);
-  box-shadow:
-    inset 0 1px 4px rgba(255, 255, 255, 0.1),
-    inset 0 -4px 6px rgba(0, 0, 0, 0.04),
-    0 6px 16px rgba(0, 0, 0, 0.1),
-    0 2px 4px rgba(0, 0, 0, 0.08);
+  background: var(--ju-raised-bg);
+  backdrop-filter: blur(var(--ju-raised-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--ju-raised-blur)) saturate(180%);
+  box-shadow: var(--ju-raised-shadow);
 }
 
 .ju-dock--light::after {
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: var(--ju-raised-border);
 }
 
 .ju-dock--light .ju-dock__item {
-  color: var(--ju-color-black);
+  color: var(--ju-color-gray-900);
 }
 
 .ju-dock--light .ju-dock__item:hover {
-  background: rgba(180, 180, 180, 0.08);
-  box-shadow:
-    inset 0 2px 8px rgba(0, 0, 0, 0.1),
-    inset 0 -2px 6px rgba(255, 255, 255, 0.12);
+  background: #f5f5f7;
 }
 
 .ju-dock--light .ju-dock__item--active {
-  background: rgba(0, 0, 0, 0.08);
-  box-shadow:
-    inset 0 2px 8px rgba(0, 0, 0, 0.1),
-    inset 0 -2px 6px rgba(255, 255, 255, 0.12);
+  background: rgba(27, 130, 255, 0.08);
+  color: var(--ju-color-primary);
 }
 
 /* ============================================

@@ -33,36 +33,36 @@
 }
 
 .ju-callout--note {
-  background: #f9fafb;
+  background: rgba(0, 0, 0, 0.02);
   border-left-color: #d1d5db;
 }
 .ju-callout--note .ju-callout__icon { color: #6b7280; }
 .ju-callout--note .ju-callout__title { color: #111827; }
 
 .ju-callout--info {
-  background: #eff6ff;
+  background: rgba(59, 130, 246, 0.05);
   border-left-color: #3b82f6;
 }
 .ju-callout--info .ju-callout__icon { color: #3b82f6; }
-.ju-callout--info .ju-callout__title { color: #1e40af; }
+.ju-callout--info .ju-callout__title { color: #111827; }
 
 .ju-callout--warning {
-  background: #fffbeb;
+  background: rgba(245, 158, 11, 0.05);
   border-left-color: #f59e0b;
 }
 .ju-callout--warning .ju-callout__icon { color: #f59e0b; }
-.ju-callout--warning .ju-callout__title { color: #92400e; }
+.ju-callout--warning .ju-callout__title { color: #111827; }
 
 .ju-callout--success {
-  background: #f0fdf4;
+  background: rgba(34, 197, 94, 0.05);
   border-left-color: #22c55e;
 }
 .ju-callout--success .ju-callout__icon { color: #22c55e; }
-.ju-callout--success .ju-callout__title { color: #166534; }
+.ju-callout--success .ju-callout__title { color: #111827; }
 
 .ju-callout--danger {
-  background: #fef2f2;
+  background: rgba(239, 68, 68, 0.06);
   border-left-color: #ef4444;
 }
 .ju-callout--danger .ju-callout__icon { color: #ef4444; }
-.ju-callout--danger .ju-callout__title { color: #991b1b; }
+.ju-callout--danger .ju-callout__title { color: #111827; }

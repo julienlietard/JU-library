@@ -1,0 +1,217 @@
+/* ============================================
+   JUGlobalContext — Ambient Cockpit Widget
+   Glassmorphism 2.0 · Adaptive UI (Pillar 4)
+   ============================================ */
+
+.ju-global-context {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  max-width: 100%;
+  font-family: var(--ju-font-family);
+  transition: box-shadow var(--ju-duration-normal) var(--ju-ease-smooth),
+              border-color var(--ju-duration-normal) var(--ju-ease-smooth);
+}
+
+/* --- Ambient mood variants (Adaptive UI — Card adapts to context) --- */
+
+.ju-global-context--morning {
+  background: linear-gradient(145deg, rgba(135, 206, 250, 0.35), rgba(255, 223, 186, 0.20));
+  backdrop-filter: blur(var(--ju-glass-blur));
+  -webkit-backdrop-filter: blur(var(--ju-glass-blur));
+}
+
+.ju-global-context--day {
+  background: linear-gradient(145deg, rgba(135, 206, 250, 0.30), rgba(100, 180, 255, 0.20));
+  backdrop-filter: blur(var(--ju-glass-blur));
+  -webkit-backdrop-filter: blur(var(--ju-glass-blur));
+}
+
+.ju-global-context--evening {
+  background: linear-gradient(145deg, rgba(255, 165, 80, 0.30), rgba(200, 100, 150, 0.20));
+  backdrop-filter: blur(var(--ju-glass-blur));
+  -webkit-backdrop-filter: blur(var(--ju-glass-blur));
+}
+
+.ju-global-context--night {
+  background: linear-gradient(145deg, rgba(30, 40, 80, 0.55), rgba(50, 50, 90, 0.40));
+  backdrop-filter: blur(var(--ju-glass-blur));
+  -webkit-backdrop-filter: blur(var(--ju-glass-blur));
+}
+
+/* On ambient variants: text + icons switch to white */
+
+.ju-global-context--morning .ju-global-context__temperature,
+.ju-global-context--day .ju-global-context__temperature,
+.ju-global-context--evening .ju-global-context__temperature,
+.ju-global-context--night .ju-global-context__temperature {
+  color: #ffffff;
+}
+
+.ju-global-context--morning .ju-global-context__condition,
+.ju-global-context--morning .ju-global-context__humidity,
+.ju-global-context--morning .ju-global-context__location,
+.ju-global-context--morning .ju-global-context__air-label,
+.ju-global-context--morning .ju-global-context__air-index,
+.ju-global-context--morning .ju-global-context__sky-icon,
+.ju-global-context--day .ju-global-context__condition,
+.ju-global-context--day .ju-global-context__humidity,
+.ju-global-context--day .ju-global-context__location,
+.ju-global-context--day .ju-global-context__air-label,
+.ju-global-context--day .ju-global-context__air-index,
+.ju-global-context--day .ju-global-context__sky-icon,
+.ju-global-context--evening .ju-global-context__condition,
+.ju-global-context--evening .ju-global-context__humidity,
+.ju-global-context--evening .ju-global-context__location,
+.ju-global-context--evening .ju-global-context__air-label,
+.ju-global-context--evening .ju-global-context__air-index,
+.ju-global-context--evening .ju-global-context__sky-icon,
+.ju-global-context--night .ju-global-context__condition,
+.ju-global-context--night .ju-global-context__humidity,
+.ju-global-context--night .ju-global-context__location,
+.ju-global-context--night .ju-global-context__air-label,
+.ju-global-context--night .ju-global-context__air-index,
+.ju-global-context--night .ju-global-context__sky-icon {
+  color: rgba(255, 255, 255, 0.80);
+}
+
+.ju-global-context--morning .ju-global-context__divider,
+.ju-global-context--day .ju-global-context__divider,
+.ju-global-context--evening .ju-global-context__divider,
+.ju-global-context--night .ju-global-context__divider {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* --- Warning state (bad air quality) --- */
+
+.ju-global-context--warn {
+  border: 1.5px solid var(--ju-color-warning);
+  box-shadow: 0 0 20px rgba(255, 184, 0, 0.12),
+              0 0 4px rgba(255, 184, 0, 0.08);
+}
+
+/* --- Weather section --- */
+
+.ju-global-context__weather {
+  display: flex;
+  align-items: center;
+  gap: var(--ju-space-lg);
+  padding: var(--ju-space-xl) var(--ju-space-xl) var(--ju-space-md);
+}
+
+.ju-global-context__sky-icon {
+  flex-shrink: 0;
+  color: var(--ju-color-gray-400);
+  opacity: 0.85;
+}
+
+.ju-global-context__weather-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.ju-global-context__temperature {
+  font-size: 2rem;
+  font-weight: var(--ju-font-weight-bold);
+  color: var(--ju-color-text-heading);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.ju-global-context__condition {
+  font-size: var(--ju-font-size-xs);
+  font-weight: var(--ju-font-weight-medium);
+  color: var(--ju-color-text-muted);
+  letter-spacing: 0.01em;
+}
+
+.ju-global-context__humidity {
+  flex-shrink: 0;
+  font-size: var(--ju-font-size-xs);
+  font-weight: var(--ju-font-weight-medium);
+  color: var(--ju-color-text-muted);
+  opacity: 0.7;
+}
+
+/* --- Location --- */
+
+.ju-global-context__location {
+  padding: 0 var(--ju-space-xl) var(--ju-space-sm);
+  font-size: var(--ju-font-size-xs);
+  color: var(--ju-color-gray-600);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: var(--ju-font-weight-medium);
+}
+
+/* --- Divider --- */
+
+.ju-global-context__divider {
+  height: 1px;
+  margin: var(--ju-space-sm) var(--ju-space-xl);
+  background: var(--ju-glass-border);
+  opacity: 0.5;
+}
+
+/* --- Air quality section --- */
+
+.ju-global-context__air {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ju-space-md);
+  padding: var(--ju-space-md) var(--ju-space-xl) var(--ju-space-xl);
+}
+
+.ju-global-context__air-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ju-global-context__air-label {
+  font-size: var(--ju-font-size-xs);
+  font-weight: var(--ju-font-weight-medium);
+  color: var(--ju-color-text-muted);
+}
+
+.ju-global-context__air-index {
+  font-size: 0.65rem;
+  color: var(--ju-color-gray-500);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Air quality badge (Pillar 3 — discrete pastel pills) --- */
+
+.ju-global-context__air-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: var(--ju-radius-full);
+  font-size: var(--ju-font-size-xs);
+  font-weight: var(--ju-font-weight-semibold);
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.ju-global-context__air-badge--good {
+  background: rgba(0, 180, 54, 0.08);
+  color: var(--ju-color-success);
+}
+
+.ju-global-context__air-badge--moderate {
+  background: rgba(255, 184, 0, 0.10);
+  color: #b45309;
+}
+
+.ju-global-context__air-badge--unhealthy {
+  background: rgba(255, 59, 92, 0.08);
+  color: var(--ju-color-danger);
+}
+
+.ju-global-context__air-badge--hazardous {
+  background: rgba(175, 82, 222, 0.08);
+  color: var(--ju-color-purple);
+}

@@ -1,0 +1,118 @@
+/* ============================================
+   JUInput — Ultra-clean input · White-First
+   ============================================ */
+
+.ju-input {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-width: 260px;
+  background: rgba(0, 0, 0, 0.03);
+  border: 1.5px solid transparent;
+  border-radius: var(--ju-radius-md);
+  font-family: var(--ju-font-family);
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.ju-input--full {
+  width: 100%;
+}
+
+/* --- States --- */
+
+.ju-input--focused {
+  border-color: var(--ju-color-primary);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px var(--ju-color-primary-soft);
+}
+
+.ju-input--error {
+  border-color: rgba(255, 59, 48, 0.45);
+  background: rgba(255, 59, 48, 0.03);
+}
+
+.ju-input--error.ju-input--focused {
+  box-shadow: 0 0 0 3px rgba(255, 59, 48, 0.08);
+}
+
+.ju-input--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* --- Icon (left) --- */
+
+.ju-input__icon {
+  position: absolute;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  color: var(--ju-color-gray-400);
+  pointer-events: none;
+  transition: color 0.2s ease;
+}
+
+.ju-input--focused .ju-input__icon {
+  color: var(--ju-color-primary);
+}
+
+.ju-input--error .ju-input__icon {
+  color: var(--ju-color-danger);
+}
+
+/* --- Field --- */
+
+.ju-input__field {
+  width: 100%;
+  padding: 12px 14px;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--ju-font-family);
+  font-size: var(--ju-font-size-sm);
+  color: var(--ju-color-text-body);
+}
+
+.ju-input__field::placeholder {
+  color: var(--ju-color-gray-400);
+}
+
+.ju-input__field:disabled {
+  cursor: not-allowed;
+}
+
+.ju-input--has-icon .ju-input__field {
+  padding-left: 42px;
+}
+
+.ju-input--has-trailing .ju-input__field {
+  padding-right: 42px;
+}
+
+/* --- Trailing icon (right) --- */
+
+.ju-input__trailing {
+  position: absolute;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: var(--ju-radius-sm);
+  background: transparent;
+  color: var(--ju-color-gray-400);
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
+}
+
+.ju-input__trailing:hover {
+  color: var(--ju-color-gray-700);
+  background: rgba(0, 0, 0, 0.04);
+}

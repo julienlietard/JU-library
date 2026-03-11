@@ -1,5 +1,6 @@
 /* ============================================
    JUSignature — Morphing Signature Component
+   Glassmorphism 2.0 · White-First
    ============================================ */
 
 .ju-sig {
@@ -24,7 +25,7 @@
   transform: scale(1.04);
 }
 
-/* ── Open state ── */
+/* -- Open state -- */
 
 .ju-sig--open {
   width: min(380px, 90vw);
@@ -42,68 +43,83 @@
 }
 
 /* ============================================
-   Light variant (default)
+   Light variant (default) — white glass panel
    ============================================ */
 
 .ju-sig--light {
-  background: var(--ju-color-surface, #ffffff);
-  box-shadow: var(--ju-shadow-sm);
-  border: 1px solid var(--ju-color-border, #e5e7eb);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.03),
+    0 2px 8px rgba(0, 0, 0, 0.03),
+    0 8px 32px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .ju-sig--light.ju-sig--open {
-  box-shadow: var(--ju-shadow-xl);
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.03),
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    0 16px 48px rgba(0, 0, 0, 0.08);
 }
 
 .ju-sig--light .ju-sig__closed {
-  color: var(--ju-color-text, #111111);
+  color: #1c1c1e;
 }
 
 .ju-sig--light .ju-sig__title {
-  color: var(--ju-color-text, #111111);
+  color: #1c1c1e;
 }
 
 .ju-sig--light .ju-sig__header-btn {
-  background: var(--ju-color-border, #e5e7eb);
-  color: var(--ju-color-text-muted, #6b7280);
+  background: #f5f5f7;
+  color: #6b7280;
 }
 
 .ju-sig--light .ju-sig__header-btn:hover:not(:disabled) {
-  background: var(--ju-color-surface-hover, #f3f4f6);
-  color: var(--ju-color-text, #111111);
+  background: #e8e8ed;
+  color: #1c1c1e;
 }
 
 .ju-sig--light .ju-sig__canvas-wrap {
-  border-color: var(--ju-color-border-strong, #d1d5db);
-  background: var(--ju-color-surface, #ffffff);
+  border-color: rgba(0, 0, 0, 0.08);
+  background: #ffffff;
 }
 
 .ju-sig--light .ju-sig__hint {
-  color: var(--ju-color-text-muted, #9ca3af);
+  color: #9ca3af;
 }
 
 .ju-sig--light .ju-sig__save {
-  background: var(--ju-color-surface-hover, #f3f4f6);
-  color: var(--ju-color-text, #111111);
+  background: #f5f5f7;
+  color: #1c1c1e;
 }
 
 .ju-sig--light .ju-sig__save:hover:not(:disabled) {
-  background: var(--ju-color-surface-active, #111111);
-  color: var(--ju-color-surface-active-text, #ffffff);
+  background: #1c1c1e;
+  color: #ffffff;
 }
 
 /* ============================================
-   Dark variant
+   Dark variant — dark glass
    ============================================ */
 
 .ju-sig--dark {
-  background: #121212;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  border: none;
+  background: rgba(38, 38, 42, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    0 0 0 0.5px rgba(255, 255, 255, 0.05),
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .ju-sig--dark.ju-sig--open {
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  box-shadow:
+    0 0 0 0.5px rgba(255, 255, 255, 0.06),
+    0 12px 40px rgba(0, 0, 0, 0.45);
 }
 
 .ju-sig--dark .ju-sig__closed {
@@ -125,7 +141,7 @@
 }
 
 .ju-sig--dark .ju-sig__canvas-wrap {
-  border-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.03);
 }
 
@@ -186,7 +202,7 @@
   animation: ju-sig-content-in 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-/* ── Header ── */
+/* -- Header -- */
 
 .ju-sig__header {
   display: flex;
@@ -236,7 +252,7 @@
   outline-offset: 2px;
 }
 
-/* ── Canvas ── */
+/* -- Canvas -- */
 
 .ju-sig__canvas-wrap {
   position: relative;
@@ -263,9 +279,10 @@
   opacity: 0.35;
   pointer-events: none;
   animation: ju-sig-hint-pulse 2.5s ease-in-out infinite;
+}
 
-  /* ============================================
-   White variant
+/* ============================================
+   White variant — keep as-is
    ============================================ */
 
 .ju-sig--white {
@@ -315,9 +332,8 @@
   background: #111111;
   color: #ffffff;
 }
-}
 
-/* ── Save button ── */
+/* -- Save button -- */
 
 .ju-sig__save {
   display: flex;

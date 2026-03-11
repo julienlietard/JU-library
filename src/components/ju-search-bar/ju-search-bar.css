@@ -1,0 +1,191 @@
+/* ============================================
+   JUSearchBar — Spotlight / Raycast style
+   ============================================ */
+
+.ju-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 560px;
+  font-family: var(--ju-font-family);
+  border-radius: var(--ju-radius-full);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+  cursor: text;
+}
+
+/* --- Sizes --- */
+
+.ju-search-bar--sm {
+  height: 38px;
+  padding: 0 14px;
+}
+
+.ju-search-bar--md {
+  height: 46px;
+  padding: 0 18px;
+}
+
+.ju-search-bar--lg {
+  height: 54px;
+  padding: 0 22px;
+}
+
+/* --- Variant: Glass --- */
+
+.ju-search-bar--glass {
+  background: var(--ju-raised-bg);
+  backdrop-filter: blur(var(--ju-raised-blur));
+  -webkit-backdrop-filter: blur(var(--ju-raised-blur));
+  border: var(--ju-raised-border);
+  box-shadow: var(--ju-raised-shadow);
+}
+
+.ju-search-bar--glass.ju-search-bar--focused {
+  border-color: rgba(27, 130, 255, 0.35);
+  box-shadow:
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.90),
+    0 0 0 3px rgba(27, 130, 255, 0.08),
+    0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+/* --- Variant: Solid --- */
+
+.ju-search-bar--solid {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1.5px solid transparent;
+  box-shadow: none;
+}
+
+.ju-search-bar--solid.ju-search-bar--focused {
+  border-color: var(--ju-color-primary);
+  box-shadow: 0 0 0 3px var(--ju-color-primary-soft);
+}
+
+/* --- Variant: Dark --- */
+
+.ju-search-bar--dark {
+  background: rgba(0, 0, 0, 0.60);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    0 8px 32px rgba(0, 0, 0, 0.10);
+}
+
+.ju-search-bar--dark.ju-search-bar--focused {
+  border-color: rgba(255, 255, 255, 0.20);
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.06),
+    0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.ju-search-bar--dark .ju-search-bar__icon {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.ju-search-bar--dark .ju-search-bar__input {
+  color: #ffffff;
+}
+
+.ju-search-bar--dark .ju-search-bar__input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.ju-search-bar--dark .ju-search-bar__key {
+  background: rgba(255, 255, 255, 0.10);
+  color: rgba(255, 255, 255, 0.45);
+  border-color: rgba(255, 255, 255, 0.10);
+}
+
+/* --- Search icon --- */
+
+.ju-search-bar__icon {
+  flex-shrink: 0;
+  color: var(--ju-color-gray-400);
+  transition: color 0.2s ease;
+}
+
+.ju-search-bar--focused .ju-search-bar__icon {
+  color: var(--ju-color-primary);
+}
+
+.ju-search-bar--sm .ju-search-bar__icon svg,
+.ju-search-bar--sm .ju-search-bar__icon {
+  width: 16px;
+  height: 16px;
+}
+
+.ju-search-bar--lg .ju-search-bar__icon svg,
+.ju-search-bar--lg .ju-search-bar__icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* --- Input --- */
+
+.ju-search-bar__input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: var(--ju-font-family);
+  font-weight: var(--ju-font-weight-normal);
+  color: var(--ju-color-text-body);
+  caret-color: var(--ju-color-primary);
+}
+
+.ju-search-bar__input::placeholder {
+  color: var(--ju-color-gray-400);
+}
+
+.ju-search-bar--sm .ju-search-bar__input {
+  font-size: var(--ju-font-size-sm);
+}
+
+.ju-search-bar--md .ju-search-bar__input {
+  font-size: var(--ju-font-size-md);
+}
+
+.ju-search-bar--lg .ju-search-bar__input {
+  font-size: var(--ju-font-size-lg);
+}
+
+/* --- Keyboard shortcut badge --- */
+
+.ju-search-bar__shortcut {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+.ju-search-bar__key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 22px;
+  padding: 0 6px;
+  font-family: var(--ju-font-family);
+  font-size: 0.7rem;
+  font-weight: var(--ju-font-weight-medium);
+  line-height: 1;
+  color: var(--ju-color-gray-400);
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 6px;
+}
+
+/* --- Disabled --- */
+
+.ju-search-bar--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

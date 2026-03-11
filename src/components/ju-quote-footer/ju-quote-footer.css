@@ -1,16 +1,20 @@
 /* ============================================
    JUQuoteFooter — Animated Quote Carousel Footer
+   Glassmorphism 2.0 · White-First
    ============================================ */
 
 .ju-quote-footer {
-  color: white;
+  color: #111827;
   height: 50vh;
   min-height: 300px;
   padding: 5rem 2rem 3rem;
   text-align: center;
   border-radius: 2.5rem;
   margin: 6rem auto 0;
-  box-shadow: var(--ju-shadow-xl);
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.03),
+    0 2px 8px rgba(0, 0, 0, 0.03),
+    0 8px 32px rgba(0, 0, 0, 0.04);
   max-width: 95%;
   position: relative;
   display: flex;
@@ -18,9 +22,10 @@
   justify-content: center;
   align-items: center;
   font-family: var(--ju-font-family);
+  background: #ffffff;
 }
 
-/* ── Logo ── */
+/* -- Logo -- */
 
 .ju-quote-footer__logo {
   width: 64px;
@@ -33,7 +38,7 @@
 
 /* ============================================
    QUOTE WRAPPER — state machine
-   visible → exit → (swap) → enter → visible
+   visible -> exit -> (swap) -> enter -> visible
    ============================================ */
 
 .ju-quote-footer__quote-wrapper {
@@ -74,7 +79,7 @@
   transition: none;
 }
 
-/* ── Quote text ── */
+/* -- Quote text — dark (gray-900) -- */
 
 .ju-quote-footer__quote {
   font-size: 2rem;
@@ -82,19 +87,22 @@
   line-height: 1.5;
   max-width: 700px;
   margin: 0 auto;
-  color: white;
+  color: #ffffffe0;
   opacity: 0.95;
-  text-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+  text-shadow: none;
 }
+
+/* -- Author — gray-500 -- */
 
 .ju-quote-footer__author {
   font-size: var(--ju-font-size-xs);
-  opacity: 0.65;
+  color: #6b7280;
+  opacity: 1;
   margin-top: 0.25rem;
 }
 
 /* ============================================
-   DOTS — carousel footer style
+   DOTS — gray-300 default, gray-900 active
    ============================================ */
 
 .ju-quote-footer__dots {
@@ -111,7 +119,7 @@
   border-radius: 50%;
   border: none;
   padding: 0;
-  background: rgba(255, 255, 255, 0.35);
+  background: #d1d5db;
   cursor: pointer;
   transition:
     background 0.3s ease,
@@ -120,14 +128,14 @@
 }
 
 .ju-quote-footer__dot--active {
-  background: rgba(255, 255, 255, 0.95);
+  background: #ffffff;
   width: 20px;
   border-radius: 3px;
   transform: none;
 }
 
 .ju-quote-footer__dot:not(.ju-quote-footer__dot--active):hover {
-  background: rgba(255, 255, 255, 0.6);
+  background: #9ca3af;
   transform: scale(1.3);
 }
 
@@ -153,10 +161,10 @@
   flex-wrap: wrap;
   font-family: var(--ju-font-family);
   font-size: 0.8rem;
-  color: #555;
+  color: #6b7280;
   max-width: 80%;
   margin: 0 auto;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
   padding-top: 1.5rem;
 }
 
@@ -167,7 +175,7 @@
 }
 
 .ju-quote-footer__legal-links a {
-  color: #555;
+  color: #6b7280;
   text-decoration: none;
   transition: opacity 0.3s ease;
 }
@@ -187,7 +195,10 @@
     padding: 2rem 0.8rem 1.8rem;
     border-radius: 20px 20px 50px 50px;
     margin: 2.5rem auto 0;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    box-shadow:
+      0 0 0 0.5px rgba(0, 0, 0, 0.03),
+      0 4px 12px rgba(0, 0, 0, 0.04),
+      0 8px 24px rgba(0, 0, 0, 0.06);
   }
 
   .ju-quote-footer__logo {

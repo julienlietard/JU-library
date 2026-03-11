@@ -1,23 +1,25 @@
 /* ============================================
-   JUIsland — Dynamic Island
+   JUIsland — Dynamic Island · Dark Only
    ============================================ */
 
 .ju-island {
   --ju-island-color: #1b82ff;
 
-  background: #121212;
+  background: rgba(0, 0, 0, 0.911);
   width: 243px;
   height: 40px;
   display: flex;
   align-items: center;
   border-radius: 22px;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
   cursor: pointer;
   user-select: none;
   position: relative;
   overflow: hidden;
+  color-scheme: dark;
 
   /* Close transition — smooth deceleration, no bounce */
   transition:
@@ -38,7 +40,7 @@
   width: min(340px, 82vw);
   height: 320px;
   border-radius: 20px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
   cursor: default;
 
   /* Open transition — visible bounce overshoot */
@@ -83,7 +85,7 @@
   flex-grow: 1;
   text-align: left;
   padding: 0 0.8rem 0 1rem;
-  color: #a1a1b7;
+  color: rgba(255, 255, 255, 0.55);
   font-family: var(--ju-font-family);
   font-size: var(--ju-font-size-sm);
   white-space: nowrap;
@@ -94,14 +96,14 @@
 /* ── Progress badge (closed state) ── */
 
 .ju-island__badge {
-  background-color: var(--ju-island-color);
+  background-color: rgba(27, 130, 255, 0.15);
   min-width: 67px;
   border-radius: var(--ju-radius-lg);
   padding: 0.2rem 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--ju-color-white);
+  color: var(--ju-island-color);
   font-size: var(--ju-font-size-sm);
   font-weight: var(--ju-font-weight-bold);
   flex-shrink: 0;
@@ -183,7 +185,7 @@
 }
 
 .ju-island__toc-item {
-  color: #8e8ea0;
+  color: rgba(255, 255, 255, 0.50);
   text-decoration: none;
   font-family: var(--ju-font-family);
   font-size: var(--ju-font-size-sm);
@@ -203,12 +205,12 @@
 
 .ju-island__toc-item:hover {
   color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.06);
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
 .ju-island__toc-item--active {
-  color: #ffffff;
-  background-color: color-mix(in srgb, var(--ju-island-color) 12%, transparent);
+  color: var(--ju-island-color);
+  background-color: rgba(27, 130, 255, 0.12);
   border-left-color: var(--ju-island-color);
 }
 

@@ -20,7 +20,7 @@ const meta: Meta<typeof JUSignature> = {
           justifyContent: 'center',
           alignItems: 'flex-start',
           paddingTop: '3rem',
-          background: '#e5e7eb', // Changé légèrement pour mieux faire ressortir le thème blanc
+          background: '#e5e7eb',
         }}
       >
         <Story />
@@ -36,6 +36,7 @@ type Story = StoryObj<typeof JUSignature>;
 export const Light: Story = {
   args: {
     label: 'Sign',
+    penColor: '#f0e5e7',
     variant: 'light',
   },
 };
@@ -44,6 +45,7 @@ export const Light: Story = {
 export const Dark: Story = {
   args: {
     label: 'Sign',
+    penColor: '#f0e5e7',
     variant: 'dark',
   },
 };

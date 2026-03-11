@@ -33,9 +33,9 @@ const SettingsIcon = () => (
 
 const SECTIONS = [
   {
-    title: 'Articles',
+    title: 'Composants',
     items: [
-      { label: 'Tous les articles', icon: <HomeIcon />, active: true },
+      { label: 'Tous les composants', icon: <HomeIcon />, active: true },
       { label: 'Brouillons', icon: <FileIcon /> },
       { label: 'Publiés', icon: <FileIcon /> },
     ],
@@ -43,9 +43,9 @@ const SECTIONS = [
   {
     title: 'Catégories',
     items: [
-      { label: 'React', icon: <TagIcon /> },
-      { label: 'Design System', icon: <TagIcon /> },
-      { label: 'TypeScript', icon: <TagIcon /> },
+      { label: 'Typographie', icon: <TagIcon /> },
+      { label: 'Palette de couleurs', icon: <TagIcon /> },
+      { label: 'Grilles & Espacements', icon: <TagIcon /> },
     ],
   },
 ];
@@ -54,7 +54,7 @@ const ContentBlock = ({ count = 15 }: { count?: number }) => (
   <div style={{ flex: 1, marginLeft: 260, padding: '40px 48px', maxWidth: 720, opacity: 0.7 }}>
     {Array.from({ length: count }, (_, i) => (
       <p key={i} style={{ marginBottom: 20, lineHeight: 1.7, fontSize: '1.05rem' }}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Le design est l'art de donner forme aux idées. Chaque composant est pensé pour s'intégrer harmonieusement dans l'ensemble du système.
       </p>
     ))}
   </div>
@@ -69,7 +69,7 @@ export const Default: Story = {
   )],
   args: {
     sections: SECTIONS,
-    header: <span style={{ fontSize: '1.1rem', fontWeight: 700, letterSpacing: '-0.02em' }}>Laboratoire</span>,
+    header: <span style={{ fontSize: '1.1rem', fontWeight: 700, letterSpacing: '-0.02em' }}>Atelier Design</span>,
   },
 };
 
@@ -82,7 +82,7 @@ export const WithFooter: Story = {
   )],
   args: {
     sections: SECTIONS,
-    header: <span style={{ fontSize: '1.1rem', fontWeight: 700, letterSpacing: '-0.02em' }}>Laboratoire</span>,
+    header: <span style={{ fontSize: '1.1rem', fontWeight: 700, letterSpacing: '-0.02em' }}>Atelier Design</span>,
     footer: (
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         <SettingsIcon />
@@ -104,8 +104,8 @@ export const Minimal: Story = {
       {
         items: [
           { label: 'Accueil', icon: <HomeIcon />, active: true },
-          { label: 'Articles', icon: <FileIcon /> },
-          { label: 'Tags', icon: <TagIcon /> },
+          { label: 'Composants', icon: <FileIcon /> },
+          { label: 'Tokens', icon: <TagIcon /> },
           { label: 'Paramètres', icon: <SettingsIcon /> },
         ],
       },
@@ -117,13 +117,13 @@ export const RightSide: Story = {
   decorators: [(Story) => (
     <div style={{ display: 'flex', minHeight: '100vh' }}>
       <div style={{ flex: 1, marginRight: 260, padding: '40px 48px', maxWidth: 720, opacity: 0.7 }}>
-        <p style={{ lineHeight: 1.7 }}>Contenu principal avec sidebar à droite.</p>
+        <p style={{ lineHeight: 1.7 }}>Contenu principal avec barre latérale à droite.</p>
       </div>
       <Story />
     </div>
   )],
   args: {
-    sections: [{ title: 'Sommaire', items: [{ label: 'Introduction', active: true }, { label: 'Concepts' }, { label: 'Conclusion' }] }],
+    sections: [{ title: 'Sommaire', items: [{ label: 'Introduction', active: true }, { label: 'Fondamentaux' }, { label: 'Conclusion' }] }],
     position: 'right',
   },
 };

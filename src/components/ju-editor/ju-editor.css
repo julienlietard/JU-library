@@ -1,6 +1,6 @@
 /* ============================================
    JUEditor — Inline rich-text editor
-   Apple Glass toolbar · organic float
+   Glassmorphism 2.0 · White-First
    ============================================ */
 
 /* --- Root --- */
@@ -24,7 +24,7 @@
   font-family: var(--ju-font-family);
   font-size: var(--ju-font-size-md);
   line-height: 1.8;
-  color: inherit;
+  color: #1c1c1e;
   cursor: text;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -43,22 +43,22 @@
 .ju-ed__content h3 { margin: 0 0 0.4em; }
 
 /* ============================================
-   Toolbar — Apple Glass · organic breathing
+   Toolbar — White glass · subtle breathing
    ============================================ */
 .ju-ed__toolbar {
   display: inline-flex;
   align-items: center;
   gap: 3px;
   padding: 5px 7px;
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 100px;
   box-shadow:
-    0 0 0 0.5px rgba(0, 0, 0, 0.04),
-    0 2px 8px rgba(0, 0, 0, 0.04),
-    0 8px 32px rgba(0, 0, 0, 0.06);
+    0 0 0 0.5px rgba(0, 0, 0, 0.03),
+    0 2px 8px rgba(0, 0, 0, 0.03),
+    0 8px 32px rgba(0, 0, 0, 0.04);
   user-select: none;
   align-self: flex-start;
   animation: ju-ed-breathe 5s ease-in-out infinite;
@@ -68,12 +68,12 @@
     background 0.5s var(--ju-ease-smooth);
 }
 
-/* Gentle floating / breathing animation */
+/* Gentle floating / breathing animation — subtle 1px */
 @keyframes ju-ed-breathe {
   0%   { transform: translateY(0px); }
-  25%  { transform: translateY(-2.5px); }
+  25%  { transform: translateY(-1px); }
   50%  { transform: translateY(0px); }
-  75%  { transform: translateY(-1.5px); }
+  75%  { transform: translateY(-0.5px); }
   100% { transform: translateY(0px); }
 }
 
@@ -81,9 +81,9 @@
 .ju-ed__toolbar:hover {
   animation-play-state: paused;
   box-shadow:
-    0 0 0 0.5px rgba(0, 0, 0, 0.05),
-    0 4px 12px rgba(0, 0, 0, 0.06),
-    0 12px 40px rgba(0, 0, 0, 0.08);
+    0 0 0 0.5px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(0, 0, 0, 0.04),
+    0 12px 40px rgba(0, 0, 0, 0.06);
 }
 
 /* ============================================
@@ -92,14 +92,14 @@
 .ju-ed__separator {
   width: 1px;
   height: 20px;
-  background: rgba(0, 0, 0, 0.07);
+  background: rgba(0, 0, 0, 0.06);
   margin: 0 6px;
   flex-shrink: 0;
   border-radius: 1px;
 }
 
 /* ============================================
-   Buttons
+   Buttons — dark icons, #f5f5f7 hover bg
    ============================================ */
 .ju-ed__btn {
   display: flex;
@@ -123,7 +123,7 @@
 }
 
 .ju-ed__btn:hover {
-  background: rgba(0, 0, 0, 0.04);
+  background: #f5f5f7;
   color: rgba(0, 0, 0, 0.85);
   transform: scale(1.06);
 }
@@ -134,18 +134,18 @@
 }
 
 .ju-ed__btn--active {
-  background: rgba(255, 255, 255, 0.9);
+  background: #ffffff;
   color: rgba(0, 0, 0, 0.9);
   box-shadow:
-    0 0.5px 1px rgba(0, 0, 0, 0.06),
-    0 2px 6px rgba(0, 0, 0, 0.06);
+    0 0.5px 1px rgba(0, 0, 0, 0.05),
+    0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 .ju-ed__btn--active:hover {
-  background: rgba(255, 255, 255, 0.95);
+  background: #ffffff;
   box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.06),
-    0 3px 10px rgba(0, 0, 0, 0.08);
+    0 1px 2px rgba(0, 0, 0, 0.05),
+    0 3px 10px rgba(0, 0, 0, 0.06);
   transform: scale(1);
 }
 
@@ -172,7 +172,7 @@
 }
 
 /* ============================================
-   Group (alignment)
+   Group (alignment) — light backgrounds
    ============================================ */
 .ju-ed__group {
   display: flex;
@@ -180,7 +180,7 @@
   gap: 1px;
   padding: 3px 3px;
   border-radius: var(--ju-radius-xl);
-  background: rgba(0, 0, 0, 0.035);
+  background: #f5f5f7;
   transition: background 0.35s var(--ju-ease-smooth);
 }
 
@@ -223,7 +223,7 @@
 }
 
 .ju-ed__dropdown-trigger:hover {
-  background: rgba(0, 0, 0, 0.04);
+  background: #f5f5f7;
   color: rgba(0, 0, 0, 0.85);
   transform: scale(1.03);
 }
@@ -250,7 +250,7 @@
   opacity: 0.6;
 }
 
-/* --- Panel (glass) --- */
+/* --- Panel (white glass) --- */
 .ju-ed__dropdown-panel {
   position: absolute;
   bottom: calc(100% + 8px);
@@ -258,14 +258,14 @@
   transform: translateX(-50%);
   min-width: 120px;
   background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: var(--ju-radius-lg);
   box-shadow:
-    0 0 0 0.5px rgba(0, 0, 0, 0.04),
-    0 4px 16px rgba(0, 0, 0, 0.08),
-    0 12px 40px rgba(0, 0, 0, 0.06);
+    0 0 0 0.5px rgba(0, 0, 0, 0.03),
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    0 12px 40px rgba(0, 0, 0, 0.04);
   padding: 4px;
   z-index: 10;
   animation: ju-ed-dd-in 0.3s var(--ju-ease-spring);
@@ -302,7 +302,7 @@
 }
 
 .ju-ed__dropdown-option:hover {
-  background: rgba(0, 0, 0, 0.035);
+  background: #f5f5f7;
   color: rgba(0, 0, 0, 0.9);
   transform: translateX(2px);
 }
@@ -318,7 +318,7 @@
 }
 
 /* ============================================
-   Color picker
+   Color picker — keep as-is (shows colors)
    ============================================ */
 .ju-ed__dropdown--color .ju-ed__dropdown-panel {
   min-width: auto;
@@ -384,7 +384,7 @@
 }
 
 /* ============================================
-   Dark mode — data attribute
+   Dark mode — data attribute (dark glass values)
    ============================================ */
 [data-theme="dark"] .ju-ed__toolbar {
   background: rgba(38, 38, 42, 0.78);

@@ -9,17 +9,17 @@ const meta: Meta<typeof JUSectionHeader> = {
 export default meta;
 type Story = StoryObj<typeof JUSectionHeader>;
 
-export const Default: Story = { args: { subtitle: 'Découvrez mon', title: 'Workspace' } };
-export const LeftAligned: Story = { args: { subtitle: 'Découvrez mon', title: 'Parcours', align: 'left' } };
-export const TitleOnly: Story = { args: { title: 'Mes Compétences' } };
+export const Default: Story = { args: { subtitle: 'Explorez nos', title: 'Composants' } };
+export const LeftAligned: Story = { args: { subtitle: 'Découvrez les', title: 'Maquettes', align: 'left' } };
+export const TitleOnly: Story = { args: { title: 'Système Typographique' } };
 
 export const PortfolioSections: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
-      <JUSectionHeader subtitle="Découvrez mon" title="Workspace" />
-      <JUSectionHeader subtitle="Découvrez mon" title="Parcours" />
-      <JUSectionHeader title="Mes Compétences" />
-      <JUSectionHeader subtitle="On en discute ?" title="Contact" />
+      <JUSectionHeader subtitle="Explorez nos" title="Composants" />
+      <JUSectionHeader subtitle="Découvrez les" title="Maquettes" />
+      <JUSectionHeader title="Palette de Couleurs" />
+      <JUSectionHeader subtitle="Consultez la" title="Grille & Espacements" />
     </div>
   ),
 };

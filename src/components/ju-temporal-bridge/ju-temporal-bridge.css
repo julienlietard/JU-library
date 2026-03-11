@@ -1,0 +1,183 @@
+/* ============================================
+   JUTemporalBridge — Meeting Countdown Widget
+   Glassmorphism 2.0 · White-First
+   ============================================ */
+
+.ju-temporal-bridge {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  max-width: 100%;
+  font-family: var(--ju-font-family);
+}
+
+/* --- Header --- */
+
+.ju-temporal-bridge__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ju-space-sm) var(--ju-space-md);
+  border-bottom: 1px solid var(--ju-glass-border);
+  color: var(--ju-color-text-muted);
+}
+
+.ju-temporal-bridge__title {
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-semibold);
+  color: var(--ju-color-text-heading);
+  letter-spacing: 0.02em;
+}
+
+/* --- Body --- */
+
+.ju-temporal-bridge__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ju-space-md);
+  padding: var(--ju-space-md);
+}
+
+.ju-temporal-bridge__empty {
+  text-align: center;
+  padding: var(--ju-space-lg) 0;
+  font-size: var(--ju-font-size-sm);
+  color: var(--ju-color-text-muted);
+}
+
+/* --- Meeting info --- */
+
+.ju-temporal-bridge__meeting {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--ju-space-sm);
+}
+
+.ju-temporal-bridge__meeting-title {
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-semibold);
+  color: var(--ju-color-text-heading);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.ju-temporal-bridge__meeting-time {
+  font-size: var(--ju-font-size-xs);
+  color: var(--ju-color-text-muted);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+/* --- Countdown --- */
+
+.ju-temporal-bridge__countdown {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 2px;
+  padding: var(--ju-space-sm) 0;
+}
+
+.ju-temporal-bridge__digit-group {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 1px;
+}
+
+.ju-temporal-bridge__digit {
+  font-size: 2rem;
+  font-weight: var(--ju-font-weight-bold);
+  color: var(--ju-color-text-heading);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.ju-temporal-bridge__unit {
+  font-size: var(--ju-font-size-xs);
+  font-weight: var(--ju-font-weight-medium);
+  color: var(--ju-color-text-muted);
+}
+
+.ju-temporal-bridge__sep {
+  font-size: 1.5rem;
+  font-weight: var(--ju-font-weight-bold);
+  color: var(--ju-color-gray-300);
+  line-height: 1;
+  padding: 0 2px;
+  animation: ju-tb-blink 1s steps(2, start) infinite;
+}
+
+/* --- Live state --- */
+
+.ju-temporal-bridge__countdown--live {
+  padding: var(--ju-space-md) 0;
+}
+
+.ju-temporal-bridge__live {
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-semibold);
+  color: var(--ju-color-success);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  animation: ju-tb-pulse 2s ease-in-out infinite;
+}
+
+/* --- Prepare button --- */
+
+.ju-temporal-bridge__prepare {
+  margin-top: var(--ju-space-xs);
+}
+
+/* --- Brief --- */
+
+.ju-temporal-bridge__brief {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--ju-space-sm);
+  border-radius: var(--ju-radius-lg);
+  background: var(--ju-color-surface-muted);
+  border: 1px solid var(--ju-glass-border);
+  animation: ju-tb-fade-in 0.3s var(--ju-ease-out) both;
+}
+
+.ju-temporal-bridge__brief-label {
+  font-size: 0.65rem;
+  font-weight: var(--ju-font-weight-semibold);
+  color: var(--ju-color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.ju-temporal-bridge__brief-text {
+  margin: 0;
+  font-size: var(--ju-font-size-sm);
+  line-height: 1.55;
+  color: var(--ju-color-text-body);
+}
+
+/* --- Animations --- */
+
+@keyframes ju-tb-blink {
+  50% { opacity: 0; }
+}
+
+@keyframes ju-tb-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes ju-tb-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

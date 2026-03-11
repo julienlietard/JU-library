@@ -13,21 +13,21 @@ export const Solid: Story = { args: { variant: 'solid' } };
 export const Dashed: Story = { args: { variant: 'dashed' } };
 export const Gradient: Story = { args: { variant: 'gradient' } };
 export const Dotted: Story = { args: { variant: 'dot' } };
-export const WithLabel: Story = { args: { variant: 'solid', label: 'Formation' } };
-export const GradientWithLabel: Story = { args: { variant: 'gradient', label: 'or' } };
+export const WithLabel: Story = { args: { variant: 'solid', label: 'Typographie' } };
+export const GradientWithLabel: Story = { args: { variant: 'gradient', label: 'ou' } };
 
 export const AllVariants: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <p>Content above</p>
+      <p>Contenu au-dessus</p>
       <JUDivider variant="solid" />
-      <p>Solid divider</p>
+      <p>Séparateur plein</p>
       <JUDivider variant="dashed" />
-      <p>Dashed divider</p>
+      <p>Séparateur en tirets</p>
       <JUDivider variant="gradient" />
-      <p>Gradient divider</p>
+      <p>Séparateur dégradé</p>
       <JUDivider variant="gradient" label="Section" />
-      <p>With label</p>
+      <p>Avec libellé</p>
     </div>
   ),
 };
