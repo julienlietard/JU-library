@@ -14,13 +14,14 @@ const meta: Meta<typeof JUAskBar> = {
     (Story, context) => {
       const isDark = context.args.theme === 'dark';
       return (
-        <div 
-          style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center', 
-            padding: '4rem 2rem', 
-            backgroundColor: isDark ? '#030712' : '#f3f4f6',
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            minHeight: '100vh',
+            padding: '4rem 2rem',
+            backgroundColor: isDark ? '#0a0a0b' : '#eeeef0',
             transition: 'background-color 0.3s ease'
           }}
         >

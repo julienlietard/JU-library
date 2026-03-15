@@ -1,75 +1,106 @@
 /* ============================================
    JUAskBar — Chatbox AI Component
+   Premium Squircle Edition
    ============================================ */
-
-:root {
-  --ju-font-family: system-ui, -apple-system, sans-serif;
-  --ju-radius-squircle: 24px;
-}
 
 /* ── THEMES ── */
 .ju-ask-bar {
-  --bar-bg: rgba(255, 255, 255, 0.75);
-  --bar-border: rgba(0, 0, 0, 0.08);
+  --bar-bg: rgba(255, 255, 255, 0.82);
+  --bar-border-outer: rgba(0, 0, 0, 0.06);
+  --bar-border-inner: rgba(255, 255, 255, 0.95);
   --bar-text: #1a1a1a;
-  --bar-text-muted: #6b7280;
-  --bar-icon: #4b5563;
-  --bar-icon-hover: #111827;
-  --bar-btn-bg: #f3f4f6;
-  --bar-btn-hover: #e5e7eb;
+  --bar-text-muted: #9ca3af;
+  --bar-icon: #9ca3af;
+  --bar-icon-hover: #374151;
+  --bar-btn-bg: rgba(0, 0, 0, 0.04);
+  --bar-btn-border: rgba(0, 0, 0, 0.06);
+  --bar-btn-hover: rgba(0, 0, 0, 0.07);
   --bar-send-bg: #111827;
   --bar-send-text: #ffffff;
-  --bar-glow: rgba(0, 0, 0, 0.05);
-}
-
-.ju-ask-bar--dark {
-  .ju-ask-bar.ju-ask-bar--auto {
-    --bar-bg: rgba(30, 30, 30, 0.7);
-    --bar-border: rgba(255, 255, 255, 0.1);
-    --bar-text: #f9fafb;
-    --bar-text-muted: #9ca3af;
-    --bar-icon: #9ca3af;
-    --bar-icon-hover: #f9fafb;
-    --bar-btn-bg: rgba(255, 255, 255, 0.1);
-    --bar-btn-hover: rgba(255, 255, 255, 0.15);
-    --bar-send-bg: #f9fafb;
-    --bar-send-text: #111827;
-    --bar-glow: rgba(255, 255, 255, 0.08);
-  }
+  --bar-glow: rgba(0, 0, 0, 0.04);
+  --bar-inset: rgba(255, 255, 255, 0.7);
 }
 
 /* Force dark theme if strictly specified */
-.ju-ask-bar.ju-ask-bar--dark {
-  --bar-bg: rgba(30, 30, 30, 0.7);
-  --bar-border: rgba(255, 255, 255, 0.1);
-  --bar-text: #f9fafb;
-  --bar-text-muted: #9ca3af;
-  --bar-icon: #9ca3af;
-  --bar-icon-hover: #f9fafb;
-  --bar-btn-bg: rgba(255, 255, 255, 0.1);
-  --bar-btn-hover: rgba(255, 255, 255, 0.15);
-  --bar-send-bg: #f9fafb;
-  --bar-send-text: #111827;
-  --bar-glow: rgba(255, 255, 255, 0.08);
+.ju-ask-bar.ju-ask-bar--dark,
+[data-theme="dark"] .ju-ask-bar.ju-ask-bar--auto {
+  --bar-bg: rgba(20, 20, 22, 0.82);
+  --bar-border-outer: rgba(255, 255, 255, 0.08);
+  --bar-border-inner: rgba(255, 255, 255, 0.04);
+  --bar-text: #f4f4f5;
+  --bar-text-muted: rgba(255, 255, 255, 0.38);
+  --bar-icon: rgba(255, 255, 255, 0.4);
+  --bar-icon-hover: #f4f4f5;
+  --bar-btn-bg: rgba(255, 255, 255, 0.06);
+  --bar-btn-border: rgba(255, 255, 255, 0.08);
+  --bar-btn-hover: rgba(255, 255, 255, 0.10);
+  --bar-send-bg: #f4f4f5;
+  --bar-send-text: #0a0a0b;
+  --bar-glow: rgba(255, 255, 255, 0.06);
+  --bar-inset: rgba(255, 255, 255, 0.03);
 }
 
-/* ── CONTAINER ── */
+/* ── CONTAINER — Squircle with beveled edge ── */
 .ju-ask-bar {
   position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 800px;
+  max-width: 720px;
+  font-family: var(--ju-font-family, system-ui, -apple-system, sans-serif);
+  transition: box-shadow 0.4s var(--ju-ease-smooth, ease);
+  overflow: visible;
+}
+
+/* Outer shell — the soft beveled border */
+.ju-ask-bar::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 30px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.15) 100%
+  );
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.02),
+    0 8px 32px rgba(0, 0, 0, 0.04),
+    0 24px 60px rgba(0, 0, 0, 0.03);
+  z-index: 0;
+  pointer-events: none;
+}
+
+[data-theme="dark"] .ju-ask-bar.ju-ask-bar--auto::before,
+.ju-ask-bar.ju-ask-bar--dark::before {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.15),
+    0 8px 32px rgba(0, 0, 0, 0.20),
+    0 24px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* Inner container — the actual card surface */
+.ju-ask-bar__inner-surface {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
   background: var(--bar-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--bar-border);
-  border-radius: var(--ju-radius-squircle);
-  padding: 16px;
-  font-family: var(--ju-font-family);
-  box-shadow: 0 4px 24px -6px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-  overflow: hidden; /* For the touch glow */
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1.5px solid var(--bar-border-outer);
+  border-radius: 26px;
+  padding: 20px 22px;
+  overflow: hidden;
+  /* Inner light edge — bevel effect */
+  box-shadow:
+    inset 0 1px 0 var(--bar-border-inner),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.02);
 }
 
 /* ── TOUCH GLOW (Mobile Follow) ── */
@@ -77,9 +108,9 @@
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   pointer-events: none;
-  background: radial-gradient(circle 80px at var(--x, 50%) var(--y, 50%), var(--bar-glow), transparent);
+  background: radial-gradient(circle 100px at var(--x, 50%) var(--y, 50%), var(--bar-glow), transparent);
   opacity: 0;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.25s ease;
   z-index: 0;
 }
 .ju-ask-bar__glow.active {
@@ -95,23 +126,28 @@
   background: transparent;
   outline: none;
   color: var(--bar-text);
-  font-size: 1rem;
+  font-family: inherit;
+  font-size: 1.15rem;
+  font-weight: 500;
   line-height: 1.5;
   resize: none;
-  padding: 0 0 16px 0;
-  min-height: 24px;
-  max-height: 40vh; /* Limits max height before scrolling */
+  padding: 2px 0 20px 0;
+  min-height: 28px;
+  max-height: 40vh;
   overflow-y: auto;
+  letter-spacing: -0.01em;
 }
 
 .ju-ask-bar__input::placeholder {
   color: var(--bar-text-muted);
+  font-weight: 500;
+  letter-spacing: -0.01em;
 }
 
 /* Scrollbar minimale */
 .ju-ask-bar__input::-webkit-scrollbar { width: 4px; }
 .ju-ask-bar__input::-webkit-scrollbar-thumb {
-  background: var(--bar-border);
+  background: var(--bar-border-outer);
   border-radius: 4px;
 }
 
@@ -129,27 +165,22 @@
 .ju-ask-bar__tools-right {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 /* ── BUTTONS & ICONS ── */
-.ju-ask-bar__icon-btn,
-.ju-ask-bar__add-btn {
+.ju-ask-bar__icon-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   border: none;
   background: transparent;
   color: var(--bar-icon);
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-
-.ju-ask-bar__add-btn {
-  background: var(--bar-btn-bg);
+  transition: background 0.2s, color 0.2s, transform 0.15s;
 }
 
 .ju-ask-bar__icon-btn:hover {
@@ -157,17 +188,60 @@
   color: var(--bar-icon-hover);
 }
 
+.ju-ask-bar__icon-btn:active {
+  transform: scale(0.92);
+}
+
+/* ── ADD BUTTON — Premium circle with border ── */
+.ju-ask-bar__add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid var(--bar-btn-border);
+  background: var(--bar-btn-bg);
+  color: var(--bar-icon);
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s,
+    transform 0.15s,
+    box-shadow 0.2s;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+}
+
+.ju-ask-bar__add-btn:hover {
+  background: var(--bar-btn-hover);
+  color: var(--bar-icon-hover);
+  border-color: rgba(0, 0, 0, 0.10);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .ju-ask-bar.ju-ask-bar--auto .ju-ask-bar__add-btn:hover,
+.ju-ask-bar.ju-ask-bar--dark .ju-ask-bar__add-btn:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.ju-ask-bar__add-btn:active {
+  transform: scale(0.92);
+}
+
+/* ── MODEL SELECTOR ── */
 .ju-ask-bar__model-selector {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.85rem;
+  font-family: inherit;
+  font-size: 0.82rem;
   font-weight: 500;
   color: var(--bar-text-muted);
   background: transparent;
   border: none;
   padding: 6px 10px;
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
   transition: color 0.2s, background 0.2s;
 }
@@ -182,16 +256,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   border: none;
   background: var(--bar-send-bg);
   color: var(--bar-send-text);
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.15s ease, opacity 0.2s;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.10);
+  transition: transform 0.15s ease, box-shadow 0.2s;
   animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.ju-ask-bar__send-btn:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
 }
 
 .ju-ask-bar__send-btn:active {
@@ -208,10 +286,10 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  height: 36px;
-  padding: 0 12px;
+  height: 38px;
+  padding: 0 14px;
   background: var(--bar-btn-bg);
-  border-radius: 18px;
+  border-radius: 19px;
 }
 
 .skeleton-dot {
@@ -235,4 +313,20 @@
 .ju-ask-bar--loading .ju-ask-bar__input {
   opacity: 0.6;
   pointer-events: none;
+}
+
+/* ── FOCUS STATE ── */
+.ju-ask-bar:focus-within::before {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.02),
+    0 8px 32px rgba(0, 0, 0, 0.05),
+    0 24px 60px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] .ju-ask-bar.ju-ask-bar--auto:focus-within::before,
+.ju-ask-bar.ju-ask-bar--dark:focus-within::before {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.20),
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    0 24px 60px rgba(0, 0, 0, 0.18);
 }

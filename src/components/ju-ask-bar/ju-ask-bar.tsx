@@ -128,71 +128,74 @@ export const JUAskBar: React.FC<JUAskBarProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <div 
-      className={cls} 
+    <div
+      className={cls}
       ref={containerRef}
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
       onPointerLeave={handlePointerUp}
       onPointerMove={handlePointerMove}
     >
-      {/* Glow overlay for mobile long press */}
-      <div 
-        ref={glowRef} 
-        className={`ju-ask-bar__glow ${isPointerDown ? 'active' : ''}`} 
-      />
+      {/* Inner surface — beveled squircle card */}
+      <div className="ju-ask-bar__inner-surface">
+        {/* Glow overlay for mobile long press */}
+        <div
+          ref={glowRef}
+          className={`ju-ask-bar__glow ${isPointerDown ? 'active' : ''}`}
+        />
 
-      <textarea
-        ref={textareaRef}
-        className="ju-ask-bar__input"
-        placeholder={placeholder}
-        value={value}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-        disabled={isDisabled}
-        rows={1}
-      />
+        <textarea
+          ref={textareaRef}
+          className="ju-ask-bar__input"
+          placeholder={placeholder}
+          value={value}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          disabled={isDisabled}
+          rows={1}
+        />
 
-      <div className="ju-ask-bar__toolbar">
-        {/* Left: Action Menu */}
-        <div className="ju-ask-bar__tools-left">
-          <button className="ju-ask-bar__icon-btn ju-ask-bar__add-btn" aria-label="Add attachment">
-            <PlusIcon />
-          </button>
-        </div>
-
-        {/* Right: Dynamic Tools */}
-        <div className="ju-ask-bar__tools-right">
-          {loading ? (
-            /* Skeleton Loading State */
-            <div className="ju-ask-bar__skeleton-loader">
-              <div className="skeleton-dot"></div>
-              <div className="skeleton-dot"></div>
-              <div className="skeleton-dot"></div>
-            </div>
-          ) : hasText ? (
-            /* Send Button */
-            <button 
-              className="ju-ask-bar__send-btn" 
-              onClick={handleSubmitClick}
-              aria-label="Envoyer"
-            >
-              <SendIcon />
+        <div className="ju-ask-bar__toolbar">
+          {/* Left: Action Menu */}
+          <div className="ju-ask-bar__tools-left">
+            <button className="ju-ask-bar__add-btn" aria-label="Add attachment">
+              <PlusIcon />
             </button>
-          ) : (
-            /* Idle Tools (Model, Search, Mic) */
-            <>
-              <button className="ju-ask-bar__model-selector">
-                {currentModel} <ChevronDownIcon />
+          </div>
+
+          {/* Right: Dynamic Tools */}
+          <div className="ju-ask-bar__tools-right">
+            {loading ? (
+              /* Skeleton Loading State */
+              <div className="ju-ask-bar__skeleton-loader">
+                <div className="skeleton-dot"></div>
+                <div className="skeleton-dot"></div>
+                <div className="skeleton-dot"></div>
+              </div>
+            ) : hasText ? (
+              /* Send Button */
+              <button
+                className="ju-ask-bar__send-btn"
+                onClick={handleSubmitClick}
+                aria-label="Envoyer"
+              >
+                <SendIcon />
               </button>
-              <button className="ju-ask-bar__icon-btn" aria-label="Web search">
-                <SearchIcon />
-              </button>
-              <button className="ju-ask-bar__icon-btn" aria-label="Voice input">
-                <MicIcon />
-              </button>
-            </>
-          )}
+            ) : (
+              /* Idle Tools (Model, Search, Mic) */
+              <>
+                <button className="ju-ask-bar__model-selector">
+                  {currentModel} <ChevronDownIcon />
+                </button>
+                <button className="ju-ask-bar__icon-btn" aria-label="Web search">
+                  <SearchIcon />
+                </button>
+                <button className="ju-ask-bar__icon-btn" aria-label="Voice input">
+                  <MicIcon />
+                </button>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>
