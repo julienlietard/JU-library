@@ -2,175 +2,198 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import './ju-ask-bar.css';
 
 /* -- Types -- */
-
-export type JUAskBarSize = 'sm' | 'md' | 'lg';
-export type JUAskBarVariant = 'raised' | 'flat' | 'outline';
+export type JUAskBarTheme = 'light' | 'dark' | 'auto';
 
 export interface JUAskBarProps {
-  /** Placeholder text */
   placeholder?: string;
-  /** Controlled value */
   value?: string;
-  /** Called when value changes */
   onChange?: (value: string) => void;
-  /** Called on submit (Enter or button click) */
   onSubmit?: (value: string) => void;
-  /** Disable the input */
   disabled?: boolean;
-  /** Show loading spinner on the submit button */
   loading?: boolean;
-  /** Overall size */
-  size?: JUAskBarSize;
-  /** Visual style */
-  variant?: JUAskBarVariant;
-  /** Custom icon for the submit button */
-  icon?: React.ReactNode;
-  /** Keyboard shortcut hint (false to hide entirely) */
-  shortcut?: string | false;
-  /** Auto-focus the input on mount */
+  theme?: JUAskBarTheme;
   autoFocus?: boolean;
-  /** Max characters (shows counter when set) */
-  maxLength?: number;
-  /** Additional CSS class */
   className?: string;
+  currentModel?: string;
 }
 
-/* -- Default icons -- */
-
-const DefaultIcon: React.FC = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+/* -- Icons (Minimalist SVGs) -- */
+const PlusIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+    <line x1="12" y1="5" x2="12" y2="19" />
     <line x1="5" y1="12" x2="19" y2="12" />
-    <polyline points="12,5 19,12 12,19" />
   </svg>
 );
 
-const SpinnerIcon: React.FC = () => (
-  <svg
-    className="ju-ask-bar__spinner"
-    width="20"
-    height="20"
-    viewBox="0 0 20 20"
-    fill="none"
-    aria-hidden="true"
-  >
-    <circle cx="10" cy="10" r="8" stroke="currentColor" strokeOpacity="0.2" strokeWidth="2.5" />
-    <path d="M18 10a8 8 0 00-8-8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+const SendIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="22" y1="2" x2="11" y2="13" />
+    <polygon points="22 2 15 22 11 13 2 9 22 2" />
   </svg>
 );
 
-/* -- Component -- */
+const SearchIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+    <circle cx="11" cy="11" r="8" />
+    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+  </svg>
+);
+
+const MicIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+    <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+    <line x1="12" y1="19" x2="12" y2="23" />
+    <line x1="8" y1="23" x2="16" y2="23" />
+  </svg>
+);
+
+const ChevronDownIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="6 9 12 15 18 9" />
+  </svg>
+);
 
 export const JUAskBar: React.FC<JUAskBarProps> = ({
-  placeholder = 'Ask a Question..',
+  placeholder = 'Posez une question...',
   value: controlledValue,
   onChange,
   onSubmit,
   disabled = false,
   loading = false,
-  size = 'md',
-  variant = 'raised',
-  icon,
-  shortcut,
+  theme = 'auto',
   autoFocus = false,
-  maxLength,
   className,
+  currentModel = 'Claude Sonnet 3.5',
 }) => {
   const [internalValue, setInternalValue] = useState('');
   const value = controlledValue ?? internalValue;
-  const inputRef = useRef<HTMLInputElement>(null);
-  const isDisabled = disabled || loading;
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
+  const [isPointerDown, setIsPointerDown] = useState(false);
 
+  const isDisabled = disabled || loading;
+  const hasText = value.trim().length > 0;
+
+  // Auto-focus
   useEffect(() => {
-    if (autoFocus) inputRef.current?.focus();
+    if (autoFocus) textareaRef.current?.focus();
   }, [autoFocus]);
 
-  const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const v = e.target.value;
-      if (maxLength && v.length > maxLength) return;
-      setInternalValue(v);
-      onChange?.(v);
-    },
-    [onChange, maxLength],
-  );
+  // Auto-resize textarea
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = `${Math.min(textareaRef.current.scrollHeight, 200)}px`;
+    }
+  }, [value]);
 
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (e.key === 'Enter' && value.trim() && !loading) {
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setInternalValue(e.target.value);
+    onChange?.(e.target.value);
+  }, [onChange]);
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      if (hasText && !loading) {
         onSubmit?.(value);
       }
-    },
-    [onSubmit, value, loading],
-  );
-
-  const handleButtonClick = useCallback(() => {
-    if (loading) return;
-    if (value.trim()) {
-      onSubmit?.(value);
-    } else {
-      inputRef.current?.focus();
     }
-  }, [onSubmit, value, loading]);
+  }, [onSubmit, value, loading, hasText]);
 
-  const handleContainerClick = useCallback(() => {
-    inputRef.current?.focus();
-  }, []);
+  const handleSubmitClick = useCallback(() => {
+    if (!loading && hasText) onSubmit?.(value);
+  }, [onSubmit, value, loading, hasText]);
 
-  /* Shortcut hint text */
-  const shortcutText = shortcut === false
-    ? null
-    : shortcut ?? (typeof navigator !== 'undefined' && /Mac/i.test(navigator.platform) ? '\u2318 + K' : 'Ctrl + K');
+  // Touch follow effect logic
+  const handlePointerDown = () => setIsPointerDown(true);
+  const handlePointerUp = () => setIsPointerDown(false);
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isPointerDown || !glowRef.current || !containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    glowRef.current.style.setProperty('--x', `${x}px`);
+    glowRef.current.style.setProperty('--y', `${y}px`);
+  };
 
   const cls = [
     'ju-ask-bar',
-    `ju-ask-bar--${size}`,
-    `ju-ask-bar--${variant}`,
+    `ju-ask-bar--${theme}`,
     isDisabled ? 'ju-ask-bar--disabled' : '',
     loading ? 'ju-ask-bar--loading' : '',
     className ?? '',
   ].filter(Boolean).join(' ');
 
   return (
-    <div className={cls} onClick={handleContainerClick} role="search">
-      <input
-        ref={inputRef}
+    <div 
+      className={cls} 
+      ref={containerRef}
+      onPointerDown={handlePointerDown}
+      onPointerUp={handlePointerUp}
+      onPointerLeave={handlePointerUp}
+      onPointerMove={handlePointerMove}
+    >
+      {/* Glow overlay for mobile long press */}
+      <div 
+        ref={glowRef} 
+        className={`ju-ask-bar__glow ${isPointerDown ? 'active' : ''}`} 
+      />
+
+      <textarea
+        ref={textareaRef}
         className="ju-ask-bar__input"
-        type="text"
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         disabled={isDisabled}
-        aria-label="Ask a question"
-        maxLength={maxLength}
+        rows={1}
       />
 
-      <div className="ju-ask-bar__footer">
-        {shortcutText && (
-          <span className="ju-ask-bar__shortcut" aria-hidden="true">
-            {shortcutText}
-          </span>
-        )}
+      <div className="ju-ask-bar__toolbar">
+        {/* Left: Action Menu */}
+        <div className="ju-ask-bar__tools-left">
+          <button className="ju-ask-bar__icon-btn ju-ask-bar__add-btn" aria-label="Add attachment">
+            <PlusIcon />
+          </button>
+        </div>
 
-        {maxLength && (
-          <span
-            className={`ju-ask-bar__counter${value.length >= maxLength ? ' ju-ask-bar__counter--limit' : ''}`}
-            aria-live="polite"
-          >
-            {value.length}/{maxLength}
-          </span>
-        )}
-
-        <button
-          type="button"
-          className="ju-ask-bar__btn"
-          onClick={handleButtonClick}
-          disabled={isDisabled}
-          aria-label="Submit"
-          aria-busy={loading || undefined}
-        >
-          {loading ? <SpinnerIcon /> : (icon ?? <DefaultIcon />)}
-        </button>
+        {/* Right: Dynamic Tools */}
+        <div className="ju-ask-bar__tools-right">
+          {loading ? (
+            /* Skeleton Loading State */
+            <div className="ju-ask-bar__skeleton-loader">
+              <div className="skeleton-dot"></div>
+              <div className="skeleton-dot"></div>
+              <div className="skeleton-dot"></div>
+            </div>
+          ) : hasText ? (
+            /* Send Button */
+            <button 
+              className="ju-ask-bar__send-btn" 
+              onClick={handleSubmitClick}
+              aria-label="Envoyer"
+            >
+              <SendIcon />
+            </button>
+          ) : (
+            /* Idle Tools (Model, Search, Mic) */
+            <>
+              <button className="ju-ask-bar__model-selector">
+                {currentModel} <ChevronDownIcon />
+              </button>
+              <button className="ju-ask-bar__icon-btn" aria-label="Web search">
+                <SearchIcon />
+              </button>
+              <button className="ju-ask-bar__icon-btn" aria-label="Voice input">
+                <MicIcon />
+              </button>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

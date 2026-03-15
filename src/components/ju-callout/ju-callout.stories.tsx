@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUCallout } from './ju-callout';
 
 const meta: Meta<typeof JUCallout> = {
-  title: 'Content/JUCallout',
+  title: 'Molecules/JUCallout',
   component: JUCallout,
   tags: ['autodocs'],
   decorators: [(S) => <div style={{ maxWidth: 600, margin: '0 auto', padding: 40, display: 'flex', flexDirection: 'column', gap: 16 }}><S /></div>],

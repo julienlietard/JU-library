@@ -90,7 +90,7 @@ export const JUSystemHealth: React.FC<JUSystemHealthProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <JUCard variant="chat" padding="none" className={classNames}>
+    <JUCard variant="glass" padding="none" className={classNames}>
       {/* Header */}
       <div className="ju-system-health__header">
         <span className="ju-system-health__title">{title}</span>

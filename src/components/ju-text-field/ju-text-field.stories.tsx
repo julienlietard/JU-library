@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUTextField } from './ju-text-field';
 
 const meta: Meta<typeof JUTextField> = {
-  title: 'Forms/JUTextField',
+  title: 'Molecules/JUTextField',
   component: JUTextField,
   tags: ['autodocs'],
   decorators: [(S) => <div style={{ maxWidth: 400, margin: '0 auto', padding: 40, display: 'flex', flexDirection: 'column', gap: 24 }}><S /></div>],

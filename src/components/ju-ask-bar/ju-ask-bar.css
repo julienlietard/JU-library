@@ -1,200 +1,238 @@
 /* ============================================
-   JUAskBar — "Ask a Question" prompt card
-   Reworked — sizes, variants, loading, shortcuts
+   JUAskBar — Chatbox AI Component
    ============================================ */
 
+:root {
+  --ju-font-family: system-ui, -apple-system, sans-serif;
+  --ju-radius-squircle: 24px;
+}
+
+/* ── THEMES ── */
 .ju-ask-bar {
+  --bar-bg: rgba(255, 255, 255, 0.75);
+  --bar-border: rgba(0, 0, 0, 0.08);
+  --bar-text: #1a1a1a;
+  --bar-text-muted: #6b7280;
+  --bar-icon: #4b5563;
+  --bar-icon-hover: #111827;
+  --bar-btn-bg: #f3f4f6;
+  --bar-btn-hover: #e5e7eb;
+  --bar-send-bg: #111827;
+  --bar-send-text: #ffffff;
+  --bar-glow: rgba(0, 0, 0, 0.05);
+}
+
+.ju-ask-bar--dark {
+  .ju-ask-bar.ju-ask-bar--auto {
+    --bar-bg: rgba(30, 30, 30, 0.7);
+    --bar-border: rgba(255, 255, 255, 0.1);
+    --bar-text: #f9fafb;
+    --bar-text-muted: #9ca3af;
+    --bar-icon: #9ca3af;
+    --bar-icon-hover: #f9fafb;
+    --bar-btn-bg: rgba(255, 255, 255, 0.1);
+    --bar-btn-hover: rgba(255, 255, 255, 0.15);
+    --bar-send-bg: #f9fafb;
+    --bar-send-text: #111827;
+    --bar-glow: rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* Force dark theme if strictly specified */
+.ju-ask-bar.ju-ask-bar--dark {
+  --bar-bg: rgba(30, 30, 30, 0.7);
+  --bar-border: rgba(255, 255, 255, 0.1);
+  --bar-text: #f9fafb;
+  --bar-text-muted: #9ca3af;
+  --bar-icon: #9ca3af;
+  --bar-icon-hover: #f9fafb;
+  --bar-btn-bg: rgba(255, 255, 255, 0.1);
+  --bar-btn-hover: rgba(255, 255, 255, 0.15);
+  --bar-send-bg: #f9fafb;
+  --bar-send-text: #111827;
+  --bar-glow: rgba(255, 255, 255, 0.08);
+}
+
+/* ── CONTAINER ── */
+.ju-ask-bar {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  max-width: 100%;
+  width: 100%;
+  max-width: 800px;
+  background: var(--bar-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--bar-border);
+  border-radius: var(--ju-radius-squircle);
+  padding: 16px;
   font-family: var(--ju-font-family);
-  cursor: text;
-  transition:
-    box-shadow 0.3s ease,
-    border-color 0.3s ease;
+  box-shadow: 0 4px 24px -6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  overflow: hidden; /* For the touch glow */
 }
 
-/* ── SIZE VARIANTS ── */
-
-.ju-ask-bar--sm {
-  width: 420px;
-  padding: 32px 36px 28px;
-  gap: 20px;
+/* ── TOUCH GLOW (Mobile Follow) ── */
+.ju-ask-bar__glow {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  background: radial-gradient(circle 80px at var(--x, 50%) var(--y, 50%), var(--bar-glow), transparent);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 0;
+}
+.ju-ask-bar__glow.active {
+  opacity: 1;
 }
 
-.ju-ask-bar--md {
-  width: 560px;
-  padding: 48px 52px 40px;
-  gap: 28px;
-}
-
-.ju-ask-bar--lg {
-  width: 680px;
-  padding: 60px 64px 52px;
-  gap: 32px;
-}
-
-/* ── STYLE VARIANTS ── */
-
-/* Raised — frosted glass elevated panel */
-.ju-ask-bar--raised {
-  background: var(--ju-raised-bg);
-  backdrop-filter: blur(var(--ju-raised-blur));
-  -webkit-backdrop-filter: blur(var(--ju-raised-blur));
-  border: var(--ju-raised-border);
-  border-radius: var(--ju-radius-2xl);
-  box-shadow: var(--ju-raised-shadow);
-}
-
-.ju-ask-bar--raised:hover {
-  box-shadow: var(--ju-raised-shadow-hover);
-}
-
-/* Flat — subtle solid surface */
-.ju-ask-bar--flat {
-  background: var(--ju-color-surface-muted, #f5f5f7);
-  border: 1px solid transparent;
-  border-radius: var(--ju-radius-2xl);
-}
-
-.ju-ask-bar--flat:hover {
-  background: var(--ju-color-surface-hover, #efefef);
-}
-
-/* Outline — transparent with visible border */
-.ju-ask-bar--outline {
-  background: transparent;
-  border: 1.5px solid var(--ju-color-border-strong, rgba(0, 0, 0, 0.10));
-  border-radius: var(--ju-radius-2xl);
-}
-
-.ju-ask-bar--outline:hover {
-  border-color: var(--ju-color-gray-300, rgba(0, 0, 0, 0.16));
-}
-
-/* ── INPUT ── */
-
+/* ── INPUT (Textarea) ── */
 .ju-ask-bar__input {
+  position: relative;
+  z-index: 1;
   width: 100%;
   border: none;
   background: transparent;
   outline: none;
-  font-family: var(--ju-font-family);
-  font-weight: var(--ju-font-weight-semibold);
-  color: var(--ju-color-text-body, #2d2d2d);
-  letter-spacing: -0.02em;
-  text-align: center;
-  caret-color: var(--ju-color-gray-400);
-  padding: 0;
+  color: var(--bar-text);
+  font-size: 1rem;
+  line-height: 1.5;
+  resize: none;
+  padding: 0 0 16px 0;
+  min-height: 24px;
+  max-height: 40vh; /* Limits max height before scrolling */
+  overflow-y: auto;
 }
-
-.ju-ask-bar--sm .ju-ask-bar__input { font-size: 1.35rem; }
-.ju-ask-bar--md .ju-ask-bar__input { font-size: 1.85rem; }
-.ju-ask-bar--lg .ju-ask-bar__input { font-size: 2.25rem; }
 
 .ju-ask-bar__input::placeholder {
-  color: var(--ju-color-text-muted, #71717a);
-  font-weight: var(--ju-font-weight-medium);
+  color: var(--bar-text-muted);
 }
 
-/* ── FOOTER (shortcut + counter + button) ── */
+/* Scrollbar minimale */
+.ju-ask-bar__input::-webkit-scrollbar { width: 4px; }
+.ju-ask-bar__input::-webkit-scrollbar-thumb {
+  background: var(--bar-border);
+  border-radius: 4px;
+}
 
-.ju-ask-bar__footer {
+/* ── TOOLBAR ── */
+.ju-ask-bar__toolbar {
+  position: relative;
+  z-index: 1;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 12px;
 }
 
-.ju-ask-bar__shortcut {
-  font-size: 0.75rem;
-  font-weight: var(--ju-font-weight-medium);
-  color: var(--ju-color-text-muted, #71717a);
-  background: var(--ju-color-surface-muted, #f5f5f7);
-  padding: 4px 10px;
-  border-radius: var(--ju-radius-sm);
-  letter-spacing: 0.03em;
-  user-select: none;
-  white-space: nowrap;
+.ju-ask-bar__tools-left,
+.ju-ask-bar__tools-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* ── COUNTER ── */
-
-.ju-ask-bar__counter {
-  font-size: 0.7rem;
-  font-weight: var(--ju-font-weight-medium);
-  color: var(--ju-color-text-muted, #a1a1aa);
-  font-variant-numeric: tabular-nums;
-  user-select: none;
-}
-
-.ju-ask-bar__counter--limit {
-  color: var(--ju-color-danger, #ff3b5c);
-}
-
-/* ── ACTION BUTTON (circle) ── */
-
-.ju-ask-bar__btn {
+/* ── BUTTONS & ICONS ── */
+.ju-ask-bar__icon-btn,
+.ju-ask-bar__add-btn {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--bar-icon);
   cursor: pointer;
-  color: var(--ju-color-gray-500);
-  background: rgba(240, 240, 243, 0.65);
-  border: 2px solid rgba(255, 255, 255, 0.90);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.80),
-    0 1px 3px rgba(0, 0, 0, 0.04),
-    0 4px 14px rgba(0, 0, 0, 0.05);
-  transition:
-    background 0.2s ease,
-    box-shadow 0.2s ease,
-    color 0.2s ease,
-    transform 0.15s ease;
+  transition: background 0.2s, color 0.2s;
 }
 
-.ju-ask-bar--sm .ju-ask-bar__btn { width: 44px; height: 44px; }
-.ju-ask-bar--md .ju-ask-bar__btn { width: 56px; height: 56px; }
-.ju-ask-bar--lg .ju-ask-bar__btn { width: 64px; height: 64px; }
-
-.ju-ask-bar__btn:hover {
-  background: rgba(240, 240, 243, 0.85);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.90),
-    0 2px 6px rgba(0, 0, 0, 0.06),
-    0 8px 22px rgba(0, 0, 0, 0.07);
-  color: var(--ju-color-gray-700);
+.ju-ask-bar__add-btn {
+  background: var(--bar-btn-bg);
 }
 
-.ju-ask-bar__btn:active {
-  transform: scale(0.95);
+.ju-ask-bar__icon-btn:hover {
+  background: var(--bar-btn-hover);
+  color: var(--bar-icon-hover);
 }
 
-/* ── SPINNER ── */
-
-.ju-ask-bar__spinner {
-  animation: ju-ask-spin 0.7s linear infinite;
+.ju-ask-bar__model-selector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--bar-text-muted);
+  background: transparent;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
 }
 
-@keyframes ju-ask-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.ju-ask-bar__model-selector:hover {
+  background: var(--bar-btn-hover);
+  color: var(--bar-text);
 }
 
-/* ── LOADING STATE ── */
-
-.ju-ask-bar--loading {
-  cursor: wait;
+/* ── SEND BUTTON ── */
+.ju-ask-bar__send-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: var(--bar-send-bg);
+  color: var(--bar-send-text);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.15s ease, opacity 0.2s;
+  animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.ju-ask-bar--loading .ju-ask-bar__btn {
-  cursor: wait;
+.ju-ask-bar__send-btn:active {
+  transform: scale(0.9);
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ── LOADING SKELETON ── */
+.ju-ask-bar__skeleton-loader {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 36px;
+  padding: 0 12px;
+  background: var(--bar-btn-bg);
+  border-radius: 18px;
+}
+
+.skeleton-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--bar-icon);
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.skeleton-dot:nth-child(1) { animation-delay: -0.32s; }
+.skeleton-dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
 }
 
 /* ── DISABLED ── */
-
-.ju-ask-bar--disabled {
-  opacity: 0.5;
+.ju-ask-bar--disabled .ju-ask-bar__input,
+.ju-ask-bar--loading .ju-ask-bar__input {
+  opacity: 0.6;
   pointer-events: none;
 }

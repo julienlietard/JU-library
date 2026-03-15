@@ -46,7 +46,7 @@
 }
 .ju-badge--lg {
   font-size: 1rem;
-  padding: 10px 18px;
+  padding: 6px 12px;
   gap: 8px;
   border-radius: 16px;
 }
@@ -146,10 +146,10 @@
    ================================================================ */
 
 /* --- Color palettes --- */
-.ju-badge--default  { --_badge-bg: #F1F5F9; --_badge-fg: #334155; --_badge-accent: #64748B; --_badge-border: #CBD5E1; --_badge-icon-bg: rgba(100,116,139,0.12); }
-.ju-badge--blue     { --_badge-bg: #EFF6FF; --_badge-fg: #1D4ED8; --_badge-accent: #3B82F6; --_badge-border: #93C5FD; --_badge-icon-bg: rgba(59,130,246,0.12); }
+.ju-badge--default  { --_badge-bg: #F1F5F9; --_badge-fg: #343434; --_badge-accent: #64748B; --_badge-border: #CBD5E1; --_badge-icon-bg: rgba(100,116,139,0.12); }
+.ju-badge--blue     { --_badge-bg: #EFF6FF; --_badge-fg: #4181fd; --_badge-accent: #3B82F6; --_badge-border: #93C5FD; --_badge-icon-bg: rgba(59,130,246,0.12); }
 .ju-badge--green    { --_badge-bg: #ECFDF5; --_badge-fg: #00b36b; --_badge-accent: #10B981; --_badge-border: #6EE7B7; --_badge-icon-bg: rgba(16,185,129,0.12); }
-.ju-badge--purple   { --_badge-bg: #F5F3FF; --_badge-fg: #6D28D9; --_badge-accent: #8B5CF6; --_badge-border: #C4B5FD; --_badge-icon-bg: rgba(139,92,246,0.12); }
+.ju-badge--purple   { --_badge-bg: #F5F3FF; --_badge-fg: #946afd; --_badge-accent: #8B5CF6; --_badge-border: #C4B5FD; --_badge-icon-bg: rgba(139,92,246,0.12); }
 .ju-badge--orange   { --_badge-bg: #FFF7ED; --_badge-fg: #C2410C; --_badge-accent: #F97316; --_badge-border: #FDBA74; --_badge-icon-bg: rgba(249,115,22,0.12); }
 .ju-badge--red      { --_badge-bg: #FEF2F2; --_badge-fg: #B91C1C; --_badge-accent: #EF4444; --_badge-border: #FCA5A5; --_badge-icon-bg: rgba(239,68,68,0.12); }
 .ju-badge--pink     { --_badge-bg: #FDF2F8; --_badge-fg: #BE185D; --_badge-accent: #EC4899; --_badge-border: #F9A8D4; --_badge-icon-bg: rgba(236,72,153,0.12); }
@@ -162,7 +162,6 @@
   color: var(--_badge-fg);
 }
 .ju-badge--soft .ju-badge__dot { background: var(--_badge-accent); }
-.ju-badge--soft .ju-badge__icon--bg { background: var(--_badge-icon-bg); }
 
 /* --- SOLID variant — filled bg, white text --- */
 .ju-badge--solid {

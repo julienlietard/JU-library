@@ -1,0 +1,127 @@
+/* ============================================
+   JUDigestSentinel — AI Tech Digest Widget
+   ============================================ */
+
+.ju-digest-sentinel {
+  font-family: var(--ju-font-family);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ju-space-md, 12px);
+}
+
+/* --- Title --- */
+
+.ju-digest-sentinel__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: var(--ju-font-weight-medium, 600);
+  color: var(--ju-color-text);
+  letter-spacing: -0.01em;
+}
+
+/* --- List --- */
+
+.ju-digest-sentinel__list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* --- Item (thin card) --- */
+
+.ju-digest-sentinel__item {
+  border-radius: var(--ju-radius-md, 10px) !important;
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.ju-digest-sentinel__item:hover {
+  border-color: var(--ju-color-border-strong, rgba(0, 0, 0, 0.12));
+}
+
+/* --- Row layout --- */
+
+.ju-digest-sentinel__row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--ju-space-md, 12px);
+  padding: 14px 16px;
+}
+
+/* --- Emoji --- */
+
+.ju-digest-sentinel__emoji {
+  font-size: 1.3rem;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 28px;
+  text-align: center;
+}
+
+/* --- Content --- */
+
+.ju-digest-sentinel__content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.ju-digest-sentinel__headline {
+  font-size: var(--ju-font-size-sm, 0.875rem);
+  font-weight: var(--ju-font-weight-medium, 600);
+  color: var(--ju-color-text);
+  line-height: 1.35;
+}
+
+.ju-digest-sentinel__summary {
+  font-size: 0.8rem;
+  color: var(--ju-color-text);
+  opacity: 0.55;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* --- Link (hover-only) --- */
+
+.ju-digest-sentinel__link {
+  font-family: var(--ju-font-family);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ju-color-accent, var(--ju-color-primary));
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ju-color-accent, var(--ju-color-primary)) 8%, transparent);
+  opacity: 0;
+  transform: translateX(6px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    background 0.15s ease;
+  pointer-events: none;
+}
+
+.ju-digest-sentinel__item:hover .ju-digest-sentinel__link {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.ju-digest-sentinel__link:hover {
+  background: color-mix(in srgb, var(--ju-color-accent, var(--ju-color-primary)) 15%, transparent);
+}
+
+.ju-digest-sentinel__link:focus-visible {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  outline: 2px solid var(--ju-color-primary);
+  outline-offset: 2px;
+}

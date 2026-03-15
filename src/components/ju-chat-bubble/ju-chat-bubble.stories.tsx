@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUChatBubble } from './ju-chat-bubble';
 
 const meta: Meta<typeof JUChatBubble> = {
-  title: 'Components/JUChatBubble',
+  title: 'Molecules/JUChatBubble',
   component: JUChatBubble,
   tags: ['autodocs'],
   argTypes: {

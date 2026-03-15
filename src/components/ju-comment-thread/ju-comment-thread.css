@@ -1,0 +1,166 @@
+/* ============================================
+   JUCommentThread — Nested Comment System
+   ============================================ */
+
+.ju-comment-thread {
+  font-family: var(--ju-font-family);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* --- Node --- */
+
+.ju-comment-thread__node {
+  display: flex;
+  gap: 0;
+}
+
+.ju-comment-thread__node--nested {
+  padding-left: 0;
+}
+
+/* --- Indent line (clickable to collapse) --- */
+
+.ju-comment-thread__line {
+  position: relative;
+  width: 20px;
+  min-width: 20px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.ju-comment-thread__line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  border-radius: 1px;
+  background: var(--ju-color-border, rgba(0, 0, 0, 0.08));
+  transition: background 0.15s ease;
+}
+
+.ju-comment-thread__line:hover::after {
+  background: var(--ju-color-accent, var(--ju-color-primary));
+}
+
+/* --- Body --- */
+
+.ju-comment-thread__body {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 0;
+}
+
+/* --- Header --- */
+
+.ju-comment-thread__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+/* --- Avatar --- */
+
+.ju-comment-thread__avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.ju-comment-thread__avatar--fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--ju-color-accent, var(--ju-color-primary)) 12%, transparent);
+  color: var(--ju-color-accent, var(--ju-color-primary));
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+/* --- Author --- */
+
+.ju-comment-thread__author {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ju-color-text);
+}
+
+/* --- Date --- */
+
+.ju-comment-thread__date {
+  font-size: 0.7rem;
+  color: var(--ju-color-text);
+  opacity: 0.4;
+}
+
+/* --- Text --- */
+
+.ju-comment-thread__text {
+  margin: 0 0 6px 0;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: var(--ju-color-text);
+  opacity: 0.85;
+}
+
+/* --- Actions --- */
+
+.ju-comment-thread__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.ju-comment-thread__action {
+  font-family: var(--ju-font-family);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--ju-color-text);
+  opacity: 0.4;
+  background: none;
+  border: none;
+  padding: 2px 0;
+  cursor: pointer;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.ju-comment-thread__action:hover {
+  opacity: 1;
+  color: var(--ju-color-accent, var(--ju-color-primary));
+}
+
+/* --- Replies container --- */
+
+.ju-comment-thread__replies {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 2px;
+}
+
+/* --- Collapsed indicator --- */
+
+.ju-comment-thread__collapsed {
+  font-family: var(--ju-font-family);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ju-color-accent, var(--ju-color-primary));
+  background: none;
+  border: none;
+  padding: 4px 0;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
+
+.ju-comment-thread__collapsed:hover {
+  opacity: 1;
+}

@@ -69,7 +69,7 @@ export const JUGPUPulse: React.FC<JUGPUPulseProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <JUCard variant="chat" padding="none" className={classNames}>
+    <JUCard variant="glass" padding="none" className={classNames}>
       {/* Header */}
       <div className="ju-gpu-pulse__header">
         <span className="ju-gpu-pulse__title">{title}</span>

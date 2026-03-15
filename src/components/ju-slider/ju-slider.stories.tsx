@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { JUSlider } from './ju-slider';
 
 const meta: Meta<typeof JUSlider> = {
-  title: 'Forms/JUSlider',
+  title: 'Organisms/JUSlider',
   component: JUSlider,
   tags: ['autodocs'],
   decorators: [

@@ -106,7 +106,7 @@ export const JUNerveCenter: React.FC<JUNerveCenterProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <JUCard variant="chat" padding="none" className={classNames}>
+    <JUCard variant="glass" padding="none" className={classNames}>
       {/* Header */}
       <div className="ju-nerve-center__header">
         <div className="ju-nerve-center__status" />

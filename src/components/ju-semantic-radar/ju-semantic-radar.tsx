@@ -63,7 +63,7 @@ export const JUSemanticRadar: React.FC<JUSemanticRadarProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <JUCard variant="chat" padding="none" className={classNames}>
+    <JUCard variant="glass" padding="none" className={classNames}>
       {/* Header */}
       <div className="ju-semantic-radar__header">
         <span className="ju-semantic-radar__title">{title}</span>

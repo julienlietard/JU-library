@@ -77,7 +77,7 @@ export const JUPriorityHorizon: React.FC<JUPriorityHorizonProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <JUCard variant="chat" padding="none" className={classNames}>
+    <JUCard variant="glass" padding="none" className={classNames}>
       {/* Header */}
       <div className="ju-priority-horizon__header">
         <span className="ju-priority-horizon__title">{title}</span>

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUSectionHeader } from './ju-section-header';
 
 const meta: Meta<typeof JUSectionHeader> = {
-  title: 'Components/JUSectionHeader', component: JUSectionHeader, tags: ['autodocs'],
+  title: 'Molecules/JUSectionHeader', component: JUSectionHeader, tags: ['autodocs'],
   decorators: [(Story) => <div style={{ padding: '2rem' }}><Story /></div>],
 };
 export default meta;

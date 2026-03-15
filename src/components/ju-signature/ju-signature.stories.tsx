@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUSignature } from './ju-signature';
 
 const meta: Meta<typeof JUSignature> = {
-  title: 'Forms/JUSignature',
+  title: 'Organisms/JUSignature',
   component: JUSignature,
   tags: ['autodocs'],
   argTypes: {

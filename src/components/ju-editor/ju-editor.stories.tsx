@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUEditor } from './ju-editor';
 
 const meta: Meta<typeof JUEditor> = {
-  title: 'Forms/JUEditor',
+  title: 'Organisms/JUEditor',
   component: JUEditor,
   tags: ['autodocs'],
   decorators: [

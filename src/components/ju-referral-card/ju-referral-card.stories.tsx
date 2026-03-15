@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUReferralCard } from './ju-referral-card';
 
 const meta: Meta<typeof JUReferralCard> = {
-  title: 'Components/JUReferralCard',
+  title: 'Molecules/JUReferralCard',
   component: JUReferralCard,
   tags: ['autodocs'],
   decorators: [

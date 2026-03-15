@@ -4,7 +4,7 @@ import { JUStatus } from './ju-status';
 import { Clock, Loader, Send, Eye, CircleCheck, CircleX, TimerOff } from 'lucide-react';
 
 const meta: Meta<typeof JUStatus> = {
-  title: 'Components/JUStatus', component: JUStatus, tags: ['autodocs'],
+  title: 'Atoms/JUStatus', component: JUStatus, tags: ['autodocs'],
   argTypes: { color: { control: 'select', options: ['orange','blue','purple','yellow','green','red','gray'] } },
 };
 export default meta;

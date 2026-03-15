@@ -45,7 +45,26 @@
       "Bash(npx vitest run src/components/ju-contextual-menu/ju-contextual-menu.test.tsx)",
       "Bash(npx vitest run src/components/ju-contextual-menu/ju-contextual-menu.test.tsx src/components/ju-badge/ju-badge.test.tsx)",
       "Bash(npx vitest run src/components/ju-command-palette/ju-command-palette.test.tsx)",
-      "Bash(npx vitest run src/components/ju-slider/ju-slider.test.tsx)"
+      "Bash(npx vitest run src/components/ju-slider/ju-slider.test.tsx)",
+      "Bash(wc -l /d/JU-library/src/components/*/ju-*.tsx)",
+      "Bash(npx vitest:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx tsup:*)",
+      "Bash(find /d/JU-library -type f -name *notification* -o -name *JUNotification*)",
+      "Bash(ls -d D:/JU-library/src/components/ju-*/)",
+      "Bash(xxd)",
+      "Bash(for f:*)",
+      "Bash(do if:*)",
+      "Bash(then echo:*)",
+      "Bash(grep -v \":0$\")",
+      "Bash(grep -c \"title: ''''Molecules/\" src/components/*/*.stories.tsx)",
+      "Bash(grep -c \"title: ''''Organisms/\" src/components/*/*.stories.tsx)",
+      "Bash(grep -c \"title: ''''Layouts/\" src/components/*/*.stories.tsx)",
+      "Bash(grep -c \"title: ''''Widgets/\" src/components/*/*.stories.tsx)",
+      "Bash(grep -h \"title:\" /d/JU-library/src/components/*/*.stories.tsx)",
+      "Bash(find /d/JU-library -type f \\\\\\(-name *.css -o -name *.ts -o -name *.tsx -o -name *.scss \\\\\\))",
+      "Bash(find /d/JU-library/src -type f \\\\\\(-name index.ts -o -name index.tsx -o -name *.config.* \\\\\\))",
+      "Bash(grep -r \"data-theme\\\\|prefers-color-scheme\\\\|--ju-color\" /d/JU-library/src --include=*.tsx --include=*.ts)"
     ]
   }
 }

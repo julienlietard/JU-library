@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUTooltip } from './ju-tooltip';
 
 const meta: Meta<typeof JUTooltip> = {
-  title: 'Components/JUTooltip',
+  title: 'Atoms/JUTooltip',
   component: JUTooltip,
   tags: ['autodocs'],
   parameters: { layout: 'centered' },

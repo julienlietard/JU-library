@@ -34,7 +34,10 @@ export const JUCreditCard: React.FC<JUCreditCardProps> = ({
   className = '',
 }) => {
   // Formater le numéro de carte (ex: 1234 5678 9000 0000)
-  const formattedNumber = cardNumber.replace(/\s/g, '').replace(/(.{4})/g, '$1 ').trim();
+  const formattedNumber = (cardNumber || "")
+  .replace(/\s/g, '')
+  .replace(/(.{4})/g, '$1 ')
+  .trim();
 
   return (
     <div className={`ju-credit-card ju-credit-card--${bgType} ${className}`.trim()}>
@@ -89,7 +92,9 @@ export const JUCreditCard: React.FC<JUCreditCardProps> = ({
                 className="ju-credit-card__user-pill"
               />
             ) : (
-              <div className="ju-credit-card__holder">{cardholderName.toUpperCase()}</div>
+              <div className="ju-credit-card__holder">
+                {(cardholderName || "NOM INCONNU").toUpperCase()} 
+              </div>
             )}
             <div className="ju-credit-card__expiry">{expiryDate}</div>
           </div>

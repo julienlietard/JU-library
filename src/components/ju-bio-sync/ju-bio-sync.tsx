@@ -105,7 +105,7 @@ export const JUBioSync: React.FC<JUBioSyncProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <JUCard variant="chat" padding="none" className={classNames}>
+    <JUCard variant="glass" padding="none" className={classNames}>
       {/* Header */}
       <div className="ju-bio-sync__header">
         <span className="ju-bio-sync__title">{title}</span>

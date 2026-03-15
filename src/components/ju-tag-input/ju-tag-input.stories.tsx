@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUTagInput } from './ju-tag-input';
 
 const meta: Meta<typeof JUTagInput> = {
-  title: 'Forms/JUTagInput',
+  title: 'Molecules/JUTagInput',
   component: JUTagInput,
   tags: ['autodocs'],
   decorators: [(S) => <div style={{ maxWidth: 450, margin: '0 auto', padding: 40 }}><S /></div>],

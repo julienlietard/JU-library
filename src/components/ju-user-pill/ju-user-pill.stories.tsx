@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUUserPill } from './ju-user-pill';
 
 const meta: Meta<typeof JUUserPill> = {
-  title: 'Components/JUUserPill',
+  title: 'Molecules/JUUserPill',
   component: JUUserPill,
   parameters: { layout: 'centered' },
 };

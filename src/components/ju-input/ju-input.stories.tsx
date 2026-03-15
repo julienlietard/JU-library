@@ -33,7 +33,7 @@ const EyeOffIcon = () => (
 );
 
 const meta: Meta<typeof JUInput> = {
-  title: 'Forms/JUInput',
+  title: 'Molecules/JUInput',
   component: JUInput,
   tags: ['autodocs'],
   decorators: [

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUProjectCard } from './ju-project-card';
 
 const meta: Meta<typeof JUProjectCard> = {
-  title: 'Components/JUProjectCard',
+  title: 'Molecules/JUProjectCard',
   component: JUProjectCard,
   tags: ['autodocs'],
   parameters: { layout: 'padded' },

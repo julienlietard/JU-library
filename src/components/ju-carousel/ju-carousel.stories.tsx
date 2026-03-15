@@ -6,7 +6,7 @@ import { JUProjectCard } from '../ju-project-card/ju-project-card';
 import { JUButton } from '../ju-button/ju-button';
 
 const meta: Meta<typeof JUCarousel> = {
-  title: 'Components/JUCarousel',
+  title: 'Organisms/JUCarousel',
   component: JUCarousel,
   tags: ['autodocs'],
   argTypes: {

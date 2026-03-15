@@ -12,7 +12,7 @@ const demoItems: JUDockItem[] = [
 ];
 
 const meta: Meta<typeof JUDock> = {
-  title: 'Components/JUDock',
+  title: 'Organisms/JUDock',
   component: JUDock,
   tags: ['autodocs'],
   argTypes: {

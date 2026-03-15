@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUPingDot } from './ju-ping-dot';
 
 const meta: Meta<typeof JUPingDot> = {
-  title: 'Components/JUPingDot',
+  title: 'Atoms/JUPingDot',
   component: JUPingDot,
   tags: ['autodocs'],
   argTypes: {

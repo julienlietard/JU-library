@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 
 const meta: Meta<typeof JUBadge> = {
-  title: 'Components/JUBadge',
+  title: 'Atoms/JUBadge',
   component: JUBadge,
   tags: ['autodocs'],
   argTypes: {

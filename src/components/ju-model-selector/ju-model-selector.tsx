@@ -257,7 +257,7 @@ export const JUModelSelector: React.FC<JUModelSelectorProps> = ({
 
   return (
     <>
-      <JUCard variant="chat" padding="none" className={classNames}>
+      <JUCard variant="glass" padding="none" className={classNames}>
         {/* Header */}
         <div className="ju-model-selector__header">
           <span className="ju-model-selector__title">{title}</span>

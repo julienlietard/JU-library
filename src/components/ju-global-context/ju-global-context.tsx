@@ -136,7 +136,7 @@ export const JUGlobalContext: React.FC<JUGlobalContextProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <JUCard variant="chat" padding="none" className={classNames}>
+    <JUCard variant="glass" padding="none" className={classNames}>
       {/* Weather section */}
       <div className="ju-global-context__weather">
         <div className="ju-global-context__sky-icon">
