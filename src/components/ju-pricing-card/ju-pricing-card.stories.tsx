@@ -1,3 +1,4 @@
+// JUPricingCard stories
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { JUPricingCard } from './ju-pricing-card';

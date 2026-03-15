@@ -1,0 +1,28 @@
+/* ============================================
+   Storybook Global Preview Styles
+   Force dark background through all SB layers
+   ============================================ */
+
+/* Light (default) — transparent so page bg shows */
+html,
+body,
+#storybook-root,
+.sb-show-main,
+.sb-main-padded {
+  background: transparent;
+  min-height: 100%;
+}
+
+/* Dark — ultra-deep black, overrides SB defaults */
+[data-theme="dark"],
+[data-theme="dark"] body,
+[data-theme="dark"] #storybook-root,
+[data-theme="dark"] .sb-show-main,
+[data-theme="dark"] .sb-main-padded {
+  background: #0a0a0b !important;
+}
+
+/* Remove any SB padding/border artifacts in dark */
+[data-theme="dark"] .sb-main-padded {
+  padding: 1rem;
+}

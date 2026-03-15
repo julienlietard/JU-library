@@ -142,80 +142,117 @@
 
 /* --- Dark theme via data attribute --- */
 [data-theme="dark"] {
-  --ju-color-text: var(--ju-color-gray-100);
+  /* Extended dark gray scale — ultra-deep blacks */
+  --ju-color-gray-950: #0a0a0b;
+
+  /* Semantic text — high-contrast white on near-black */
+  --ju-color-text: #e4e4e7;
   --ju-color-text-heading: #ffffff;
-  --ju-color-text-body: var(--ju-color-gray-200);
-  --ju-color-text-muted: var(--ju-color-gray-400);
-  --ju-color-text-lead: var(--ju-color-gray-300);
-  --ju-color-surface: var(--ju-color-gray-900);
-  --ju-color-surface-hover: var(--ju-color-gray-800);
-  --ju-color-surface-muted: var(--ju-color-gray-800);
-  --ju-color-surface-active: rgba(27, 130, 255, 0.15);
-  --ju-color-surface-active-text: #60a5fa;
-  --ju-color-border: var(--ju-color-gray-800);
-  --ju-color-border-strong: var(--ju-color-gray-700);
+  --ju-color-text-body: #c8c8cd;
+  --ju-color-text-muted: rgba(255, 255, 255, 0.38);
+  --ju-color-text-lead: #a0a0a8;
 
-  /* Dark glass (inverted) */
-  --ju-glass-bg: rgba(32, 32, 32, 0.60);
-  --ju-glass-bg-strong: rgba(32, 32, 32, 0.80);
-  --ju-glass-border: rgba(255, 255, 255, 0.10);
+  /* Surfaces — near-black base, subtle elevation */
+  --ju-color-surface: #0a0a0b;
+  --ju-color-surface-hover: rgba(255, 255, 255, 0.06);
+  --ju-color-surface-muted: #111113;
+  --ju-color-surface-active: rgba(255, 255, 255, 0.08);
+  --ju-color-surface-active-text: #ffffff;
+
+  /* Borders — barely-there white edges */
+  --ju-color-border: rgba(255, 255, 255, 0.07);
+  --ju-color-border-strong: rgba(255, 255, 255, 0.12);
+
+  /* Dark glass — deep smoked panels */
+  --ju-glass-bg: rgba(16, 16, 18, 0.82);
+  --ju-glass-bg-strong: rgba(16, 16, 18, 0.92);
+  --ju-glass-bg-subtle: rgba(16, 16, 18, 0.65);
+  --ju-glass-border: rgba(255, 255, 255, 0.07);
   --ju-glass-shadow:
-    0 4px 6px rgba(0, 0, 0, 0.15),
-    0 10px 15px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 4px 8px rgba(0, 0, 0, 0.35),
+    0 12px 28px rgba(0, 0, 0, 0.20),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
 
-  /* Dark raised glass */
-  --ju-raised-bg: rgba(38, 38, 42, 0.68);
-  --ju-raised-border: 1.5px solid rgba(255, 255, 255, 0.10);
+  /* Dark raised glass — lifted dark panels */
+  --ju-raised-bg: rgba(20, 20, 22, 0.88);
+  --ju-raised-border: 1.5px solid rgba(255, 255, 255, 0.08);
   --ju-raised-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    0 2px 6px rgba(0, 0, 0, 0.12),
-    0 8px 24px rgba(0, 0, 0, 0.10),
-    0 16px 44px rgba(0, 0, 0, 0.08);
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 2px 6px rgba(0, 0, 0, 0.30),
+    0 8px 24px rgba(0, 0, 0, 0.25),
+    0 20px 50px rgba(0, 0, 0, 0.20);
   --ju-raised-shadow-hover:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 4px 8px rgba(0, 0, 0, 0.14),
-    0 10px 28px rgba(0, 0, 0, 0.12),
-    0 20px 52px rgba(0, 0, 0, 0.10);
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 4px 10px rgba(0, 0, 0, 0.35),
+    0 12px 32px rgba(0, 0, 0, 0.28),
+    0 24px 60px rgba(0, 0, 0, 0.22);
+
+  /* Shadows — deep blacks for true depth */
+  --ju-shadow-sm: 0 1px 8px rgba(0, 0, 0, 0.20);
+  --ju-shadow-md: 0 4px 20px rgba(0, 0, 0, 0.28);
+  --ju-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --ju-shadow-xl: 0 12px 48px rgba(0, 0, 0, 0.40);
+
+  /* Tracks & dividers — subtle separators */
+  --ju-track-bg: rgba(255, 255, 255, 0.06);
+  --ju-track-bg-hover: rgba(255, 255, 255, 0.10);
+  --ju-widget-divider: rgba(255, 255, 255, 0.07);
+
+  /* Aurora — slightly muted for dark */
+  --ju-aurora-soft: linear-gradient(135deg, rgba(255,157,108,0.08) 0%, rgba(255,107,152,0.06) 33%, rgba(122,96,255,0.06) 66%, rgba(27,130,255,0.05) 100%);
 }
 
 /* --- Dark theme via OS preference (fallback) --- */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --ju-color-text: var(--ju-color-gray-100);
+    --ju-color-gray-950: #0a0a0b;
+
+    --ju-color-text: #e4e4e7;
     --ju-color-text-heading: #ffffff;
-    --ju-color-text-body: var(--ju-color-gray-200);
-    --ju-color-text-muted: var(--ju-color-gray-400);
-    --ju-color-text-lead: var(--ju-color-gray-300);
-    --ju-color-surface: var(--ju-color-gray-900);
-    --ju-color-surface-hover: var(--ju-color-gray-800);
-    --ju-color-surface-muted: var(--ju-color-gray-800);
-    --ju-color-surface-active: rgba(27, 130, 255, 0.15);
-    --ju-color-surface-active-text: #60a5fa;
-    --ju-color-border: var(--ju-color-gray-800);
-    --ju-color-border-strong: var(--ju-color-gray-700);
+    --ju-color-text-body: #c8c8cd;
+    --ju-color-text-muted: rgba(255, 255, 255, 0.38);
+    --ju-color-text-lead: #a0a0a8;
 
-    /* Dark glass (inverted) */
-    --ju-glass-bg: rgba(32, 32, 32, 0.60);
-    --ju-glass-bg-strong: rgba(32, 32, 32, 0.80);
-    --ju-glass-border: rgba(255, 255, 255, 0.10);
+    --ju-color-surface: #0a0a0b;
+    --ju-color-surface-hover: rgba(255, 255, 255, 0.06);
+    --ju-color-surface-muted: #111113;
+    --ju-color-surface-active: rgba(255, 255, 255, 0.08);
+    --ju-color-surface-active-text: #ffffff;
+
+    --ju-color-border: rgba(255, 255, 255, 0.07);
+    --ju-color-border-strong: rgba(255, 255, 255, 0.12);
+
+    --ju-glass-bg: rgba(16, 16, 18, 0.82);
+    --ju-glass-bg-strong: rgba(16, 16, 18, 0.92);
+    --ju-glass-bg-subtle: rgba(16, 16, 18, 0.65);
+    --ju-glass-border: rgba(255, 255, 255, 0.07);
     --ju-glass-shadow:
-      0 4px 6px rgba(0, 0, 0, 0.15),
-      0 10px 15px rgba(0, 0, 0, 0.08),
-      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      0 4px 8px rgba(0, 0, 0, 0.35),
+      0 12px 28px rgba(0, 0, 0, 0.20),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
 
-    /* Dark raised glass */
-    --ju-raised-bg: rgba(38, 38, 42, 0.68);
-    --ju-raised-border: 1.5px solid rgba(255, 255, 255, 0.10);
+    --ju-raised-bg: rgba(20, 20, 22, 0.88);
+    --ju-raised-border: 1.5px solid rgba(255, 255, 255, 0.08);
     --ju-raised-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.06),
-      0 2px 6px rgba(0, 0, 0, 0.12),
-      0 8px 24px rgba(0, 0, 0, 0.10),
-      0 16px 44px rgba(0, 0, 0, 0.08);
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 2px 6px rgba(0, 0, 0, 0.30),
+      0 8px 24px rgba(0, 0, 0, 0.25),
+      0 20px 50px rgba(0, 0, 0, 0.20);
     --ju-raised-shadow-hover:
-      inset 0 1px 0 rgba(255, 255, 255, 0.08),
-      0 4px 8px rgba(0, 0, 0, 0.14),
-      0 10px 28px rgba(0, 0, 0, 0.12),
-      0 20px 52px rgba(0, 0, 0, 0.10);
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 4px 10px rgba(0, 0, 0, 0.35),
+      0 12px 32px rgba(0, 0, 0, 0.28),
+      0 24px 60px rgba(0, 0, 0, 0.22);
+
+    --ju-shadow-sm: 0 1px 8px rgba(0, 0, 0, 0.20);
+    --ju-shadow-md: 0 4px 20px rgba(0, 0, 0, 0.28);
+    --ju-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.35);
+    --ju-shadow-xl: 0 12px 48px rgba(0, 0, 0, 0.40);
+
+    --ju-track-bg: rgba(255, 255, 255, 0.06);
+    --ju-track-bg-hover: rgba(255, 255, 255, 0.10);
+    --ju-widget-divider: rgba(255, 255, 255, 0.07);
+
+    --ju-aurora-soft: linear-gradient(135deg, rgba(255,157,108,0.08) 0%, rgba(255,107,152,0.06) 33%, rgba(122,96,255,0.06) 66%, rgba(27,130,255,0.05) 100%);
   }
 }
