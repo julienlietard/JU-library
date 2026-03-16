@@ -196,7 +196,7 @@ export type { JUSearchBarProps, JUSearchBarSize, JUSearchBarVariant, JUSearchBar
 
 // Ask Bar
 export { JUAskBar } from './components/ju-ask-bar/ju-ask-bar';
-export type { JUAskBarProps, JUAskBarSize, JUAskBarVariant } from './components/ju-ask-bar/ju-ask-bar';
+export type { JUAskBarProps, JUAskBarTheme } from './components/ju-ask-bar/ju-ask-bar';
 
 // Welcome Card
 export { JUWelcomeCard } from './components/ju-welcome-card/ju-welcome-card';
@@ -257,6 +257,10 @@ export type { JUFeedLayoutProps, JUFeedLayoutColumns, JUFeedLayoutGap } from './
 // Comment Thread
 export { JUCommentThread } from './components/ju-comment-thread/ju-comment-thread';
 export type { JUCommentThreadProps, JUComment } from './components/ju-comment-thread/ju-comment-thread';
+
+// Comment Box
+export { JUCommentBox } from './components/ju-comment-box/ju-comment-box';
+export type { JUCommentBoxProps, JUCommentBoxUser, JUCommentBoxComment } from './components/ju-comment-box/ju-comment-box';
 
 // Pricing Card
 export { JUPricingCard } from './components/ju-pricing-card/ju-pricing-card';

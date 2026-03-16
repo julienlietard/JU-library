@@ -20,7 +20,7 @@ const meta: Meta<typeof JUSubCalendar> = {
     docs: {
       description: {
         component:
-          'Subscription calendar — click a day cell to see renewal details with spring animations.',
+          'Subscription renewal calendar — click a day cell to see details with organic spring animations.',
       },
     },
   },
@@ -46,6 +46,26 @@ export const Default: Story = {
     month: 11,
     subscriptions: MOCK_SUBSCRIPTIONS,
     maxIconsPerCell: 2,
+  },
+};
+
+export const WithNavigation: Story = {
+  name: 'With Month Navigation',
+  args: {
+    year: 2025,
+    month: 11,
+    subscriptions: MOCK_SUBSCRIPTIONS,
+  },
+  render: (args) => {
+    const [date, setDate] = React.useState({ year: args.year, month: args.month });
+    return (
+      <JUSubCalendar
+        {...args}
+        year={date.year}
+        month={date.month}
+        onMonthChange={(y, m) => setDate({ year: y, month: m })}
+      />
+    );
   },
 };
 
@@ -128,25 +148,5 @@ export const DenseMonth: Story = {
         dayOfMonth: i + 1,
       }),
     ),
-  },
-};
-
-export const WithNavigation: Story = {
-  name: 'With Month Navigation',
-  args: {
-    year: 2025,
-    month: 11,
-    subscriptions: MOCK_SUBSCRIPTIONS,
-  },
-  render: (args) => {
-    const [date, setDate] = React.useState({ year: args.year, month: args.month });
-    return (
-      <JUSubCalendar
-        {...args}
-        year={date.year}
-        month={date.month}
-        onMonthChange={(y, m) => setDate({ year: y, month: m })}
-      />
-    );
   },
 };

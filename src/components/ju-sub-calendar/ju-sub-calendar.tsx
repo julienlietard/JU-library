@@ -1,6 +1,5 @@
-import React, { useState, useMemo, useCallback, useEffect, useRef } from 'react';
-import { createPortal } from 'react-dom';
-import { Package, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState, useMemo, useCallback, useEffect, useRef, useLayoutEffect } from 'react';
+import { Package, X, ChevronLeft, ChevronRight, CalendarDays } from 'lucide-react';
 import './ju-sub-calendar.css';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -62,7 +61,6 @@ const getMonthName = (month: number, locale: string): string => {
 
 const DAY_LABELS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] as const;
 
-/** Rect of a cell, used to animate detail panel from/to cell position */
 interface CellRect {
   top: number;
   left: number;
@@ -96,7 +94,7 @@ const BillingDot: React.FC<{ billing: JUBillingCycle }> = ({ billing }) => (
 );
 
 const IconWithDot: React.FC<{ sub: JUSubscription; size?: number }> = ({ sub, size = 28 }) => (
-  <div className="jusc-icon-dot">
+  <div className="jusc-icon-wrap">
     <ServiceLogo sub={sub} size={size} />
     <BillingDot billing={sub.billing} />
   </div>
@@ -107,31 +105,53 @@ const OverflowBadge: React.FC<{ count: number }> = ({ count }) => (
 );
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Day Detail — expands FROM the clicked cell
+// Expanded Cell — morphs from the day cell in-place
 // ─────────────────────────────────────────────────────────────────────────────
 
-interface DayDetailProps {
+interface ExpandedCellProps {
   subscriptions: JUSubscription[];
   day: number;
   monthLabel: string;
   currency: string;
   locale: string;
   origin: CellRect;
+  containerRect: CellRect;
   onClose: () => void;
 }
 
-const DayDetail: React.FC<DayDetailProps> = ({
+const ExpandedCell: React.FC<ExpandedCellProps> = ({
   subscriptions,
   day,
   monthLabel,
   currency,
   locale,
   origin,
+  containerRect,
   onClose,
 }) => {
   const total = subscriptions.reduce((acc, s) => acc + s.price, 0);
-  const [closing, setClosing] = useState(false);
+  const [phase, setPhase] = useState<'entering' | 'open' | 'leaving'>('entering');
   const panelRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  // Position relative to the calendar container
+  const relTop = origin.top - containerRect.top;
+  const relLeft = origin.left - containerRect.left;
+
+  // Final expanded size
+  const expandedW = Math.min(340, containerRect.width - 24);
+  const expandedH = 100 + subscriptions.length * 54 + 64;
+
+  // Compute where the expanded panel should sit (anchored to cell, clamped inside container)
+  const targetLeft = Math.max(12, Math.min(relLeft, containerRect.width - expandedW - 12));
+  const targetTop = Math.max(12, Math.min(relTop, containerRect.height - expandedH - 12));
+
+  useLayoutEffect(() => {
+    // Trigger enter animation on next frame
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => setPhase('open'));
+    });
+  }, []);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -141,110 +161,107 @@ const DayDetail: React.FC<DayDetailProps> = ({
     return () => document.removeEventListener('keydown', handler);
   }, []);
 
-  const handleClose = () => {
-    setClosing(true);
-    const el = panelRef.current;
-    if (el) {
-      el.addEventListener('animationend', onClose, { once: true });
-    } else {
+  const handleClose = useCallback(() => {
+    setPhase('leaving');
+  }, []);
+
+  // Close after the morph-back transition completes
+  useEffect(() => {
+    if (phase !== 'leaving') return;
+    const t = setTimeout(onClose, 500); // matches transition duration
+    return () => clearTimeout(t);
+  }, [phase, onClose]);
+
+  const handleTransitionEnd = (e: React.TransitionEvent) => {
+    if (phase === 'leaving' && e.propertyName === 'width') {
       onClose();
     }
   };
 
-  // Compute the CSS custom properties for the expand-from-cell animation
-  const panelWidth = 380;
-  const vw = typeof window !== 'undefined' ? window.innerWidth : 1024;
-  const vh = typeof window !== 'undefined' ? window.innerHeight : 768;
-  const finalW = Math.min(panelWidth, vw * 0.9);
+  // Styles for morphing states
+  const isCollapsed = phase === 'entering' || phase === 'leaving';
 
-  // Scale: cell size → panel size
-  const scaleX = origin.width / finalW;
-  // Estimate final height (header + rows + footer)
-  const estimatedH = 80 + subscriptions.length * 52 + 60;
-  const scaleY = origin.height / estimatedH;
+  const panelStyle: React.CSSProperties = {
+    position: 'absolute',
+    zIndex: 10,
+    top: isCollapsed ? relTop : targetTop,
+    left: isCollapsed ? relLeft : targetLeft,
+    width: isCollapsed ? origin.width : expandedW,
+    height: isCollapsed ? origin.height : expandedH,
+    borderRadius: isCollapsed ? 'var(--ju-radius-md)' : 'var(--ju-radius-xl)',
+    overflow: 'hidden',
+  };
 
-  // Origin center relative to viewport center
-  const originCX = origin.left + origin.width / 2;
-  const originCY = origin.top + origin.height / 2;
-  const offsetX = originCX - vw / 2;
-  const offsetY = originCY - vh / 2;
-
-  const cssVars = {
-    '--jusc-origin-x': `${offsetX}px`,
-    '--jusc-origin-y': `${offsetY}px`,
-    '--jusc-origin-sx': scaleX,
-    '--jusc-origin-sy': scaleY,
-  } as React.CSSProperties;
-
-  const stateClass = closing ? 'jusc-detail--closing' : 'jusc-detail--open';
-  const overlayState = closing ? 'jusc-overlay--closing' : 'jusc-overlay--open';
-
-  return createPortal(
+  return (
     <>
+      {/* Scrim over the calendar */}
       <div
-        className={`jusc-overlay ${overlayState}`}
+        className={`jusc-scrim ${isCollapsed ? '' : 'jusc-scrim--visible'}`}
         onClick={handleClose}
       />
+      {/* Morphing panel */}
       <div
         ref={panelRef}
-        className={`jusc-detail ${stateClass}`}
-        style={cssVars}
+        className={`jusc-expand ${phase === 'open' ? 'jusc-expand--open' : ''}`}
+        style={panelStyle}
         role="dialog"
         aria-modal="true"
+        onTransitionEnd={handleTransitionEnd}
       >
-        {/* Header */}
-        <div className="jusc-detail__header">
-          <div className="jusc-detail__date">
-            <span className="jusc-detail__day">{day}</span>
-            <span className="jusc-detail__month">{monthLabel}</span>
+        {/* Inner content — fades in */}
+        <div
+          ref={contentRef}
+          className={`jusc-expand__content ${phase === 'open' ? 'jusc-expand__content--visible' : ''}`}
+        >
+          {/* Header */}
+          <div className="jusc-expand__head">
+            <div className="jusc-expand__date">
+              <span className="jusc-expand__day-num">{day}</span>
+              <span className="jusc-expand__month-name">{monthLabel}</span>
+            </div>
+            <button className="jusc-expand__close" onClick={handleClose} aria-label="Close">
+              <X size={14} strokeWidth={2.4} />
+            </button>
           </div>
-          <button
-            className="jusc-detail__close"
-            onClick={handleClose}
-            aria-label="Close"
-          >
-            <X size={16} strokeWidth={2} />
-          </button>
-        </div>
 
-        {/* List */}
-        <div className="jusc-detail__list">
-          {subscriptions.map((sub, i) => (
-            <div
-              key={sub.id}
-              className={`jusc-detail__row ${closing ? '' : 'jusc-detail__row--enter'}`}
-              style={{ animationDelay: closing ? '0ms' : `${80 + i * 50}ms` }}
-            >
-              <IconWithDot sub={sub} size={36} />
-              <div className="jusc-detail__info">
-                <span className="jusc-detail__name">{sub.name}</span>
-                <span className="jusc-detail__cycle">
-                  {sub.billing === 'monthly' ? 'Monthly' : 'Yearly'}
+          {/* Subscription list */}
+          <ul className="jusc-expand__list">
+            {subscriptions.map((sub, i) => (
+              <li
+                key={sub.id}
+                className={`jusc-expand__item ${phase === 'open' ? 'jusc-expand__item--in' : ''}`}
+                style={{ '--jusc-i': i } as React.CSSProperties}
+              >
+                <IconWithDot sub={sub} size={36} />
+                <div className="jusc-expand__meta">
+                  <span className="jusc-expand__name">{sub.name}</span>
+                  <span className="jusc-expand__billing">
+                    {sub.billing === 'monthly' ? 'Monthly' : 'Yearly'}
+                  </span>
+                </div>
+                <span className="jusc-expand__price">
+                  {formatCurrency(sub.price, currency, locale)}
                 </span>
-              </div>
-              <span className="jusc-detail__price">
-                {formatCurrency(sub.price, currency, locale)}
+              </li>
+            ))}
+          </ul>
+
+          {/* Footer */}
+          <div
+            className={`jusc-expand__foot ${phase === 'open' ? 'jusc-expand__foot--in' : ''}`}
+            style={{ '--jusc-i': subscriptions.length } as React.CSSProperties}
+          >
+            <div className="jusc-expand__separator" />
+            <div className="jusc-expand__total">
+              <span className="jusc-expand__total-label">Total</span>
+              <span className="jusc-expand__total-value">
+                {formatCurrency(total, currency, locale)}
               </span>
             </div>
-          ))}
-        </div>
-
-        {/* Footer */}
-        <div
-          className={`jusc-detail__footer ${closing ? '' : 'jusc-detail__footer--enter'}`}
-          style={{ animationDelay: closing ? '0ms' : `${80 + subscriptions.length * 50}ms` }}
-        >
-          <div className="jusc-detail__divider" />
-          <div className="jusc-detail__total">
-            <span className="jusc-detail__total-label">Total</span>
-            <span className="jusc-detail__total-value">
-              {formatCurrency(total, currency, locale)}
-            </span>
           </div>
         </div>
       </div>
-    </>,
-    document.body,
+    </>
   );
 };
 
@@ -259,6 +276,7 @@ interface DayCellProps {
   isToday: boolean;
   isActive: boolean;
   onOpen: (rect: CellRect) => void;
+  index: number;
 }
 
 const DayCell: React.FC<DayCellProps> = ({
@@ -268,6 +286,7 @@ const DayCell: React.FC<DayCellProps> = ({
   isToday,
   isActive,
   onOpen,
+  index,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const hasSubs = subscriptions.length > 0;
@@ -291,14 +310,19 @@ const DayCell: React.FC<DayCellProps> = ({
     .join(' ');
 
   return (
-    <div ref={ref} className={cls} onClick={handleClick}>
+    <div
+      ref={ref}
+      className={cls}
+      onClick={handleClick}
+      style={{ '--jusc-cell-i': index } as React.CSSProperties}
+    >
       {day !== null && (
         <>
-          <span className="jusc-cell__number">{day}</span>
+          <span className="jusc-cell__num">{day}</span>
           {hasSubs && (
             <div className="jusc-cell__icons">
               {visible.map((sub) => (
-                <IconWithDot key={sub.id} sub={sub} size={24} />
+                <IconWithDot key={sub.id} sub={sub} size={22} />
               ))}
               {overflow > 0 && <OverflowBadge count={overflow} />}
             </div>
@@ -325,6 +349,8 @@ export const JUSubCalendar: React.FC<JUSubCalendarProps> = ({
 }) => {
   const [activeDay, setActiveDay] = useState<number | null>(null);
   const [cellRect, setCellRect] = useState<CellRect | null>(null);
+  const [slideDir, setSlideDir] = useState<'left' | 'right' | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const daysInMonth = getDaysInMonth(year, month);
   const firstDay = getFirstWeekday(year, month);
@@ -367,19 +393,21 @@ export const JUSubCalendar: React.FC<JUSubCalendarProps> = ({
 
   const handlePrev = () => {
     if (!onMonthChange) return;
-    onMonthChange(
-      month === 0 ? year - 1 : year,
-      month === 0 ? 11 : month - 1,
-    );
+    setSlideDir('right');
+    onMonthChange(month === 0 ? year - 1 : year, month === 0 ? 11 : month - 1);
   };
 
   const handleNext = () => {
     if (!onMonthChange) return;
-    onMonthChange(
-      month === 11 ? year + 1 : year,
-      month === 11 ? 0 : month + 1,
-    );
+    setSlideDir('left');
+    onMonthChange(month === 11 ? year + 1 : year, month === 11 ? 0 : month + 1);
   };
+
+  useEffect(() => {
+    if (!slideDir) return;
+    const t = setTimeout(() => setSlideDir(null), 400);
+    return () => clearTimeout(t);
+  }, [slideDir, month, year]);
 
   const handleOpenDay = (day: number, rect: CellRect) => {
     setCellRect(rect);
@@ -392,36 +420,37 @@ export const JUSubCalendar: React.FC<JUSubCalendarProps> = ({
   };
 
   const activeSubs = activeDay !== null ? (subsByDay[activeDay] ?? []) : [];
+  const subsCount = subscriptions.length;
+
+  // Get container rect for positioning the expanded panel
+  const getContainerRect = (): CellRect => {
+    if (!containerRef.current) return { top: 0, left: 0, width: 780, height: 600 };
+    const r = containerRef.current.getBoundingClientRect();
+    return { top: r.top, left: r.left, width: r.width, height: r.height };
+  };
 
   return (
-    <div className={`jusc ${className}`.trim()}>
+    <div ref={containerRef} className={`jusc ${className}`.trim()}>
       {/* Header */}
       <header className="jusc-header">
         <div className="jusc-header__left">
           <div className="jusc-header__nav">
             {onMonthChange && (
-              <button
-                className="jusc-header__arrow"
-                onClick={handlePrev}
-                aria-label="Previous month"
-              >
-                <ChevronLeft size={18} strokeWidth={2} />
+              <button className="jusc-nav-btn" onClick={handlePrev} aria-label="Previous month">
+                <ChevronLeft size={16} strokeWidth={2.5} />
               </button>
             )}
             <h2 className="jusc-header__title">
-              {monthLabel} {year}
+              <span className="jusc-header__month-text">{monthLabel}</span>
+              <span className="jusc-header__year-text">{year}</span>
             </h2>
             {onMonthChange && (
-              <button
-                className="jusc-header__arrow"
-                onClick={handleNext}
-                aria-label="Next month"
-              >
-                <ChevronRight size={18} strokeWidth={2} />
+              <button className="jusc-nav-btn" onClick={handleNext} aria-label="Next month">
+                <ChevronRight size={16} strokeWidth={2.5} />
               </button>
             )}
           </div>
-          <div className="jusc-header__legend">
+          <div className="jusc-legend-row">
             <span className="jusc-legend">
               <span className="jusc-legend__dot jusc-legend__dot--monthly" />
               Monthly
@@ -433,22 +462,33 @@ export const JUSubCalendar: React.FC<JUSubCalendarProps> = ({
           </div>
         </div>
         <div className="jusc-header__right">
-          <span className="jusc-header__total-label">Total</span>
-          <span className="jusc-header__total-value">
-            {formatCurrency(monthTotal, currency, locale)}
-          </span>
+          <div className="jusc-header__stat">
+            <span className="jusc-header__stat-num">{subsCount}</span>
+            <span className="jusc-header__stat-label">
+              {subsCount === 1 ? 'subscription' : 'subscriptions'}
+            </span>
+          </div>
+          <div className="jusc-header__total-pill">
+            <span className="jusc-header__total-value">
+              {formatCurrency(monthTotal, currency, locale)}
+            </span>
+            <span className="jusc-header__total-suffix">/mo</span>
+          </div>
         </div>
       </header>
 
-      {/* Day names */}
-      <div className="jusc-grid jusc-grid--head">
+      {/* Weekday headers */}
+      <div className="jusc-weekdays">
         {DAY_LABELS.map((d) => (
-          <div key={d} className="jusc-day-name">{d}</div>
+          <div key={d} className="jusc-weekday">{d}</div>
         ))}
       </div>
 
       {/* Calendar grid */}
-      <div className="jusc-grid jusc-grid--body">
+      <div
+        className={`jusc-grid ${slideDir ? `jusc-grid--slide-${slideDir}` : ''}`}
+        key={`${year}-${month}`}
+      >
         {cells.map((day, idx) => (
           <DayCell
             key={idx}
@@ -458,13 +498,22 @@ export const JUSubCalendar: React.FC<JUSubCalendarProps> = ({
             isToday={isToday(day)}
             isActive={day !== null && day === activeDay}
             onOpen={(rect) => day !== null && handleOpenDay(day, rect)}
+            index={idx}
           />
         ))}
       </div>
 
-      {/* Day detail modal */}
+      {/* Empty state */}
+      {subscriptions.length === 0 && (
+        <div className="jusc-empty">
+          <CalendarDays size={32} strokeWidth={1.4} />
+          <span>No subscriptions this month</span>
+        </div>
+      )}
+
+      {/* Expanded cell — morphs in-place over the grid */}
       {activeDay !== null && cellRect !== null && (
-        <DayDetail
+        <ExpandedCell
           key={activeDay}
           subscriptions={activeSubs}
           day={activeDay}
@@ -472,6 +521,7 @@ export const JUSubCalendar: React.FC<JUSubCalendarProps> = ({
           currency={currency}
           locale={locale}
           origin={cellRect}
+          containerRect={getContainerRect()}
           onClose={handleCloseDay}
         />
       )}

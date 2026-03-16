@@ -131,45 +131,10 @@
   margin-bottom: 6px;
 }
 
-/* --- CTA Button --- */
+/* --- CTA Button (uses JUButton) --- */
 
 .ju-pricing-card__cta {
-  width: 100%;
-  padding: 11px 0;
-  border-radius: 10px;
-  font-family: var(--ju-font-family);
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    background 0.2s ease,
-    transform 0.15s ease,
-    box-shadow 0.2s ease;
-  border: 1.5px solid var(--ju-color-border, rgba(0, 0, 0, 0.1));
-  background: transparent;
-  color: var(--ju-color-text);
-}
-
-.ju-pricing-card__cta:hover {
-  background: rgba(0, 0, 0, 0.03);
-  transform: translateY(-1px);
-}
-
-.ju-pricing-card__cta:active {
-  transform: translateY(0);
-}
-
-/* Primary CTA for popular tier */
-.ju-pricing-card__cta--primary {
-  background: var(--ju-color-accent, var(--ju-color-primary));
-  color: var(--ju-color-white, #fff);
-  border-color: transparent;
-  box-shadow: 0 4px 14px color-mix(in srgb, var(--ju-color-accent, var(--ju-color-primary)) 30%, transparent);
-}
-
-.ju-pricing-card__cta--primary:hover {
-  background: color-mix(in srgb, var(--ju-color-accent, var(--ju-color-primary)) 88%, black);
-  box-shadow: 0 6px 20px color-mix(in srgb, var(--ju-color-accent, var(--ju-color-primary)) 35%, transparent);
+  margin-bottom: 0;
 }
 
 /* --- Divider --- */

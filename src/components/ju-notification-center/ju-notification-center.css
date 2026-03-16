@@ -13,19 +13,24 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  border: none;
+  border: 1px solid var(--ju-color-border, rgba(0, 0, 0, 0.08));
   border-radius: var(--ju-radius-md, 14px);
-  background: transparent;
+  background: var(--ju-color-surface, #fff);
   color: var(--ju-color-text, #334155);
   cursor: pointer;
   transition:
     background var(--ju-duration-fast, 150ms) var(--ju-ease-smooth, ease),
-    transform var(--ju-duration-fast, 150ms) var(--ju-ease-bounce, ease);
+    transform var(--ju-duration-fast, 150ms) var(--ju-ease-bounce, ease),
+    border-color var(--ju-duration-fast, 150ms) ease,
+    box-shadow var(--ju-duration-fast, 150ms) ease;
   font-family: var(--ju-font-family);
+  box-shadow: var(--ju-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.06));
 }
 
 .ju-notif-trigger:hover {
   background: var(--ju-color-surface-hover, rgba(0, 0, 0, 0.04));
+  border-color: var(--ju-color-border-strong, rgba(0, 0, 0, 0.12));
+  box-shadow: var(--ju-shadow-md, 0 4px 12px rgba(0, 0, 0, 0.08));
 }
 
 .ju-notif-trigger:active {
@@ -100,7 +105,7 @@
    PANEL
    ======================== */
 .ju-notif-panel {
-  position: absolute;
+  /* position is set inline (fixed) via JS with viewport clamping */
   z-index: 100;
   width: 380px;
   max-height: 420px;
@@ -119,14 +124,7 @@
   transform-origin: top right;
 }
 
-.ju-notif-panel--bottom-end {
-  top: calc(100% + 8px);
-  right: 0;
-}
-
 .ju-notif-panel--bottom-start {
-  top: calc(100% + 8px);
-  left: 0;
   transform-origin: top left;
 }
 
@@ -448,10 +446,14 @@
    ======================== */
 [data-theme="dark"] .ju-notif-trigger {
   color: #e2e8f0;
+  background: var(--ju-color-surface, rgba(255, 255, 255, 0.06));
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 [data-theme="dark"] .ju-notif-trigger:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.14);
 }
 
 [data-theme="dark"] .ju-notif-panel {
@@ -525,8 +527,8 @@
 
 /* prefers-color-scheme fallback */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .ju-notif-trigger { color: #e2e8f0; }
-  :root:not([data-theme="light"]) .ju-notif-trigger:hover { background: rgba(255, 255, 255, 0.06); }
+  :root:not([data-theme="light"]) .ju-notif-trigger { color: #e2e8f0; background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.08); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); }
+  :root:not([data-theme="light"]) .ju-notif-trigger:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.14); }
   :root:not([data-theme="light"]) .ju-notif-panel {
     background: rgba(32, 32, 32, 0.60);
     border-color: rgba(255, 255, 255, 0.08);

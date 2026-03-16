@@ -1,5 +1,6 @@
 import React from 'react';
 import { JUCard } from '../ju-card/ju-card';
+import { JUButton } from '../ju-button/ju-button';
 import './ju-pricing-card.css';
 
 export type JUPricingCardTier = 'free' | 'pro' | 'enterprise';
@@ -92,16 +93,14 @@ export const JUPricingCard: React.FC<JUPricingCardProps> = ({
           </div>
 
           {/* CTA */}
-          <button
-            className={[
-              'ju-pricing-card__cta',
-              popular ? 'ju-pricing-card__cta--primary' : '',
-            ].filter(Boolean).join(' ')}
+          <JUButton
+            label={ctaLabel}
+            variant={popular ? 'ai' : 'secondary'}
+            size="lg"
+            isFullWidth
             onClick={onCtaClick}
-            type="button"
-          >
-            {ctaLabel}
-          </button>
+            className="ju-pricing-card__cta"
+          />
 
           {/* Divider */}
           <div className="ju-pricing-card__divider" />

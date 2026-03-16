@@ -1,58 +1,71 @@
-/* ju-sub-calendar.css
-   Glassmorphism 2.0 · JU Design Tokens
-   ─────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════
+   JUSubCalendar — In-place Cell Morph
+   Smooth organic animations · JU Design Tokens
+   ═══════════════════════════════════════════════════ */
 
-/* ── Easing tokens ─────────────────────────────── */
-:root {
-  --jusc-ease-spring: cubic-bezier(0.22, 1.4, 0.32, 1);
-  --jusc-ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-/* ── Container ─────────────────────────────────── */
+/* ── Container ──────────────────────────────────── */
 .jusc {
   font-family: var(--ju-font-family);
   color: var(--ju-color-text);
   background: var(--ju-color-gray-50);
   border-radius: var(--ju-radius-2xl);
+  border: var(--ju-raised-border);
+  box-shadow: var(--ju-raised-shadow);
   padding: var(--ju-space-xl);
-  max-width: 860px;
+  max-width: 780px;
   width: 100%;
   box-sizing: border-box;
   overflow: visible;
+  position: relative;
 }
 
-/* ── Header ────────────────────────────────────── */
+/* ── Header ─────────────────────────────────────── */
 .jusc-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: var(--ju-space-lg);
+  gap: var(--ju-space-md);
 }
 
 .jusc-header__left {
   display: flex;
   flex-direction: column;
-  gap: var(--ju-space-sm);
+  gap: 10px;
 }
 
 .jusc-header__nav {
   display: flex;
   align-items: center;
-  gap: var(--ju-space-xs);
+  gap: 6px;
 }
 
 .jusc-header__title {
   margin: 0;
-  font-size: 1.65rem;
-  font-weight: var(--ju-font-weight-bold);
-  color: var(--ju-color-text-heading);
-  line-height: 1.15;
-  letter-spacing: -0.025em;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  line-height: 1.1;
 }
 
-.jusc-header__arrow {
-  width: 30px;
-  height: 30px;
+.jusc-header__month-text {
+  font-size: 1.6rem;
+  font-weight: var(--ju-font-weight-bold);
+  color: var(--ju-color-text-heading);
+  letter-spacing: -0.03em;
+}
+
+.jusc-header__year-text {
+  font-size: 1.1rem;
+  font-weight: var(--ju-font-weight-medium);
+  color: var(--ju-color-text-muted);
+  letter-spacing: -0.01em;
+}
+
+/* ── Nav buttons ────────────────────────────────── */
+.jusc-nav-btn {
+  width: 32px;
+  height: 32px;
   border-radius: var(--ju-radius-full);
   border: 1px solid var(--ju-color-border);
   background: var(--ju-color-surface);
@@ -63,23 +76,27 @@
   cursor: pointer;
   flex-shrink: 0;
   transition:
-    background var(--ju-duration-fast, 150ms) ease,
-    color var(--ju-duration-fast, 150ms) ease,
-    border-color var(--ju-duration-fast, 150ms) ease,
-    transform 0.18s var(--jusc-ease-spring);
+    background 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease,
+    transform 300ms var(--ju-ease-spring),
+    box-shadow 180ms ease;
 }
 
-.jusc-header__arrow:hover {
+.jusc-nav-btn:hover {
   background: var(--ju-color-surface-hover);
   color: var(--ju-color-text-body);
-  border-color: var(--ju-color-text-muted);
+  border-color: var(--ju-color-border-strong);
+  box-shadow: var(--ju-shadow-sm);
 }
 
-.jusc-header__arrow:active {
-  transform: scale(0.92);
+.jusc-nav-btn:active {
+  transform: scale(0.88);
+  transition-duration: 80ms;
 }
 
-.jusc-header__legend {
+/* ── Legend ──────────────────────────────────────── */
+.jusc-legend-row {
   display: flex;
   gap: var(--ju-space-md);
 }
@@ -87,15 +104,15 @@
 .jusc-legend {
   display: flex;
   align-items: center;
-  gap: var(--ju-space-xs);
-  font-size: var(--ju-font-size-sm);
+  gap: 5px;
+  font-size: var(--ju-font-size-xs);
   font-weight: var(--ju-font-weight-medium);
   color: var(--ju-color-text-muted);
 }
 
 .jusc-legend__dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: var(--ju-radius-full);
   flex-shrink: 0;
 }
@@ -103,110 +120,164 @@
 .jusc-legend__dot--monthly { background: var(--ju-color-orange); }
 .jusc-legend__dot--yearly  { background: var(--ju-color-green);  }
 
+/* ── Header right — stats + total ───────────────── */
 .jusc-header__right {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 2px;
-  margin-top: 4px;
+  gap: 8px;
+  padding-top: 2px;
 }
 
-.jusc-header__total-label {
+.jusc-header__stat {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.jusc-header__stat-num {
+  font-size: var(--ju-font-size-lg);
+  font-weight: var(--ju-font-weight-bold);
+  color: var(--ju-color-text-heading);
+  line-height: 1;
+}
+
+.jusc-header__stat-label {
   font-size: var(--ju-font-size-xs);
   font-weight: var(--ju-font-weight-medium);
   color: var(--ju-color-text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+}
+
+.jusc-header__total-pill {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  background: var(--ju-color-primary-soft);
+  padding: 5px 12px;
+  border-radius: var(--ju-radius-full);
 }
 
 .jusc-header__total-value {
-  font-size: 1.35rem;
+  font-size: var(--ju-font-size-sm);
   font-weight: var(--ju-font-weight-bold);
-  color: var(--ju-color-text-heading);
-  letter-spacing: -0.01em;
-  line-height: 1.1;
+  color: var(--ju-color-primary);
+  line-height: 1.2;
 }
 
-/* ── Grid ──────────────────────────────────────── */
-.jusc-grid {
+.jusc-header__total-suffix {
+  font-size: var(--ju-font-size-xs);
+  font-weight: var(--ju-font-weight-medium);
+  color: var(--ju-color-primary);
+  opacity: 0.65;
+}
+
+/* ── Weekday headers ────────────────────────────── */
+.jusc-weekdays {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 6px;
-}
-
-.jusc-grid--head {
+  gap: 4px;
   margin-bottom: 4px;
 }
 
-.jusc-day-name {
+.jusc-weekday {
   text-align: center;
-  font-size: var(--ju-font-size-xs);
+  font-size: 0.68rem;
   font-weight: var(--ju-font-weight-semibold);
   color: var(--ju-color-text-muted);
-  padding: var(--ju-space-xs) 0;
-  letter-spacing: 0.03em;
+  padding: 6px 0;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
-/* ═════════════════════════════════════════════════
-   DAY CELL — with rich hover
-   ═════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════
+   GRID — with month transition
+   ═══════════════════════════════════════════════════ */
+.jusc-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  animation: jusc-grid-appear 400ms var(--ju-ease-out) both;
+}
 
+@keyframes jusc-grid-appear {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.jusc-grid--slide-left {
+  animation: jusc-slide-left 360ms var(--ju-ease-out) both;
+}
+
+.jusc-grid--slide-right {
+  animation: jusc-slide-right 360ms var(--ju-ease-out) both;
+}
+
+@keyframes jusc-slide-left {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes jusc-slide-right {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ═══════════════════════════════════════════════════
+   DAY CELL
+   ═══════════════════════════════════════════════════ */
 .jusc-cell {
   position: relative;
-  min-height: 80px;
-  border-radius: var(--ju-radius-lg);
+  min-height: 76px;
+  border-radius: var(--ju-radius-md);
   background: var(--ju-color-surface);
   border: 1px solid var(--ju-color-border);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-start;
-  padding: 8px;
+  padding: 7px 8px;
   box-sizing: border-box;
   cursor: default;
   overflow: visible;
   transition:
-    transform 0.25s var(--jusc-ease-spring),
-    box-shadow 0.2s ease,
-    border-color 0.15s ease;
+    transform 350ms var(--ju-ease-spring),
+    box-shadow 250ms ease,
+    border-color 200ms ease,
+    background 200ms ease,
+    opacity 250ms ease;
 }
 
 .jusc-cell--has-subs {
   cursor: pointer;
 }
 
-/* Hover: lift + glow + icon scale */
 .jusc-cell--has-subs:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px) scale(1.02);
   box-shadow:
-    0 6px 20px rgba(0, 0, 0, 0.07),
-    0 2px 6px rgba(0, 0, 0, 0.04);
-  border-color: rgba(0, 0, 0, 0.08);
+    0 8px 24px rgba(0, 0, 0, 0.06),
+    0 2px 8px rgba(0, 0, 0, 0.03);
+  border-color: var(--ju-color-border-strong);
+  z-index: 2;
 }
 
-.jusc-cell--has-subs:hover .jusc-icon-dot {
-  transform: scale(1.1);
-}
-
-.jusc-cell--has-subs:hover .jusc-overflow {
+.jusc-cell--has-subs:hover .jusc-icon-wrap {
   transform: scale(1.08);
 }
 
-/* Active press */
-.jusc-cell--has-subs:active {
-  transform: translateY(-1px) scale(0.97);
-  transition-duration: 0.08s;
+.jusc-cell--has-subs:hover .jusc-overflow {
+  transform: scale(1.06);
 }
 
-/* Active state (panel is open for this cell) */
+.jusc-cell--has-subs:active {
+  transform: translateY(0px) scale(0.97);
+  transition-duration: 80ms;
+  box-shadow: var(--ju-shadow-sm);
+}
+
+/* Active — cell becomes invisible (morphed into the expanded panel) */
 .jusc-cell--active {
-  opacity: 0.4;
+  opacity: 0;
   transform: scale(0.95);
   pointer-events: none;
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
 }
 
 .jusc-cell--empty {
@@ -216,20 +287,24 @@
   pointer-events: none;
 }
 
-.jusc-cell__number {
-  font-size: var(--ju-font-size-sm);
+.jusc-cell__num {
+  font-size: 0.78rem;
   font-weight: var(--ju-font-weight-medium);
   color: var(--ju-color-text-muted);
   line-height: 1;
   margin-bottom: auto;
 }
 
-.jusc-cell--today .jusc-cell__number {
+.jusc-cell--today {
+  background: var(--ju-color-primary-soft);
+  border-color: rgba(27, 130, 255, 0.15);
+}
+
+.jusc-cell--today .jusc-cell__num {
   color: var(--ju-color-primary);
   font-weight: var(--ju-font-weight-bold);
 }
 
-/* ── Icons in cell ─────────────────────────────── */
 .jusc-cell__icons {
   display: flex;
   align-items: center;
@@ -240,29 +315,29 @@
   margin-top: auto;
 }
 
-/* ── Logo ──────────────────────────────────────── */
+/* ── Service logo ───────────────────────────────── */
 .jusc-logo {
-  border-radius: var(--ju-radius-sm);
+  border-radius: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .jusc-logo__img {
-  width: 65%;
-  height: 65%;
+  width: 62%;
+  height: 62%;
   object-fit: contain;
   display: block;
 }
 
-/* ── Icon + dot ────────────────────────────────── */
-.jusc-icon-dot {
+.jusc-icon-wrap {
   position: relative;
   display: inline-flex;
   flex-shrink: 0;
-  transition: transform 0.2s var(--jusc-ease-spring);
+  transition: transform 280ms var(--ju-ease-spring);
 }
 
 .jusc-dot {
@@ -274,193 +349,145 @@
   border-radius: var(--ju-radius-full);
   border: 1.5px solid var(--ju-color-surface);
   pointer-events: none;
+  box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.06);
 }
 
 .jusc-dot--monthly { background: var(--ju-color-orange); }
 .jusc-dot--yearly  { background: var(--ju-color-green);  }
 
-/* ── Overflow badge ────────────────────────────── */
 .jusc-overflow {
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--ju-radius-full);
-  background: var(--ju-color-text-muted);
+  background: var(--ju-color-gray-400);
   color: #fff;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: var(--ju-font-weight-bold);
-  padding: 2px 6px;
-  height: 20px;
+  padding: 2px 5px;
+  height: 18px;
   letter-spacing: -0.01em;
   line-height: 1;
-  transition: transform 0.2s var(--jusc-ease-spring);
+  transition: transform 280ms var(--ju-ease-spring);
 }
 
-/* ═════════════════════════════════════════════════
-   OVERLAY
-   ═════════════════════════════════════════════════ */
-
-.jusc-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  background: rgba(0, 0, 0, 0.18);
-  -webkit-backdrop-filter: blur(0px) saturate(1);
-  backdrop-filter: blur(0px) saturate(1);
-  opacity: 0;
-}
-
-.jusc-overlay--open {
-  animation: jusc-overlay-in 0.3s var(--jusc-ease-out) forwards;
-}
-
-.jusc-overlay--closing {
-  animation: jusc-overlay-out 0.2s ease forwards;
-}
-
-@keyframes jusc-overlay-in {
-  from {
-    opacity: 0;
-    -webkit-backdrop-filter: blur(0px) saturate(1);
-    backdrop-filter: blur(0px) saturate(1);
-  }
-  to {
-    opacity: 1;
-    -webkit-backdrop-filter: blur(12px) saturate(1.2);
-    backdrop-filter: blur(12px) saturate(1.2);
-  }
-}
-
-@keyframes jusc-overlay-out {
-  from {
-    opacity: 1;
-    -webkit-backdrop-filter: blur(12px) saturate(1.2);
-    backdrop-filter: blur(12px) saturate(1.2);
-  }
-  to {
-    opacity: 0;
-    -webkit-backdrop-filter: blur(0px) saturate(1);
-    backdrop-filter: blur(0px) saturate(1);
-  }
-}
-
-/* ═════════════════════════════════════════════════
-   DAY DETAIL — expands from cell, collapses back
-   ═════════════════════════════════════════════════ */
-
-.jusc-detail {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
-  z-index: 201;
-
-  width: min(380px, 90vw);
-
-  border-radius: var(--ju-radius-2xl);
-  background: rgba(255, 255, 255, 0.92);
-  border: 1.5px solid rgba(255, 255, 255, 0.85);
-  -webkit-backdrop-filter: blur(40px) saturate(1.6);
-  backdrop-filter: blur(40px) saturate(1.6);
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.04),
-    0 4px 16px rgba(0, 0, 0, 0.06),
-    0 16px 56px rgba(0, 0, 0, 0.08),
-    0 32px 80px rgba(0, 0, 0, 0.04),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-
+.jusc-empty {
   display: flex;
   flex-direction: column;
-  gap: var(--ju-space-md);
-  padding: var(--ju-space-lg);
-  overflow: hidden;
+  align-items: center;
+  gap: 8px;
+  padding: var(--ju-space-xl) 0 var(--ju-space-md);
+  color: var(--ju-color-text-muted);
+  font-size: var(--ju-font-size-sm);
+  font-weight: var(--ju-font-weight-medium);
+  opacity: 0.7;
+}
 
-  /* Start at cell position via CSS vars set in JS */
-  opacity: 0;
-  transform:
-    translate(var(--jusc-origin-x, 0px), var(--jusc-origin-y, 0px))
-    scale(var(--jusc-origin-sx, 0.5), var(--jusc-origin-sy, 0.5));
+/* ═══════════════════════════════════════════════════
+   SCRIM — dims the calendar behind expanded cell
+   ═══════════════════════════════════════════════════ */
+.jusc-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  border-radius: inherit;
+  background: rgba(0, 0, 0, 0);
+  pointer-events: none;
+  transition:
+    background 400ms var(--ju-ease-out);
+}
+
+.jusc-scrim--visible {
+  background: rgba(0, 0, 0, 0.06);
+  pointer-events: auto;
+  cursor: default;
+}
+
+/* ═══════════════════════════════════════════════════
+   EXPANDED CELL — morphs from day cell in-place
+   All size/position/radius changes are CSS transitions
+   for a buttery-smooth morph effect.
+   ═══════════════════════════════════════════════════ */
+.jusc-expand {
+  /* Geometry is set via inline styles — transitions handle the morph */
+  background: var(--ju-glass-bg-strong);
+  border: var(--ju-raised-border);
+  -webkit-backdrop-filter: blur(40px) saturate(1.8);
+  backdrop-filter: blur(40px) saturate(1.8);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    0 1px 2px rgba(0, 0, 0, 0.03);
+
+  transition:
+    top 480ms var(--ju-ease-spring),
+    left 480ms var(--ju-ease-spring),
+    width 480ms var(--ju-ease-spring),
+    height 480ms var(--ju-ease-spring),
+    border-radius 400ms var(--ju-ease-out),
+    box-shadow 350ms ease,
+    transform 480ms var(--ju-ease-spring);
+
+  transform: scale(1);
   transform-origin: center center;
 }
 
-/* ── Expand from cell ────────────────────────── */
-.jusc-detail--open {
-  animation: jusc-expand-in 0.38s var(--jusc-ease-spring) forwards;
+.jusc-expand--open {
+  box-shadow:
+    var(--ju-raised-shadow),
+    0 0 0 1px rgba(0, 0, 0, 0.03);
 }
 
-@keyframes jusc-expand-in {
-  0% {
-    opacity: 0;
-    transform:
-      translate(var(--jusc-origin-x), var(--jusc-origin-y))
-      scale(var(--jusc-origin-sx), var(--jusc-origin-sy));
-    border-radius: var(--ju-radius-lg);
-    filter: blur(2px);
-  }
-  40% {
-    opacity: 1;
-    filter: blur(0px);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(0px, 0px) scale(1, 1);
-    border-radius: var(--ju-radius-2xl);
-    filter: blur(0px);
-  }
+/* ── Expand content — fades in after morph starts ─ */
+.jusc-expand__content {
+  display: flex;
+  flex-direction: column;
+  padding: var(--ju-space-lg);
+  height: 100%;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: scale(0.96);
+  transition:
+    opacity 300ms ease 120ms,
+    transform 400ms var(--ju-ease-spring) 80ms;
 }
 
-/* ── Collapse back to cell ───────────────────── */
-.jusc-detail--closing {
-  animation: jusc-expand-out 0.22s var(--jusc-ease-out) forwards;
+.jusc-expand__content--visible {
+  opacity: 1;
+  transform: scale(1);
 }
 
-@keyframes jusc-expand-out {
-  from {
-    opacity: 1;
-    transform: translate(0px, 0px) scale(1, 1);
-    border-radius: var(--ju-radius-2xl);
-    filter: blur(0px);
-  }
-  to {
-    opacity: 0;
-    transform:
-      translate(var(--jusc-origin-x), var(--jusc-origin-y))
-      scale(var(--jusc-origin-sx), var(--jusc-origin-sy));
-    border-radius: var(--ju-radius-lg);
-    filter: blur(2px);
-  }
-}
-
-/* ── Detail header ─────────────────────────────── */
-.jusc-detail__header {
+/* ── Expand header ──────────────────────────────── */
+.jusc-expand__head {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: var(--ju-space-md);
 }
 
-.jusc-detail__date {
+.jusc-expand__date {
   display: flex;
   align-items: baseline;
-  gap: var(--ju-space-xs);
+  gap: 7px;
 }
 
-.jusc-detail__day {
+.jusc-expand__day-num {
   font-size: 1.5rem;
   font-weight: var(--ju-font-weight-bold);
   color: var(--ju-color-text-heading);
   line-height: 1;
+  letter-spacing: -0.02em;
 }
 
-.jusc-detail__month {
+.jusc-expand__month-name {
   font-size: var(--ju-font-size-sm);
   font-weight: var(--ju-font-weight-medium);
   color: var(--ju-color-text-muted);
 }
 
-/* ── Close button — JUModal style ────────────── */
-.jusc-detail__close {
-  width: 32px;
-  height: 32px;
+/* ── Close button ───────────────────────────────── */
+.jusc-expand__close {
+  width: 28px;
+  height: 28px;
   border-radius: var(--ju-radius-full);
   border: none;
   background: rgba(0, 0, 0, 0.05);
@@ -471,59 +498,68 @@
   cursor: pointer;
   flex-shrink: 0;
   transition:
-    background var(--ju-duration-fast, 150ms) ease,
-    color var(--ju-duration-fast, 150ms) ease,
-    transform 0.25s var(--jusc-ease-spring);
+    background 150ms ease,
+    color 150ms ease,
+    transform 350ms var(--ju-ease-spring);
 }
 
-.jusc-detail__close:hover {
-  background: rgba(220, 38, 38, 0.06);
+.jusc-expand__close:hover {
+  background: rgba(220, 38, 38, 0.08);
   color: #dc2626;
-  transform: rotate(90deg);
+  transform: rotate(90deg) scale(1.05);
 }
 
-.jusc-detail__close:active {
-  transform: rotate(90deg) scale(0.88);
+.jusc-expand__close:active {
+  transform: rotate(90deg) scale(0.85);
+  transition-duration: 80ms;
 }
 
-/* ── Detail list ───────────────────────────────── */
-.jusc-detail__list {
+/* ── Subscription list ──────────────────────────── */
+.jusc-expand__list {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.jusc-detail__row {
+.jusc-expand__item {
   display: flex;
   align-items: center;
   gap: var(--ju-space-sm);
   padding: 6px 8px;
-  border-radius: var(--ju-radius-md, 14px);
-  transition: background 0.12s ease;
+  border-radius: var(--ju-radius-md);
+  transition: background 120ms ease;
   opacity: 0;
+  transform: translateY(8px) scale(0.97);
 }
 
-.jusc-detail__row:hover {
+.jusc-expand__item:hover {
   background: rgba(0, 0, 0, 0.03);
 }
 
-/* ── Row stagger animation ─────────────────────── */
-.jusc-detail__row--enter {
-  animation: jusc-row-in 0.3s var(--jusc-ease-out) forwards;
+/* ── Row stagger animation ──────────────────────── */
+.jusc-expand__item--in {
+  animation: jusc-item-pop 420ms var(--ju-ease-spring) forwards;
+  animation-delay: calc(180ms + var(--jusc-i, 0) * 60ms);
 }
 
-@keyframes jusc-row-in {
-  from {
+@keyframes jusc-item-pop {
+  0% {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(8px) scale(0.97);
   }
-  to {
+  50% {
     opacity: 1;
-    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
-.jusc-detail__info {
+.jusc-expand__meta {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -531,7 +567,7 @@
   min-width: 0;
 }
 
-.jusc-detail__name {
+.jusc-expand__name {
   font-size: var(--ju-font-size-sm);
   font-weight: var(--ju-font-weight-semibold);
   color: var(--ju-color-text-body);
@@ -540,81 +576,94 @@
   text-overflow: ellipsis;
 }
 
-.jusc-detail__cycle {
+.jusc-expand__billing {
   font-size: var(--ju-font-size-xs);
   color: var(--ju-color-text-muted);
   font-weight: var(--ju-font-weight-normal);
 }
 
-.jusc-detail__price {
+.jusc-expand__price {
   font-size: var(--ju-font-size-sm);
   font-weight: var(--ju-font-weight-semibold);
   color: var(--ju-color-text-body);
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
-/* ── Detail footer ─────────────────────────────── */
-.jusc-detail__footer {
+/* ── Footer ─────────────────────────────────────── */
+.jusc-expand__foot {
   display: flex;
   flex-direction: column;
   gap: var(--ju-space-sm);
+  margin-top: var(--ju-space-sm);
   opacity: 0;
+  transform: translateY(6px);
 }
 
-.jusc-detail__footer--enter {
-  animation: jusc-row-in 0.3s var(--jusc-ease-out) forwards;
+.jusc-expand__foot--in {
+  animation: jusc-item-pop 420ms var(--ju-ease-spring) forwards;
+  animation-delay: calc(180ms + var(--jusc-i, 0) * 60ms);
 }
 
-.jusc-detail__divider {
+.jusc-expand__separator {
   height: 1px;
-  background: rgba(0, 0, 0, 0.08);
+  background: var(--ju-widget-divider);
   margin: 2px 0;
 }
 
-.jusc-detail__total {
+.jusc-expand__total {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.jusc-detail__total-label {
+.jusc-expand__total-label {
   font-size: var(--ju-font-size-sm);
   font-weight: var(--ju-font-weight-medium);
   color: var(--ju-color-text-muted);
 }
 
-.jusc-detail__total-value {
-  font-size: var(--ju-font-size-md);
+.jusc-expand__total-value {
+  font-size: 1.1rem;
   font-weight: var(--ju-font-weight-bold);
   color: var(--ju-color-text-heading);
+  font-variant-numeric: tabular-nums;
 }
 
-/* ═════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════
    REDUCED MOTION
-   ═════════════════════════════════════════════════ */
-
+   ═══════════════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
-  .jusc-overlay--open,
-  .jusc-overlay--closing,
-  .jusc-detail--open,
-  .jusc-detail--closing,
-  .jusc-detail__row--enter,
-  .jusc-detail__footer--enter {
+  .jusc-expand {
+    transition-duration: 0.01ms !important;
+  }
+
+  .jusc-expand__content {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  .jusc-expand__item--in,
+  .jusc-expand__foot--in,
+  .jusc-grid,
+  .jusc-grid--slide-left,
+  .jusc-grid--slide-right {
     animation-duration: 0.01ms !important;
   }
 
   .jusc-cell,
-  .jusc-icon-dot,
+  .jusc-icon-wrap,
   .jusc-overflow,
-  .jusc-detail__close {
+  .jusc-nav-btn,
+  .jusc-expand__close,
+  .jusc-scrim {
     transition: none !important;
   }
 }
 
-/* ═════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════
    DARK MODE
-   ═════════════════════════════════════════════════ */
-
+   ═══════════════════════════════════════════════════ */
 [data-theme="dark"] .jusc {
   background: var(--ju-color-gray-900);
 }
@@ -627,9 +676,14 @@
 [data-theme="dark"] .jusc-cell--has-subs:hover {
   background: var(--ju-color-surface-hover);
   box-shadow:
-    0 6px 20px rgba(0, 0, 0, 0.25),
-    0 2px 6px rgba(0, 0, 0, 0.15);
-  border-color: rgba(255, 255, 255, 0.08);
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .jusc-cell--today {
+  background: rgba(27, 130, 255, 0.08);
+  border-color: rgba(27, 130, 255, 0.12);
 }
 
 [data-theme="dark"] .jusc-cell--empty {
@@ -641,43 +695,50 @@
   border-color: var(--ju-color-surface);
 }
 
-[data-theme="dark"] .jusc-detail {
-  background: rgba(30, 30, 35, 0.92);
-  border-color: rgba(255, 255, 255, 0.08);
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.04),
-    0 4px 16px rgba(0, 0, 0, 0.2),
-    0 16px 56px rgba(0, 0, 0, 0.3),
-    0 32px 80px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+[data-theme="dark"] .jusc-overflow {
+  background: var(--ju-color-gray-600);
 }
 
-[data-theme="dark"] .jusc-detail__close {
+[data-theme="dark"] .jusc-scrim--visible {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] .jusc-expand {
+  background: var(--ju-glass-bg-strong);
+  border: var(--ju-raised-border);
+}
+
+[data-theme="dark"] .jusc-expand--open {
+  box-shadow: var(--ju-raised-shadow);
+}
+
+[data-theme="dark"] .jusc-expand__close {
   background: rgba(255, 255, 255, 0.08);
 }
 
-[data-theme="dark"] .jusc-detail__close:hover {
+[data-theme="dark"] .jusc-expand__close:hover {
   background: rgba(220, 38, 38, 0.15);
   color: #f87171;
 }
 
-[data-theme="dark"] .jusc-detail__row:hover {
+[data-theme="dark"] .jusc-expand__item:hover {
   background: rgba(255, 255, 255, 0.04);
 }
 
-[data-theme="dark"] .jusc-detail__divider {
-  background: rgba(255, 255, 255, 0.08);
-}
-
-[data-theme="dark"] .jusc-overlay {
-  background: rgba(0, 0, 0, 0.4);
-}
-
-[data-theme="dark"] .jusc-header__arrow {
+[data-theme="dark"] .jusc-nav-btn {
   background: var(--ju-color-surface);
   border-color: var(--ju-color-border);
 }
 
-[data-theme="dark"] .jusc-header__arrow:hover {
+[data-theme="dark"] .jusc-nav-btn:hover {
   background: var(--ju-color-surface-hover);
+  border-color: var(--ju-color-border-strong);
+}
+
+[data-theme="dark"] .jusc-header__total-pill {
+  background: rgba(27, 130, 255, 0.1);
+}
+
+[data-theme="dark"] .jusc-logo {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 }

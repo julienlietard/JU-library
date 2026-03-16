@@ -1,72 +1,64 @@
 /* ============================================
    JUAskBar — Chatbox AI Component
-   Premium Squircle Edition
+   Premium Squircle Edition — Ultra-subtle
    ============================================ */
 
 /* ── THEMES ── */
 .ju-ask-bar {
-  --bar-bg: rgba(255, 255, 255, 0.82);
-  --bar-border-outer: rgba(0, 0, 0, 0.06);
-  --bar-border-inner: rgba(255, 255, 255, 0.95);
-  --bar-text: #1a1a1a;
-  --bar-text-muted: #9ca3af;
-  --bar-icon: #9ca3af;
-  --bar-icon-hover: #374151;
-  --bar-btn-bg: rgba(0, 0, 0, 0.04);
-  --bar-btn-border: rgba(0, 0, 0, 0.06);
-  --bar-btn-hover: rgba(0, 0, 0, 0.07);
-  --bar-send-bg: #111827;
+  --bar-bg: rgba(255, 255, 255, 0.92);
+  --bar-border: rgba(0, 0, 0, 0.05);
+  --bar-text: #696969;
+  --bar-text-muted: #b0b0b6;
+  --bar-icon: #696969;
+  --bar-icon-hover: #696969;
+  --bar-btn-bg: rgba(0, 0, 0, 0.025);
+  --bar-btn-border: rgba(0, 0, 0, 0.07);
+  --bar-btn-hover: rgba(0, 0, 0, 0.05);
+  --bar-send-bg: #1d1d1f;
   --bar-send-text: #ffffff;
-  --bar-glow: rgba(0, 0, 0, 0.04);
-  --bar-inset: rgba(255, 255, 255, 0.7);
+  --bar-glow: rgba(0, 0, 0, 0.03);
 }
 
-/* Force dark theme if strictly specified */
 .ju-ask-bar.ju-ask-bar--dark,
 [data-theme="dark"] .ju-ask-bar.ju-ask-bar--auto {
-  --bar-bg: rgba(20, 20, 22, 0.82);
-  --bar-border-outer: rgba(255, 255, 255, 0.08);
-  --bar-border-inner: rgba(255, 255, 255, 0.04);
-  --bar-text: #f4f4f5;
-  --bar-text-muted: rgba(255, 255, 255, 0.38);
-  --bar-icon: rgba(255, 255, 255, 0.4);
-  --bar-icon-hover: #f4f4f5;
-  --bar-btn-bg: rgba(255, 255, 255, 0.06);
+  --bar-bg: rgba(20, 20, 22, 0.88);
+  --bar-border: rgba(255, 255, 255, 0.06);
+  --bar-text: #f0f0f2ad;
+  --bar-text-muted: rgba(255, 255, 255, 0.32);
+  --bar-icon: rgba(255, 255, 255, 0.32);
+  --bar-icon-hover: #f0f0f2;
+  --bar-btn-bg: rgba(255, 255, 255, 0.04);
   --bar-btn-border: rgba(255, 255, 255, 0.08);
-  --bar-btn-hover: rgba(255, 255, 255, 0.10);
-  --bar-send-bg: #f4f4f5;
+  --bar-btn-hover: rgba(255, 255, 255, 0.08);
+  --bar-send-bg: #f0f0f2;
   --bar-send-text: #0a0a0b;
-  --bar-glow: rgba(255, 255, 255, 0.06);
-  --bar-inset: rgba(255, 255, 255, 0.03);
+  --bar-glow: rgba(255, 255, 255, 0.04);
 }
 
-/* ── CONTAINER — Squircle with beveled edge ── */
+/* ── CONTAINER ── */
 .ju-ask-bar {
   position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 720px;
+  max-width: 680px;
   font-family: var(--ju-font-family, system-ui, -apple-system, sans-serif);
-  transition: box-shadow 0.4s var(--ju-ease-smooth, ease);
   overflow: visible;
 }
 
-/* Outer shell — the soft beveled border */
+/* ── Outer shell — soft ridge border ── */
 .ju-ask-bar::before {
   content: '';
   position: absolute;
-  inset: -3px;
+  inset: -2px;
   border-radius: 30px;
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.5) 0%,
-    rgba(255, 255, 255, 0.15) 100%
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(0, 0, 0, 0.02) 100%
   );
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.02),
-    0 8px 32px rgba(0, 0, 0, 0.04),
-    0 24px 60px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.025);
   z-index: 0;
   pointer-events: none;
 }
@@ -75,16 +67,14 @@
 .ju-ask-bar.ju-ask-bar--dark::before {
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.06) 0%,
-    rgba(255, 255, 255, 0.02) 100%
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.03) 50%,
+    rgba(0, 0, 0, 0.1) 100%
   );
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.15),
-    0 8px 32px rgba(0, 0, 0, 0.20),
-    0 24px 60px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.25);
 }
 
-/* Inner container — the actual card surface */
+/* ── Inner surface — the card itself ── */
 .ju-ask-bar__inner-surface {
   position: relative;
   z-index: 1;
@@ -93,17 +83,26 @@
   background: var(--bar-bg);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1.5px solid var(--bar-border-outer);
-  border-radius: 26px;
-  padding: 20px 22px;
+  border: 0.5px solid rgba(0, 0, 0, 0.04);
+  border-radius: 28px;
+  padding: 24px 26px;
   overflow: hidden;
-  /* Inner light edge — bevel effect */
+  /* Inner light ridge — highlight at top, subtle darken at bottom */
   box-shadow:
-    inset 0 1px 0 var(--bar-border-inner),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.02);
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    inset 0 -0.5px 0 rgba(0, 0, 0, 0.03);
 }
 
-/* ── TOUCH GLOW (Mobile Follow) ── */
+[data-theme="dark"] .ju-ask-bar.ju-ask-bar--auto .ju-ask-bar__inner-surface,
+.ju-ask-bar.ju-ask-bar--dark .ju-ask-bar__inner-surface {
+  border-color: rgba(255, 255, 255, 0.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -0.5px 0 rgba(0, 0, 0, 0.15),
+    0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* ── TOUCH GLOW ── */
 .ju-ask-bar__glow {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -117,7 +116,7 @@
   opacity: 1;
 }
 
-/* ── INPUT (Textarea) ── */
+/* ── INPUT ── */
 .ju-ask-bar__input {
   position: relative;
   z-index: 1;
@@ -127,28 +126,27 @@
   outline: none;
   color: var(--bar-text);
   font-family: inherit;
-  font-size: 1.15rem;
-  font-weight: 500;
-  line-height: 1.5;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.35;
   resize: none;
-  padding: 2px 0 20px 0;
-  min-height: 28px;
+  padding: 4px 0 24px 0;
+  min-height: 36px;
   max-height: 40vh;
   overflow-y: auto;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.025em;
 }
 
 .ju-ask-bar__input::placeholder {
-  color: var(--bar-text-muted);
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  color: var(--bar-text);
+  font-weight: 600;
+  letter-spacing: -0.025em;
 }
 
-/* Scrollbar minimale */
-.ju-ask-bar__input::-webkit-scrollbar { width: 4px; }
+.ju-ask-bar__input::-webkit-scrollbar { width: 3px; }
 .ju-ask-bar__input::-webkit-scrollbar-thumb {
-  background: var(--bar-border-outer);
-  border-radius: 4px;
+  background: var(--bar-border);
+  border-radius: 3px;
 }
 
 /* ── TOOLBAR ── */
@@ -168,13 +166,13 @@
   gap: 6px;
 }
 
-/* ── BUTTONS & ICONS ── */
+/* ── ICON BUTTONS ── */
 .ju-ask-bar__icon-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: none;
   background: transparent;
@@ -192,41 +190,88 @@
   transform: scale(0.92);
 }
 
-/* ── ADD BUTTON — Premium circle with border ── */
+/* ── ADD BUTTON — Beveled concentric circle ── */
 .ju-ask-bar__add-btn {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  border: 1.5px solid var(--bar-btn-border);
-  background: var(--bar-btn-bg);
+  border: none;
+  background: transparent;
   color: var(--bar-icon);
   cursor: pointer;
   transition:
-    background 0.2s,
     color 0.2s,
-    border-color 0.2s,
-    transform 0.15s,
-    box-shadow 0.2s;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+    transform 0.2s;
+}
+
+/* Outer ridge ring — same gradient technique as the card */
+.ju-ask-bar__add-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(0, 0, 0, 0.03) 100%
+  );
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.02);
+  pointer-events: none;
+}
+
+/* Inner surface disc */
+.ju-ask-bar__add-btn::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  background: var(--bar-bg);
+  border: 0.5px solid rgba(0, 0, 0, 0.03);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -0.5px 0 rgba(0, 0, 0, 0.02);
+  pointer-events: none;
+}
+
+/* Dark mode overrides for button rings */
+[data-theme="dark"] .ju-ask-bar.ju-ask-bar--auto .ju-ask-bar__add-btn::before,
+.ju-ask-bar.ju-ask-bar--dark .ju-ask-bar__add-btn::before {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.03) 50%,
+    rgba(0, 0, 0, 0.08) 100%
+  );
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .ju-ask-bar.ju-ask-bar--auto .ju-ask-bar__add-btn::after,
+.ju-ask-bar.ju-ask-bar--dark .ju-ask-bar__add-btn::after {
+  background: var(--bar-bg);
+  border-color: rgba(255, 255, 255, 0.05);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -0.5px 0 rgba(0, 0, 0, 0.12);
 }
 
 .ju-ask-bar__add-btn:hover {
-  background: var(--bar-btn-hover);
   color: var(--bar-icon-hover);
-  border-color: rgba(0, 0, 0, 0.10);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-[data-theme="dark"] .ju-ask-bar.ju-ask-bar--auto .ju-ask-bar__add-btn:hover,
-.ju-ask-bar.ju-ask-bar--dark .ju-ask-bar__add-btn:hover {
-  border-color: rgba(255, 255, 255, 0.12);
 }
 
 .ju-ask-bar__add-btn:active {
-  transform: scale(0.92);
+  transform: scale(0.94);
+}
+
+.ju-ask-bar__add-btn svg {
+  position: relative;
+  z-index: 1;
+  width: 20px;
+  height: 20px;
 }
 
 /* ── MODEL SELECTOR ── */
@@ -256,40 +301,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: none;
   background: var(--bar-send-bg);
   color: var(--bar-send-text);
   cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.10);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
   transition: transform 0.15s ease, box-shadow 0.2s;
-  animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: askbar-pop 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .ju-ask-bar__send-btn:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
 }
 
 .ju-ask-bar__send-btn:active {
   transform: scale(0.9);
 }
 
-@keyframes popIn {
+@keyframes askbar-pop {
   from { transform: scale(0.8); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
 
-/* ── LOADING SKELETON ── */
+/* ── LOADING ── */
 .ju-ask-bar__skeleton-loader {
   display: flex;
   align-items: center;
   gap: 4px;
-  height: 38px;
+  height: 40px;
   padding: 0 14px;
   background: var(--bar-btn-bg);
-  border-radius: 19px;
+  border-radius: 20px;
 }
 
 .skeleton-dot {
@@ -297,13 +342,13 @@
   height: 6px;
   border-radius: 50%;
   background: var(--bar-icon);
-  animation: bounce 1.4s infinite ease-in-out both;
+  animation: askbar-bounce 1.4s infinite ease-in-out both;
 }
 
 .skeleton-dot:nth-child(1) { animation-delay: -0.32s; }
 .skeleton-dot:nth-child(2) { animation-delay: -0.16s; }
 
-@keyframes bounce {
+@keyframes askbar-bounce {
   0%, 80%, 100% { transform: scale(0); }
   40% { transform: scale(1); }
 }
@@ -315,18 +360,14 @@
   pointer-events: none;
 }
 
-/* ── FOCUS STATE ── */
+/* ── FOCUS ── */
 .ju-ask-bar:focus-within::before {
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.02),
-    0 8px 32px rgba(0, 0, 0, 0.05),
-    0 24px 60px rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.025);
 }
 
 [data-theme="dark"] .ju-ask-bar.ju-ask-bar--auto:focus-within::before,
 .ju-ask-bar.ju-ask-bar--dark:focus-within::before {
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.20),
-    0 8px 32px rgba(0, 0, 0, 0.25),
-    0 24px 60px rgba(0, 0, 0, 0.18);
+  border-color: rgba(255, 255, 255, 0.10);
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.3);
 }

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { createPortal } from 'react-dom';
 import './ju-notification-center.css';
 
 /* ── Types ── */
@@ -318,6 +317,7 @@ export const JUNotificationCenter: React.FC<JUNotificationCenterProps> = ({
     if (unreadCount > prevCountRef.current) {
       setWiggle(true);
       const timer = setTimeout(() => setWiggle(false), 600);
+      prevCountRef.current = unreadCount;
       return () => clearTimeout(timer);
     }
     prevCountRef.current = unreadCount;
@@ -381,6 +381,27 @@ export const JUNotificationCenter: React.FC<JUNotificationCenterProps> = ({
     }
   }, [open, exiting]);
 
+  /* Compute panel position with viewport clamping */
+  const getPanelStyle = useCallback((): React.CSSProperties => {
+    if (!triggerRef.current) return { position: 'fixed' };
+    const rect = triggerRef.current.getBoundingClientRect();
+    const panelWidth = 380;
+    const gap = 8;
+    const margin = 12;
+    const top = Math.min(rect.bottom + gap, window.innerHeight - 440);
+
+    if (placement === 'bottom-end') {
+      const right = window.innerWidth - rect.right;
+      // Clamp: ensure panel doesn't overflow left edge
+      const adjustedRight = Math.max(margin, Math.min(right, window.innerWidth - panelWidth - margin));
+      return { position: 'fixed', top, right: adjustedRight };
+    }
+    const left = rect.left;
+    // Clamp: ensure panel doesn't overflow right edge
+    const adjustedLeft = Math.max(margin, Math.min(left, window.innerWidth - panelWidth - margin));
+    return { position: 'fixed', top, left: adjustedLeft };
+  }, [placement]);
+
   /* Stagger index counter */
   let staggerIdx = 0;
 
@@ -426,82 +447,64 @@ export const JUNotificationCenter: React.FC<JUNotificationCenterProps> = ({
         </button>
       )}
 
-      {/* Panel (portal) */}
-      {open &&
-        createPortal(
-          <>
-            <div className="ju-notif-overlay" onClick={closePanel} aria-hidden="true" />
-            <div
-              ref={panelRef}
-              className={panelCls}
-              role="dialog"
-              aria-label="Centre de notifications"
-              style={{
-                position: 'fixed',
-                top: triggerRef.current
-                  ? triggerRef.current.getBoundingClientRect().bottom + 8
-                  : undefined,
-                ...(placement === 'bottom-end'
-                  ? {
-                      right: triggerRef.current
-                        ? window.innerWidth - triggerRef.current.getBoundingClientRect().right
-                        : undefined,
-                    }
-                  : {
-                      left: triggerRef.current
-                        ? triggerRef.current.getBoundingClientRect().left
-                        : undefined,
-                    }),
-              }}
-            >
-              {/* Header */}
-              <div className="ju-notif-panel__header">
-                <h2 className="ju-notif-panel__title">Notifications</h2>
-                {unreadCount > 0 && onMarkAllRead && (
-                  <button
-                    className="ju-notif-panel__mark-all"
-                    onClick={onMarkAllRead}
-                  >
-                    <CheckAllIcon />
-                    Tout marquer comme lu
-                  </button>
-                )}
-              </div>
-
-              {/* List */}
-              <div className="ju-notif-panel__list">
-                {notifications.length === 0 ? (
-                  <div className="ju-notif-empty">
-                    <span className="ju-notif-empty__icon" aria-hidden="true">
-                      <EmptyBellIcon />
-                    </span>
-                    <p className="ju-notif-empty__text">Aucune notification</p>
-                  </div>
-                ) : (
-                  GROUP_ORDER.map((group) => {
-                    const items = grouped[group];
-                    if (items.length === 0) return null;
-                    return (
-                      <div key={group}>
-                        <p className="ju-notif-group__label">{GROUP_LABELS[group]}</p>
-                        {items.map((n) => (
-                          <NotifItem
-                            key={n.id}
-                            notification={n}
-                            onRead={onRead}
-                            onDismiss={onDismiss}
-                            staggerIndex={staggerIdx++}
-                          />
-                        ))}
-                      </div>
-                    );
-                  })
-                )}
-              </div>
+      {/* Panel — rendered inline (no portal) to inherit theme context */}
+      {open && (
+        <>
+          <div className="ju-notif-overlay" onClick={closePanel} aria-hidden="true" />
+          <div
+            ref={panelRef}
+            className={panelCls}
+            role="dialog"
+            aria-label="Centre de notifications"
+            style={getPanelStyle()}
+          >
+            {/* Header */}
+            <div className="ju-notif-panel__header">
+              <h2 className="ju-notif-panel__title">Notifications</h2>
+              {unreadCount > 0 && onMarkAllRead && (
+                <button
+                  className="ju-notif-panel__mark-all"
+                  onClick={onMarkAllRead}
+                >
+                  <CheckAllIcon />
+                  Tout marquer comme lu
+                </button>
+              )}
             </div>
-          </>,
-          document.body,
-        )}
+
+            {/* List */}
+            <div className="ju-notif-panel__list">
+              {notifications.length === 0 ? (
+                <div className="ju-notif-empty">
+                  <span className="ju-notif-empty__icon" aria-hidden="true">
+                    <EmptyBellIcon />
+                  </span>
+                  <p className="ju-notif-empty__text">Aucune notification</p>
+                </div>
+              ) : (
+                GROUP_ORDER.map((group) => {
+                  const items = grouped[group];
+                  if (items.length === 0) return null;
+                  return (
+                    <div key={group}>
+                      <p className="ju-notif-group__label">{GROUP_LABELS[group]}</p>
+                      {items.map((n) => (
+                        <NotifItem
+                          key={n.id}
+                          notification={n}
+                          onRead={onRead}
+                          onDismiss={onDismiss}
+                          staggerIndex={staggerIdx++}
+                        />
+                      ))}
+                    </div>
+                  );
+                })
+              )}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
