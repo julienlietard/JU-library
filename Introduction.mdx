@@ -1,0 +1,463 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="JU-Design/Introduction" />
+
+<div className="intro">
+
+  <header className="intro__header">
+    <div className="intro__logo">JU</div>
+    <p className="intro__version">v1.1.5</p>
+  </header>
+
+  <section className="intro__hero">
+    <h1 className="intro__title">JU-Design</h1>
+    <p className="intro__subtitle">Bibliothèque de composants React</p>
+    <p className="intro__lead">
+      67 composants modulaires construits avec une approche
+      <strong>Glassmorphism 2.0</strong>, typés TypeScript,
+      animés en CSS pur.
+    </p>
+  </section>
+
+  <section className="intro__grid">
+    <div className="intro__card">
+      <span className="intro__card-count">10</span>
+      <span className="intro__card-label">Atoms</span>
+      <span className="intro__card-desc">Button, Badge, Avatar, Switch…</span>
+    </div>
+    <div className="intro__card">
+      <span className="intro__card-count">17</span>
+      <span className="intro__card-label">Molecules</span>
+      <span className="intro__card-desc">Input, Card, Breadcrumbs, Toast…</span>
+    </div>
+    <div className="intro__card">
+      <span className="intro__card-count">17</span>
+      <span className="intro__card-label">Organisms</span>
+      <span className="intro__card-desc">Modal, Editor, CommandPalette…</span>
+    </div>
+    <div className="intro__card">
+      <span className="intro__card-count">2</span>
+      <span className="intro__card-label">Layouts</span>
+      <span className="intro__card-desc">Sidebar, Island</span>
+    </div>
+    <div className="intro__card">
+      <span className="intro__card-count">21</span>
+      <span className="intro__card-label">Widgets</span>
+      <span className="intro__card-desc">GPUPulse, BioSync, NerveCenter…</span>
+    </div>
+  </section>
+
+  <section className="intro__features">
+    <div className="intro__feature">
+      <div className="intro__feature-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+      </div>
+      <div>
+        <h3 className="intro__feature-title">Atomic Design</h3>
+        <p className="intro__feature-text">Organisé en Atoms, Molecules, Organisms, Layouts et Widgets pour une composition prévisible.</p>
+      </div>
+    </div>
+    <div className="intro__feature">
+      <div className="intro__feature-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </div>
+      <div>
+        <h3 className="intro__feature-title">Dark Mode</h3>
+        <p className="intro__feature-text">Chaque composant supporte le thème sombre via <code>data-theme="dark"</code> et les tokens CSS.</p>
+      </div>
+    </div>
+    <div className="intro__feature">
+      <div className="intro__feature-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </div>
+      <div>
+        <h3 className="intro__feature-title">CSS Animations</h3>
+        <p className="intro__feature-text">Aucune dépendance d'animation externe. Spring easing, stagger et transitions en CSS pur.</p>
+      </div>
+    </div>
+    <div className="intro__feature">
+      <div className="intro__feature-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      </div>
+      <div>
+        <h3 className="intro__feature-title">TypeScript</h3>
+        <p className="intro__feature-text">Typage strict, exports nommés, props documentées et auto-complétion dans l'IDE.</p>
+      </div>
+    </div>
+  </section>
+
+  <section className="intro__tokens">
+    <h2 className="intro__section-title">Design Tokens</h2>
+    <div className="intro__token-grid">
+      <div className="intro__token-group">
+        <span className="intro__token-label">Primary</span>
+        <div className="intro__token-swatch" style={{ background: '#1b82ff' }} />
+        <code className="intro__token-code">#1b82ff</code>
+      </div>
+      <div className="intro__token-group">
+        <span className="intro__token-label">Accent</span>
+        <div className="intro__token-swatch" style={{ background: '#ff4e6b' }} />
+        <code className="intro__token-code">#ff4e6b</code>
+      </div>
+      <div className="intro__token-group">
+        <span className="intro__token-label">Success</span>
+        <div className="intro__token-swatch" style={{ background: '#00b436' }} />
+        <code className="intro__token-code">#00b436</code>
+      </div>
+      <div className="intro__token-group">
+        <span className="intro__token-label">Warning</span>
+        <div className="intro__token-swatch" style={{ background: '#ffb800' }} />
+        <code className="intro__token-code">#ffb800</code>
+      </div>
+      <div className="intro__token-group">
+        <span className="intro__token-label">Danger</span>
+        <div className="intro__token-swatch" style={{ background: '#ff3b5c' }} />
+        <code className="intro__token-code">#ff3b5c</code>
+      </div>
+      <div className="intro__token-group">
+        <span className="intro__token-label">Gray 900</span>
+        <div className="intro__token-swatch" style={{ background: '#18181b' }} />
+        <code className="intro__token-code">#18181b</code>
+      </div>
+    </div>
+  </section>
+
+  <section className="intro__quickstart">
+    <h2 className="intro__section-title">Démarrage rapide</h2>
+    <pre className="intro__code"><code>{`pnpm add ju-library
+
+import { JUButton, JUModal, JUCard } from 'ju-library';
+import 'ju-library/styles';`}</code></pre>
+  </section>
+
+  <footer className="intro__footer">
+    <p>Construit par <strong>Julien Liétard</strong></p>
+  </footer>
+
+</div>
+
+<style>
+  {`
+    /* ============ RESET ============ */
+    .intro {
+      --intro-bg: #ffffff;
+      --intro-text: #18181b;
+      --intro-muted: #71717a;
+      --intro-border: rgba(0, 0, 0, 0.06);
+      --intro-surface: #fafafa;
+      --intro-primary: #1b82ff;
+
+      padding: 48px 56px 64px;
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--intro-bg);
+      color: var(--intro-text);
+      font-family: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .intro *, .intro *::before, .intro *::after {
+      box-sizing: border-box;
+    }
+
+    .intro h1, .intro h2, .intro h3, .intro p {
+      margin: 0;
+      border: none;
+    }
+
+    /* ============ HEADER ============ */
+    .intro__header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 64px;
+    }
+
+    .intro__logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--intro-text);
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: -0.02em;
+    }
+
+    .intro__version {
+      font-size: 13px;
+      color: var(--intro-muted);
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ============ HERO ============ */
+    .intro__hero {
+      margin-bottom: 64px;
+    }
+
+    .intro__title {
+      font-size: 40px !important;
+      font-weight: 800 !important;
+      letter-spacing: -0.04em;
+      line-height: 1 !important;
+      margin-bottom: 8px !important;
+      color: var(--intro-text) !important;
+    }
+
+    .intro__subtitle {
+      font-size: 16px;
+      color: var(--intro-muted) !important;
+      font-weight: 500;
+      margin-bottom: 20px !important;
+    }
+
+    .intro__lead {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--intro-muted) !important;
+      max-width: 540px;
+    }
+
+    .intro__lead strong {
+      color: var(--intro-text) !important;
+      font-weight: 600;
+    }
+
+    /* ============ GRID (categories) ============ */
+    .intro__grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-bottom: 64px;
+    }
+
+    .intro__card {
+      display: flex;
+      flex-direction: column;
+      padding: 20px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--intro-border);
+      background: var(--intro-bg);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .intro__card:hover {
+      border-color: rgba(0, 0, 0, 0.12);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .intro__card-count {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--intro-text);
+      margin-bottom: 6px;
+    }
+
+    .intro__card-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--intro-text);
+      margin-bottom: 4px;
+    }
+
+    .intro__card-desc {
+      font-size: 12px;
+      color: var(--intro-muted);
+      line-height: 1.4;
+    }
+
+    /* ============ FEATURES ============ */
+    .intro__features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 64px;
+    }
+
+    .intro__feature {
+      display: flex;
+      gap: 14px;
+      padding: 20px;
+      border-radius: 14px;
+      background: var(--intro-surface);
+      border: 1px solid transparent;
+      transition: border-color 0.2s ease;
+    }
+
+    .intro__feature:hover {
+      border-color: var(--intro-border);
+    }
+
+    .intro__feature-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--intro-bg);
+      border: 1px solid var(--intro-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--intro-text);
+    }
+
+    .intro__feature-title {
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      margin-bottom: 4px !important;
+      color: var(--intro-text) !important;
+    }
+
+    .intro__feature-text {
+      font-size: 13px !important;
+      line-height: 1.6 !important;
+      color: var(--intro-muted) !important;
+    }
+
+    .intro__feature-text code {
+      font-size: 12px;
+      padding: 2px 6px;
+      background: var(--intro-bg);
+      border: 1px solid var(--intro-border);
+      border-radius: 5px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+
+    /* ============ TOKENS ============ */
+    .intro__section-title {
+      font-size: 16px !important;
+      font-weight: 700 !important;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px !important;
+      color: var(--intro-text) !important;
+    }
+
+    .intro__tokens {
+      margin-bottom: 64px;
+    }
+
+    .intro__token-grid {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .intro__token-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .intro__token-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--intro-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .intro__token-swatch {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+    }
+
+    .intro__token-code {
+      font-size: 11px;
+      color: var(--intro-muted);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    /* ============ QUICKSTART ============ */
+    .intro__quickstart {
+      margin-bottom: 64px;
+    }
+
+    .intro__code {
+      background: #18181b;
+      color: #e4e4e7;
+      padding: 20px 24px;
+      border-radius: 14px;
+      font-size: 13px;
+      line-height: 1.7;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      overflow-x: auto;
+      margin: 0;
+    }
+
+    .intro__code code {
+      background: none;
+      padding: 0;
+      border: none;
+      color: inherit;
+    }
+
+    /* ============ FOOTER ============ */
+    .intro__footer {
+      padding-top: 24px;
+      border-top: 1px solid var(--intro-border);
+    }
+
+    .intro__footer p {
+      font-size: 13px;
+      color: var(--intro-muted) !important;
+    }
+
+    .intro__footer strong {
+      color: var(--intro-text) !important;
+      font-weight: 600;
+    }
+
+    /* ============ DARK MODE ============ */
+    [data-theme="dark"] .intro {
+      --intro-bg: #18181b;
+      --intro-text: #fafafa;
+      --intro-muted: #a1a1aa;
+      --intro-border: rgba(255, 255, 255, 0.08);
+      --intro-surface: #27272a;
+      --intro-primary: #60a5fa;
+    }
+
+    [data-theme="dark"] .intro__logo {
+      background: #fafafa;
+      color: #18181b;
+    }
+
+    [data-theme="dark"] .intro__code {
+      background: #0f0f11;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    [data-theme="dark"] .intro__feature-text code {
+      background: #18181b;
+      border-color: rgba(255,255,255,0.08);
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 700px) {
+      .intro {
+        padding: 32px 24px 48px;
+      }
+      .intro__grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .intro__features {
+        grid-template-columns: 1fr;
+      }
+      .intro__title {
+        font-size: 32px !important;
+      }
+    }
+  `}
+</style>

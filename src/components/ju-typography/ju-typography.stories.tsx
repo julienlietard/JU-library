@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUTypography } from './ju-typography';
 
 const meta: Meta<typeof JUTypography> = {
-  title: 'Typography/JUTypography',
+  title: 'Atoms/JUTypography',
   component: JUTypography,
   tags: ['autodocs'],
   decorators: [(S) => <div style={{ maxWidth: 700, padding: 40 }}><S /></div>],

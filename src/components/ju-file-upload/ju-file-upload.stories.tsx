@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUFileUpload } from './ju-file-upload';
 
 const meta: Meta<typeof JUFileUpload> = {
-  title: 'Forms/JUFileUpload',
+  title: 'Organisms/JUFileUpload',
   component: JUFileUpload,
   tags: ['autodocs'],
   decorators: [(Story) => <div style={{ maxWidth: 500 }}><Story /></div>],

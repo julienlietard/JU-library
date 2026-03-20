@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 
 const meta: Meta<typeof JUBadge> = {
-  title: 'Components/JUBadge',
+  title: 'Atoms/JUBadge',
   component: JUBadge,
   tags: ['autodocs'],
   argTypes: {
@@ -18,7 +18,7 @@ const meta: Meta<typeof JUBadge> = {
     },
     size: {
       control: 'select',
-      options: ['xs', 'sm', 'md', 'lg'],
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
     },
     variant: {
       control: 'select',
@@ -51,34 +51,48 @@ export const Playground: Story = {};
 export const AsDesign: Story = {
   name: '✦ Design Reference',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 16, padding: '2rem' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 14, padding: '2.5rem' }}>
       <JUBadge
         label="Brand & Style Guide"
         color="blue"
-        size="lg"
+        size="xl"
         iconBg
         icon={<Star size={18} fill="currentColor" strokeWidth={0} />}
       />
       <JUBadge
         label="Compliance & Legal"
         color="green"
-        size="lg"
+        size="xl"
         iconBg
         icon={<FileCheck size={18} strokeWidth={2} />}
       />
       <JUBadge
         label="Content Safety"
         color="purple"
-        size="lg"
+        size="xl"
         iconBg
         icon={<Feather size={18} strokeWidth={2} />}
       />
       <JUBadge
         label="Approval Trigger"
         color="default"
-        size="lg"
+        size="xl"
         iconBg
         icon={<MousePointerClick size={18} strokeWidth={2} />}
+      />
+      <JUBadge
+        label="AI Powered"
+        color="cyan"
+        size="xl"
+        iconBg
+        icon={<Cpu size={18} strokeWidth={2} />}
+      />
+      <JUBadge
+        label="Premium Access"
+        color="yellow"
+        size="xl"
+        iconBg
+        icon={<Crown size={18} strokeWidth={2} />}
       />
     </div>
   ),
@@ -107,11 +121,11 @@ export const AllColors: Story = {
 export const AllSizes: Story = {
   name: 'Sizes',
   render: () => {
-    const sizes = ['xs', 'sm', 'md', 'lg'] as const;
+    const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
     return (
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '1rem' }}>
         {sizes.map((s) => (
-          <JUBadge key={s} label={s.toUpperCase()} color="blue" size={s} icon={<Tag size={s === 'xs' ? 10 : s === 'sm' ? 12 : s === 'md' ? 14 : 16} />} />
+          <JUBadge key={s} label={s.toUpperCase()} color="blue" size={s} icon={<Tag size={s === 'xs' ? 10 : s === 'sm' ? 12 : s === 'md' ? 14 : s === 'lg' ? 16 : 18} />} />
         ))}
       </div>
     );

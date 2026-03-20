@@ -1,0 +1,480 @@
+/* ============================================
+   JUStepWizard — Multi-step wizard/stepper
+   Squircle circles · Animated connectors · Slide transitions
+   ============================================ */
+
+/* ========================
+   ROOT
+   ======================== */
+.jusw {
+  font-family: var(--ju-font-family, system-ui, -apple-system, sans-serif);
+  color: var(--ju-color-text, #1a1a2e);
+  width: 100%;
+}
+
+/* ========================
+   HEADER (step indicators bar)
+   ======================== */
+.jusw-header {
+  display: flex;
+  align-items: flex-start;
+  padding: 0 var(--ju-space-sm, 8px);
+}
+
+/* ========================
+   STEP BUTTON
+   ======================== */
+.jusw-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ju-space-xs, 4px);
+  background: none;
+  border: none;
+  cursor: default;
+  padding: var(--ju-space-xs, 4px);
+  flex-shrink: 0;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.jusw-step--clickable {
+  cursor: pointer;
+}
+
+.jusw-step:focus-visible .jusw-step__circle {
+  outline: 2px solid var(--ju-color-primary, #1b82ff);
+  outline-offset: 3px;
+}
+
+/* ========================
+   CIRCLE
+   ======================== */
+.jusw-step__circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ju-radius-xl, 14px);
+  background: var(--ju-color-surface-muted, #f0f0f5);
+  color: var(--ju-color-text-muted, #8a8a9a);
+  font-family: inherit;
+  font-weight: 600;
+  line-height: 1;
+  flex-shrink: 0;
+  transition:
+    background 0.3s cubic-bezier(0.22, 0.61, 0.36, 1),
+    color 0.3s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.3s cubic-bezier(0.22, 1.4, 0.32, 1),
+    box-shadow 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* --- Sizes --- */
+.jusw-step--sm .jusw-step__circle {
+  width: 28px;
+  height: 28px;
+  font-size: 0.75rem;
+}
+
+.jusw-step--md .jusw-step__circle {
+  width: 36px;
+  height: 36px;
+  font-size: 0.8125rem;
+}
+
+.jusw-step--lg .jusw-step__circle {
+  width: 44px;
+  height: 44px;
+  font-size: 0.9375rem;
+}
+
+/* --- Status states --- */
+
+/* Pending */
+.jusw-step--pending .jusw-step__circle {
+  background: var(--ju-color-surface-muted, #f0f0f5);
+  color: var(--ju-color-text-muted, #8a8a9a);
+}
+
+/* Active */
+.jusw-step--active .jusw-step__circle {
+  background: var(--ju-color-primary, #1b82ff);
+  color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 0 0 4px rgba(27, 130, 255, 0.15);
+}
+
+/* Completed */
+.jusw-step--completed .jusw-step__circle {
+  background: var(--ju-color-success, #22c55e);
+  color: #fff;
+}
+
+/* Error */
+.jusw-step--error .jusw-step__circle {
+  background: var(--ju-color-danger, #ef4444);
+  color: #fff;
+  animation: jusw-shake 0.4s ease;
+}
+
+@keyframes jusw-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-3px); }
+  40% { transform: translateX(3px); }
+  60% { transform: translateX(-2px); }
+  80% { transform: translateX(2px); }
+}
+
+/* ========================
+   CHECK SVG (animated stroke)
+   ======================== */
+.jusw-step__check {
+  display: block;
+}
+
+.jusw-step--sm .jusw-step__check { width: 14px; height: 14px; }
+.jusw-step--md .jusw-step__check { width: 18px; height: 18px; }
+.jusw-step--lg .jusw-step__check { width: 22px; height: 22px; }
+
+.jusw-step__check polyline {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: jusw-check-draw 0.35s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+@keyframes jusw-check-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ========================
+   ICON / NUMBER
+   ======================== */
+.jusw-step__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jusw-step__number {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ========================
+   LABEL + DESCRIPTION
+   ======================== */
+.jusw-step__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  text-align: center;
+  max-width: 100px;
+}
+
+.jusw-step__label {
+  font-weight: 500;
+  color: var(--ju-color-text-muted, #8a8a9a);
+  line-height: 1.3;
+  transition: color 0.2s ease;
+}
+
+.jusw-step--sm .jusw-step__label { font-size: 0.75rem; }
+.jusw-step--md .jusw-step__label { font-size: 0.75rem; }
+.jusw-step--lg .jusw-step__label { font-size: 0.8125rem; }
+
+.jusw-step--active .jusw-step__label {
+  color: var(--ju-color-primary, #1b82ff);
+  font-weight: 600;
+}
+
+.jusw-step--completed .jusw-step__label {
+  color: var(--ju-color-text, #1a1a2e);
+}
+
+.jusw-step--error .jusw-step__label {
+  color: var(--ju-color-danger, #ef4444);
+}
+
+.jusw-step__desc {
+  font-size: 0.6875rem;
+  color: var(--ju-color-text-muted, #8a8a9a);
+  line-height: 1.2;
+}
+
+.jusw-step__optional {
+  font-size: 0.625rem;
+  color: var(--ju-color-text-muted, #8a8a9a);
+  font-style: italic;
+}
+
+/* ========================
+   CONNECTOR LINE
+   ======================== */
+.jusw-connector {
+  flex: 1;
+  position: relative;
+  min-width: 24px;
+  align-self: flex-start;
+}
+
+.jusw-connector--sm { height: 2px; margin-top: calc(14px + 4px); }
+.jusw-connector--md { height: 2px; margin-top: calc(18px + 4px); }
+.jusw-connector--lg { height: 3px; margin-top: calc(22px + 4px); }
+
+.jusw-connector__track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--ju-color-border, #e2e2ea);
+  border-radius: 99px;
+}
+
+.jusw-connector__fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background: var(--ju-color-primary, #1b82ff);
+  border-radius: 99px;
+  transition: width 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.jusw-connector__fill--active {
+  width: 100%;
+}
+
+/* ========================
+   PROGRESS BAR (optional)
+   ======================== */
+.jusw-progress {
+  height: 3px;
+  background: var(--ju-color-border, #e2e2ea);
+  border-radius: 99px;
+  margin-top: var(--ju-space-md, 16px);
+  overflow: hidden;
+}
+
+.jusw-progress--sm { height: 2px; }
+.jusw-progress--lg { height: 4px; }
+
+.jusw-progress__fill {
+  height: 100%;
+  background: var(--ju-color-primary, #1b82ff);
+  border-radius: 99px;
+  transition: width 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ========================
+   CONTENT PANEL
+   ======================== */
+.jusw-content {
+  overflow: hidden;
+  margin-top: var(--ju-space-xl, 24px);
+  min-height: 80px;
+}
+
+.jusw-panel {
+  animation-duration: 0.3s;
+  animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+  animation-fill-mode: both;
+}
+
+.jusw-panel--forward {
+  animation-name: jusw-slide-left;
+}
+
+.jusw-panel--backward {
+  animation-name: jusw-slide-right;
+}
+
+@keyframes jusw-slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes jusw-slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ========================
+   NAVIGATION
+   ======================== */
+.jusw-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--ju-space-lg, 20px);
+  gap: var(--ju-space-sm, 8px);
+}
+
+/* Shared button reset */
+.jusw-nav__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ju-space-xs, 4px);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--ju-radius-md, 10px);
+  padding: 10px 20px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.12s ease;
+}
+
+.jusw-nav__btn:focus-visible {
+  outline: 2px solid var(--ju-color-primary, #1b82ff);
+  outline-offset: 2px;
+}
+
+.jusw-nav__btn:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+  cursor: default;
+}
+
+/* Prev (ghost) */
+.jusw-nav__btn--prev {
+  background: transparent;
+  color: var(--ju-color-text-muted, #8a8a9a);
+}
+
+.jusw-nav__btn--prev:hover {
+  background: var(--ju-color-surface-muted, #f0f0f5);
+  color: var(--ju-color-text, #1a1a2e);
+}
+
+/* Next (primary) */
+.jusw-nav__btn--next {
+  background: var(--ju-color-primary, #1b82ff);
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(27, 130, 255, 0.18);
+}
+
+.jusw-nav__btn--next:hover {
+  background: var(--ju-color-primary-hover, #1570e0);
+  box-shadow: 0 4px 16px rgba(27, 130, 255, 0.25);
+}
+
+.jusw-nav__btn--next:active {
+  transform: scale(0.97);
+}
+
+/* Finish (success) */
+.jusw-nav__btn--finish {
+  background: var(--ju-color-success, #22c55e);
+  box-shadow: 0 2px 12px rgba(34, 197, 94, 0.2);
+}
+
+.jusw-nav__btn--finish:hover {
+  background: #1db854;
+  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.3);
+}
+
+/* Spinner */
+.jusw-nav__spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: jusw-spin 0.6s linear infinite;
+}
+
+@keyframes jusw-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ========================
+   COMPACT VARIANT
+   ======================== */
+.jusw--compact .jusw-step__text {
+  display: none;
+}
+
+.jusw--compact .jusw-connector {
+  margin-top: 0 !important;
+  align-self: center;
+}
+
+.jusw--compact .jusw-header {
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========================
+   REDUCED MOTION
+   ======================== */
+@media (prefers-reduced-motion: reduce) {
+  .jusw-step__circle,
+  .jusw-connector__fill,
+  .jusw-progress__fill,
+  .jusw-panel,
+  .jusw-nav__btn {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+
+  .jusw-step__check polyline {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ========================
+   DARK MODE
+   ======================== */
+[data-theme="dark"] .jusw {
+  color: var(--ju-color-text, #e4e4ef);
+}
+
+[data-theme="dark"] .jusw-step--pending .jusw-step__circle {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="dark"] .jusw-step__label {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="dark"] .jusw-step--completed .jusw-step__label {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+[data-theme="dark"] .jusw-connector__track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .jusw-progress {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .jusw-nav__btn--prev {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="dark"] .jusw-nav__btn--prev:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.85);
+}

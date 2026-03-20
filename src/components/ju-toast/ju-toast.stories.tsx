@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUToast, JUToastContainer, JUToastData } from './ju-toast';
 
 const meta: Meta<typeof JUToast> = {
-  title: 'Feedback/JUToast',
+  title: 'Organisms/JUToast',
   component: JUToast,
   tags: ['autodocs'],
 };

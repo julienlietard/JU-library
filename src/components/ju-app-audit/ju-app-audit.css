@@ -1,0 +1,154 @@
+/* ============================================
+   JUAppAudit — Application Health Monitor
+   ============================================ */
+
+.ju-app-audit {
+  font-family: var(--ju-font-family);
+  width: 100%;
+}
+
+/* --- Title --- */
+
+.ju-app-audit__title {
+  margin: 0 0 var(--ju-space-md) 0;
+  font-size: 1rem;
+  font-weight: var(--ju-font-weight-medium, 600);
+  color: var(--ju-color-text);
+  letter-spacing: -0.01em;
+}
+
+/* --- List --- */
+
+.ju-app-audit__list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* --- Row --- */
+
+.ju-app-audit__row {
+  display: grid;
+  grid-template-columns: 10px 1fr 120px auto auto;
+  align-items: center;
+  gap: var(--ju-space-md, 12px);
+  padding: 10px 12px;
+  border-radius: var(--ju-radius-md, 10px);
+  transition: background 0.15s ease;
+}
+
+.ju-app-audit__row:hover {
+  background: rgba(0, 0, 0, 0.025);
+}
+
+/* --- Status dot --- */
+
+.ju-app-audit__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.ju-app-audit__dot--up {
+  background: var(--ju-color-success, #22c55e);
+  box-shadow: 0 0 6px var(--ju-color-success, rgba(34, 197, 94, 0.4));
+}
+
+.ju-app-audit__dot--down {
+  background: var(--ju-color-danger, #ef4444);
+  box-shadow: 0 0 6px var(--ju-color-danger, rgba(239, 68, 68, 0.4));
+}
+
+/* --- Info --- */
+
+.ju-app-audit__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ju-app-audit__name {
+  font-size: var(--ju-font-size-sm, 0.875rem);
+  font-weight: var(--ju-font-weight-medium, 600);
+  color: var(--ju-color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ju-app-audit__url {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 0.7rem;
+  color: var(--ju-color-text);
+  opacity: 0.45;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --- Sparkline --- */
+
+.ju-app-audit__sparkline {
+  width: 120px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+/* --- Latency --- */
+
+.ju-app-audit__latency {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: var(--ju-font-size-sm, 0.875rem);
+  min-width: 72px;
+  text-align: right;
+  color: var(--ju-color-text);
+  opacity: 0.7;
+}
+
+.ju-app-audit__latency--good {
+  color: var(--ju-color-success, #22c55e);
+  opacity: 1;
+}
+
+.ju-app-audit__latency--slow {
+  color: var(--ju-color-warning, #f59e0b);
+  opacity: 1;
+}
+
+/* --- Status label --- */
+
+.ju-app-audit__status {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  min-width: 52px;
+  text-align: center;
+}
+
+.ju-app-audit__status--up {
+  color: var(--ju-color-success, #22c55e);
+  background: rgba(34, 197, 94, 0.1);
+}
+
+.ju-app-audit__status--down {
+  color: var(--ju-color-danger, #ef4444);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* --- Responsive --- */
+
+@media (max-width: 600px) {
+  .ju-app-audit__row {
+    grid-template-columns: 10px 1fr auto auto;
+  }
+
+  .ju-app-audit__sparkline {
+    display: none;
+  }
+}

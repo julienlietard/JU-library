@@ -83,7 +83,7 @@ const recentItems: JUCommandPaletteItem[] = [
 /* ── Meta ── */
 
 const meta: Meta<typeof JUCommandPalette> = {
-  title: 'Components/JUCommandPalette',
+  title: 'Organisms/JUCommandPalette',
   component: JUCommandPalette,
   tags: ['autodocs'],
   parameters: {

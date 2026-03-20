@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUPagination } from './ju-pagination';
 
 const meta: Meta<typeof JUPagination> = {
-  title: 'Navigation/JUPagination',
+  title: 'Molecules/JUPagination',
   component: JUPagination,
   tags: ['autodocs'],
 };

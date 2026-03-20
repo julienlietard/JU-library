@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUWelcomeCard } from './ju-welcome-card';
 
 const meta: Meta<typeof JUWelcomeCard> = {
-  title: 'Components/JUWelcomeCard',
+  title: 'Molecules/JUWelcomeCard',
   component: JUWelcomeCard,
   tags: ['autodocs'],
   decorators: [

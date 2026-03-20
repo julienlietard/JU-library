@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUBreadcrumbs } from './ju-breadcrumbs';
 
 const meta: Meta<typeof JUBreadcrumbs> = {
-  title: 'Navigation/JUBreadcrumbs',
+  title: 'Molecules/JUBreadcrumbs',
   component: JUBreadcrumbs,
   tags: ['autodocs'],
 };

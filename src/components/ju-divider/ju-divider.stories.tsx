@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUDivider } from './ju-divider';
 
 const meta: Meta<typeof JUDivider> = {
-  title: 'Components/JUDivider', component: JUDivider, tags: ['autodocs'],
+  title: 'Atoms/JUDivider', component: JUDivider, tags: ['autodocs'],
   decorators: [(Story) => <div style={{ maxWidth: '600px', margin: '0 auto', padding: '2rem' }}><Story /></div>],
 };
 export default meta;

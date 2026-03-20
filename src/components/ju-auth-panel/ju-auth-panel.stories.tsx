@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUAuthPanel } from './ju-auth-panel';
 
 const meta: Meta<typeof JUAuthPanel> = {
-  title: 'Forms/JUAuthPanel',
+  title: 'Organisms/JUAuthPanel',
   component: JUAuthPanel,
   tags: ['autodocs'],
   argTypes: {

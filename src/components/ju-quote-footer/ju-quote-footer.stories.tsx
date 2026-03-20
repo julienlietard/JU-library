@@ -11,7 +11,7 @@ const portfolioQuotes = [
 ];
 
 const meta: Meta<typeof JUQuoteFooter> = {
-  title: 'Components/JUQuoteFooter',
+  title: 'Molecules/JUQuoteFooter',
   component: JUQuoteFooter,
   tags: ['autodocs'],
   parameters: { layout: 'fullscreen' },

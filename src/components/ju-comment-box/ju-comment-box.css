@@ -1,0 +1,421 @@
+/* ============================================
+   JUCommentBox — Comment Composer with @Mention
+   Premium Squircle Edition
+   ============================================ */
+
+.ju-comment-box {
+  position: relative;
+  font-family: var(--ju-font-family);
+  max-width: 420px;
+  width: 100%;
+  overflow: visible;
+}
+
+/* ── Outer shell — soft ridge border ── */
+.ju-comment-box::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 30px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(0, 0, 0, 0.02) 100%
+  );
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.025);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── Inner surface — the card itself ── */
+.ju-comment-box::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--ju-radius-xl);
+  background: var(--ju-color-surface);
+  border: 0.5px solid rgba(0, 0, 0, 0.04);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    inset 0 -0.5px 0 rgba(0, 0, 0, 0.03);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* All content sits above the pseudo-element surfaces */
+.ju-comment-box > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Dark mode — outer shell ── */
+[data-theme="dark"] .ju-comment-box::before {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.03) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.25);
+}
+
+/* ── Dark mode — inner surface ── */
+[data-theme="dark"] .ju-comment-box::after {
+  background: var(--ju-color-surface);
+  border-color: rgba(255, 255, 255, 0.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -0.5px 0 rgba(0, 0, 0, 0.15),
+    0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .ju-comment-box::before {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.03) 50%,
+      rgba(0, 0, 0, 0.1) 100%
+    );
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.25);
+  }
+
+  :root:not([data-theme="light"]) .ju-comment-box::after {
+    background: var(--ju-color-surface);
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      inset 0 -0.5px 0 rgba(0, 0, 0, 0.15),
+      0 4px 24px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* ---- Header ---- */
+
+.ju-comment-box__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid var(--ju-color-border);
+}
+
+.ju-comment-box__title {
+  font-size: var(--ju-font-size-md);
+  font-weight: var(--ju-font-weight-semibold);
+  color: var(--ju-color-text);
+  letter-spacing: -0.01em;
+}
+
+.ju-comment-box__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--ju-radius-sm);
+  border: none;
+  background: none;
+  color: var(--ju-color-text-muted);
+  cursor: pointer;
+  transition: var(--ju-transition-default);
+}
+
+.ju-comment-box__close:hover {
+  background: var(--ju-color-surface-hover);
+  color: var(--ju-color-text);
+}
+
+/* ---- Comments list ---- */
+
+.ju-comment-box__comments {
+  padding: 14px 20px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.ju-comment-box__comment {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ju-comment-box__comment-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ---- Avatars ---- */
+
+.ju-comment-box__avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.ju-comment-box__avatar--fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ju-track-bg);
+  color: var(--ju-color-text-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.ju-comment-box__avatar--input {
+  width: 26px;
+  height: 26px;
+}
+
+/* ---- Author & meta ---- */
+
+.ju-comment-box__author {
+  font-size: 0.82rem;
+  font-weight: var(--ju-font-weight-semibold);
+  color: var(--ju-color-text);
+}
+
+.ju-comment-box__verified {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.ju-comment-box__date {
+  font-size: 0.7rem;
+  color: var(--ju-color-text-muted);
+  margin-left: auto;
+}
+
+.ju-comment-box__comment-body {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: var(--ju-color-text-body);
+  padding-left: 34px; /* avatar + gap */
+}
+
+/* ---- Mention highlight in text ---- */
+
+.ju-comment-box__mention {
+  color: var(--ju-color-primary);
+  font-weight: var(--ju-font-weight-medium);
+}
+
+/* ---- Input area ---- */
+
+.ju-comment-box__input-wrap {
+  padding: 10px 20px 8px;
+}
+
+.ju-comment-box__input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--ju-color-surface-muted);
+  border: 1px solid var(--ju-color-border);
+  border-radius: var(--ju-radius-lg);
+  padding: 10px 12px;
+  transition: border-color var(--ju-duration-fast) var(--ju-ease-smooth);
+}
+
+.ju-comment-box__input-row:focus-within {
+  border-color: var(--ju-color-border-strong);
+}
+
+.ju-comment-box__editable-wrap {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+.ju-comment-box__input {
+  font-family: var(--ju-font-family);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--ju-color-text);
+  outline: none;
+  border: none;
+  background: none;
+  min-height: 22px;
+  max-height: 120px;
+  overflow-y: auto;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.ju-comment-box__input:empty::before {
+  content: attr(data-placeholder);
+  color: var(--ju-color-text-muted);
+  pointer-events: none;
+}
+
+/* ---- Send button ---- */
+
+.ju-comment-box__send {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: var(--ju-color-border);
+  color: var(--ju-color-text-muted);
+  cursor: default;
+  flex-shrink: 0;
+  transition: var(--ju-transition-default);
+}
+
+.ju-comment-box__send--active {
+  background: var(--ju-color-primary);
+  color: #fff;
+  cursor: pointer;
+}
+
+.ju-comment-box__send--active:hover {
+  background: var(--ju-color-primary-hover);
+}
+
+/* ---- Mention suggestions dropdown ---- */
+
+.ju-comment-box__suggestions {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: -12px;
+  right: -12px;
+  background: var(--ju-color-surface);
+  border-radius: var(--ju-radius-lg);
+  box-shadow: var(--ju-shadow-lg);
+  border: 1px solid var(--ju-color-border);
+  padding: 6px;
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ju-comment-box__suggestion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: none;
+  background: none;
+  border-radius: var(--ju-radius-md);
+  cursor: pointer;
+  transition: background var(--ju-duration-fast) var(--ju-ease-smooth);
+  font-family: var(--ju-font-family);
+  text-align: left;
+  width: 100%;
+}
+
+.ju-comment-box__suggestion:hover,
+.ju-comment-box__suggestion--active {
+  background: var(--ju-color-surface-hover);
+}
+
+.ju-comment-box__suggestion-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.ju-comment-box__suggestion-avatar--fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ju-track-bg);
+  color: var(--ju-color-text-muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.ju-comment-box__suggestion-name {
+  font-size: 0.88rem;
+  font-weight: var(--ju-font-weight-medium);
+  color: var(--ju-color-text);
+}
+
+/* ---- Toolbar ---- */
+
+.ju-comment-box__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 20px 14px;
+}
+
+.ju-comment-box__actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--ju-color-surface-muted);
+  border-radius: var(--ju-radius-full);
+  padding: 4px 6px;
+  border: 1px solid var(--ju-color-border);
+}
+
+.ju-comment-box__action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  color: var(--ju-color-text-muted);
+  cursor: pointer;
+  transition: var(--ju-transition-default);
+}
+
+.ju-comment-box__action:hover {
+  color: var(--ju-color-text);
+  background: var(--ju-color-surface-hover);
+}
+
+.ju-comment-box__action--ai {
+  color: var(--ju-color-orange);
+}
+
+.ju-comment-box__action--ai:hover {
+  color: var(--ju-color-orange);
+  background: rgba(255, 149, 0, 0.08);
+}
+
+.ju-comment-box__action--keyboard {
+  color: var(--ju-color-text-muted);
+  opacity: 0.5;
+}
+
+.ju-comment-box__action--keyboard:hover {
+  opacity: 1;
+}
+
+/* ---- Dark theme ---- */
+
+[data-theme="dark"] .ju-comment-box__suggestions {
+  background: var(--ju-color-surface-muted);
+  border-color: var(--ju-color-border-strong);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .ju-comment-box__suggestions {
+    background: var(--ju-color-surface-muted);
+    border-color: var(--ju-color-border-strong);
+  }
+}

@@ -46,9 +46,120 @@
 }
 .ju-badge--lg {
   font-size: 1rem;
-  padding: 10px 18px;
-  gap: 8px;
-  border-radius: 16px;
+  font-weight: 700;
+  padding: 10px 20px;
+  gap: 10px;
+  border-radius: var(--ju-radius-full, 999px);
+}
+.ju-badge--lg .ju-badge__icon--bg { padding: 6px; border-radius: 50%; }
+
+/* ========================
+   XL SIZE (for hero/design ref)
+   ======================== */
+.ju-badge--xl {
+  font-size: 1.15rem;
+  font-weight: 700;
+  padding: 12px 24px;
+  gap: 12px;
+  border-radius: var(--ju-radius-full, 999px);
+}
+.ju-badge--xl .ju-badge__icon--bg { padding: 7px; border-radius: 50%; }
+.ju-badge--xl .ju-badge__dot { width: 9px; height: 9px; }
+
+/* ========================
+   BEVELED EFFECT — lg & xl soft badges
+   Ridge border using the same technique as JUAskBar
+   ======================== */
+.ju-badge--lg.ju-badge--soft,
+.ju-badge--xl.ju-badge--soft {
+  overflow: visible;
+  background: transparent;
+  border-color: transparent;
+}
+
+/* Outer ridge ring — directional gradient */
+.ju-badge--lg.ju-badge--soft::before,
+.ju-badge--xl.ju-badge--soft::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.65) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(0, 0, 0, 0.03) 100%
+  );
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Inner surface — the actual badge face */
+.ju-badge--lg.ju-badge--soft::after,
+.ju-badge--xl.ju-badge--soft::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--_badge-bg);
+  border: 0.5px solid rgba(0, 0, 0, 0.04);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -0.5px 0 rgba(0, 0, 0, 0.02);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Ensure content sits above pseudo-elements */
+.ju-badge--lg.ju-badge--soft .ju-badge__icon,
+.ju-badge--lg.ju-badge--soft .ju-badge__label,
+.ju-badge--lg.ju-badge--soft .ju-badge__dot,
+.ju-badge--xl.ju-badge--soft .ju-badge__icon,
+.ju-badge--xl.ju-badge--soft .ju-badge__label,
+.ju-badge--xl.ju-badge--soft .ju-badge__dot {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dark mode beveled overrides */
+[data-theme="dark"] .ju-badge--lg.ju-badge--soft::before,
+[data-theme="dark"] .ju-badge--xl.ju-badge--soft::before {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.03) 50%,
+    rgba(0, 0, 0, 0.08) 100%
+  );
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .ju-badge--lg.ju-badge--soft::after,
+[data-theme="dark"] .ju-badge--xl.ju-badge--soft::after {
+  border-color: rgba(255, 255, 255, 0.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -0.5px 0 rgba(0, 0, 0, 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .ju-badge--lg.ju-badge--soft::before,
+  :root:not([data-theme="light"]) .ju-badge--xl.ju-badge--soft::before {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.03) 50%,
+      rgba(0, 0, 0, 0.08) 100%
+    );
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+  }
+  :root:not([data-theme="light"]) .ju-badge--lg.ju-badge--soft::after,
+  :root:not([data-theme="light"]) .ju-badge--xl.ju-badge--soft::after {
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      inset 0 -0.5px 0 rgba(0, 0, 0, 0.12);
+  }
 }
 
 /* Pill override */
@@ -77,7 +188,6 @@
 .ju-badge--xs .ju-badge__icon--bg { padding: 2px; border-radius: 5px; }
 .ju-badge--sm .ju-badge__icon--bg { padding: 3px; border-radius: 6px; }
 .ju-badge--md .ju-badge__icon--bg { padding: 4px; border-radius: 7px; }
-.ju-badge--lg .ju-badge__icon--bg { padding: 5px; border-radius: 8px; }
 
 /* ========================
    DOT INDICATOR
@@ -146,10 +256,10 @@
    ================================================================ */
 
 /* --- Color palettes --- */
-.ju-badge--default  { --_badge-bg: #F1F5F9; --_badge-fg: #334155; --_badge-accent: #64748B; --_badge-border: #CBD5E1; --_badge-icon-bg: rgba(100,116,139,0.12); }
-.ju-badge--blue     { --_badge-bg: #EFF6FF; --_badge-fg: #1D4ED8; --_badge-accent: #3B82F6; --_badge-border: #93C5FD; --_badge-icon-bg: rgba(59,130,246,0.12); }
+.ju-badge--default  { --_badge-bg: #F1F5F9; --_badge-fg: #343434; --_badge-accent: #64748B; --_badge-border: #CBD5E1; --_badge-icon-bg: rgba(100,116,139,0.12); }
+.ju-badge--blue     { --_badge-bg: #EFF6FF; --_badge-fg: #4181fd; --_badge-accent: #3B82F6; --_badge-border: #93C5FD; --_badge-icon-bg: rgba(59,130,246,0.12); }
 .ju-badge--green    { --_badge-bg: #ECFDF5; --_badge-fg: #00b36b; --_badge-accent: #10B981; --_badge-border: #6EE7B7; --_badge-icon-bg: rgba(16,185,129,0.12); }
-.ju-badge--purple   { --_badge-bg: #F5F3FF; --_badge-fg: #6D28D9; --_badge-accent: #8B5CF6; --_badge-border: #C4B5FD; --_badge-icon-bg: rgba(139,92,246,0.12); }
+.ju-badge--purple   { --_badge-bg: #F5F3FF; --_badge-fg: #946afd; --_badge-accent: #8B5CF6; --_badge-border: #C4B5FD; --_badge-icon-bg: rgba(139,92,246,0.12); }
 .ju-badge--orange   { --_badge-bg: #FFF7ED; --_badge-fg: #C2410C; --_badge-accent: #F97316; --_badge-border: #FDBA74; --_badge-icon-bg: rgba(249,115,22,0.12); }
 .ju-badge--red      { --_badge-bg: #FEF2F2; --_badge-fg: #B91C1C; --_badge-accent: #EF4444; --_badge-border: #FCA5A5; --_badge-icon-bg: rgba(239,68,68,0.12); }
 .ju-badge--pink     { --_badge-bg: #FDF2F8; --_badge-fg: #BE185D; --_badge-accent: #EC4899; --_badge-border: #F9A8D4; --_badge-icon-bg: rgba(236,72,153,0.12); }
@@ -162,7 +272,6 @@
   color: var(--_badge-fg);
 }
 .ju-badge--soft .ju-badge__dot { background: var(--_badge-accent); }
-.ju-badge--soft .ju-badge__icon--bg { background: var(--_badge-icon-bg); }
 
 /* --- SOLID variant — filled bg, white text --- */
 .ju-badge--solid {

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUSearchBar } from './ju-search-bar';
 
 const meta: Meta<typeof JUSearchBar> = {
-  title: 'Forms/JUSearchBar',
+  title: 'Molecules/JUSearchBar',
   component: JUSearchBar,
   tags: ['autodocs'],
   argTypes: {

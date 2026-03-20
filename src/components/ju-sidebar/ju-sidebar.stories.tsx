@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUSidebar } from './ju-sidebar';
 
 const meta: Meta<typeof JUSidebar> = {
-  title: 'Navigation/JUSidebar',
+  title: 'Layouts/JUSidebar',
   component: JUSidebar,
   tags: ['autodocs'],
 };

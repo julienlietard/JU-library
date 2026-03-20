@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 
 const meta: Meta<typeof JUContextualMenu> = {
-  title: 'Components/JUContextualMenu',
+  title: 'Organisms/JUContextualMenu',
   component: JUContextualMenu,
   tags: ['autodocs'],
   parameters: {

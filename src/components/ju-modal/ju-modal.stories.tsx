@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUModal } from './ju-modal';
 
 const meta: Meta<typeof JUModal> = {
-  title: 'Feedback/JUModal',
+  title: 'Organisms/JUModal',
   component: JUModal,
   tags: ['autodocs'],
 };

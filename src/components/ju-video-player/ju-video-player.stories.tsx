@@ -6,7 +6,7 @@ const SAMPLE_VIDEO = 'https://www.w3schools.com/html/mov_bbb.mp4';
 const SAMPLE_POSTER = 'https://placehold.co/960x540/1a1a2e/ffffff?text=▶';
 
 const meta: Meta<typeof JUVideoPlayer> = {
-  title: 'Components/JUVideoPlayer',
+  title: 'Organisms/JUVideoPlayer',
   component: JUVideoPlayer,
   tags: ['autodocs'],
   parameters: { layout: 'padded' },

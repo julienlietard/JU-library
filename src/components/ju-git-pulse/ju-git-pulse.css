@@ -1,0 +1,171 @@
+/* ============================================
+   JUGitPulse — Git Activity Heatmap Widget
+   ============================================ */
+
+.ju-git-pulse {
+  font-family: var(--ju-font-family);
+  min-width: 280px;
+}
+
+/* --- Header --- */
+
+.ju-git-pulse__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--ju-space-md, 12px);
+}
+
+.ju-git-pulse__title {
+  font-size: 1rem;
+  font-weight: var(--ju-font-weight-medium, 600);
+  color: var(--ju-color-text);
+  letter-spacing: -0.01em;
+}
+
+/* --- Streak --- */
+
+.ju-git-pulse__streak {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 0.8rem;
+}
+
+.ju-git-pulse__streak-icon {
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.ju-git-pulse__streak-count {
+  font-weight: 700;
+  color: var(--ju-color-accent, var(--ju-color-primary));
+}
+
+.ju-git-pulse__streak-label {
+  color: var(--ju-color-text);
+  opacity: 0.5;
+}
+
+/* --- Heatmap grid --- */
+
+.ju-git-pulse__heatmap {
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+  grid-auto-flow: column;
+  gap: 3px;
+  margin-bottom: 8px;
+}
+
+/* --- Cells --- */
+
+.ju-git-pulse__cell {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+}
+
+.ju-git-pulse__cell--l0 {
+  background: var(--ju-color-border, rgba(0, 0, 0, 0.06));
+}
+
+.ju-git-pulse__cell--l1 {
+  background: color-mix(in srgb, var(--ju-color-accent, var(--ju-color-primary)) 25%, transparent);
+}
+
+.ju-git-pulse__cell--l2 {
+  background: color-mix(in srgb, var(--ju-color-accent, var(--ju-color-primary)) 50%, transparent);
+}
+
+.ju-git-pulse__cell--l3 {
+  background: color-mix(in srgb, var(--ju-color-accent, var(--ju-color-primary)) 75%, transparent);
+}
+
+.ju-git-pulse__cell--l4 {
+  background: var(--ju-color-accent, var(--ju-color-primary));
+}
+
+/* --- Legend --- */
+
+.ju-git-pulse__legend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3px;
+  margin-bottom: var(--ju-space-md, 12px);
+}
+
+.ju-git-pulse__legend .ju-git-pulse__cell {
+  width: 10px;
+  height: 10px;
+  aspect-ratio: unset;
+}
+
+.ju-git-pulse__legend-label {
+  font-size: 0.65rem;
+  color: var(--ju-color-text);
+  opacity: 0.45;
+  padding: 0 2px;
+}
+
+/* --- Commits list --- */
+
+.ju-git-pulse__commits {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  border-top: 1px solid var(--ju-color-border, rgba(0, 0, 0, 0.06));
+  padding-top: 10px;
+}
+
+.ju-git-pulse__commit {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 4px;
+  border-radius: var(--ju-radius-md, 8px);
+  transition: background 0.15s ease;
+}
+
+.ju-git-pulse__commit:hover {
+  background: rgba(0, 0, 0, 0.025);
+}
+
+.ju-git-pulse__hash {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 0.7rem;
+  color: var(--ju-color-accent, var(--ju-color-primary));
+  opacity: 0.8;
+  background: color-mix(in srgb, var(--ju-color-accent, var(--ju-color-primary)) 8%, transparent);
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.ju-git-pulse__msg {
+  font-size: 0.78rem;
+  color: var(--ju-color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.ju-git-pulse__date {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 0.65rem;
+  color: var(--ju-color-text);
+  opacity: 0.4;
+  white-space: nowrap;
+}
+
+/* --- Error --- */
+
+.ju-git-pulse__error {
+  font-size: var(--ju-font-size-sm, 0.875rem);
+  color: var(--ju-color-danger, #ef4444);
+  text-align: center;
+  padding: var(--ju-space-md, 12px) 0;
+}

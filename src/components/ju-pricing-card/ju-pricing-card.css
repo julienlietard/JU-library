@@ -1,0 +1,203 @@
+/* ============================================
+   JUPricingCard — Modern Pricing Tier Card
+   ============================================ */
+
+.ju-pricing-card {
+  font-family: var(--ju-font-family);
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+}
+
+/* --- Popular wrapper glow --- */
+
+.ju-pricing-card--popular {
+  z-index: 1;
+}
+
+.ju-pricing-card--popular .ju-pricing-card__card {
+  border-color: var(--ju-color-accent, var(--ju-color-primary)) !important;
+  box-shadow:
+    0 0 0 1px var(--ju-color-accent, var(--ju-color-primary)),
+    0 8px 40px color-mix(in srgb, var(--ju-color-accent, var(--ju-color-primary)) 15%, transparent),
+    0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* --- Ribbon --- */
+
+.ju-pricing-card__ribbon {
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ju-color-white, #fff);
+  background: var(--ju-color-accent, var(--ju-color-primary));
+  padding: 4px 16px;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--ju-color-accent, var(--ju-color-primary)) 30%, transparent);
+}
+
+/* --- Card override --- */
+
+.ju-pricing-card__card {
+  overflow: visible !important;
+}
+
+/* --- Inner layout --- */
+
+.ju-pricing-card__inner {
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- Header --- */
+
+.ju-pricing-card__header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.ju-pricing-card__tier-icon {
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  opacity: 0.5;
+}
+
+.ju-pricing-card--popular .ju-pricing-card__tier-icon {
+  opacity: 1;
+  color: var(--ju-color-accent, var(--ju-color-primary));
+}
+
+.ju-pricing-card__name {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ju-color-text);
+  letter-spacing: -0.02em;
+}
+
+.ju-pricing-card__tagline {
+  margin: 4px 0 0;
+  font-size: 0.78rem;
+  color: var(--ju-color-text);
+  opacity: 0.5;
+  line-height: 1.4;
+}
+
+/* --- Price block --- */
+
+.ju-pricing-card__price-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 2px;
+  margin-bottom: 20px;
+}
+
+.ju-pricing-card__currency {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ju-color-text);
+  opacity: 0.5;
+  margin-top: 8px;
+}
+
+.ju-pricing-card__amount {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--ju-color-text);
+  letter-spacing: -0.04em;
+}
+
+.ju-pricing-card--popular .ju-pricing-card__amount {
+  color: var(--ju-color-accent, var(--ju-color-primary));
+}
+
+.ju-pricing-card__billing {
+  font-size: 0.78rem;
+  color: var(--ju-color-text);
+  opacity: 0.4;
+  align-self: flex-end;
+  margin-bottom: 6px;
+}
+
+/* --- CTA Button (uses JUButton) --- */
+
+.ju-pricing-card__cta {
+  margin-bottom: 0;
+}
+
+/* --- Divider --- */
+
+.ju-pricing-card__divider {
+  width: 100%;
+  height: 1px;
+  background: var(--ju-color-border, rgba(0, 0, 0, 0.06));
+  margin: 20px 0;
+}
+
+/* --- Features --- */
+
+.ju-pricing-card__features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ju-pricing-card__feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: var(--ju-color-text);
+}
+
+.ju-pricing-card__feature--disabled {
+  opacity: 0.35;
+}
+
+.ju-pricing-card__check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  background: rgba(34, 197, 94, 0.1);
+  color: var(--ju-color-success, #22c55e);
+}
+
+.ju-pricing-card__feature--disabled .ju-pricing-card__check {
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--ju-color-text);
+  opacity: 0.5;
+}
+
+.ju-pricing-card__feature-label {
+  flex: 1;
+}
+
+.ju-pricing-card__feature-detail {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--ju-color-accent, var(--ju-color-primary));
+  background: color-mix(in srgb, var(--ju-color-accent, var(--ju-color-primary)) 8%, transparent);
+  padding: 2px 8px;
+  border-radius: 4px;
+}

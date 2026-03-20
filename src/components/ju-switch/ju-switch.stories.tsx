@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUSwitch } from './ju-switch';
 
 const meta: Meta<typeof JUSwitch> = {
-  title: 'Forms/JUSwitch',
+  title: 'Atoms/JUSwitch',
   component: JUSwitch,
   tags: ['autodocs'],
 };

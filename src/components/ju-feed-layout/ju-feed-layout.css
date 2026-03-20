@@ -1,0 +1,95 @@
+/* ============================================
+   JUFeedLayout — Infinite Scroll Grid / Column
+   ============================================ */
+
+.ju-feed-layout {
+  font-family: var(--ju-font-family);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Header --- */
+
+.ju-feed-layout__header {
+  margin-bottom: var(--ju-space-lg, 20px);
+}
+
+/* --- Grid --- */
+
+.ju-feed-layout__grid {
+  display: grid;
+  width: 100%;
+}
+
+/* Columns */
+.ju-feed-layout__grid--cols-1 { grid-template-columns: 1fr; }
+.ju-feed-layout__grid--cols-2 { grid-template-columns: repeat(2, 1fr); }
+.ju-feed-layout__grid--cols-3 { grid-template-columns: repeat(3, 1fr); }
+.ju-feed-layout__grid--cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* Gaps */
+.ju-feed-layout__grid--gap-sm { gap: 8px; }
+.ju-feed-layout__grid--gap-md { gap: 16px; }
+.ju-feed-layout__grid--gap-lg { gap: 24px; }
+
+/* Responsive: collapse columns on smaller screens */
+@media (max-width: 900px) {
+  .ju-feed-layout__grid--cols-4 { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 700px) {
+  .ju-feed-layout__grid--cols-3,
+  .ju-feed-layout__grid--cols-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 500px) {
+  .ju-feed-layout__grid--cols-2,
+  .ju-feed-layout__grid--cols-3,
+  .ju-feed-layout__grid--cols-4 { grid-template-columns: 1fr; }
+}
+
+/* Items should stretch to fill */
+.ju-feed-layout__grid > * {
+  min-width: 0;
+}
+
+/* --- Loader --- */
+
+.ju-feed-layout__loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 28px 0;
+}
+
+.ju-feed-layout__spinner {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid var(--ju-color-border, rgba(0, 0, 0, 0.1));
+  border-top-color: var(--ju-color-accent, var(--ju-color-primary));
+  border-radius: 50%;
+  animation: ju-feed-spin 0.7s linear infinite;
+}
+
+@keyframes ju-feed-spin {
+  to { transform: rotate(360deg); }
+}
+
+.ju-feed-layout__loader-text {
+  font-size: 0.8rem;
+  color: var(--ju-color-text);
+  opacity: 0.45;
+}
+
+/* --- End message --- */
+
+.ju-feed-layout__end {
+  text-align: center;
+  padding: 24px 0;
+  font-size: 0.78rem;
+  color: var(--ju-color-text);
+  opacity: 0.35;
+}
+

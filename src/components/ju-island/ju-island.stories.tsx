@@ -12,7 +12,7 @@ const demoLinks = [
 ];
 
 const meta: Meta<typeof JUIsland> = {
-  title: 'Components/JUIsland',
+  title: 'Layouts/JUIsland',
   component: JUIsland,
   tags: ['autodocs'],
   argTypes: {

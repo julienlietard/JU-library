@@ -61,7 +61,7 @@ const educationItems = [
 ];
 
 const meta: Meta<typeof JUTimeline> = {
-  title: 'Components/JUTimeline',
+  title: 'Organisms/JUTimeline',
   component: JUTimeline,
   tags: ['autodocs'],
   parameters: { layout: 'padded' },

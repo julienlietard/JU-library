@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUSkeleton } from './ju-skeleton';
 
 const meta: Meta<typeof JUSkeleton> = {
-  title: 'Feedback/JUSkeleton',
+  title: 'Atoms/JUSkeleton',
   component: JUSkeleton,
   tags: ['autodocs'],
 };

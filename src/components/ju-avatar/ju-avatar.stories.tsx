@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUAvatar } from './ju-avatar';
 
 const meta: Meta<typeof JUAvatar> = {
-  title: 'Components/JUAvatar',
+  title: 'Atoms/JUAvatar',
   component: JUAvatar,
   tags: ['autodocs'],
   argTypes: {

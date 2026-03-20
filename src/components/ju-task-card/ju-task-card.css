@@ -1,0 +1,249 @@
+/* ============================================
+   JUTaskCard — Premium Task / Project Card
+   ============================================ */
+
+.ju-task-card {
+  font-family: var(--ju-font-family);
+  min-width: 260px;
+  max-width: 340px;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Aurora glow overlay */
+.ju-task-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.1) 40%,
+    rgba(200, 220, 255, 0.15) 60%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* --- Top row (status + settings) --- */
+
+.ju-task-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* --- Status badge --- */
+
+.ju-task-card__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+.ju-task-card__status--active {
+  color: var(--ju-color-success, #22c55e);
+  background: rgba(34, 197, 94, 0.1);
+}
+
+.ju-task-card__status--paused {
+  color: var(--ju-color-warning, #f59e0b);
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.ju-task-card__status--completed {
+  color: var(--ju-color-primary);
+  background: color-mix(in srgb, var(--ju-color-primary) 10%, transparent);
+}
+
+.ju-task-card__status--archived {
+  color: var(--ju-color-text);
+  opacity: 0.5;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Pulse dot */
+
+.ju-task-card__pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  position: relative;
+}
+
+.ju-task-card__status--active .ju-task-card__pulse::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.3;
+  animation: ju-task-pulse 2s ease-in-out infinite;
+}
+
+@keyframes ju-task-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.6); opacity: 0; }
+}
+
+/* --- Settings button --- */
+
+.ju-task-card__settings {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--ju-color-text);
+  opacity: 0.4;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.15s ease, background 0.15s ease;
+}
+
+.ju-task-card__settings:hover {
+  opacity: 0.8;
+  background: rgba(0, 0, 0, 0.07);
+}
+
+/* --- Title row --- */
+
+.ju-task-card__title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ju-task-card__folder-icon {
+  color: var(--ju-color-text);
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+.ju-task-card__name {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ju-color-text);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --- Category chip --- */
+
+.ju-task-card__category {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--ju-font-family);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ju-color-accent, var(--ju-color-primary));
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.ju-task-card__category:hover {
+  opacity: 0.7;
+}
+
+/* --- Progress section --- */
+
+.ju-task-card__progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ju-task-card__progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ju-task-card__progress-label {
+  font-size: 0.8rem;
+  color: var(--ju-color-text);
+  opacity: 0.5;
+}
+
+.ju-task-card__progress-count {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ju-color-text);
+  opacity: 0.6;
+}
+
+/* --- Segmented bar --- */
+
+.ju-task-card__bar {
+  display: flex;
+  gap: 4px;
+}
+
+.ju-task-card__segment {
+  flex: 1;
+  height: 5px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.07);
+  transition: background 0.3s ease;
+}
+
+.ju-task-card__segment--filled {
+  background: var(--ju-color-accent, var(--ju-color-primary));
+}
+
+/* --- Footer --- */
+
+.ju-task-card__footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ju-task-card__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--ju-color-surface, #fff);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.ju-task-card__spacer {
+  flex: 1;
+}
+
+.ju-task-card__updated {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--ju-color-warning, #f59e0b);
+  background: rgba(245, 158, 11, 0.1);
+  padding: 4px 10px;
+  border-radius: 999px;
+}

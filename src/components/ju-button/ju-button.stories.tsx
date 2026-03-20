@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { JUButton } from './ju-button';
 
 const meta: Meta<typeof JUButton> = {
-  title: 'Components/JUButton',
+  title: 'Atoms/JUButton',
   component: JUButton,
   tags: ['autodocs'],
   argTypes: {

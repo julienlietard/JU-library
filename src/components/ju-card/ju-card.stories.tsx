@@ -5,7 +5,7 @@ import { JUButton } from '../ju-button/ju-button';
 import { JUBadge } from '../ju-badge/ju-badge';
 
 const meta: Meta<typeof JUCard> = {
-  title: 'Components/JUCard',
+  title: 'Molecules/JUCard',
   component: JUCard,
   tags: ['autodocs'],
   argTypes: {

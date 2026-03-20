@@ -26,13 +26,40 @@ const preview: Preview = {
     (Story, context) => {
       const theme = context.globals.theme ?? 'light';
 
-      // Set data-theme on :root so CSS tokens resolve correctly
+      // Inject a <style> tag to force dark bg on every Storybook layer
       useEffect(() => {
+        const isDark = theme === 'dark';
+        const bg = isDark ? '#0a0a0b' : 'transparent';
+
+        // 1. Root data-theme — propagates all CSS tokens
         document.documentElement.setAttribute('data-theme', theme);
-        document.body.style.background = theme === 'dark' ? '#18181b' : 'transparent';
+
+        // 2. Inject a persistent style tag that covers every SB layer
+        const styleId = 'ju-theme-override';
+        let style = document.getElementById(styleId) as HTMLStyleElement | null;
+        if (!style) {
+          style = document.createElement('style');
+          style.id = styleId;
+          document.head.appendChild(style);
+        }
+        style.textContent = isDark
+          ? `html,body,#storybook-root,.sb-show-main,.sb-main-padded{background:#0a0a0b !important;}`
+          : `html,body,#storybook-root,.sb-show-main,.sb-main-padded{background:transparent !important;}`;
+
+        // 3. Inline styles as fallback
+        document.documentElement.style.background = bg;
+        document.body.style.background = bg;
+        const sbRoot = document.getElementById('storybook-root');
+        if (sbRoot) sbRoot.style.background = bg;
+
         return () => {
           document.documentElement.removeAttribute('data-theme');
+          document.documentElement.style.background = '';
           document.body.style.background = '';
+          const sbRootClean = document.getElementById('storybook-root');
+          if (sbRootClean) sbRootClean.style.background = '';
+          const s = document.getElementById(styleId);
+          if (s) s.remove();
         };
       }, [theme]);
 

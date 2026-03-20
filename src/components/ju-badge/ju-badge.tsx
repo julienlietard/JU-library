@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import './ju-badge.css';
 
 export type JUBadgeColor = 'default' | 'green' | 'blue' | 'purple' | 'orange' | 'red' | 'pink' | 'yellow' | 'cyan';
-export type JUBadgeSize = 'xs' | 'sm' | 'md' | 'lg';
+export type JUBadgeSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type JUBadgeVariant = 'soft' | 'solid' | 'outline' | 'ghost';
 export type JUBadgeEffect = 'none' | 'glow' | 'pulse' | 'shine' | 'float';
 

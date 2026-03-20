@@ -14,7 +14,7 @@
   justify-content: center;
   border-radius: var(--ju-radius-md);
   border: 1px solid transparent;
-  font-family: inherit;
+  font-family: var(--ju-font-family, system-ui, -apple-system, sans-serif);
   font-weight: 600;
   cursor: pointer;
   overflow: hidden;

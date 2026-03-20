@@ -196,7 +196,7 @@ export type { JUSearchBarProps, JUSearchBarSize, JUSearchBarVariant, JUSearchBar
 
 // Ask Bar
 export { JUAskBar } from './components/ju-ask-bar/ju-ask-bar';
-export type { JUAskBarProps, JUAskBarSize, JUAskBarVariant } from './components/ju-ask-bar/ju-ask-bar';
+export type { JUAskBarProps, JUAskBarTheme } from './components/ju-ask-bar/ju-ask-bar';
 
 // Welcome Card
 export { JUWelcomeCard } from './components/ju-welcome-card/ju-welcome-card';
@@ -213,3 +213,55 @@ export type { JUContextualMenuProps, JUContextualMenuItem, JUContextualMenuSubIt
 // Command Palette
 export { JUCommandPalette } from './components/ju-command-palette/ju-command-palette';
 export type { JUCommandPaletteProps, JUCommandPaletteItem, JUCommandPaletteHandle } from './components/ju-command-palette/ju-command-palette';
+
+// Stat Card
+export { JUStatCard } from './components/ju-stat-card/ju-stat-card';
+export type { JUStatCardProps, JUStatCardVariant, JUStatCardSize, JUStatCardTrend } from './components/ju-stat-card/ju-stat-card';
+
+// Notification Center
+export { JUNotificationCenter } from './components/ju-notification-center/ju-notification-center';
+export type { JUNotificationCenterProps, JUNotificationItem, JUNotificationType, JUNotificationPlacement } from './components/ju-notification-center/ju-notification-center';
+
+// Sub Calendar
+export { JUSubCalendar } from './components/ju-sub-calendar/ju-sub-calendar';
+export type { JUSubCalendarProps, JUSubscription, JUBillingCycle } from './components/ju-sub-calendar/ju-sub-calendar';
+
+// Step Wizard
+export { JUStepWizard } from './components/ju-step-wizard/ju-step-wizard';
+export type { JUStepWizardProps, JUStepDef, JUStepStatus, JUStepWizardVariant, JUStepWizardSize } from './components/ju-step-wizard/ju-step-wizard';
+
+// App Audit
+export { JUAppAudit } from './components/ju-app-audit/ju-app-audit';
+export type { JUAppAuditProps, JUAppAuditEntry } from './components/ju-app-audit/ju-app-audit';
+
+// Git Pulse
+export { JUGitPulse } from './components/ju-git-pulse/ju-git-pulse';
+export type { JUGitPulseProps, JUGitPulseData, JUGitCommit } from './components/ju-git-pulse/ju-git-pulse';
+
+// Digest Sentinel
+export { JUDigestSentinel } from './components/ju-digest-sentinel/ju-digest-sentinel';
+export type { JUDigestSentinelProps, JUDigestItem } from './components/ju-digest-sentinel/ju-digest-sentinel';
+
+// Dependency Guardian
+export { JUDependencyGuardian } from './components/ju-dependency-guardian/ju-dependency-guardian';
+export type { JUDependencyGuardianProps, JUDepPackage, JUDepSeverity } from './components/ju-dependency-guardian/ju-dependency-guardian';
+
+// Task Card
+export { JUTaskCard } from './components/ju-task-card/ju-task-card';
+export type { JUTaskCardProps, JUTaskCardStatus } from './components/ju-task-card/ju-task-card';
+
+// Feed Layout
+export { JUFeedLayout } from './components/ju-feed-layout/ju-feed-layout';
+export type { JUFeedLayoutProps, JUFeedLayoutColumns, JUFeedLayoutGap } from './components/ju-feed-layout/ju-feed-layout';
+
+// Comment Thread
+export { JUCommentThread } from './components/ju-comment-thread/ju-comment-thread';
+export type { JUCommentThreadProps, JUComment } from './components/ju-comment-thread/ju-comment-thread';
+
+// Comment Box
+export { JUCommentBox } from './components/ju-comment-box/ju-comment-box';
+export type { JUCommentBoxProps, JUCommentBoxUser, JUCommentBoxComment } from './components/ju-comment-box/ju-comment-box';
+
+// Pricing Card
+export { JUPricingCard } from './components/ju-pricing-card/ju-pricing-card';
+export type { JUPricingCardProps, JUPricingCardTier, JUPricingCardBilling, JUPricingFeature } from './components/ju-pricing-card/ju-pricing-card';
