@@ -6,14 +6,14 @@ import { Meta } from '@storybook/blocks';
 
   <header className="intro__header">
     <div className="intro__logo">JU</div>
-    <p className="intro__version">v1.0.4</p>
+    <p className="intro__version">v1.1.5</p>
   </header>
 
   <section className="intro__hero">
     <h1 className="intro__title">JU-Design</h1>
     <p className="intro__subtitle">Bibliothèque de composants React</p>
     <p className="intro__lead">
-      58 composants modulaires construits avec une approche
+      67 composants modulaires construits avec une approche
       <strong>Glassmorphism 2.0</strong>, typés TypeScript,
       animés en CSS pur.
     </p>
@@ -28,7 +28,7 @@ import { Meta } from '@storybook/blocks';
     <div className="intro__card">
       <span className="intro__card-count">17</span>
       <span className="intro__card-label">Molecules</span>
-      <span className="intro__card-desc">Input, Card, Breadcrumbs, StatCard…</span>
+      <span className="intro__card-desc">Input, Card, Breadcrumbs, Toast…</span>
     </div>
     <div className="intro__card">
       <span className="intro__card-count">17</span>
@@ -41,7 +41,7 @@ import { Meta } from '@storybook/blocks';
       <span className="intro__card-desc">Sidebar, Island</span>
     </div>
     <div className="intro__card">
-      <span className="intro__card-count">12</span>
+      <span className="intro__card-count">21</span>
       <span className="intro__card-label">Widgets</span>
       <span className="intro__card-desc">GPUPulse, BioSync, NerveCenter…</span>
     </div>
@@ -124,9 +124,10 @@ import { Meta } from '@storybook/blocks';
 
   <section className="intro__quickstart">
     <h2 className="intro__section-title">Démarrage rapide</h2>
-    <pre className="intro__code"><code>{`npm install ju-design
+    <pre className="intro__code"><code>{`pnpm add ju-library
 
-import { JUButton, JUModal, JUCard } from 'ju-design';`}</code></pre>
+import { JUButton, JUModal, JUCard } from 'ju-library';
+import 'ju-library/styles';`}</code></pre>
   </section>
 
   <footer className="intro__footer">
